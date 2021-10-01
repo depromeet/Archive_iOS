@@ -1,0 +1,59 @@
+PODS:
+  - Alamofire (5.4.4)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - ReactorKit (3.1.0):
+    - RxSwift (~> 6.0)
+    - WeakMapTable (~> 1.1)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxFlow (2.12.4):
+    - RxCocoa (>= 6.0.0)
+    - RxSwift (>= 6.0.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+  - SwiftGen (6.4.0)
+  - SwiftLint (0.44.0)
+  - WeakMapTable (1.2.0)
+
+DEPENDENCIES:
+  - Moya
+  - ReactorKit
+  - RxCocoa
+  - RxFlow
+  - RxSwift
+  - SwiftGen
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Moya
+    - ReactorKit
+    - RxCocoa
+    - RxFlow
+    - RxRelay
+    - RxSwift
+    - SwiftGen
+    - SwiftLint
+    - WeakMapTable
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ReactorKit: a06dd2a5c9339287aedf3dc821cfab6347eca106
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxFlow: 03a73c83fb8f183107074b40ab2544c668583f73
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
+  WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
+
+PODFILE CHECKSUM: 90f0c1bf69e9635ab24665f0e7d89315fd6164f5
+
+COCOAPODS: 1.10.1
