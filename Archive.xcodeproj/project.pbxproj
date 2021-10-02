@@ -21,6 +21,8 @@
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Assets.xcassets */; };
 		784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD0270841B9004B1A23 /* .swiftlint.yml */; };
+		784D1DD827084869004B1A23 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD727084869004B1A23 /* swiftgen.yml */; };
+		784D1DF327084F71004B1A23 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1DF227084F71004B1A23 /* Assets.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		784D1DD0270841B9004B1A23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		784D1DD727084869004B1A23 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		784D1DF227084F71004B1A23 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +72,7 @@
 		44F9B0D4270606E7005418F0 = {
 			isa = PBXGroup;
 			children = (
+				784D1DD727084869004B1A23 /* swiftgen.yml */,
 				784D1DD0270841B9004B1A23 /* .swiftlint.yml */,
 				44F9B0DF270606E7005418F0 /* Archive */,
 				44F9B0DE270606E7005418F0 /* Products */,
@@ -88,7 +93,7 @@
 		44F9B0DF270606E7005418F0 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
-				784D1DBD27083D1C004B1A23 /* Resouces */,
+				784D1DBD27083D1C004B1A23 /* Resources */,
 				44F9B0E0270606E7005418F0 /* AppDelegate.swift */,
 				44F9B0E2270606E7005418F0 /* SceneDelegate.swift */,
 				44F9B0E4270606E7005418F0 /* ViewController.swift */,
@@ -109,12 +114,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		784D1DBD27083D1C004B1A23 /* Resouces */ = {
+		784D1DBD27083D1C004B1A23 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				784D1DF227084F71004B1A23 /* Assets.swift */,
 				784D1DC627083D88004B1A23 /* Assets */,
 			);
-			path = Resouces;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		784D1DC627083D88004B1A23 /* Assets */ = {
@@ -149,7 +155,8 @@
 				44B4F23627074C5900D53F27 /* Frameworks */,
 				44B4F23727074C5900D53F27 /* Resources */,
 				12A4B05383F7DDEAEE3F8507 /* [CP] Embed Pods Frameworks */,
-				784D1DD627084789004B1A23 /* ShellScript */,
+				784D1DD627084789004B1A23 /* Lint */,
+				784D1DEB27084924004B1A23 /* Gen */,
 			);
 			buildRules = (
 			);
@@ -231,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */,
+				784D1DD827084869004B1A23 /* swiftgen.yml in Resources */,
 				44F9B0ED270606EE005418F0 /* LaunchScreen.storyboard in Resources */,
 				784D1DCA27083D88004B1A23 /* Assets.xcassets in Resources */,
 				44F9B0E8270606E7005418F0 /* Main.storyboard in Resources */,
@@ -279,7 +287,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Archive_debug/Pods-Archive_debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		784D1DD627084789004B1A23 /* ShellScript */ = {
+		784D1DD627084789004B1A23 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,6 +296,7 @@
 			);
 			inputPaths = (
 			);
+			name = Lint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -295,6 +304,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		784D1DEB27084924004B1A23 /* Gen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Gen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftGen/bin/swiftgen\n";
 		};
 		9734DE066DDB6101008DB118 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -354,6 +381,7 @@
 			files = (
 				44F9B0E5270606E7005418F0 /* ViewController.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
+				784D1DF327084F71004B1A23 /* Assets.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
