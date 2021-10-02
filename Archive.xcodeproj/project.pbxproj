@@ -23,6 +23,7 @@
 		784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD0270841B9004B1A23 /* .swiftlint.yml */; };
 		784D1DD827084869004B1A23 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD727084869004B1A23 /* swiftgen.yml */; };
 		784D1DF327084F71004B1A23 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1DF227084F71004B1A23 /* Assets.swift */; };
+		784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		784D1DD0270841B9004B1A23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		784D1DD727084869004B1A23 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		784D1DF227084F71004B1A23 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		784D1E2027088BC0004B1A23 /* HWFlipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWFlipView.swift; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 		44F9B0DF270606E7005418F0 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				784D1E1E27088BB0004B1A23 /* Module */,
 				784D1DBD27083D1C004B1A23 /* Resources */,
 				44F9B0E0270606E7005418F0 /* AppDelegate.swift */,
 				44F9B0E2270606E7005418F0 /* SceneDelegate.swift */,
@@ -130,6 +133,22 @@
 				784D1DC827083D88004B1A23 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		784D1E1E27088BB0004B1A23 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				784D1E1F27088BB0004B1A23 /* UI */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		784D1E1F27088BB0004B1A23 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				784D1E2027088BC0004B1A23 /* HWFlipView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		7A78CD9881593A0B9DDBF955 /* Pods */ = {
@@ -382,6 +401,7 @@
 				44F9B0E5270606E7005418F0 /* ViewController.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
 				784D1DF327084F71004B1A23 /* Assets.swift in Sources */,
+				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
