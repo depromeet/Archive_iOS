@@ -17,6 +17,7 @@ PODS:
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
+  - SnapKit (5.0.1)
   - SwiftGen (6.4.0)
   - SwiftLint (0.44.0)
   - SwiftyJSON (4.3.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxFlow
   - RxSwift
+  - SnapKit (~> 5.0.0)
   - SwiftGen
   - SwiftLint
   - SwiftyJSON (~> 4.0)
@@ -43,6 +45,7 @@ SPEC REPOS:
     - RxFlow
     - RxRelay
     - RxSwift
+    - SnapKit
     - SwiftGen
     - SwiftLint
     - SwiftyJSON
@@ -57,11 +60,12 @@ SPEC CHECKSUMS:
   RxFlow: 03a73c83fb8f183107074b40ab2544c668583f73
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: c4943a059d3ca29b3dd9888958e7e406d19608b6
+PODFILE CHECKSUM: c0d15533b6e7459562191f7feb6dcd22625ee3f9
 
 COCOAPODS: 1.11.0

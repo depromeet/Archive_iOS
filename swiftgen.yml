@@ -1,10 +1,9 @@
 xcassets:
   inputs:
     - ${PROJECT_DIR}/Archive/Resources/Assets/Colors.xcassets
-    - ${PROJECT_DIR}/Archive/Resources/Assets/Assets.xcassets
+    - ${PROJECT_DIR}/Archive/Resources/Assets/Images.xcassets
   outputs:
     - templateName: swift5
       output: ${PROJECT_DIR}/Archive/Resources/Assets.swift
       params:
-          enumName: Colors
-          enumName: Images
+          enumName: gen

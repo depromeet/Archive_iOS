@@ -13,6 +13,7 @@ def pods
   pod 'SwiftGen'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher', '~> 7.0'
+  pod 'SnapKit', '~> 5.0.0'
 end
 
 def pods_debug
