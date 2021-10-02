@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.4)
+  - Kingfisher (7.0.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -18,9 +19,11 @@ PODS:
   - RxSwift (6.2.0)
   - SwiftGen (6.4.0)
   - SwiftLint (0.44.0)
+  - SwiftyJSON (4.3.0)
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
+  - Kingfisher (~> 7.0)
   - Moya
   - ReactorKit
   - RxCocoa
@@ -28,10 +31,12 @@ DEPENDENCIES:
   - RxSwift
   - SwiftGen
   - SwiftLint
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - Kingfisher
     - Moya
     - ReactorKit
     - RxCocoa
@@ -40,10 +45,12 @@ SPEC REPOS:
     - RxSwift
     - SwiftGen
     - SwiftLint
+    - SwiftyJSON
     - WeakMapTable
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   ReactorKit: a06dd2a5c9339287aedf3dc821cfab6347eca106
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
@@ -52,8 +59,9 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 90f0c1bf69e9635ab24665f0e7d89315fd6164f5
+PODFILE CHECKSUM: c4943a059d3ca29b3dd9888958e7e406d19608b6
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

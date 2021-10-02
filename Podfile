@@ -11,6 +11,8 @@ def pods
   pod 'ReactorKit'
   pod 'Moya'
   pod 'SwiftGen'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'Kingfisher', '~> 7.0'
 end
 
 def pods_debug
