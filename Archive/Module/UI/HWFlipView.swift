@@ -110,7 +110,6 @@ public class HWFlipView: UIView {
                                                  multiplier: 1.0, constant: 0)
                     
             self.addConstraints([constraint1, constraint2, constraint3, constraint4])
-            // 이 함수를 두번 호출하면 constraints들이 남아있어서 버그가 일어날수도....
         }
     }
     
