@@ -11,5 +11,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let item: HWFlipView = HWFlipView()
+        let some = item.currentFlipType
+        
     }
 }

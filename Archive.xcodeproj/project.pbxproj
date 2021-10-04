@@ -24,6 +24,7 @@
 		784D1DD827084869004B1A23 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD727084869004B1A23 /* swiftgen.yml */; };
 		784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		784D1E3527088EC8004B1A23 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E3427088EC7004B1A23 /* Assets.swift */; };
+		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
 
@@ -388,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */,
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
 				44B4F2D5270755FD00D53F27 /* ViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,

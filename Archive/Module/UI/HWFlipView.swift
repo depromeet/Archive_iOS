@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol HWFlipViewDelegate: AnyObject {
+public protocol HWFlipViewDelegate: AnyObject {
     func flipViewWillFliped(flipView: HWFlipView, foregroundView: UIView, behindeView: UIView, willShow: HWFlipView.FlipType)
     func flipViewDidFliped(flipView: HWFlipView, foregroundView: UIView, behindeView: UIView, didShow: HWFlipView.FlipType)
 }
 
-class HWFlipView: UIView {
+public class HWFlipView: UIView {
     
-    enum FlipType {
+    public enum FlipType {
         case foreground
         case behind
     }
@@ -22,15 +22,15 @@ class HWFlipView: UIView {
     // MARK: private property
     private var foregroundView: UIView?
     private var behindView: UIView?
-    private var currentFlipType: FlipType = .foreground
+    private(set) var currentFlipType: FlipType = .foreground
     private let containerView: UIView = UIView()
     
     // MARK: internal property
-    weak var delegate: HWFlipViewDelegate?
+    public weak var delegate: HWFlipViewDelegate?
     
     // MARK: lifeCycle
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         initUI()
     }
@@ -57,46 +57,37 @@ class HWFlipView: UIView {
         }
     }
     
-    // MARK: internal function
-    
-    func flip(complition: (() -> Void)?) {
-        guard let foregroundView = self.foregroundView else { print("foregroundView is null") ; return }
-        guard let behindView = self.behindView else { print("behindView is null") ; return }
-        switch currentFlipType {
-        case .foreground:
-            self.delegate?.flipViewWillFliped(flipView: self, foregroundView: foregroundView, behindeView: behindView, willShow: .behind)
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                UIView.transition(with: self.containerView, duration: 0.35, options: .transitionFlipFromLeft, animations: nil, completion: { [weak self] isEndAnimation in
-                    if isEndAnimation {
-                        guard let self = self else { return }
-                        self.foregroundView?.isHidden = true
-                        self.behindView?.isHidden = false
-                        self.delegate?.flipViewDidFliped(flipView: self, foregroundView: self.foregroundView ?? UIView(), behindeView: self.behindView ?? UIView(), didShow: .behind)
-                        self.currentFlipType = .behind
-                        complition?()
-                    }
-                })
-            }
-        case .behind:
-            self.delegate?.flipViewWillFliped(flipView: self, foregroundView: foregroundView, behindeView: behindView, willShow: .foreground)
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                UIView.transition(with: self.containerView, duration: 0.35, options: .transitionFlipFromLeft, animations: nil, completion: { [weak self] isEndAnimation in
-                    if isEndAnimation {
-                        guard let self = self else { return }
-                        self.foregroundView?.isHidden = false
-                        self.behindView?.isHidden = true
-                        self.delegate?.flipViewDidFliped(flipView: self, foregroundView: self.foregroundView ?? UIView(), behindeView: self.behindView ?? UIView(), didShow: .foreground)
-                        self.currentFlipType = .foreground
-                        complition?()
-                    }
-                })
-            }
+    private func flip(type: FlipType, complition: (() -> Void)?) {
+        guard let foregroundView = self.foregroundView else { return }
+        guard let behindView = self.behindView else { return }
+        let willtransType: FlipType = type == .behind ? .foreground : .behind
+        
+        self.delegate?.flipViewWillFliped(flipView: self, foregroundView: foregroundView, behindeView: behindView, willShow: willtransType)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            UIView.transition(with: self.containerView, duration: 0.35, options: .transitionFlipFromLeft, animations: nil, completion: { [weak self] isEndAnimation in
+                if isEndAnimation {
+                    guard let self = self else { return }
+                    self.foregroundView?.isHidden = true
+                    self.behindView?.isHidden = false
+                    self.delegate?.flipViewDidFliped(flipView: self, foregroundView: self.foregroundView ?? UIView(), behindeView: self.behindView ?? UIView(), didShow: willtransType)
+                    self.currentFlipType = willtransType
+                    complition?()
+                }
+            })
         }
     }
     
-    func setForegroundView(_ foregroundView: UIView) {
+    // MARK: internal function
+    
+    public func flip(complition: (() -> Void)?) {
+        flip(type: self.currentFlipType, complition: complition)
+    }
+    
+    public func setForegroundView(_ foregroundView: UIView) {
+        if let view = self.behindView {
+            view.clearConstraintsForFlipView()
+        }
         self.foregroundView = foregroundView
         DispatchQueue.main.async {
             self.containerView.addSubview(foregroundView)
@@ -123,7 +114,10 @@ class HWFlipView: UIView {
         }
     }
     
-    func setBehindViewView(_ behindView: UIView) {
+    public func setBehindViewView(_ behindView: UIView) {
+        if let view = self.behindView {
+            view.clearConstraintsForFlipView()
+        }
         self.behindView = behindView
         DispatchQueue.main.async {
             self.containerView.addSubview(behindView)
@@ -146,13 +140,17 @@ class HWFlipView: UIView {
                                                  multiplier: 1.0, constant: 0)
                     
             self.addConstraints([constraint1, constraint2, constraint3, constraint4])
-            // 이 함수를 두번 호출하면 constraints들이 남아있어서 버그가 일어날수도....
             self.behindView?.isHidden = true
         }
     }
     
-    func flipType() -> FlipType {
-        return self.currentFlipType
+}
+
+extension UIView {
+    func clearConstraintsForFlipView() {
+        for subview in self.subviews {
+            subview.clearConstraintsForFlipView()
+        }
+        self.removeConstraints(self.constraints)
     }
-    
 }

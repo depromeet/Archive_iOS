@@ -6,4 +6,4 @@ xcassets:
     - templateName: swift5
       output: ${PROJECT_DIR}/Archive/Resources/Assets.swift
       params:
-          enumName: gen
+          enumName: Gen
