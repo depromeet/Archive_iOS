@@ -284,6 +284,109 @@
             </objects>
             <point key="canvasLocation" x="490" y="63"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ZUJ-4X-ikh">
+            <objects>
+                <viewController id="64D-pz-kcj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nXe-rA-UhX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인에 사용할 이메일을 입력해주세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puz-n2-Yeg">
+                                <rect key="frame" x="32" y="40" width="321" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="aYs-f7-N3Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-x6-MJx">
+                                <rect key="frame" x="32" y="144" width="350" height="172"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2t-dd-LOO">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="아이디(이메일)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enp-XT-DgZ">
+                                                <rect key="frame" x="20" y="0.0" width="257" height="56"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nn0-eL-Xbn">
+                                                <rect key="frame" x="285" y="0.0" width="49" height="56"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="중복확인">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="14" name=".AppleSDGothicNeoI-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                <integer key="NSUnderline" value="1"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="enp-XT-DgZ" firstAttribute="leading" secondItem="e2t-dd-LOO" secondAttribute="leading" constant="20" id="EaH-Bq-9ba"/>
+                                            <constraint firstItem="enp-XT-DgZ" firstAttribute="top" secondItem="e2t-dd-LOO" secondAttribute="top" id="Nb6-YE-Spm"/>
+                                            <constraint firstAttribute="bottom" secondItem="enp-XT-DgZ" secondAttribute="bottom" id="bVB-bo-8YU"/>
+                                            <constraint firstAttribute="trailing" secondItem="nn0-eL-Xbn" secondAttribute="trailing" constant="16" id="dw6-rR-JWz"/>
+                                            <constraint firstAttribute="bottom" secondItem="nn0-eL-Xbn" secondAttribute="bottom" id="g9A-Bz-dbS"/>
+                                            <constraint firstItem="nn0-eL-Xbn" firstAttribute="top" secondItem="e2t-dd-LOO" secondAttribute="top" id="lg2-Bs-E8W"/>
+                                            <constraint firstItem="nn0-eL-Xbn" firstAttribute="leading" secondItem="enp-XT-DgZ" secondAttribute="trailing" constant="8" id="zW7-4I-SnA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-gu-pjc">
+                                        <rect key="frame" x="0.0" y="116" width="350" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="nhN-tS-P4f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="다음">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q0E-E1-QFC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Q0E-E1-QFC" firstAttribute="bottom" secondItem="UbZ-x6-MJx" secondAttribute="bottom" priority="500" constant="100" id="BWv-OF-KEE"/>
+                            <constraint firstItem="puz-n2-Yeg" firstAttribute="leading" secondItem="Q0E-E1-QFC" secondAttribute="leading" constant="32" id="H7C-dr-CSi"/>
+                            <constraint firstItem="Q0E-E1-QFC" firstAttribute="trailing" secondItem="UbZ-x6-MJx" secondAttribute="trailing" constant="32" id="INL-J0-Ahp"/>
+                            <constraint firstItem="UbZ-x6-MJx" firstAttribute="top" secondItem="puz-n2-Yeg" secondAttribute="bottom" constant="32" id="QMm-Eb-kz9"/>
+                            <constraint firstAttribute="trailing" secondItem="puz-n2-Yeg" secondAttribute="trailing" constant="61" id="Qj1-3x-cat"/>
+                            <constraint firstItem="UbZ-x6-MJx" firstAttribute="leading" secondItem="Q0E-E1-QFC" secondAttribute="leading" constant="32" id="seI-6q-Yhc"/>
+                            <constraint firstItem="puz-n2-Yeg" firstAttribute="top" secondItem="Q0E-E1-QFC" secondAttribute="top" constant="40" id="ush-5V-rx5"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdA-qY-cHd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1346.376811594203" y="62.946428571428569"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CheckMark" width="16" height="11"/>
