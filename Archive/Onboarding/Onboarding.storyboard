@@ -111,15 +111,18 @@
                             <constraint firstItem="ccH-HU-K0r" firstAttribute="trailing" secondItem="JYI-9K-a3j" secondAttribute="trailing" constant="32" id="rQW-Ej-Mc6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="signUpButton" destination="uAy-wf-Bb4" id="Vhe-UI-lsk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egf-zc-dBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-403" y="63"/>
         </scene>
-        <!--View Controller-->
+        <!--Terms Agreement View Controller-->
         <scene sceneID="GEN-ik-EiM">
             <objects>
-                <viewController id="4Dh-cG-KWP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAgreementViewController" id="4Dh-cG-KWP" customClass="TermsAgreementViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xeZ-nk-jiY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,15 +282,18 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="nextButton" destination="lCO-AH-fvc" id="VEG-ac-oac"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieU-GW-519" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="490" y="63"/>
         </scene>
-        <!--View Controller-->
+        <!--Email Input View Controller-->
         <scene sceneID="ZUJ-4X-ikh">
             <objects>
-                <viewController id="64D-pz-kcj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmailInputViewController" id="64D-pz-kcj" customClass="EmailInputViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nXe-rA-UhX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,15 +388,18 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="nextButton" destination="D0h-gu-pjc" id="l1E-rd-dhj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdA-qY-cHd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1346.376811594203" y="62.946428571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Password Input View Controller-->
         <scene sceneID="QPs-cn-yVB">
             <objects>
-                <viewController id="833-lQ-MQz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordInputViewController" id="833-lQ-MQz" customClass="PasswordInputViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TP7-pL-jWy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -559,21 +568,24 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="nextButton" destination="72a-IJ-1an" id="EgV-hs-jQj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htT-92-LTT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2137.68115942029" y="62.946428571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up Completion View Controller-->
         <scene sceneID="dGF-x7-cPf">
             <objects>
-                <viewController id="5FP-pA-HaK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpCompletionViewController" id="5FP-pA-HaK" customClass="SignUpCompletionViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nqx-pT-zO9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회원가입이 완료되었습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ur9-RE-Kis">
-                                <rect key="frame" x="32" y="40" width="321" height="72"/>
+                                <rect key="frame" x="32" y="128" width="321" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="GVv-P2-pmE"/>
                                 </constraints>
@@ -582,13 +594,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="당신 만의 아카이브, 지금 기록해보세요. :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3d-Tf-Vb2">
-                                <rect key="frame" x="32" y="132" width="230" height="17"/>
+                                <rect key="frame" x="32" y="220" width="230" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7CC-8B-Vxp">
-                                <rect key="frame" x="0.0" y="149" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="237" width="414" height="625"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oui-6Q-RRr">
                                         <rect key="frame" x="32" y="284.5" width="350" height="56"/>
@@ -621,7 +633,7 @@
                         <constraints>
                             <constraint firstItem="ur9-RE-Kis" firstAttribute="leading" secondItem="02j-Xv-d7o" secondAttribute="leading" constant="32" id="6ua-eQ-VnL"/>
                             <constraint firstAttribute="trailing" secondItem="ur9-RE-Kis" secondAttribute="trailing" constant="61" id="LEx-7A-HgZ"/>
-                            <constraint firstItem="ur9-RE-Kis" firstAttribute="top" secondItem="02j-Xv-d7o" secondAttribute="top" constant="40" id="O7W-ag-oqr"/>
+                            <constraint firstItem="ur9-RE-Kis" firstAttribute="top" secondItem="Nqx-pT-zO9" secondAttribute="top" constant="128" id="O7W-ag-oqr"/>
                             <constraint firstItem="02j-Xv-d7o" firstAttribute="trailing" secondItem="7CC-8B-Vxp" secondAttribute="trailing" id="Oze-Gz-F6o"/>
                             <constraint firstItem="02j-Xv-d7o" firstAttribute="bottom" secondItem="7CC-8B-Vxp" secondAttribute="bottom" id="P84-lY-qf6"/>
                             <constraint firstItem="Z3d-Tf-Vb2" firstAttribute="leading" secondItem="ur9-RE-Kis" secondAttribute="leading" id="aIn-Dc-bQA"/>
@@ -631,7 +643,6 @@
                             <constraint firstItem="7CC-8B-Vxp" firstAttribute="leading" secondItem="02j-Xv-d7o" secondAttribute="leading" id="zno-9x-UNw"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXK-Eu-fRg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
