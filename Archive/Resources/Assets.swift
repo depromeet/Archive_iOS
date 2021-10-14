@@ -26,6 +26,8 @@ internal enum Gen {
     internal static let sampleColor = ColorAsset(name: "SampleColor")
   }
   internal enum Images {
+    internal static let checkMark = ImageAsset(name: "CheckMark")
+    internal static let checkMarkWhite = ImageAsset(name: "CheckMark_white")
     internal static let sample = ImageAsset(name: "Sample")
   }
 }
