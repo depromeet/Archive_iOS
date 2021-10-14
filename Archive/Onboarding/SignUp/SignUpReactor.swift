@@ -1,14 +1,14 @@
 //
-//  LoginReactor.swift
+//  SignUpReactor.swift
 //  Archive
 //
-//  Created by TTOzzi on 2021/10/02.
+//  Created by TTOzzi on 2021/10/09.
 //
 
 import ReactorKit
 import RxSwift
 
-final class LoginReactor: Reactor {
+final class SignUpReactor: Reactor {
     enum Action {
         
     }

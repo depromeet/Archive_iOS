@@ -8,16 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		4489368A2708380100EA423A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448936892708380100EA423A /* Onboarding.storyboard */; };
-		448936A527083EE200EA423A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* LoginViewController.swift */; };
-		448936A627083EE200EA423A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* LoginViewController.swift */; };
-		448936AA2708401500EA423A /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* LoginReactor.swift */; };
-		448936AB2708401500EA423A /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* LoginReactor.swift */; };
+		448936A527083EE200EA423A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* SignInViewController.swift */; };
+		448936A627083EE200EA423A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* SignInViewController.swift */; };
+		448936AA2708401500EA423A /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* SignInReactor.swift */; };
+		448936AB2708401500EA423A /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* SignInReactor.swift */; };
 		448936AE2708415500EA423A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448936892708380100EA423A /* Onboarding.storyboard */; };
 		44B4F2D5270755FD00D53F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E4270606E7005418F0 /* ViewController.swift */; };
 		44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E2270606E7005418F0 /* SceneDelegate.swift */; };
 		44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E0270606E7005418F0 /* AppDelegate.swift */; };
 		44B4F2DE2707560300D53F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9B0E6270606E7005418F0 /* Main.storyboard */; };
 		44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9B0EB270606EE005418F0 /* LaunchScreen.storyboard */; };
+		44BE6F01271144AB00E74A7D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BE6F00271144AB00E74A7D /* SignUpViewController.swift */; };
+		44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BE6F06271144BF00E74A7D /* SignUpReactor.swift */; };
 		44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E0270606E7005418F0 /* AppDelegate.swift */; };
 		44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E2270606E7005418F0 /* SceneDelegate.swift */; };
 		44F9B0E5270606E7005418F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E4270606E7005418F0 /* ViewController.swift */; };
@@ -50,11 +52,13 @@
 		042D77236B7F2A3971336EF8 /* Pods-Archive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive.debug.xcconfig"; path = "Target Support Files/Pods-Archive/Pods-Archive.debug.xcconfig"; sourceTree = "<group>"; };
 		06F06804D75A04AFC0A2BC3A /* Pods-Archive_debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.release.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.release.xcconfig"; sourceTree = "<group>"; };
 		448936892708380100EA423A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		448936A427083EE200EA423A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		448936A92708401500EA423A /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
+		448936A427083EE200EA423A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		448936A92708401500EA423A /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
 		44B4F23127074A5700D53F27 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		44B4F23927074C5900D53F27 /* Archive_debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archive_debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B4F24927074C6000D53F27 /* Info_debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info_debug.plist; sourceTree = "<group>"; };
+		44BE6F00271144AB00E74A7D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		44BE6F06271144BF00E74A7D /* SignUpReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpReactor.swift; sourceTree = "<group>"; };
 		44F9B0DD270606E7005418F0 /* Archive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F9B0E0270606E7005418F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44F9B0E2270606E7005418F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,10 +106,28 @@
 			isa = PBXGroup;
 			children = (
 				448936892708380100EA423A /* Onboarding.storyboard */,
-				448936A427083EE200EA423A /* LoginViewController.swift */,
-				448936A92708401500EA423A /* LoginReactor.swift */,
+				44BE6EFB2711445D00E74A7D /* SignIn */,
+				44BE6EFA2711443800E74A7D /* SignUp */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		44BE6EFA2711443800E74A7D /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				44BE6F00271144AB00E74A7D /* SignUpViewController.swift */,
+				44BE6F06271144BF00E74A7D /* SignUpReactor.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		44BE6EFB2711445D00E74A7D /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				448936A92708401500EA423A /* SignInReactor.swift */,
+				448936A427083EE200EA423A /* SignInViewController.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		44F9B0D4270606E7005418F0 = {
@@ -467,8 +489,9 @@
 				78958E1A2712A516003FF724 /* Assets.swift in Sources */,
 				78958E152712A3EF003FF724 /* UIFontExtension.swift in Sources */,
 				448936A627083EE200EA423A /* LoginViewController.swift in Sources */,
+				448936A627083EE200EA423A /* SignInViewController.swift in Sources */,
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
-				448936AB2708401500EA423A /* LoginReactor.swift in Sources */,
+				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44B4F2D5270755FD00D53F27 /* ViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
 				78958E162712A3F1003FF724 /* FontDefine.swift in Sources */,
@@ -479,9 +502,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				448936A527083EE200EA423A /* LoginViewController.swift in Sources */,
+				44BE6F01271144AB00E74A7D /* SignUpViewController.swift in Sources */,
+				44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */,
+				448936A527083EE200EA423A /* SignInViewController.swift in Sources */,
 				44F9B0E5270606E7005418F0 /* ViewController.swift in Sources */,
-				448936AA2708401500EA423A /* LoginReactor.swift in Sources */,
+				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
