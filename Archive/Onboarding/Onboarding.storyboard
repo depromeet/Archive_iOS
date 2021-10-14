@@ -12,7 +12,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="cVt-dU-cJD">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="6J2-Db-tY1" customClass="SignInViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="6J2-Db-tY1" customClass="SignInViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xpv-YU-iCx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
