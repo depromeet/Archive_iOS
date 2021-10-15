@@ -9,22 +9,26 @@ import UIKit
 import ReactorKit
 import RxSwift
 import RxCocoa
-import RxFlow
 
-final class SignInViewController: UIViewController, View, Stepper {
+final class SignInViewController: UIViewController, StoryboardView {
     
-    @IBOutlet private weak var signUpButton: UIButton?
-    
-    let steps = PublishRelay<Step>()
+    @IBOutlet private weak var idInputView: InputView!
+    @IBOutlet private weak var passwordInputView: InputView!
+    @IBOutlet private weak var signInButton: DefaultButton!
+    @IBOutlet private weak var signUpButton: UIButton!
     var disposeBag = DisposeBag()
+    
+    init?(coder: NSCoder, reactor: SignInReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: 로직이 Reactor를 거치도록 수정
-        signUpButton?.rx.tap
-            .map { ArchiveStep.termsAgreementIsRequired }
-            .bind(to: steps)
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +37,30 @@ final class SignInViewController: UIViewController, View, Stepper {
     }
     
     func bind(reactor: SignInReactor) {
+        idInputView.rx.text.orEmpty
+            .map { Reactor.Action.idInput(text: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        passwordInputView.rx.text.orEmpty
+            .map { Reactor.Action.passwordInput(text: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        signInButton.rx.tap
+            .map { Reactor.Action.signIn }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        signUpButton.rx.tap
+            .map { Reactor.Action.signUp }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isEnableSignIn }
+            .distinctUntilChanged()
+            .bind(to: signInButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
