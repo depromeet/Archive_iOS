@@ -65,10 +65,17 @@ final class InputView: UIView {
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalPadding)
         ])
     }
+    
+    func focusTextField() {
+        textField.becomeFirstResponder()
+    }
 }
 
 extension Reactive where Base: InputView {
     var text: ControlProperty<String?> {
         return base.textField.rx.text
+    }
+    var editingDidEndOnExit: ControlEvent<Void> {
+        return base.textField.rx.controlEvent(.editingDidEndOnExit)
     }
 }

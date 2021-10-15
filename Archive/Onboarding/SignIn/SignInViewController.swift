@@ -29,11 +29,23 @@ final class SignInViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAttributes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    private func setupAttributes() {
+        let tapOutside = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapOutside)
+        
+        idInputView.rx.editingDidEndOnExit
+            .subscribe(onNext: { [weak self] in
+                self?.passwordInputView.focusTextField()
+            })
+            .disposed(by: disposeBag)
     }
     
     func bind(reactor: SignInReactor) {
