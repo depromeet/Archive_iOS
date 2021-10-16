@@ -21,6 +21,7 @@ final class InputView: UIView {
     private enum Styles {
         static let placeholderColor = Gen.Colors.gray03.color
         static let borderColor = Gen.Colors.gray04.color
+        static let focusedBorderColor = UIColor.black
     }
     
     @IBInspectable var placeholder: String? {
@@ -44,6 +45,7 @@ final class InputView: UIView {
         textField.font = .fonts(.body)
         return textField
     }()
+    private var disposeBag = DisposeBag()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -55,6 +57,16 @@ final class InputView: UIView {
         layer.cornerRadius = Constants.cornerRadius
         layer.borderWidth = Constants.borderWidth
         layer.borderColor = Styles.borderColor.cgColor
+        
+        textField.rx.controlEvent(.editingDidBegin)
+            .map { Styles.focusedBorderColor.cgColor }
+            .bind(to: layer.rx.borderColor)
+            .disposed(by: disposeBag)
+        
+        textField.rx.controlEvent(.editingDidEnd)
+            .map { Styles.borderColor.cgColor }
+            .bind(to: layer.rx.borderColor)
+            .disposed(by: disposeBag)
     }
     
     private func setupLayouts() {
