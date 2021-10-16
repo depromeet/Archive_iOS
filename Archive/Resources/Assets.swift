@@ -22,13 +22,17 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Gen {
   internal enum Colors {
+    internal static let gray01 = ColorAsset(name: "Gray01")
     internal static let gray03 = ColorAsset(name: "Gray03")
     internal static let gray04 = ColorAsset(name: "Gray04")
     internal static let gray05 = ColorAsset(name: "Gray05")
   }
   internal enum Images {
-    internal static let checkMark = ImageAsset(name: "CheckMark")
-    internal static let checkMarkWhite = ImageAsset(name: "CheckMark_white")
+    internal static let back = ImageAsset(name: "Back")
+    internal static let checkBoxAllDeselected = ImageAsset(name: "Check box_all_deselected")
+    internal static let checkBoxAllSelected = ImageAsset(name: "Check box_all_selected")
+    internal static let checkSquareDeselected = ImageAsset(name: "CheckSquare_deselected")
+    internal static let checkSquareSelected = ImageAsset(name: "CheckSquare_selected")
     internal static let logo = ImageAsset(name: "Logo")
     internal static let sample = ImageAsset(name: "Sample")
   }
