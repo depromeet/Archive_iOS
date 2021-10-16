@@ -58,14 +58,15 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToTermsAgreementScreen() -> FlowContributors {
-        // TODO: 회원가입 로직 Reactor 주입 필요
-        guard let termsAgreementViewController = onboardingStoryBoard
-                .instantiateViewController(withIdentifier: TermsAgreementViewController.identifier) as? TermsAgreementViewController else {
-            return .none
-        }
+        let signUpReactor = SignUpReactor()
+        let termsAgreementViewController = onboardingStoryBoard
+            .instantiateViewController(identifier: TermsAgreementViewController.identifier) { coder in
+                return TermsAgreementViewController(coder: coder, reactor: signUpReactor)
+            }
         termsAgreementViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(termsAgreementViewController, animated: true)
-        return .one(flowContributor: .contribute(withNext: termsAgreementViewController))
+        return .one(flowContributor: .contribute(withNextPresentable: termsAgreementViewController,
+                                                 withNextStepper: signUpReactor))
     }
     
     private func navigationToEmailInputScreen() -> FlowContributors {

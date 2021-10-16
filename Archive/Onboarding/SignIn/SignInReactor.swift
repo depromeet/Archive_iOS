@@ -70,8 +70,10 @@ final class SignInReactor: Reactor, Stepper {
         switch mutation {
         case let .setID(id):
             newState.id = id
+            
         case let .setPassword(password):
             newState.password = password
+            
         case let.setValidation(isEnableSignIn):
             newState.isEnableSignIn = isEnableSignIn
         }
