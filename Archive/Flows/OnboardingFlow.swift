@@ -46,12 +46,15 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToSignInScreen() -> FlowContributors {
-        guard let signInViewController = onboardingStoryBoard
-                .instantiateViewController(withIdentifier: SignInViewController.identifier) as? SignInViewController else {
-            return .none
-        }
+        let validator = Validator()
+        let signInReactor = SignInReactor(validator: validator)
+        let signInViewController = onboardingStoryBoard
+            .instantiateViewController(identifier: SignInViewController.identifier) { coder in
+                return SignInViewController(coder: coder, reactor: signInReactor)
+            }
         rootViewController.pushViewController(signInViewController, animated: false)
-        return .one(flowContributor: .contribute(withNext: signInViewController))
+        return .one(flowContributor: .contribute(withNextPresentable: signInViewController,
+                                                 withNextStepper: signInReactor))
     }
     
     private func navigationToTermsAgreementScreen() -> FlowContributors {

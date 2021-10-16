@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		4489368A2708380100EA423A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448936892708380100EA423A /* Onboarding.storyboard */; };
-		448936A527083EE200EA423A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* SignInViewController.swift */; };
-		448936A627083EE200EA423A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A427083EE200EA423A /* SignInViewController.swift */; };
 		448936AA2708401500EA423A /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* SignInReactor.swift */; };
 		448936AB2708401500EA423A /* SignInReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448936A92708401500EA423A /* SignInReactor.swift */; };
 		448936AE2708415500EA423A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448936892708380100EA423A /* Onboarding.storyboard */; };
+		44922DA12719512A00A5EA2B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DA02719512A00A5EA2B /* SignInViewController.swift */; };
+		44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DA02719512A00A5EA2B /* SignInViewController.swift */; };
+		44922DA72719B89200A5EA2B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DA62719B89200A5EA2B /* Validator.swift */; };
+		44922DA82719B89200A5EA2B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DA62719B89200A5EA2B /* Validator.swift */; };
+		44922DBE2719CC5700A5EA2B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
+		44922DC12719CE9100A5EA2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
+		44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */; };
+		44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */; };
+		44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DC92719E64200A5EA2B /* DefaultButton.swift */; };
+		44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DC92719E64200A5EA2B /* DefaultButton.swift */; };
+		44922DD22719FB9300A5EA2B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DD12719FB9300A5EA2B /* InputView.swift */; };
+		44922DD32719FB9300A5EA2B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44922DD12719FB9300A5EA2B /* InputView.swift */; };
 		44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E2270606E7005418F0 /* SceneDelegate.swift */; };
 		44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9B0E0270606E7005418F0 /* AppDelegate.swift */; };
 		44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F9B0EB270606EE005418F0 /* LaunchScreen.storyboard */; };
@@ -66,8 +76,12 @@
 		042D77236B7F2A3971336EF8 /* Pods-Archive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive.debug.xcconfig"; path = "Target Support Files/Pods-Archive/Pods-Archive.debug.xcconfig"; sourceTree = "<group>"; };
 		06F06804D75A04AFC0A2BC3A /* Pods-Archive_debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.release.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.release.xcconfig"; sourceTree = "<group>"; };
 		448936892708380100EA423A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		448936A427083EE200EA423A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		448936A92708401500EA423A /* SignInReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInReactor.swift; sourceTree = "<group>"; };
+		44922DA02719512A00A5EA2B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		44922DA62719B89200A5EA2B /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		44922DC92719E64200A5EA2B /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		44922DD12719FB9300A5EA2B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		44B4F23927074C5900D53F27 /* Archive_debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archive_debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B4F24927074C6000D53F27 /* Info_debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info_debug.plist; sourceTree = "<group>"; };
 		44BE6F00271144AB00E74A7D /* TermsAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAgreementViewController.swift; sourceTree = "<group>"; };
@@ -125,10 +139,36 @@
 			isa = PBXGroup;
 			children = (
 				448936892708380100EA423A /* Onboarding.storyboard */,
+				44922DCE2719F2B000A5EA2B /* Model */,
 				44BE6EFB2711445D00E74A7D /* SignIn */,
 				44BE6EFA2711443800E74A7D /* SignUp */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		44922DCE2719F2B000A5EA2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44922DA62719B89200A5EA2B /* Validator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44922DE7271A010600A5EA2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44922DC92719E64200A5EA2B /* DefaultButton.swift */,
+				44922DD12719FB9300A5EA2B /* InputView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44922DEA271A011000A5EA2B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				44FB0A2127184376006E1048 /* ReuseIdentifiable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		44BE6EFA2711443800E74A7D /* SignUp */ = {
@@ -147,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				448936A92708401500EA423A /* SignInReactor.swift */,
-				448936A427083EE200EA423A /* SignInViewController.swift */,
+				44922DA02719512A00A5EA2B /* SignInViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -206,7 +246,8 @@
 		44FB0A20271842FA006E1048 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				44FB0A2127184376006E1048 /* ReuseIdentifiable.swift */,
+				44922DEA271A011000A5EA2B /* Protocol */,
+				44922DE7271A010600A5EA2B /* View */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -277,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				78958E132712A0C5003FF724 /* UIFontExtension.swift */,
+				44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -377,11 +419,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */,
+				44922DC12719CE9100A5EA2B /* Images.xcassets in Resources */,
 				78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */,
 				78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */,
 				44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */,
 				78958E172712A510003FF724 /* Pretendard-Regular.ttf in Resources */,
 				448936AE2708415500EA423A /* Onboarding.storyboard in Resources */,
+				44922DBE2719CC5700A5EA2B /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,22 +569,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
+				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */,
 				78958E1A2712A516003FF724 /* Assets.swift in Sources */,
 				44FB0A2A27186E33006E1048 /* AppStepper.swift in Sources */,
 				78958E152712A3EF003FF724 /* UIFontExtension.swift in Sources */,
 				44FB0A2327184376006E1048 /* ReuseIdentifiable.swift in Sources */,
 				44FB09F427183097006E1048 /* TermsAgreementViewController.swift in Sources */,
-				448936A627083EE200EA423A /* SignInViewController.swift in Sources */,
-				448936A627083EE200EA423A /* SignInViewController.swift in Sources */,
 				44FB0A02271832D2006E1048 /* ArchiveStep.swift in Sources */,
 				44FB0A0C27183307006E1048 /* OnboardingFlow.swift in Sources */,
 				44FB0A1D27183C9C006E1048 /* SignUpCompletionViewController.swift in Sources */,
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
 				44FB0A1827183C22006E1048 /* PasswordInputViewController.swift in Sources */,
+				44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */,
+				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
+				44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
+				44922DD32719FB9300A5EA2B /* InputView.swift in Sources */,
 				44FB09F72718309F006E1048 /* SignUpReactor.swift in Sources */,
 				78958E162712A3F1003FF724 /* FontDefine.swift in Sources */,
 			);
@@ -551,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FB0A2227184376006E1048 /* ReuseIdentifiable.swift in Sources */,
+				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
@@ -558,14 +606,17 @@
 				44FB0A2927186E33006E1048 /* AppStepper.swift in Sources */,
 				44FB0A1027183BDA006E1048 /* EmailInputViewController.swift in Sources */,
 				44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */,
-				448936A527083EE200EA423A /* SignInViewController.swift in Sources */,
 				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
+				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
+				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
+				44922DA12719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,
+				44922DD22719FB9300A5EA2B /* InputView.swift in Sources */,
 				44FB0A1C27183C9C006E1048 /* SignUpCompletionViewController.swift in Sources */,
 				78958E112712A04B003FF724 /* FontDefine.swift in Sources */,
 			);
