@@ -93,6 +93,10 @@
 		78C4B33327242EFB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
 		78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */; };
 		78C4B33627243C930006EBAD /* NSMutableAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */; };
+		78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33727244ACB0006EBAD /* CommonAlertView.swift */; };
+		78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33727244ACB0006EBAD /* CommonAlertView.swift */; };
+		78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33A27244C000006EBAD /* UIViewExtension.swift */; };
+		78C4B33C27244C310006EBAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33A27244C000006EBAD /* UIViewExtension.swift */; };
 		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
@@ -151,6 +155,8 @@
 		78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReactor.swift; sourceTree = "<group>"; };
 		78C4B32E272429370006EBAD /* WithdrawalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalModel.swift; sourceTree = "<group>"; };
 		78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedStringExtension.swift; sourceTree = "<group>"; };
+		78C4B33727244ACB0006EBAD /* CommonAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAlertView.swift; sourceTree = "<group>"; };
+		78C4B33A27244C000006EBAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -351,6 +357,7 @@
 		784D1E1F27088BB0004B1A23 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				78C4B33727244ACB0006EBAD /* CommonAlertView.swift */,
 				784D1E2027088BC0004B1A23 /* HWFlipView.swift */,
 			);
 			path = UI;
@@ -381,6 +388,7 @@
 				78958E132712A0C5003FF724 /* UIFontExtension.swift */,
 				44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */,
 				78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */,
+				78C4B33A27244C000006EBAD /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -660,6 +668,7 @@
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
 				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */,
+				78C4B33C27244C310006EBAD /* UIViewExtension.swift in Sources */,
 				78958E1A2712A516003FF724 /* Assets.swift in Sources */,
 				7804782A2723FADD00FAA1CF /* LoginDefine.swift in Sources */,
 				780478102723CB7900FAA1CF /* MyPageFlow.swift in Sources */,
@@ -678,6 +687,7 @@
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
 				44FB0A1827183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */,
+				78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */,
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
@@ -701,6 +711,7 @@
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
+				78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
 				780478262723EA0300FAA1CF /* LoginDefine.swift in Sources */,
 				44BE6F01271144AB00E74A7D /* TermsAgreementViewController.swift in Sources */,
@@ -719,6 +730,7 @@
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
+				78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
