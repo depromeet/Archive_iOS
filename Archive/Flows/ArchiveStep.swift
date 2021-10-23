@@ -23,7 +23,7 @@ enum ArchiveStep: Step {
     case userIsSignedUp
     
     // MyPage
-    case myPageIsRequired
+    case myPageIsRequired(Int)
     case loginInfomationIsRequired
     case withdrawalIsRequired
 }

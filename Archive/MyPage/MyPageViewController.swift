@@ -56,7 +56,6 @@ class MyPageViewController: UIViewController, StoryboardView {
         self.reactor?.state.map { $0.cardCnt }
         .asDriver(onErrorJustReturn: 100)
         .drive(onNext: { [weak self] cnt in
-            print("cnt: \(cnt)")
             self?.myCardCntLabel.text = "\(cnt)"
         })
         .disposed(by: self.disposeBag)

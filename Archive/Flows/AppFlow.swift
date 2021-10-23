@@ -29,8 +29,8 @@ final class AppFlow: Flow {
         switch step {
         case .onboardingIsRequired:
             return navigationToOnboardingScreen()
-        case .myPageIsRequired:
-            return navigationToMyPageScreen()
+        case .myPageIsRequired(let cardCnt):
+            return navigationToMyPageScreen(cardCnt: cardCnt)
         default:
             return .none
         }
@@ -50,7 +50,7 @@ final class AppFlow: Flow {
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired)))
     }
     
-    private func navigationToMyPageScreen() -> FlowContributors {
+    private func navigationToMyPageScreen(cardCnt: Int) -> FlowContributors {
         let myPageFlow = MyPageFlow()
         
         Flows.use(myPageFlow, when: .created) { [weak self] root in
@@ -61,6 +61,6 @@ final class AppFlow: Flow {
         }
         
         return .one(flowContributor: .contribute(withNextPresentable: myPageFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.myPageIsRequired)))
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.myPageIsRequired(cardCnt))))
     }
 }

@@ -29,8 +29,8 @@ class MyPageFlow: Flow {
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else { return .none }
         switch step {
-        case .myPageIsRequired:
-            return navigationToMyPageScreen()
+        case .myPageIsRequired(let cnt):
+            return navigationToMyPageScreen(cardCount: cnt)
         case .loginInfomationIsRequired:
             break
         case .withdrawalIsRequired:
@@ -41,8 +41,8 @@ class MyPageFlow: Flow {
         return .none
     }
     
-    private func navigationToMyPageScreen() -> FlowContributors {
-        let model: MyPageModel = MyPageModel(cardCount: 10) // test
+    private func navigationToMyPageScreen(cardCount: Int) -> FlowContributors {
+        let model: MyPageModel = MyPageModel(cardCount: cardCount) // test
         let reactor = MyPageReactor(model: model)
         let myPageViewController: MyPageViewController = onboardingStoryBoard.instantiateViewController(identifier: MyPageViewController.identifier) { corder in
             return MyPageViewController(coder: corder, reactor: reactor)
