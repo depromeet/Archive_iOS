@@ -6,15 +6,21 @@
 //
 
 protocol WithdrawalModelProtocol {
-    
+    var cardCount: Int { get }
 }
 
 class WithdrawalModel: WithdrawalModelProtocol {
+    var cardCount: Int
+    
     // MARK: private property
     
     // MARK: internal property
     
     // MARK: lifeCycle
+    
+    init(cardCount: Int) {
+        self.cardCount = cardCount
+    }
     
     // MARK: private function
     

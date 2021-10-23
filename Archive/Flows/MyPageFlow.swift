@@ -33,10 +33,10 @@ class MyPageFlow: Flow {
         switch step {
         case .myPageIsRequired(let cnt):
             return navigationToMyPageScreen(cardCount: cnt)
-        case .loginInfomationIsRequired(let type):
-            return navigationToLoginInformationScreen(type: type)
-        case .withdrawalIsRequired:
-            return navigationToWithdrawalScreen()
+        case .loginInfomationIsRequired(let type, let cardCnt):
+            return navigationToLoginInformationScreen(type: type, cardCnt: cardCnt)
+        case .withdrawalIsRequired(let cnt):
+            return navigationToWithdrawalScreen(cardCount: cnt)
         default:
             return .none
         }
@@ -54,8 +54,8 @@ class MyPageFlow: Flow {
                                                  withNextStepper: reactor))
     }
     
-    private func navigationToLoginInformationScreen(type: LoginType) -> FlowContributors {
-        let model: LoginInformationModel = LoginInformationModel(loginInfo: "")
+    private func navigationToLoginInformationScreen(type: LoginType, cardCnt: Int) -> FlowContributors {
+        let model: LoginInformationModel = LoginInformationModel(loginInfo: "", cardCount: cardCnt)
         let reactor = LoginInformationReactor(model: model, type: type)
         let loginInfoViewController: LoginInformationViewController = myPageStoryBoard.instantiateViewController(identifier: LoginInformationViewController.identifier) { corder in
             return LoginInformationViewController(coder: corder, reactor: reactor)
@@ -65,8 +65,8 @@ class MyPageFlow: Flow {
         return .one(flowContributor: .contribute(withNextPresentable: loginInfoViewController, withNextStepper: reactor))
     }
     
-    private func navigationToWithdrawalScreen() -> FlowContributors {
-        let model: WithdrawalModel = WithdrawalModel()
+    private func navigationToWithdrawalScreen(cardCount: Int) -> FlowContributors {
+        let model: WithdrawalModel = WithdrawalModel(cardCount: cardCount)
         let reactor = WithdrawalReactor(model: model)
         let withdrawalViewController: WithdrawalViewController = myPageStoryBoard.instantiateViewController(identifier: WithdrawalViewController.identifier) { corder in
             return WithdrawalViewController(coder: corder, reactor: reactor)

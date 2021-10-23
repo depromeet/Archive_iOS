@@ -27,31 +27,42 @@ class WithdrawalReactor: Reactor, Stepper {
     }
     
     enum Action {
-//        case refreshLoginType
+        case cardCnt
+        case completion
+        case withrawal
     }
     
     enum Mutation {
-//        case setLoginType(LoginType)
+        case setCardCnt(Int)
+        case withrawal
     }
     
     struct State {
-//        var type: LoginType = .kakao
+        var cardCnt: Int = 0
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .refreshLoginType:
-//            let type = self.type
-//            return .just(.setLoginType(type))
-//        }
+        switch action {
+        case .cardCnt:
+            let cnt = model.cardCount
+            return .just(.setCardCnt(cnt))
+        case .completion:
+            steps.accept(ArchiveStep.withdrawalIsComplete)
+            return .empty()
+        case .withrawal:
+            // TODO: 탈퇴처리
+            return .just(.withrawal)
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setLoginType(let type):
-//            newState.type = type
-//        }
+        switch mutation {
+        case .setCardCnt(let cardCnt):
+            newState.cardCnt = cardCnt
+        case .withrawal:
+            break
+        }
         return newState
     }
     

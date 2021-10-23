@@ -31,10 +31,12 @@ class LoginInformationReactor: Reactor, Stepper {
     enum Action {
         case refreshLoginType
         case moveWithdrawalPage
+        case logout
     }
     
     enum Mutation {
         case setLoginType(LoginType)
+        case loggedOut
     }
     
     struct State {
@@ -47,8 +49,11 @@ class LoginInformationReactor: Reactor, Stepper {
             let type = self.type
             return .just(.setLoginType(type))
         case .moveWithdrawalPage:
-            steps.accept(ArchiveStep.withdrawalIsRequired)
+            steps.accept(ArchiveStep.withdrawalIsRequired(self.model.cardCnt))
             return .empty()
+        case .logout:
+            // TODO: 로그아웃 처리
+            return .just(.loggedOut)
         }
     }
     
@@ -57,6 +62,8 @@ class LoginInformationReactor: Reactor, Stepper {
         switch mutation {
         case .setLoginType(let type):
             newState.type = type
+        case .loggedOut:
+            break
         }
         return newState
     }
