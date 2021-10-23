@@ -30,6 +30,7 @@ class LoginInformationReactor: Reactor, Stepper {
     
     enum Action {
         case refreshLoginType
+        case moveWithdrawalPage
     }
     
     enum Mutation {
@@ -37,7 +38,7 @@ class LoginInformationReactor: Reactor, Stepper {
     }
     
     struct State {
-        var type: LoginType = .eMail
+        var type: LoginType = .kakao
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -45,6 +46,9 @@ class LoginInformationReactor: Reactor, Stepper {
         case .refreshLoginType:
             let type = self.type
             return .just(.setLoginType(type))
+        case .moveWithdrawalPage:
+            steps.accept(ArchiveStep.withdrawalIsRequired)
+            return .empty()
         }
     }
     

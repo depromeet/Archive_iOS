@@ -51,7 +51,6 @@
 		44FB0A2A27186E33006E1048 /* AppStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FB0A2827186E33006E1048 /* AppStepper.swift */; };
 		565A35543932E4595BE1DD5A /* Pods_Archive_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EB9EAFE492E4886567AE92 /* Pods_Archive_debug.framework */; };
 		780478102723CB7900FAA1CF /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
-		780478112723CB7F00FAA1CF /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BA153E27218F1E0078B88E /* MyPage.storyboard */; };
 		780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
 		780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		780478142723CC6400FAA1CF /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
@@ -80,11 +79,18 @@
 		78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */; };
 		78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E1A2712A516003FF724 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E3427088EC7004B1A23 /* Assets.swift */; };
-		78BA153F27218F1E0078B88E /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BA153E27218F1E0078B88E /* MyPage.storyboard */; };
 		78BA154127218F430078B88E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
 		78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
 		78BA1549272197250078B88E /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
+		78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
+		78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */; };
+		78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */; };
+		78C4B32F272429370006EBAD /* WithdrawalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32E272429370006EBAD /* WithdrawalModel.swift */; };
+		78C4B33027242B650006EBAD /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */; };
+		78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */; };
+		78C4B33227242B650006EBAD /* WithdrawalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32E272429370006EBAD /* WithdrawalModel.swift */; };
+		78C4B33327242EFB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
 		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
@@ -134,11 +140,14 @@
 		78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		78958E102712A04B003FF724 /* FontDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontDefine.swift; sourceTree = "<group>"; };
 		78958E132712A0C5003FF724 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
-		78BA153E27218F1E0078B88E /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		78BA154027218F430078B88E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		78BA154227218F4E0078B88E /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
 		78BA15462721956A0078B88E /* MyPageFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlow.swift; sourceTree = "<group>"; };
 		78BA1548272197250078B88E /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		78C4B327272428AB0006EBAD /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReactor.swift; sourceTree = "<group>"; };
+		78C4B32E272429370006EBAD /* WithdrawalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalModel.swift; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,8 +302,8 @@
 		780478152723E79500FAA1CF /* Sub */ = {
 			isa = PBXGroup;
 			children = (
-				78BA153E27218F1E0078B88E /* MyPage.storyboard */,
 				780478182723E7E400FAA1CF /* LoginInformation */,
+				78C4B329272428B40006EBAD /* Withdrawal */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -375,12 +384,23 @@
 		78BA153D27218F100078B88E /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				78C4B327272428AB0006EBAD /* MyPage.storyboard */,
 				780478152723E79500FAA1CF /* Sub */,
 				78BA154027218F430078B88E /* MyPageViewController.swift */,
 				78BA154227218F4E0078B88E /* MyPageReactor.swift */,
 				78BA1548272197250078B88E /* MyPageModel.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		78C4B329272428B40006EBAD /* Withdrawal */ = {
+			isa = PBXGroup;
+			children = (
+				78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */,
+				78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */,
+				78C4B32E272429370006EBAD /* WithdrawalModel.swift */,
+			);
+			path = Withdrawal;
 			sourceTree = "<group>";
 		};
 		7A78CD9881593A0B9DDBF955 /* Pods */ = {
@@ -482,7 +502,7 @@
 				44922DC12719CE9100A5EA2B /* Images.xcassets in Resources */,
 				78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */,
 				78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */,
-				780478112723CB7F00FAA1CF /* MyPage.storyboard in Resources */,
+				78C4B33327242EFB0006EBAD /* MyPage.storyboard in Resources */,
 				44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */,
 				78958E172712A510003FF724 /* Pretendard-Regular.ttf in Resources */,
 				448936AE2708415500EA423A /* Onboarding.storyboard in Resources */,
@@ -498,7 +518,7 @@
 				78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */,
 				784D1DD827084869004B1A23 /* swiftgen.yml in Resources */,
 				78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */,
-				78BA153F27218F1E0078B88E /* MyPage.storyboard in Resources */,
+				78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */,
 				44F9B0ED270606EE005418F0 /* LaunchScreen.storyboard in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */,
@@ -645,7 +665,9 @@
 				780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */,
 				44FB09F427183097006E1048 /* TermsAgreementViewController.swift in Sources */,
 				44FB0A02271832D2006E1048 /* ArchiveStep.swift in Sources */,
+				78C4B33027242B650006EBAD /* WithdrawalViewController.swift in Sources */,
 				44FB0A0C27183307006E1048 /* OnboardingFlow.swift in Sources */,
+				78C4B33227242B650006EBAD /* WithdrawalModel.swift in Sources */,
 				780478282723FAB300FAA1CF /* LoginInformationReactor.swift in Sources */,
 				44FB0A1D27183C9C006E1048 /* SignUpCompletionViewController.swift in Sources */,
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
@@ -654,6 +676,7 @@
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
+				78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */,
 				44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
@@ -682,7 +705,9 @@
 				78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */,
 				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
+				78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
+				78C4B32F272429370006EBAD /* WithdrawalModel.swift in Sources */,
 				780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
@@ -691,6 +716,7 @@
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
+				78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */,
 				44922DA12719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,

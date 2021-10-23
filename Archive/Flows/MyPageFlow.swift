@@ -14,6 +14,7 @@ class MyPageFlow: Flow {
         static let MyPageStoryBoardName = "MyPage"
         static let MyPageNavigationTitle = "내정보"
         static let LoginInfoNavigationTitle = "로그인 정보"
+        static let WithdrawalNavigationTitle = "회원탈퇴"
     }
     
     var root: Presentable {
@@ -35,11 +36,10 @@ class MyPageFlow: Flow {
         case .loginInfomationIsRequired(let type):
             return navigationToLoginInformationScreen(type: type)
         case .withdrawalIsRequired:
-            break
+            return navigationToWithdrawalScreen()
         default:
             return .none
         }
-        return .none
     }
     
     private func navigationToMyPageScreen(cardCount: Int) -> FlowContributors {
@@ -63,5 +63,16 @@ class MyPageFlow: Flow {
         loginInfoViewController.title = Constants.LoginInfoNavigationTitle
         rootViewController.pushViewController(loginInfoViewController, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: loginInfoViewController, withNextStepper: reactor))
+    }
+    
+    private func navigationToWithdrawalScreen() -> FlowContributors {
+        let model: WithdrawalModel = WithdrawalModel()
+        let reactor = WithdrawalReactor(model: model)
+        let withdrawalViewController: WithdrawalViewController = myPageStoryBoard.instantiateViewController(identifier: WithdrawalViewController.identifier) { corder in
+            return WithdrawalViewController(coder: corder, reactor: reactor)
+        }
+        withdrawalViewController.title = Constants.WithdrawalNavigationTitle
+        rootViewController.pushViewController(withdrawalViewController, animated: true)
+        return .one(flowContributor: .contribute(withNextPresentable: withdrawalViewController, withNextStepper: reactor))
     }
 }

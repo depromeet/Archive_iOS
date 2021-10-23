@@ -40,12 +40,22 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     @IBOutlet weak var confirmBtnView: UIView!
     @IBOutlet weak var confirmBtnTitleLabel: UILabel!
     @IBOutlet weak var confirmBtn: UIButton!
-    @IBOutlet weak var withdrawalLabel: UILabel!
-    @IBOutlet weak var logOutLabel: UILabel!
+    @IBOutlet weak var withdrawalBtn: UIButton!
+    @IBOutlet weak var logoutBtn: UIButton!
     
     // MARK: private property
     
     private var originEMailIconWidthConstraint: CGFloat = 0
+    
+    private lazy var activePlaceHolderAttributes = [
+        NSAttributedString.Key.foregroundColor: Gen.Colors.gray03.color,
+        NSAttributedString.Key.font: UIFont.fonts(.body)
+    ]
+    
+    private lazy var nonActivePlaceHolderAttributes = [
+        NSAttributedString.Key.foregroundColor: Gen.Colors.gray04.color,
+        NSAttributedString.Key.font: UIFont.fonts(.body)
+    ]
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -69,7 +79,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     
     func bind(reactor: LoginInformationReactor) {
         self.reactor?.state.map { $0.type }
-        .asDriver(onErrorJustReturn: .eMail)
+        .asDriver(onErrorJustReturn: .kakao)
         .drive(onNext: { [weak self] type in
             switch type {
             case .eMail:
@@ -81,6 +91,11 @@ class LoginInformationViewController: UIViewController, StoryboardView {
             }
         })
         .disposed(by: self.disposeBag)
+        
+        self.withdrawalBtn.rx.tap
+            .map { Reactor.Action.moveWithdrawalPage }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -106,8 +121,6 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.currentPWTextContainerView.layer.cornerRadius = 8
         self.currentPWTextContainerView.layer.borderColor = Gen.Colors.gray04.color.cgColor
         self.currentPWTextContainerView.layer.borderWidth = 1
-//        self.currentPWTextField.placeholder.font = .fonts(.body)
-//        self.currentPWTextField.placeholder.textColor = Gen.Colors.gray04.color
         self.currentPWTextField.textColor = Gen.Colors.black.color
         self.passwordCorrectLabel.font = .fonts(.body)
         self.passwordCorrectLabel.text = "비밀번호 일치"
@@ -120,8 +133,6 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.newPWTextContainerView.layer.cornerRadius = 8
         self.newPWTextContainerView.layer.borderColor = Gen.Colors.gray04.color.cgColor
         self.newPWTextContainerView.layer.borderWidth = 1
-//        self.newPWTextField.placeholder.font = .fonts(.body)
-//        self.newPWTextField.placeholder.textColor = Gen.Colors.gray04.color
         self.newPWTextField.textColor = Gen.Colors.black.color
         self.newPWEngCorrectLabel.font = .fonts(.body)
         self.newPWEngCorrectLabel.textColor = Gen.Colors.gray04.color
@@ -135,14 +146,16 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.confirmBtnView.layer.cornerRadius = 8
         self.confirmBtnTitleLabel.font = .fonts(.button)
         self.confirmBtnTitleLabel.text = "비밀번호 변경"
-        self.withdrawalLabel.font = .fonts(.body)
-        self.withdrawalLabel.textColor = Gen.Colors.gray04.color
-        self.withdrawalLabel.text = "회원탈퇴"
-        self.withdrawalLabel.isUserInteractionEnabled = true
-        self.logOutLabel.font = .fonts(.body)
-        self.logOutLabel.textColor = Gen.Colors.gray04.color
-        self.logOutLabel.text = "로그아웃"
-        self.logOutLabel.isUserInteractionEnabled = true
+        self.withdrawalBtn.setTitle("회원탈퇴", for: .normal)
+        self.withdrawalBtn.setTitleColor(Gen.Colors.gray04.color, for: .normal)
+        self.withdrawalBtn.setTitle("회원탈퇴", for: .highlighted)
+        self.withdrawalBtn.setTitleColor(Gen.Colors.gray04.color, for: .highlighted)
+        self.withdrawalBtn.titleLabel?.font = .fonts(.body)
+        self.logoutBtn.setTitle("로그아웃", for: .normal)
+        self.logoutBtn.setTitleColor(Gen.Colors.gray04.color, for: .normal)
+        self.logoutBtn.setTitle("로그아웃", for: .highlighted)
+        self.logoutBtn.setTitleColor(Gen.Colors.gray04.color, for: .highlighted)
+        self.logoutBtn.titleLabel?.font = .fonts(.body)
     }
     
     private func refreshUIForEMail() {
@@ -158,6 +171,8 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.confirmBtnTitleLabel.textColor = Gen.Colors.white.color
         self.currentPWTextContainerView.backgroundColor = Gen.Colors.white.color
         self.newPWTextContainerView.backgroundColor = Gen.Colors.white.color
+        self.newPWTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 입력해주세요.", attributes: self.activePlaceHolderAttributes)
+        self.currentPWTextField.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요.", attributes: self.activePlaceHolderAttributes)
     }
     
     private func refreshUIForKakao() {
@@ -171,7 +186,23 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     }
     
     private func refreshUIForSocialLogin() {
-        
+        self.eMailLabel.textColor = Gen.Colors.black.color
+        self.eMailTextContainerView.backgroundColor = Gen.Colors.white.color
+        self.passwordCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWEngCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWNumCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWSizeCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.confirmBtnView.backgroundColor = Gen.Colors.gray04.color
+        self.confirmBtnTitleLabel.textColor = Gen.Colors.white.color
+        self.currentPWTextContainerView.backgroundColor = Gen.Colors.white.color
+        self.newPWTextContainerView.backgroundColor = Gen.Colors.white.color
+        self.confirmBtnView.isHidden = true
+        self.currentPWTextContainerView.backgroundColor = Gen.Colors.gray06.color
+        self.newPWTextContainerView.backgroundColor = Gen.Colors.gray06.color
+        self.newPWTextField.isEnabled = false
+        self.currentPWTextField.isEnabled = false
+        self.newPWTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 입력해주세요.", attributes: self.nonActivePlaceHolderAttributes)
+        self.currentPWTextField.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요.", attributes: self.nonActivePlaceHolderAttributes)
     }
     
     // MARK: internal function

@@ -39,7 +39,6 @@ internal enum Gen {
     internal static let checkSquareDeselected = ImageAsset(name: "CheckSquare_deselected")
     internal static let checkSquareSelected = ImageAsset(name: "CheckSquare_selected")
     internal static let logo = ImageAsset(name: "Logo")
-    internal static let sample = ImageAsset(name: "Sample")
     internal static let btnApple = ImageAsset(name: "btn_apple")
     internal static let iconRightArrow = ImageAsset(name: "icon_right-arrow")
     internal static let kakaotalk = ImageAsset(name: "kakaotalk")
