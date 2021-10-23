@@ -35,7 +35,7 @@ extension UIFont {
         case .button:
             optionalReturnFont = UIFont(name: FontDefine.medium, size: 14)
         case .caption:
-            optionalReturnFont = UIFont(name: FontDefine.regular, size: 18)
+            optionalReturnFont = UIFont(name: FontDefine.regular, size: 12)
         }
         guard let returnFont = optionalReturnFont else { return UIFont() }
         return returnFont

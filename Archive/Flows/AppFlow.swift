@@ -29,6 +29,8 @@ final class AppFlow: Flow {
         switch step {
         case .onboardingIsRequired:
             return navigationToOnboardingScreen()
+        case .myPageIsRequired:
+            return navigationToMyPageScreen()
         default:
             return .none
         }
@@ -46,5 +48,19 @@ final class AppFlow: Flow {
         
         return .one(flowContributor: .contribute(withNextPresentable: onboardingFlow,
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired)))
+    }
+    
+    private func navigationToMyPageScreen() -> FlowContributors {
+        let myPageFlow = MyPageFlow()
+        
+        Flows.use(myPageFlow, when: .created) { [weak self] root in
+            DispatchQueue.main.async {
+                root.modalPresentationStyle = .fullScreen
+                self?.rootViewController.present(root, animated: false)
+            }
+        }
+        
+        return .one(flowContributor: .contribute(withNextPresentable: myPageFlow,
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.myPageIsRequired)))
     }
 }
