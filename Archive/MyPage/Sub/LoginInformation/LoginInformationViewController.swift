@@ -18,8 +18,9 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     @IBOutlet weak var scrollViewContainerView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var eMailLabel: UILabel!
+    @IBOutlet weak var eMailTitleLabel: UILabel!
     @IBOutlet weak var eMailTextContainerView: UIView!
+    @IBOutlet weak var eMailLabel: UILabel!
     @IBOutlet weak var eMailIconImageView: UIImageView!
     @IBOutlet weak var eMailIconWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var currentPWLabel: UILabel!
@@ -89,12 +90,14 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.scrollViewContainerView.backgroundColor = .clear
         self.scrollView.backgroundColor = .clear
         self.mainContainerView.backgroundColor = .clear
-        self.eMailLabel.font = .fonts(.body)
-        self.eMailLabel.textColor = Gen.Colors.gray01.color
-        self.eMailLabel.text = "이메일"
+        self.eMailTitleLabel.font = .fonts(.body)
+        self.eMailTitleLabel.textColor = Gen.Colors.gray01.color
+        self.eMailTitleLabel.text = "이메일"
         self.eMailTextContainerView.layer.cornerRadius = 8
         self.eMailTextContainerView.layer.borderColor = Gen.Colors.gray04.color.cgColor
         self.eMailTextContainerView.layer.borderWidth = 1
+        self.eMailLabel.font = .fonts(.body)
+        self.eMailLabel.textColor = Gen.Colors.black.color
         self.originEMailIconWidthConstraint = self.eMailIconWidthConstraint.constant
         self.eMailLabel.font = .fonts(.body)
         self.currentPWLabel.font = .fonts(.body)
@@ -143,14 +146,31 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     }
     
     private func refreshUIForEMail() {
-        
+        self.eMailIconWidthConstraint.constant = 0
+        self.eMailIconImageView.isHidden = true
+        self.eMailLabel.textColor = Gen.Colors.gray04.color
+        self.eMailTextContainerView.backgroundColor = Gen.Colors.gray06.color
+        self.passwordCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWEngCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWNumCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.newPWSizeCorrectLabel.textColor = Gen.Colors.gray04.color
+        self.confirmBtnView.backgroundColor = Gen.Colors.gray04.color
+        self.confirmBtnTitleLabel.textColor = Gen.Colors.white.color
+        self.currentPWTextContainerView.backgroundColor = Gen.Colors.white.color
+        self.newPWTextContainerView.backgroundColor = Gen.Colors.white.color
     }
     
     private func refreshUIForKakao() {
-        
+        refreshUIForSocialLogin()
+        self.eMailIconImageView.image = Gen.Images.kakaotalk.image
     }
     
     private func refreshUIForApple() {
+        refreshUIForSocialLogin()
+        self.eMailIconImageView.image = Gen.Images.btnApple.image
+    }
+    
+    private func refreshUIForSocialLogin() {
         
     }
     

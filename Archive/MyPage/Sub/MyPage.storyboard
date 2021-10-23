@@ -91,7 +91,7 @@
                                                                 </constraints>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-2"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" title=" " image="CheckSquare_selected"/>
+                                                                <state key="normal" title=" " image="icon_right-arrow"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -542,6 +542,7 @@
                         <outlet property="eMailIconWidthConstraint" destination="q4c-ls-EWp" id="4CS-lA-eym"/>
                         <outlet property="eMailLabel" destination="Kyp-mt-01s" id="hwT-Ya-s4R"/>
                         <outlet property="eMailTextContainerView" destination="xtZ-sC-vaY" id="aiK-NO-P3u"/>
+                        <outlet property="eMailTitleLabel" destination="Bgn-mu-Btt" id="IM5-sT-fJR"/>
                         <outlet property="logOutLabel" destination="BlN-pm-Pks" id="nua-Ax-Pbe"/>
                         <outlet property="mainContainerView" destination="Xw3-bK-EQh" id="Y6y-fZ-wMW"/>
                         <outlet property="newPWEngCorrectImageView" destination="0bf-zx-CMz" id="LdF-xl-jal"/>
@@ -567,7 +568,7 @@
     </scenes>
     <resources>
         <image name="CheckSquare_deselected" width="26" height="26"/>
-        <image name="CheckSquare_selected" width="26" height="26"/>
+        <image name="icon_right-arrow" width="24" height="26"/>
         <namedColor name="MyPageGray">
             <color red="0.89999997615814209" green="0.89999997615814209" blue="0.89999997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
