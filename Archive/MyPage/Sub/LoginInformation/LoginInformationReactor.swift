@@ -1,8 +1,8 @@
 //
-//  MyPageReactor.swift
+//  LoginInformationReactor.swift
 //  Archive
 //
-//  Created by hanwe on 2021/10/21.
+//  Created by hanwe on 2021/10/23.
 //
 
 import ReactorKit
@@ -10,11 +10,11 @@ import RxSwift
 import RxRelay
 import RxFlow
 
-class MyPageReactor: Reactor, Stepper {
-    
+class LoginInformationReactor: Reactor, Stepper {
     // MARK: private property
     
-    private let model: MyPageModelProtocol
+    private let model: LoginInformationModelProtocol
+    private let type: LoginType
     
     // MARK: internal property
     
@@ -23,39 +23,36 @@ class MyPageReactor: Reactor, Stepper {
     
     // MARK: lifeCycle
     
-    init(model: MyPageModelProtocol) {
+    init(model: LoginInformationModelProtocol, type: LoginType) {
         self.model = model
+        self.type = type
     }
     
     enum Action {
-        case cardCnt
-        case moveToLoginInfo
+        case refreshLoginType
     }
     
     enum Mutation {
-        case setCardCnt(Int)
+        case setLoginType(LoginType)
     }
     
     struct State {
-        var cardCnt: Int = 0
+        var type: LoginType = .eMail
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .cardCnt:
-            let cnt = model.cardCount
-            return .just(.setCardCnt(cnt))
-        case .moveToLoginInfo:
-            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail))
-            return .empty()
+        case .refreshLoginType:
+            let type = self.type
+            return .just(.setLoginType(type))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setCardCnt(let cardCnt):
-            newState.cardCnt = cardCnt
+        case .setLoginType(let type):
+            newState.type = type
         }
         return newState
     }
@@ -63,11 +60,4 @@ class MyPageReactor: Reactor, Stepper {
     // MARK: private function
     
     // MARK: internal function
-    
-
-    
-
-    
-    
-    
 }

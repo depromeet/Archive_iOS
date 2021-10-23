@@ -59,6 +59,11 @@ class MyPageViewController: UIViewController, StoryboardView {
             self?.myCardCntLabel.text = "\(cnt)"
         })
         .disposed(by: self.disposeBag)
+        
+        self.loginInfomationBtn.rx.tap
+            .map { Reactor.Action.moveToLoginInfo }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     // MARK: private function

@@ -55,6 +55,14 @@
 		780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
 		780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		780478142723CC6400FAA1CF /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
+		780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */; };
+		780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478212723E83F00FAA1CF /* LoginInformationReactor.swift */; };
+		780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478232723E84900FAA1CF /* LoginInformationModel.swift */; };
+		780478262723EA0300FAA1CF /* LoginDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478252723EA0300FAA1CF /* LoginDefine.swift */; };
+		780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */; };
+		780478282723FAB300FAA1CF /* LoginInformationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478212723E83F00FAA1CF /* LoginInformationReactor.swift */; };
+		780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478232723E84900FAA1CF /* LoginInformationModel.swift */; };
+		7804782A2723FADD00FAA1CF /* LoginDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478252723EA0300FAA1CF /* LoginDefine.swift */; };
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
 		784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD0270841B9004B1A23 /* .swiftlint.yml */; };
@@ -111,6 +119,10 @@
 		44FB0A2827186E33006E1048 /* AppStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStepper.swift; sourceTree = "<group>"; };
 		53EB9EAFE492E4886567AE92 /* Pods_Archive_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Archive_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C4423C0F1934D8C0AFE14D /* Pods-Archive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive.release.xcconfig"; path = "Target Support Files/Pods-Archive/Pods-Archive.release.xcconfig"; sourceTree = "<group>"; };
+		7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationViewController.swift; sourceTree = "<group>"; };
+		780478212723E83F00FAA1CF /* LoginInformationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationReactor.swift; sourceTree = "<group>"; };
+		780478232723E84900FAA1CF /* LoginInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationModel.swift; sourceTree = "<group>"; };
+		780478252723EA0300FAA1CF /* LoginDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDefine.swift; sourceTree = "<group>"; };
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		784D1DD0270841B9004B1A23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -278,6 +290,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		780478152723E79500FAA1CF /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				78BA153E27218F1E0078B88E /* MyPage.storyboard */,
+				780478182723E7E400FAA1CF /* LoginInformation */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
+		780478182723E7E400FAA1CF /* LoginInformation */ = {
+			isa = PBXGroup;
+			children = (
+				7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */,
+				780478212723E83F00FAA1CF /* LoginInformationReactor.swift */,
+				780478232723E84900FAA1CF /* LoginInformationModel.swift */,
+			);
+			path = LoginInformation;
+			sourceTree = "<group>";
+		};
 		784D1DBD27083D1C004B1A23 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				78958E102712A04B003FF724 /* FontDefine.swift */,
+				780478252723EA0300FAA1CF /* LoginDefine.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -343,7 +375,7 @@
 		78BA153D27218F100078B88E /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				78BA153E27218F1E0078B88E /* MyPage.storyboard */,
+				780478152723E79500FAA1CF /* Sub */,
 				78BA154027218F430078B88E /* MyPageViewController.swift */,
 				78BA154227218F4E0078B88E /* MyPageReactor.swift */,
 				78BA1548272197250078B88E /* MyPageModel.swift */,
@@ -599,10 +631,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
+				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
 				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */,
 				78958E1A2712A516003FF724 /* Assets.swift in Sources */,
+				7804782A2723FADD00FAA1CF /* LoginDefine.swift in Sources */,
 				780478102723CB7900FAA1CF /* MyPageFlow.swift in Sources */,
 				44FB0A2A27186E33006E1048 /* AppStepper.swift in Sources */,
 				780478142723CC6400FAA1CF /* MyPageReactor.swift in Sources */,
@@ -612,6 +646,7 @@
 				44FB09F427183097006E1048 /* TermsAgreementViewController.swift in Sources */,
 				44FB0A02271832D2006E1048 /* ArchiveStep.swift in Sources */,
 				44FB0A0C27183307006E1048 /* OnboardingFlow.swift in Sources */,
+				780478282723FAB300FAA1CF /* LoginInformationReactor.swift in Sources */,
 				44FB0A1D27183C9C006E1048 /* SignUpCompletionViewController.swift in Sources */,
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
 				44FB0A1827183C22006E1048 /* PasswordInputViewController.swift in Sources */,
@@ -619,6 +654,7 @@
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
+				780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */,
 				44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
 				44922DD32719FB9300A5EA2B /* InputView.swift in Sources */,
@@ -632,10 +668,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FB0A2227184376006E1048 /* ReuseIdentifiable.swift in Sources */,
+				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
+				780478262723EA0300FAA1CF /* LoginDefine.swift in Sources */,
 				44BE6F01271144AB00E74A7D /* TermsAgreementViewController.swift in Sources */,
 				78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */,
 				44FB0A2927186E33006E1048 /* AppStepper.swift in Sources */,
@@ -645,6 +683,7 @@
 				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
+				780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
@@ -652,6 +691,7 @@
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
+				780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */,
 				44922DA12719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,
 				44922DD22719FB9300A5EA2B /* InputView.swift in Sources */,
