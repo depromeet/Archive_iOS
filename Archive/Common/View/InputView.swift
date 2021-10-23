@@ -16,6 +16,7 @@ final class InputView: UIView {
         static let cornerRadius: CGFloat = 8
         static let borderWidth: CGFloat = 1
         static let horizontalPadding: CGFloat = 20
+        static let contentStackViewSpacing: CGFloat = 12
     }
     
     private enum Styles {
@@ -39,11 +40,32 @@ final class InputView: UIView {
         get { textField.isSecureTextEntry }
         set { textField.isSecureTextEntry = newValue }
     }
+    @IBInspectable var rightButtonTitle: String {
+        get { rightButton.attributedTitle(for: .normal)?.string ?? "" }
+        set {
+            setupRightButton(with: newValue)
+            rightButton.isHidden = false
+        }
+    }
+    fileprivate lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = Constants.contentStackViewSpacing
+        return stackView
+    }()
     fileprivate lazy var textField: UITextField = {
         let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = .fonts(.body)
         return textField
+    }()
+    fileprivate lazy var rightButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .fonts(.button)
+        button.isHidden = true
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return button
     }()
     private var disposeBag = DisposeBag()
     
@@ -70,12 +92,31 @@ final class InputView: UIView {
     }
     
     private func setupLayouts() {
-        addSubview(textField)
+        addSubview(contentStackView)
         NSLayoutConstraint.activate([
-            textField.centerYAnchor.constraint(equalTo: centerYAnchor),
-            textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalPadding),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalPadding)
+            contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            contentStackView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: .zero),
+            contentStackView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: .zero),
+            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalPadding),
+            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalPadding)
         ])
+        contentStackView.addArrangedSubview(textField)
+        contentStackView.addArrangedSubview(rightButton)
+    }
+    
+    private func setupRightButton(with title: String) {
+        let normalAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                                               NSAttributedString.Key.foregroundColor: UIColor.black]
+        let normalAttributedString = NSMutableAttributedString(string: title, attributes: normalAttributes)
+        rightButton.setAttributedTitle(normalAttributedString, for: .normal)
+        let highlightedAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                                                 NSAttributedString.Key.foregroundColor: Gen.Colors.gray03.color]
+        let highlightedAttributedString = NSMutableAttributedString(string: title, attributes: highlightedAttributes)
+        rightButton.setAttributedTitle(highlightedAttributedString, for: .highlighted)
+        let disabledAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                                                 NSAttributedString.Key.foregroundColor: Gen.Colors.gray04.color]
+        let disabledAttributedString = NSMutableAttributedString(string: title, attributes: disabledAttributes)
+        rightButton.setAttributedTitle(disabledAttributedString, for: .disabled)
     }
     
     func focusTextField() {
@@ -89,5 +130,11 @@ extension Reactive where Base: InputView {
     }
     var editingDidEndOnExit: ControlEvent<Void> {
         return base.textField.rx.controlEvent(.editingDidEndOnExit)
+    }
+    var tapRightButton: ControlEvent<Void> {
+        return base.rightButton.rx.tap
+    }
+    var isEnabledRightButton: Binder<Bool> {
+        return base.rightButton.rx.isEnabled
     }
 }
