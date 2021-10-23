@@ -23,6 +23,8 @@ final class OnboardingFlow: Flow {
         return viewController
     }()
     private let onboardingStoryBoard = UIStoryboard(name: Constants.onboardingStoryBoardName, bundle: nil)
+    private let validator = Validator()
+    private lazy var signUpReactor = SignUpReactor(validator: validator)
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else { return .none }
@@ -46,7 +48,6 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToSignInScreen() -> FlowContributors {
-        let validator = Validator()
         let signInReactor = SignInReactor(validator: validator)
         let signInViewController = onboardingStoryBoard
             .instantiateViewController(identifier: SignInViewController.identifier) { coder in
@@ -58,10 +59,9 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToTermsAgreementScreen() -> FlowContributors {
-        let signUpReactor = SignUpReactor()
         let termsAgreementViewController = onboardingStoryBoard
             .instantiateViewController(identifier: TermsAgreementViewController.identifier) { coder in
-                return TermsAgreementViewController(coder: coder, reactor: signUpReactor)
+                return TermsAgreementViewController(coder: coder, reactor: self.signUpReactor)
             }
         termsAgreementViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(termsAgreementViewController, animated: true)
@@ -70,13 +70,14 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToEmailInputScreen() -> FlowContributors {
-        guard let emailInputViewController = onboardingStoryBoard
-                .instantiateViewController(identifier: EmailInputViewController.identifier) as? EmailInputViewController else {
-            return .none
-        }
+        let emailInputViewController = onboardingStoryBoard
+            .instantiateViewController(identifier: EmailInputViewController.identifier) { coder in
+                return EmailInputViewController(coder: coder, reactor: self.signUpReactor)
+            }
         emailInputViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(emailInputViewController, animated: true)
-        return .one(flowContributor: .contribute(withNext: emailInputViewController))
+        return .one(flowContributor: .contribute(withNextPresentable: emailInputViewController,
+                                                 withNextStepper: signUpReactor))
     }
     
     private func navigationToPasswordInputScreen() -> FlowContributors {

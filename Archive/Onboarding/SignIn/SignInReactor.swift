@@ -43,17 +43,13 @@ final class SignInReactor: Reactor, Stepper {
         switch action {
         case let .idInput(id):
             let isValid = validator.isEnableSignIn(id: id, password: currentState.password)
-            return Observable.from([
-                .setID(id),
-                .setValidation(isValid)
-            ])
+            return .from([.setID(id),
+                          .setValidation(isValid)])
             
         case let .passwordInput(password):
             let isValid = validator.isEnableSignIn(id: currentState.id, password: password)
-            return Observable.from([
-                .setPassword(password),
-                .setValidation(isValid)
-            ])
+            return .from([.setPassword(password),
+                          .setValidation(isValid)])
             
         case .signIn:
             // TODO: 자체 로그인 로직

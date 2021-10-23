@@ -75,7 +75,7 @@ final class TermsAgreementViewController: UIViewController, StoryboardView {
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .map { Reactor.Action.goToNext }
+            .map { Reactor.Action.goToEmailInput }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

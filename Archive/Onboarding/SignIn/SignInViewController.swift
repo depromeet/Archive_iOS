@@ -50,11 +50,13 @@ final class SignInViewController: UIViewController, StoryboardView {
     
     func bind(reactor: SignInReactor) {
         idInputView.rx.text.orEmpty
+            .distinctUntilChanged()
             .map { Reactor.Action.idInput(text: $0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         passwordInputView.rx.text.orEmpty
+            .distinctUntilChanged()
             .map { Reactor.Action.passwordInput(text: $0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

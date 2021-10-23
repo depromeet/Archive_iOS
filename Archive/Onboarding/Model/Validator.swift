@@ -11,7 +11,11 @@ protocol SignInValidator {
     func isEnableSignIn(id: String, password: String) -> Bool
 }
 
-struct Validator: SignInValidator {
+protocol EmailInputValidator {
+    func isValidEmail(_ email: String) -> Bool
+}
+
+struct Validator: SignInValidator, EmailInputValidator {
     
     private enum Constants {
         static let mailScheme = "mailto"
@@ -20,6 +24,10 @@ struct Validator: SignInValidator {
     
     func isEnableSignIn(id: String, password: String) -> Bool {
         return isValidID(id) && isValidPassword(password)
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        return isValidID(email)
     }
     
     private func isValidID(_ id: String) -> Bool {

@@ -30,17 +30,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JYI-9K-a3j">
-                                <rect key="frame" x="32" y="270" width="350" height="200"/>
+                                <rect key="frame" x="32" y="270" width="350" height="188"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-c9-36d" customClass="InputView" customModule="Archive" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="52"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="아이디(이메일)"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PH-uN-haw" customClass="InputView" customModule="Archive" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="350" height="56"/>
+                                        <rect key="frame" x="0.0" y="68" width="350" height="52"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="영문/숫자포함 8~20자"/>
@@ -48,10 +48,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iO-9J-Z65" customClass="DefaultButton" customModule="Archive" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144" width="350" height="56"/>
+                                        <rect key="frame" x="0.0" y="136" width="350" height="52"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="d8a-Mg-dwP"/>
+                                            <constraint firstAttribute="height" constant="52" id="d8a-Mg-dwP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                         <state key="normal" title="로그인하기">
@@ -67,23 +67,23 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAy-wf-Bb4">
-                                <rect key="frame" x="156.5" y="490" width="101" height="29"/>
+                                <rect key="frame" x="157.5" y="478" width="99" height="29"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                 <state key="normal" title="Archive 회원가입">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-B4-iUJ">
-                                <rect key="frame" x="137" y="703" width="140.5" height="93"/>
+                                <rect key="frame" x="136.5" y="703.5" width="141" height="92.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다른 방법으로 로그인하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlY-gY-c5n">
-                                        <rect key="frame" x="0.0" y="0.0" width="140.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="141" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="Gray03"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tdN-hX-rwT">
-                                        <rect key="frame" x="4" y="37" width="132" height="56"/>
+                                        <rect key="frame" x="4.5" y="36.5" width="132" height="56"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4P-0e-mkR">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
@@ -150,7 +150,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Archive의 서비스 이용약관에 동의해주세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63y-N2-Kd4">
-                                <rect key="frame" x="32" y="34" width="241" height="72"/>
+                                <rect key="frame" x="32" y="34" width="242" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="Mb1-jc-Ued"/>
                                 </constraints>
@@ -159,10 +159,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCO-AH-fvc" customClass="DefaultButton" customModule="Archive" customModuleProvider="target">
-                                <rect key="frame" x="32" y="366" width="350" height="56"/>
+                                <rect key="frame" x="32" y="366" width="350" height="52"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="bwd-ho-3u8"/>
+                                    <constraint firstAttribute="height" constant="52" id="bwd-ho-3u8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                 <state key="normal" title="다음">
@@ -176,10 +176,10 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ttw-w9-QVw">
-                                <rect key="frame" x="32" y="138" width="246.5" height="96"/>
+                                <rect key="frame" x="32" y="138" width="245.5" height="96"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CZe-ta-TxC">
-                                        <rect key="frame" x="0.0" y="0.0" width="88" height="26"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="88.5" height="26"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHv-gT-E4Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
@@ -198,7 +198,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모두 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ko-6k-owK">
-                                                <rect key="frame" x="36" y="0.0" width="52" height="26"/>
+                                                <rect key="frame" x="36" y="0.0" width="52.5" height="26"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -206,10 +206,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-jy-A9P">
-                                        <rect key="frame" x="0.0" y="40" width="246.5" height="56"/>
+                                        <rect key="frame" x="0.0" y="40" width="245.5" height="56"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Aw3-hf-Wdg">
-                                                <rect key="frame" x="0.0" y="0.0" width="194.5" height="26"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="193" height="26"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVU-UE-zTt">
                                                         <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
@@ -221,16 +221,16 @@
                                                         <state key="selected" image="CheckSquare_selected"/>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ioo-JQ-GXz">
-                                                        <rect key="frame" x="36" y="0.0" width="158.5" height="26"/>
+                                                        <rect key="frame" x="36" y="0.0" width="157" height="26"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[필수] 이용약관 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hr-Ah-KDg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="26"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="112" height="26"/>
                                                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CEn-1k-ok1">
-                                                                <rect key="frame" x="128.5" y="0.0" width="30" height="26"/>
+                                                                <rect key="frame" x="127" y="0.0" width="30" height="26"/>
                                                                 <state key="normal">
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="보기">
@@ -248,7 +248,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1SD-hJ-Ftn">
-                                                <rect key="frame" x="0.0" y="30" width="246.5" height="26"/>
+                                                <rect key="frame" x="0.0" y="30" width="245.5" height="26"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YuP-Ob-HbC">
                                                         <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
@@ -260,16 +260,16 @@
                                                         <state key="selected" image="CheckSquare_selected"/>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tMe-db-6kN">
-                                                        <rect key="frame" x="36" y="0.0" width="210.5" height="26"/>
+                                                        <rect key="frame" x="36" y="0.0" width="209.5" height="26"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[필수] 개인정보 처리방침 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUl-IB-RzA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="165.5" height="26"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="164.5" height="26"/>
                                                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnJ-9I-s3r">
-                                                                <rect key="frame" x="180.5" y="0.0" width="30" height="26"/>
+                                                                <rect key="frame" x="179.5" y="0.0" width="30" height="26"/>
                                                                 <state key="normal">
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="보기">
@@ -349,89 +349,84 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-x6-MJx">
-                                <rect key="frame" x="32" y="144" width="350" height="172"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-x6-MJx">
+                                <rect key="frame" x="32" y="144" width="350" height="78"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2t-dd-LOO">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="아이디(이메일)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enp-XT-DgZ">
-                                                <rect key="frame" x="20" y="0.0" width="257" height="56"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nn0-eL-Xbn">
-                                                <rect key="frame" x="285" y="0.0" width="49" height="56"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="중복확인">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="14"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                <integer key="NSUnderline" value="1"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                            </button>
-                                        </subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9z-Xf-3L9" customClass="InputView" customModule="Archive" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="52"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="enp-XT-DgZ" firstAttribute="leading" secondItem="e2t-dd-LOO" secondAttribute="leading" constant="20" id="EaH-Bq-9ba"/>
-                                            <constraint firstItem="enp-XT-DgZ" firstAttribute="top" secondItem="e2t-dd-LOO" secondAttribute="top" id="Nb6-YE-Spm"/>
-                                            <constraint firstAttribute="bottom" secondItem="enp-XT-DgZ" secondAttribute="bottom" id="bVB-bo-8YU"/>
-                                            <constraint firstAttribute="trailing" secondItem="nn0-eL-Xbn" secondAttribute="trailing" constant="16" id="dw6-rR-JWz"/>
-                                            <constraint firstAttribute="bottom" secondItem="nn0-eL-Xbn" secondAttribute="bottom" id="g9A-Bz-dbS"/>
-                                            <constraint firstItem="nn0-eL-Xbn" firstAttribute="top" secondItem="e2t-dd-LOO" secondAttribute="top" id="lg2-Bs-E8W"/>
-                                            <constraint firstItem="nn0-eL-Xbn" firstAttribute="leading" secondItem="enp-XT-DgZ" secondAttribute="trailing" constant="8" id="zW7-4I-SnA"/>
+                                            <constraint firstAttribute="height" constant="52" id="EHZ-Hb-2si"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="아이디(이메일)"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="inputType">
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                <color key="value" red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTitle" value="중복확인"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-gu-pjc">
-                                        <rect key="frame" x="0.0" y="116" width="350" height="56"/>
-                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzI-ks-0FJ">
+                                        <rect key="frame" x="0.0" y="62" width="350" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="nhN-tS-P4f"/>
+                                            <constraint firstAttribute="height" constant="16" id="Ljl-R6-hp2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="다음">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                        <color key="textColor" name="Gray02"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.33000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Y0c-pK-FRK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="yIn-eI-7hD"/>
+                                </constraints>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="trackTintColor" name="Gray05"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-gu-pjc" customClass="DefaultButton" customModule="Archive" customModuleProvider="target">
+                                <rect key="frame" x="32" y="372" width="350" height="52"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="nhN-tS-P4f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="다음">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Q0E-E1-QFC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Q0E-E1-QFC" firstAttribute="bottom" secondItem="UbZ-x6-MJx" secondAttribute="bottom" priority="500" constant="100" id="BWv-OF-KEE"/>
+                            <constraint firstItem="D0h-gu-pjc" firstAttribute="leading" secondItem="Q0E-E1-QFC" secondAttribute="leading" constant="32" id="425-Nr-bUN"/>
+                            <constraint firstItem="Y0c-pK-FRK" firstAttribute="top" secondItem="Q0E-E1-QFC" secondAttribute="top" id="8kE-aE-aPO"/>
+                            <constraint firstItem="D0h-gu-pjc" firstAttribute="top" secondItem="UbZ-x6-MJx" secondAttribute="bottom" constant="150" id="9bt-gJ-zma"/>
                             <constraint firstItem="puz-n2-Yeg" firstAttribute="leading" secondItem="Q0E-E1-QFC" secondAttribute="leading" constant="32" id="H7C-dr-CSi"/>
                             <constraint firstItem="Q0E-E1-QFC" firstAttribute="trailing" secondItem="UbZ-x6-MJx" secondAttribute="trailing" constant="32" id="INL-J0-Ahp"/>
                             <constraint firstItem="UbZ-x6-MJx" firstAttribute="top" secondItem="puz-n2-Yeg" secondAttribute="bottom" constant="32" id="QMm-Eb-kz9"/>
                             <constraint firstAttribute="trailing" secondItem="puz-n2-Yeg" secondAttribute="trailing" constant="61" id="Qj1-3x-cat"/>
+                            <constraint firstAttribute="trailing" secondItem="Y0c-pK-FRK" secondAttribute="trailing" id="WkR-yf-Kwa"/>
+                            <constraint firstItem="Q0E-E1-QFC" firstAttribute="trailing" secondItem="D0h-gu-pjc" secondAttribute="trailing" constant="32" id="d51-kp-aat"/>
+                            <constraint firstItem="Q0E-E1-QFC" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="D0h-gu-pjc" secondAttribute="bottom" priority="500" constant="100" id="f8g-5E-SeE"/>
+                            <constraint firstItem="Y0c-pK-FRK" firstAttribute="leading" secondItem="nXe-rA-UhX" secondAttribute="leading" id="gKa-Ec-Kr4"/>
                             <constraint firstItem="UbZ-x6-MJx" firstAttribute="leading" secondItem="Q0E-E1-QFC" secondAttribute="leading" constant="32" id="seI-6q-Yhc"/>
                             <constraint firstItem="puz-n2-Yeg" firstAttribute="top" secondItem="Q0E-E1-QFC" secondAttribute="top" constant="40" id="ush-5V-rx5"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="emailInputView" destination="i9z-Xf-3L9" id="5xr-iI-wZY"/>
                         <outlet property="nextButton" destination="D0h-gu-pjc" id="l1E-rd-dhj"/>
+                        <outlet property="progressView" destination="Y0c-pK-FRK" id="jnu-mq-n3V"/>
+                        <outlet property="validationResultLabel" destination="fzI-ks-0FJ" id="xdc-ZV-g0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdA-qY-cHd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -700,6 +695,9 @@
         <image name="Logo" width="166" height="44"/>
         <namedColor name="Gray01">
             <color red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray02">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray03">
             <color red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

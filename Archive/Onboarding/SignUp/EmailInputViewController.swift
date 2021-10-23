@@ -11,20 +11,30 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-final class EmailInputViewController: UIViewController, View, Stepper {
+final class EmailInputViewController: UIViewController, StoryboardView {
     
-    @IBOutlet private weak var nextButton: UIButton?
+    private enum Constant {
+        static let progress: Float = 0.66
+    }
     
-    let steps = PublishRelay<Step>()
+    @IBOutlet private weak var progressView: UIProgressView!
+    @IBOutlet private weak var emailInputView: InputView!
+    @IBOutlet private weak var validationResultLabel: UILabel!
+    @IBOutlet private weak var nextButton: UIButton!
     var disposeBag = DisposeBag()
+    
+    init?(coder: NSCoder, reactor: SignUpReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: 로직이 Reactor를 거치도록 수정
-        nextButton?.rx.tap
-            .map { ArchiveStep.passwordInputRequired }
-            .bind(to: steps)
-            .disposed(by: disposeBag)
+        setupAttributes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +42,50 @@ final class EmailInputViewController: UIViewController, View, Stepper {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        progressView.setProgress(Constant.progress, animated: true)
+    }
+    
+    private func setupAttributes() {
+        let tapOutside = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapOutside)
+    }
+    
     func bind(reactor: SignUpReactor) {
+        emailInputView.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.emailInput(text: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        emailInputView.rx.tapRightButton
+            .map { Reactor.Action.checkEmailDuplicate }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .map { Reactor.Action.goToPasswordInput }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isValidEmail }
+            .distinctUntilChanged()
+            .bind(to: emailInputView.rx.isEnabledRightButton)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.emailValidationText }
+            .skip(1)
+            .distinctUntilChanged()
+            .bind(to: validationResultLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isCompleteEmailInput }
+            .distinctUntilChanged()
+            .bind(to: nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
