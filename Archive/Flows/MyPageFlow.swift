@@ -43,7 +43,7 @@ class MyPageFlow: Flow {
     }
     
     private func navigationToMyPageScreen(cardCount: Int) -> FlowContributors {
-        let model: MyPageModel = MyPageModel(cardCount: cardCount) // test
+        let model: MyPageModel = MyPageModel(cardCount: cardCount)
         let reactor = MyPageReactor(model: model)
         let myPageViewController: MyPageViewController = myPageStoryBoard.instantiateViewController(identifier: MyPageViewController.identifier) { corder in
             return MyPageViewController(coder: corder, reactor: reactor)

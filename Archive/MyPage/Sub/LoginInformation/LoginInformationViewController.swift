@@ -16,6 +16,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     // MARK: IBOutlet
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var scrollViewContainerView: UIView!
+    @IBOutlet weak var scrollContainerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var eMailTitleLabel: UILabel!
@@ -46,6 +47,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     // MARK: private property
     
     private var originEMailIconWidthConstraint: CGFloat = 0
+    private var originScrollContainerViewBottomConstraint: CGFloat = 0
     
     private lazy var activePlaceHolderAttributes = [
         NSAttributedString.Key.foregroundColor: Gen.Colors.gray03.color,
@@ -66,6 +68,8 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         super.viewDidLoad()
         initIU()
         self.reactor?.action.onNext(.refreshLoginType)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
     init?(coder: NSCoder, reactor: LoginInformationReactor) {
@@ -156,6 +160,8 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.logoutBtn.setTitle("로그아웃", for: .highlighted)
         self.logoutBtn.setTitleColor(Gen.Colors.gray04.color, for: .highlighted)
         self.logoutBtn.titleLabel?.font = .fonts(.body)
+        self.currentPWTextField.returnKeyType = .done
+        self.newPWTextField.returnKeyType = .done
     }
     
     private func refreshUIForEMail() {
@@ -173,6 +179,8 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.newPWTextContainerView.backgroundColor = Gen.Colors.white.color
         self.newPWTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 입력해주세요.", attributes: self.activePlaceHolderAttributes)
         self.currentPWTextField.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요.", attributes: self.activePlaceHolderAttributes)
+        self.newPWTextField.isEnabled = true
+        self.currentPWTextField.isEnabled = true
     }
     
     private func refreshUIForKakao() {
@@ -203,6 +211,16 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.currentPWTextField.isEnabled = false
         self.newPWTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 입력해주세요.", attributes: self.nonActivePlaceHolderAttributes)
         self.currentPWTextField.attributedPlaceholder = NSAttributedString(string: "현재 비밀번호를 입력해주세요.", attributes: self.nonActivePlaceHolderAttributes)
+    }
+    
+    @objc private func keyboardWillShowNotification(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.scrollContainerViewBottomConstraint.constant = self.originEMailIconWidthConstraint + keyboardSize.height
+        }
+    }
+    
+    @objc private func keyboardWillHideNotification(_ notification: Notification) {
+        self.scrollContainerViewBottomConstraint.constant = self.originEMailIconWidthConstraint
     }
     
     // MARK: internal function

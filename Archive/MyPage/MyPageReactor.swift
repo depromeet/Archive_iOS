@@ -46,7 +46,7 @@ class MyPageReactor: Reactor, Stepper {
             let cnt = model.cardCount
             return .just(.setCardCnt(cnt))
         case .moveToLoginInfo:
-            steps.accept(ArchiveStep.loginInfomationIsRequired(.kakao, self.model.cardCount))
+            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail, self.model.cardCount)) // TODO: 여기서 로그인 정보 주입???
             return .empty()
         }
     }
