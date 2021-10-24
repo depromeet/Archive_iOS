@@ -66,7 +66,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initIU()
+        initUI()
         self.reactor?.action.onNext(.refreshLoginType)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
@@ -82,7 +82,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: LoginInformationReactor) {
-        self.reactor?.state.map { $0.type }
+        reactor.state.map { $0.type }
         .asDriver(onErrorJustReturn: .kakao)
         .drive(onNext: { [weak self] type in
             switch type {
@@ -104,7 +104,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
     
     // MARK: private function
     
-    private func initIU() {
+    private func initUI() {
         self.backgroundView.backgroundColor = Gen.Colors.white.color
         self.scrollViewContainerView.backgroundColor = .clear
         self.scrollView.backgroundColor = .clear

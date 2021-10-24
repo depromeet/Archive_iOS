@@ -39,7 +39,7 @@ class MyPageViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initIU()
+        initUI()
         self.reactor?.action.onNext(.cardCnt)
     }
     
@@ -53,7 +53,7 @@ class MyPageViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: MyPageReactor) {
-        self.reactor?.state.map { $0.cardCnt }
+        reactor.state.map { $0.cardCnt }
         .asDriver(onErrorJustReturn: 100)
         .drive(onNext: { [weak self] cnt in
             self?.myCardCntLabel.text = "\(cnt)"
@@ -68,7 +68,7 @@ class MyPageViewController: UIViewController, StoryboardView {
     
     // MARK: private function
     
-    private func initIU() {
+    private func initUI() {
         self.backgroundView.backgroundColor = Gen.Colors.white.color
         self.mainContainerView.backgroundColor = .clear
         

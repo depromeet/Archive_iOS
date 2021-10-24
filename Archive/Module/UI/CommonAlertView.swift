@@ -53,7 +53,7 @@ class CommonAlertView: UIView {
         self.feedbackGenerator?.prepare()
     }
     
-    func showAlertType1(message: String, subMessage: String? = nil, btnText: String, hapticType: UINotificationFeedbackGenerator.FeedbackType? = nil, confirmHandler: @escaping () -> Void) { // 확인버튼 하나만 있는것
+    func show(message: String, subMessage: String? = nil, btnText: String, hapticType: UINotificationFeedbackGenerator.FeedbackType? = nil, confirmHandler: @escaping () -> Void) { // 확인버튼 하나만 있는것
         DispatchQueue.main.async {
             self.superview?.bringSubviewToFront(self)
             self.comfirmHandler = confirmHandler
@@ -95,15 +95,15 @@ class CommonAlertView: UIView {
             }
             
             self.isHidden = false
-            if hapticType != nil {
-                self.feedbackGenerator?.notificationOccurred(hapticType!)
+            if let hapticType = hapticType {
+                self.feedbackGenerator?.notificationOccurred(hapticType)
             }
             
             self.fadeIn(completeHandler: nil)
         }
     }
     
-    func showAlertType2(message: String, subMessage: String?, confirmBtnTxt: String, cancelBtnTxt: String, confirmHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) { // 버튼 두개짜리
+    func show(message: String, subMessage: String?, confirmBtnTxt: String, cancelBtnTxt: String, confirmHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) { // 버튼 두개짜리
         DispatchQueue.main.async {
             self.superview?.bringSubviewToFront(self)
             self.comfirmHandler = confirmHandler

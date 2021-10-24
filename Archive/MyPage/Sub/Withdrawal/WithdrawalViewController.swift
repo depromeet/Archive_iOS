@@ -32,7 +32,7 @@ class WithdrawalViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initIU()
+        initUI()
         self.reactor?.action.onNext(.cardCnt)
     }
     
@@ -46,7 +46,7 @@ class WithdrawalViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: WithdrawalReactor) {
-        self.reactor?.state.map { $0.cardCnt }
+        reactor.state.map { $0.cardCnt }
         .asDriver(onErrorJustReturn: 100)
         .drive(onNext: { [weak self] cnt in
             let sumAttString = NSMutableAttributedString(string: String(format: "그동안 기록했던\n%d개의\n소중한 전시 기록들이\n전부 사라져요\n그래도 탈퇴하시겠어요?", cnt), attributes: [NSAttributedString.Key.font: UIFont.fonts(.subTitle), NSAttributedString.Key.foregroundColor: Gen.Colors.gray01.color])
@@ -69,7 +69,7 @@ class WithdrawalViewController: UIViewController, StoryboardView {
     
     // MARK: private function
     
-    private func initIU() {
+    private func initUI() {
         self.backgroundView.backgroundColor = Gen.Colors.white.color
         self.scrollContainerView.backgroundColor = .clear
         self.scrollView.backgroundColor = .clear
