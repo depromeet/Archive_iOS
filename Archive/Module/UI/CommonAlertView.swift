@@ -79,10 +79,7 @@ class CommonAlertView: UIView {
             
             buttonView.addSubview(confirmBtnView)
             confirmBtnView.snp.makeConstraints { (make) in
-                make.top.equalTo(buttonView.snp.top).offset(0)
-                make.bottom.equalTo(buttonView.snp.bottom).offset(0)
-                make.leading.equalTo(buttonView.snp.leading).offset(0)
-                make.trailing.equalTo(buttonView.snp.trailing).offset(0)
+                make.edges.equalTo(buttonView)
             }
             
             let alertView: UIView = self.makeMainAlertView(message: message, subMessage: subMessage, buttonView: buttonView)
@@ -188,8 +185,8 @@ class CommonAlertView: UIView {
         messageLabel.textColor = Gen.Colors.gray02.color
         messageLabel.numberOfLines = 10
         let subMessageLabel: UILabel = UILabel()
-        if subMessage != nil {
-            subMessageLabel.text = subMessage!
+        if let subMessage = subMessage {
+            subMessageLabel.text = subMessage
         }
         subMessageLabel.textAlignment = .left
         subMessageLabel.textColor = Gen.Colors.gray02.color
@@ -231,7 +228,7 @@ class CommonAlertView: UIView {
         buttonContainerView.addSubview(buttonView)
         buttonView.snp.makeConstraints { (make) in
             make.top.equalTo(buttonContainerView.snp.top).offset(0)
-            make.bottom.equalTo(buttonContainerView.snp.bottom).offset(-20) // -20?
+            make.bottom.equalTo(buttonContainerView.snp.bottom).offset(-20)
             make.leading.equalTo(buttonContainerView.snp.leading).offset(32)
             make.trailing.equalTo(buttonContainerView.snp.trailing).offset(-32)
         }
