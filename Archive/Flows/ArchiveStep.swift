@@ -21,4 +21,10 @@ enum ArchiveStep: Step {
     case emailInputRequired
     case passwordInputRequired
     case userIsSignedUp
+    
+    // MyPage
+    case myPageIsRequired(Int)
+    case loginInfomationIsRequired(LoginType, Int)
+    case withdrawalIsRequired(Int)
+    case withdrawalIsComplete
 }
