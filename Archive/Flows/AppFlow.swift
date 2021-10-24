@@ -31,6 +31,8 @@ final class AppFlow: Flow {
             return navigationToOnboardingScreen()
         case .myPageIsRequired(let cardCnt):
             return navigationToMyPageScreen(cardCnt: cardCnt)
+        case .recordIsRequired:
+            return navigationToRecordScreen()
         default:
             return .none
         }
@@ -62,5 +64,19 @@ final class AppFlow: Flow {
         
         return .one(flowContributor: .contribute(withNextPresentable: myPageFlow,
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.myPageIsRequired(cardCnt))))
+    }
+    
+    private func navigationToRecordScreen() -> FlowContributors {
+        let recordFlow = RecordFlow()
+        
+        Flows.use(recordFlow, when: .created) { [weak self] root in
+            DispatchQueue.main.async {
+                root.modalPresentationStyle = .fullScreen
+                self?.rootViewController.present(root, animated: false)
+            }
+        }
+        
+        return .one(flowContributor: .contribute(withNextPresentable: recordFlow,
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.recordIsRequired)))
     }
 }
