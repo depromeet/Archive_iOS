@@ -79,6 +79,10 @@
 		78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */; };
 		78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E1A2712A516003FF724 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E3427088EC7004B1A23 /* Assets.swift */; };
+		789E6197272554F400D6E18F /* Record.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 789E6196272554F300D6E18F /* Record.storyboard */; };
+		789E61992725550A00D6E18F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61982725550A00D6E18F /* RecordViewController.swift */; };
+		789E619B2725551400D6E18F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E619A2725551400D6E18F /* RecordReactor.swift */; };
+		789E619D2725551C00D6E18F /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E619C2725551C00D6E18F /* RecordModel.swift */; };
 		78BA154127218F430078B88E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
 		78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
@@ -146,6 +150,10 @@
 		78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		78958E102712A04B003FF724 /* FontDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontDefine.swift; sourceTree = "<group>"; };
 		78958E132712A0C5003FF724 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		789E6196272554F300D6E18F /* Record.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Record.storyboard; sourceTree = "<group>"; };
+		789E61982725550A00D6E18F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		789E619A2725551400D6E18F /* RecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReactor.swift; sourceTree = "<group>"; };
+		789E619C2725551C00D6E18F /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		78BA154027218F430078B88E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		78BA154227218F4E0078B88E /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
 		78BA15462721956A0078B88E /* MyPageFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlow.swift; sourceTree = "<group>"; };
@@ -269,6 +277,7 @@
 				784D1DBD27083D1C004B1A23 /* Resources */,
 				44893688270837EB00EA423A /* Onboarding */,
 				78BA153D27218F100078B88E /* MyPage */,
+				789E6195272554E400D6E18F /* Record */,
 				44F9B0E0270606E7005418F0 /* AppDelegate.swift */,
 				44F9B0E2270606E7005418F0 /* SceneDelegate.swift */,
 				44F9B0EB270606EE005418F0 /* LaunchScreen.storyboard */,
@@ -391,6 +400,25 @@
 				78C4B33A27244C000006EBAD /* UIViewExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		789E6195272554E400D6E18F /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				789E6196272554F300D6E18F /* Record.storyboard */,
+				789E619E2725552B00D6E18F /* Sub */,
+				789E61982725550A00D6E18F /* RecordViewController.swift */,
+				789E619A2725551400D6E18F /* RecordReactor.swift */,
+				789E619C2725551C00D6E18F /* RecordModel.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		789E619E2725552B00D6E18F /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 		78BA153D27218F100078B88E /* MyPage */ = {
@@ -535,6 +563,7 @@
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */,
 				4489368A2708380100EA423A /* Onboarding.storyboard in Resources */,
+				789E6197272554F400D6E18F /* Record.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +739,7 @@
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
+				789E619D2725551C00D6E18F /* RecordModel.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
 				78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
@@ -723,12 +753,14 @@
 				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
 				78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */,
+				789E61992725550A00D6E18F /* RecordViewController.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
 				78C4B32F272429370006EBAD /* WithdrawalModel.swift in Sources */,
 				780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
+				789E619B2725551400D6E18F /* RecordReactor.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
 				78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
