@@ -40,7 +40,7 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordReactor) {
-        
+
     }
     
     // MARK: private function
@@ -82,7 +82,7 @@ extension RecordViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageRecordCollectionViewCell.identifier, for: indexPath) as? ImageRecordCollectionViewCell else { return UICollectionViewCell() }
-            cell.reactor = ImageRecordReactor(model: ImageRecordModel())
+            cell.reactor = ImageRecordReactor(model: ImageRecordModel(images: []))
             cell.delegate = self
             return cell
         } else {
@@ -115,6 +115,14 @@ extension RecordViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 
 extension RecordViewController: ImageRecordCollectionViewCellDelegate {
+    func clickedEmotionSelectArea() {
+        
+    }
+    
+    func clickedPhotoSeleteArea() {
+        
+    }
+    
     func clickedContentsArea() {
         
     }

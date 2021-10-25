@@ -25,36 +25,30 @@ class ImageRecordReactor: Reactor {
     }
     
     enum Action {
-//        case cardCnt
-//        case moveToLoginInfo
+        case setImages(_ images: [UIImage])
     }
     
     enum Mutation {
-//        case setCardCnt(Int)
+        case setImages(_ images: [UIImage])
     }
     
     struct State {
-//        var cardCnt: Int = 0
+        var images: [UIImage] = []
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .cardCnt:
-//            let cnt = model.cardCount
-//            return .just(.setCardCnt(cnt))
-//        case .moveToLoginInfo:
-//            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail, self.model.cardCount)) // TODO: 여기서 로그인 정보 주입???
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .setImages(let images):
+            return .just(.setImages(images))
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setCardCnt(let cardCnt):
-//            newState.cardCnt = cardCnt
-//        }
+        switch mutation {
+        case .setImages(let images):
+            newState.images = images
+        }
         return newState
     }
     

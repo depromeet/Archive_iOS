@@ -109,6 +109,14 @@
 		789E61C92725855B00D6E18F /* ContentsRecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C0272584DB00D6E18F /* ContentsRecordCollectionViewCell.swift */; };
 		789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C4272584ED00D6E18F /* ContentsRecordReactor.swift */; };
 		789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */; };
+		78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */; };
+		78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */; };
+		78B872DC2726C54C009EFB54 /* EmotionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */; };
+		78B872DD2726C553009EFB54 /* EmotionSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */; };
+		78B872DE2726C553009EFB54 /* EmotionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */; };
+		78B872DF2726C553009EFB54 /* EmotionSelectReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */; };
+		78B872E12726C6D1009EFB54 /* EmotionDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872E02726C6D1009EFB54 /* EmotionDefine.swift */; };
+		78B872E22726C6D4009EFB54 /* EmotionDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872E02726C6D1009EFB54 /* EmotionDefine.swift */; };
 		78BA154127218F430078B88E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
 		78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
@@ -191,6 +199,10 @@
 		789E61C1272584DB00D6E18F /* ContentsRecordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentsRecordCollectionViewCell.xib; sourceTree = "<group>"; };
 		789E61C4272584ED00D6E18F /* ContentsRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsRecordReactor.swift; sourceTree = "<group>"; };
 		789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsRecordModel.swift; sourceTree = "<group>"; };
+		78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectModel.swift; sourceTree = "<group>"; };
+		78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectReactor.swift; sourceTree = "<group>"; };
+		78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectViewController.swift; sourceTree = "<group>"; };
+		78B872E02726C6D1009EFB54 /* EmotionDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionDefine.swift; sourceTree = "<group>"; };
 		78BA154027218F430078B88E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		78BA154227218F4E0078B88E /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
 		78BA15462721956A0078B88E /* MyPageFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlow.swift; sourceTree = "<group>"; };
@@ -425,6 +437,7 @@
 		78958E0F2712A03C003FF724 /* Define */ = {
 			isa = PBXGroup;
 			children = (
+				78B872E02726C6D1009EFB54 /* EmotionDefine.swift */,
 				78958E102712A04B003FF724 /* FontDefine.swift */,
 				780478252723EA0300FAA1CF /* LoginDefine.swift */,
 			);
@@ -489,8 +502,19 @@
 		789E61A127255D8300D6E18F /* Etc */ = {
 			isa = PBXGroup;
 			children = (
+				78B872D62726C54C009EFB54 /* EmotionSelect */,
 			);
 			path = Etc;
+			sourceTree = "<group>";
+		};
+		78B872D62726C54C009EFB54 /* EmotionSelect */ = {
+			isa = PBXGroup;
+			children = (
+				78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */,
+				78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */,
+				78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */,
+			);
+			path = EmotionSelect;
 			sourceTree = "<group>";
 		};
 		78BA153D27218F100078B88E /* MyPage */ = {
@@ -770,6 +794,7 @@
 			files = (
 				789E61B727257D3900D6E18F /* ImageRecordModel.swift in Sources */,
 				789E61C92725855B00D6E18F /* ContentsRecordCollectionViewCell.swift in Sources */,
+				78B872DE2726C553009EFB54 /* EmotionSelectViewController.swift in Sources */,
 				789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */,
 				789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
@@ -790,6 +815,7 @@
 				789E61AA2725601C00D6E18F /* RecordReactor.swift in Sources */,
 				780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */,
 				789E61A92725601C00D6E18F /* ImageRecordCollectionViewCell.swift in Sources */,
+				78B872DF2726C553009EFB54 /* EmotionSelectReactor.swift in Sources */,
 				44FB09F427183097006E1048 /* TermsAgreementViewController.swift in Sources */,
 				44FB0A02271832D2006E1048 /* ArchiveStep.swift in Sources */,
 				789E61BE2725849400D6E18F /* NibIdentifiable.swift in Sources */,
@@ -802,9 +828,11 @@
 				44B4F2DB2707560100D53F27 /* AppDelegate.swift in Sources */,
 				44FB0A1827183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				789E61A82725601400D6E18F /* RecordFlow.swift in Sources */,
+				78B872DD2726C553009EFB54 /* EmotionSelectModel.swift in Sources */,
 				44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				789E61AB2725601C00D6E18F /* RecordModel.swift in Sources */,
 				78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */,
+				78B872E22726C6D4009EFB54 /* EmotionDefine.swift in Sources */,
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
@@ -852,14 +880,18 @@
 				78C4B32F272429370006EBAD /* WithdrawalModel.swift in Sources */,
 				789E61B027257BCB00D6E18F /* ImageRecordReactor.swift in Sources */,
 				780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */,
+				78B872DC2726C54C009EFB54 /* EmotionSelectViewController.swift in Sources */,
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
+				78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */,
 				789E61B92725817900D6E18F /* NibIdentifiable.swift in Sources */,
 				789E619B2725551400D6E18F /* RecordReactor.swift in Sources */,
+				78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
 				78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
+				78B872E12726C6D1009EFB54 /* EmotionDefine.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
