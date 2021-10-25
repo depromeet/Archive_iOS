@@ -1,8 +1,8 @@
 //
-//  ContentsRecordCollectionViewCell.swift
+//  ContentsRecordViewController.swift
 //  Archive
 //
-//  Created by hanwe on 2021/10/24.
+//  Created by hanwe on 2021/10/25.
 //
 
 import UIKit
@@ -10,11 +10,9 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-protocol ContentsRecordCollectionViewCellDelegate: AnyObject {
-    
-}
+class ContentsRecordViewController: UIViewController, StoryboardView {
 
-class ContentsRecordCollectionViewCell: UICollectionViewCell, StoryboardView, ClassIdentifiable {
+    
     
     // MARK: IBOutlet
     
@@ -22,14 +20,21 @@ class ContentsRecordCollectionViewCell: UICollectionViewCell, StoryboardView, Cl
     
     // MARK: internal property
     
-    weak var delegate: ContentsRecordCollectionViewCellDelegate?
-    
     var disposeBag: DisposeBag = DisposeBag()
     
     // MARK: lifeCycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    init?(coder: NSCoder, reactor: ContentsRecordReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         initUI()
     }
     
@@ -46,10 +51,5 @@ class ContentsRecordCollectionViewCell: UICollectionViewCell, StoryboardView, Cl
     // MARK: internal function
     
     // MARK: action
-    
-    
 
-    
-    
-    
 }

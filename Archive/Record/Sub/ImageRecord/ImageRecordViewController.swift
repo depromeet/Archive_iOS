@@ -1,8 +1,8 @@
 //
-//  ImageRecordCollectionViewCell.swift
+//  ImageRecordViewController.swift
 //  Archive
 //
-//  Created by hanwe on 2021/10/24.
+//  Created by hanwe on 2021/10/25.
 //
 
 import UIKit
@@ -11,12 +11,12 @@ import RxSwift
 import RxCocoa
 
 protocol ImageRecordCollectionViewCellDelegate: AnyObject {
-    func clickedContentsArea()
     func clickedEmotionSelectArea()
     func clickedPhotoSeleteArea()
+    func clickedContentsArea()
 }
 
-class ImageRecordCollectionViewCell: UICollectionViewCell, StoryboardView, ClassIdentifiable {
+class ImageRecordViewController: UIViewController, StoryboardView {
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -52,8 +52,17 @@ class ImageRecordCollectionViewCell: UICollectionViewCell, StoryboardView, Class
     
     // MARK: lifeCycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    init?(coder: NSCoder, reactor: ImageRecordReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         initUI()
     }
     
