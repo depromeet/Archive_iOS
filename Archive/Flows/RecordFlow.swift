@@ -25,11 +25,19 @@ class RecordFlow: Flow {
     
     private let recordStoryBoard = UIStoryboard(name: Constants.RecordStoryBoardName, bundle: nil)
     
+    weak var recordViewController: RecordViewController?
+    weak var editEmotionViewController: EmotionSelectViewController?
+    
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else { return .none }
         switch step {
         case .recordIsRequired:
             return navigationToRecordScreen()
+        case .recordEmotionEditIsRequired:
+            return navigationToEditEmotion()
+        case .recordEmotionEditIsComplete(let emotion):
+            dismissEditEmotion(emotion: emotion)
+            return .none
         default:
             return .none
         }
@@ -42,9 +50,29 @@ class RecordFlow: Flow {
             return RecordViewController(coder: corder, reactor: reactor)
         }
         recordViewController.title = Constants.RecordNavigationTitle
+        self.recordViewController = recordViewController
         rootViewController.pushViewController(recordViewController, animated: false)
         return .one(flowContributor: .contribute(withNextPresentable: recordViewController,
                                                  withNextStepper: reactor))
+    }
+    
+    private func navigationToEditEmotion() -> FlowContributors {
+        let model: EmotionSelectModel = EmotionSelectModel()
+        let reactor = EmotionSelectReactor(model: model)
+        let emotionSelectViewController: EmotionSelectViewController = recordStoryBoard.instantiateViewController(identifier: EmotionSelectViewController.identifier) { corder in
+            return EmotionSelectViewController(coder: corder, reactor: reactor)
+        }
+        emotionSelectViewController.title = ""
+        emotionSelectViewController.modalPresentationStyle = .overFullScreen
+        self.editEmotionViewController = emotionSelectViewController
+        rootViewController.present(emotionSelectViewController, animated: false, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: emotionSelectViewController,
+                                                 withNextStepper: reactor))
+    }
+    
+    private func dismissEditEmotion(emotion: Emotion) {
+        self.editEmotionViewController?.dismiss(animated: false, completion: nil)
+        self.recordViewController?.reactor?.action.onNext(.setEmotion(emotion))
     }
     
 }

@@ -7,8 +7,10 @@
 
 import RxSwift
 import ReactorKit
+import RxRelay
+import RxFlow
 
-class EmotionSelectReactor: Reactor {
+class EmotionSelectReactor: Reactor, Stepper {
     // MARK: private property
     
     private let model: EmotionSelectModelProtocol
@@ -16,6 +18,7 @@ class EmotionSelectReactor: Reactor {
     // MARK: internal property
     
     let initialState = State()
+    let steps = PublishRelay<Step>()
     
     // MARK: lifeCycle
     
@@ -24,36 +27,34 @@ class EmotionSelectReactor: Reactor {
     }
     
     enum Action {
-//        case cardCnt
-//        case moveToLoginInfo
+        case select(Emotion)
+        case completeEmotionEdit
     }
     
     enum Mutation {
-//        case setCardCnt(Int)
+        case setEmotion(Emotion)
     }
     
     struct State {
-//        var cardCnt: Int = 0
+        var currentEmotion: Emotion = .pleasant
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .cardCnt:
-//            let cnt = model.cardCount
-//            return .just(.setCardCnt(cnt))
-//        case .moveToLoginInfo:
-//            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail, self.model.cardCount)) // TODO: 여기서 로그인 정보 주입???
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .select(let emotion):
+            return .just(.setEmotion(emotion))
+        case .completeEmotionEdit:
+            steps.accept(ArchiveStep.recordEmotionEditIsComplete(self.currentState.currentEmotion))
+            return .empty()
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setCardCnt(let cardCnt):
-//            newState.cardCnt = cardCnt
-//        }
+        switch mutation {
+        case .setEmotion(let emotion):
+            newState.currentEmotion = emotion
+        }
         return newState
     }
     

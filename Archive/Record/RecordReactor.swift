@@ -27,36 +27,34 @@ class RecordReactor: Reactor, Stepper {
     }
     
     enum Action {
-//        case cardCnt
-//        case moveToLoginInfo
+        case moveToSelectEmotion
+        case setEmotion(Emotion)
     }
     
     enum Mutation {
-//        case setCardCnt(Int)
+        case setEmotion(Emotion)
     }
     
     struct State {
-//        var cardCnt: Int = 0
+        var currentEmotion: Emotion?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .cardCnt:
-//            let cnt = model.cardCount
-//            return .just(.setCardCnt(cnt))
-//        case .moveToLoginInfo:
-//            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail, self.model.cardCount)) // TODO: 여기서 로그인 정보 주입???
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .moveToSelectEmotion:
+            steps.accept(ArchiveStep.recordEmotionEditIsRequired)
+            return .empty()
+        case .setEmotion(let emotion):
+            return .just(.setEmotion(emotion))
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setCardCnt(let cardCnt):
-//            newState.cardCnt = cardCnt
-//        }
+        switch mutation {
+        case .setEmotion(let emotion):
+            newState.currentEmotion = emotion
+        }
         return newState
     }
     

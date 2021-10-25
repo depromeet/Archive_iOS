@@ -30,4 +30,6 @@ enum ArchiveStep: Step {
     
     // Record
     case recordIsRequired
+    case recordEmotionEditIsRequired
+    case recordEmotionEditIsComplete(Emotion)
 }

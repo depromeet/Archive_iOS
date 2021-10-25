@@ -116,7 +116,7 @@ extension RecordViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension RecordViewController: ImageRecordCollectionViewCellDelegate {
     func clickedEmotionSelectArea() {
-        
+        self.reactor?.action.onNext(.moveToSelectEmotion)
     }
     
     func clickedPhotoSeleteArea() {
