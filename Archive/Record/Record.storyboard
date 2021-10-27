@@ -47,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="56"/>
+            <point key="canvasLocation" x="936" y="-288"/>
         </scene>
         <!--Emotion Select View Controller-->
         <scene sceneID="S2n-tK-au3">
@@ -308,13 +308,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bC-oP-2ad">
-                                        <rect key="frame" x="0.0" y="159" width="414" height="414"/>
+                                        <rect key="frame" x="32" y="223" width="350" height="350"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pre_pleasant" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-VI-hB1">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sg8-4s-8Id">
-                                                <rect key="frame" x="186.5" y="197" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="154.5" y="165" width="41.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -334,12 +334,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="2bC-oP-2ad" firstAttribute="leading" secondItem="lhV-uw-mYE" secondAttribute="leading" constant="32" id="1Qh-0j-E57"/>
                                     <constraint firstItem="2bC-oP-2ad" firstAttribute="centerX" secondItem="lhV-uw-mYE" secondAttribute="centerX" id="27M-6l-az3"/>
                                     <constraint firstItem="aff-zh-lEF" firstAttribute="leading" secondItem="lhV-uw-mYE" secondAttribute="leading" id="6cl-eD-Kmx"/>
                                     <constraint firstAttribute="trailing" secondItem="aff-zh-lEF" secondAttribute="trailing" id="GSk-JU-9OS"/>
                                     <constraint firstItem="aff-zh-lEF" firstAttribute="top" secondItem="2bC-oP-2ad" secondAttribute="bottom" constant="40" id="KdC-p3-a3p"/>
+                                    <constraint firstAttribute="trailing" secondItem="2bC-oP-2ad" secondAttribute="trailing" constant="32" id="RCA-cZ-EEc"/>
                                     <constraint firstAttribute="bottom" secondItem="aff-zh-lEF" secondAttribute="bottom" id="t0c-GR-39W"/>
-                                    <constraint firstItem="2bC-oP-2ad" firstAttribute="width" secondItem="lhV-uw-mYE" secondAttribute="width" id="vJd-LQ-64A"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -671,6 +672,7 @@
                         <outlet property="addPhotoImgView" destination="GTe-ow-8Mw" id="Y1M-ds-IQd"/>
                         <outlet property="bottomBtn" destination="9z6-88-41i" id="WKX-WX-Zvt"/>
                         <outlet property="bottomContainerView" destination="ZS7-ED-tL8" id="sYA-Yb-tVF"/>
+                        <outlet property="coverImageView" destination="69d-hi-7QW" id="58D-3J-MwE"/>
                         <outlet property="defaultImageContainerView" destination="AeB-3c-qve" id="TK1-TO-F8M"/>
                         <outlet property="doWriteLabel" destination="WkQ-XD-4y0" id="c84-JX-UbH"/>
                         <outlet property="emotionLabel" destination="Kmt-0m-cty" id="cYs-7O-cvy"/>

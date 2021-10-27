@@ -10,13 +10,21 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-protocol ImageRecordCollectionViewCellDelegate: AnyObject {
+protocol ImageRecordViewControllerProtocol: AnyObject {
+    func setUICurrentEmotion(_ emotion: Emotion)
+    func hideTopView()
+    func showTopView()
+    
+    var delegate: ImageRecordViewControllerDelegate? { get set }
+}
+
+protocol ImageRecordViewControllerDelegate: AnyObject {
     func clickedEmotionSelectArea()
     func clickedPhotoSeleteArea()
     func clickedContentsArea()
 }
 
-class ImageRecordViewController: UIViewController, StoryboardView {
+class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol { // 뷰컨만 있어도 될듯
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -28,6 +36,7 @@ class ImageRecordViewController: UIViewController, StoryboardView {
     @IBOutlet weak var emotionMainImageView: UIImageView!
     @IBOutlet weak var topContentsContainerView: UIView!
     @IBOutlet weak var defaultImageContainerView: UIView!
+    @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var emotionSelectView: UIView!
     @IBOutlet weak var emotionSelectBtn: UIButton!
     @IBOutlet weak var miniEmotionImageView: UIImageView!
@@ -46,7 +55,7 @@ class ImageRecordViewController: UIViewController, StoryboardView {
     
     // MARK: internal property
     
-    weak var delegate: ImageRecordCollectionViewCellDelegate?
+    weak var delegate: ImageRecordViewControllerDelegate?
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -171,6 +180,34 @@ class ImageRecordViewController: UIViewController, StoryboardView {
             self?.doWriteLabel.text = title
             self?.doWriteLabel.textColor = Gen.Colors.black.color
         }
+    }
+    
+    func setUICurrentEmotion(_ emotion: Emotion) {
+        switch emotion {
+        case .fun:
+            self.coverImageView.image = Gen.Images.coverFun.image
+            self.topContainerView.backgroundColor = Gen.Colors.funYellow.color
+        case .impressive:
+            self.coverImageView.image = Gen.Images.coverImpressive.image
+            self.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
+        case .pleasant:
+            self.coverImageView.image = Gen.Images.coverPleasant.image
+            self.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
+        case .splendid:
+            self.coverImageView.image = Gen.Images.coverSplendid.image
+            self.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
+        case .wonderful:
+            self.coverImageView.image = Gen.Images.coverWonderful.image
+            self.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
+        }
+    }
+    
+    func hideTopView() {
+        self.topContainerView.isHidden = true
+    }
+    
+    func showTopView() {
+        self.topContainerView.isHidden = false
     }
     
     // MARK: action

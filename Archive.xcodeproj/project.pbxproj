@@ -131,6 +131,8 @@
 		78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33727244ACB0006EBAD /* CommonAlertView.swift */; };
 		78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33A27244C000006EBAD /* UIViewExtension.swift */; };
 		78C4B33C27244C310006EBAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B33A27244C000006EBAD /* UIViewExtension.swift */; };
+		78C62C6E2729759A005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
+		78C62C6F2729759D005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
 		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
@@ -208,6 +210,7 @@
 		78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedStringExtension.swift; sourceTree = "<group>"; };
 		78C4B33727244ACB0006EBAD /* CommonAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAlertView.swift; sourceTree = "<group>"; };
 		78C4B33A27244C000006EBAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewControllerExtension.swift; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -445,6 +448,7 @@
 				44922DC42719DF3F00A5EA2B /* UIButtonExtension.swift */,
 				78C4B33427243C660006EBAD /* NSMutableAttributedStringExtension.swift */,
 				78C4B33A27244C000006EBAD /* UIViewExtension.swift */,
+				78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -793,6 +797,7 @@
 				78C4B33C27244C310006EBAD /* UIViewExtension.swift in Sources */,
 				78958E1A2712A516003FF724 /* Assets.swift in Sources */,
 				7804782A2723FADD00FAA1CF /* LoginDefine.swift in Sources */,
+				78C62C6F2729759D005BF3DE /* UIPageViewControllerExtension.swift in Sources */,
 				780478102723CB7900FAA1CF /* MyPageFlow.swift in Sources */,
 				78B872E82726E51C009EFB54 /* ImageRecordViewController.swift in Sources */,
 				44FB0A2A27186E33006E1048 /* AppStepper.swift in Sources */,
@@ -852,6 +857,7 @@
 				78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
 				780478262723EA0300FAA1CF /* LoginDefine.swift in Sources */,
+				78C62C6E2729759A005BF3DE /* UIPageViewControllerExtension.swift in Sources */,
 				44BE6F01271144AB00E74A7D /* TermsAgreementViewController.swift in Sources */,
 				789E61BC2725847B00D6E18F /* ClassIdentifiable.swift in Sources */,
 				78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */,

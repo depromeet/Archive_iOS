@@ -25,8 +25,8 @@ class RecordViewController: UIViewController, StoryboardView {
         return vc
     }()
     
-    private var imageRecordViewController: ImageRecordViewController?
-    private var contentsRecordViewController: ContentsRecordViewController?
+    private var imageRecordViewController: ImageRecordViewControllerProtocol?
+    private var contentsRecordViewController: ContentsRecordViewControllerProtocol?
     
     lazy var subViewControllers: [UIViewController] = Array()
     
@@ -40,13 +40,14 @@ class RecordViewController: UIViewController, StoryboardView {
         initUI()
         makeSubViewControllers()
         setPageViewController()
+        removePageViewControllerSwipeGesture()
         
         // 이하 테스트코드 todo 수정
         guard let imageRecordViewController = self.imageRecordViewController else { return }
         imageRecordViewController.delegate = self
         guard let contentsRecordViewController = self.contentsRecordViewController else { return }
-        subViewControllers.append(imageRecordViewController)
-        subViewControllers.append(contentsRecordViewController)
+        subViewControllers.append((imageRecordViewController as? UIViewController) ?? UIViewController())
+        subViewControllers.append((contentsRecordViewController as? UIViewController) ?? UIViewController())
         pageViewController.dataSource = self
         pageViewController.delegate = self
         if let firstVC = subViewControllers.first {
@@ -64,7 +65,14 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordReactor) {
-
+        reactor.state.map { $0.currentEmotion }
+        .asDriver(onErrorJustReturn: nil)
+        .drive(onNext: { [weak self] emotion in
+            guard let emotion = emotion else { return }
+            self?.imageRecordViewController?.showTopView()
+            self?.imageRecordViewController?.setUICurrentEmotion(emotion)
+        })
+        .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -106,6 +114,14 @@ class RecordViewController: UIViewController, StoryboardView {
         pageViewController.didMove(toParent: self)
     }
     
+    private func removePageViewControllerSwipeGesture() {
+        for view in self.pageViewController.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.isScrollEnabled = false
+            }
+        }
+    }
+    
     // MARK: internal function
     
     // MARK: action
@@ -134,8 +150,9 @@ extension RecordViewController: UIPageViewControllerDataSource, UIPageViewContro
 }
 
 
-extension RecordViewController: ImageRecordCollectionViewCellDelegate {
+extension RecordViewController: ImageRecordViewControllerDelegate {
     func clickedEmotionSelectArea() {
+        self.imageRecordViewController?.hideTopView()
         self.reactor?.action.onNext(.moveToSelectEmotion)
     }
 
@@ -144,6 +161,7 @@ extension RecordViewController: ImageRecordCollectionViewCellDelegate {
     }
 
     func clickedContentsArea() {
-
+        self.pageViewController.moveToNextPage()
+        removePageViewControllerSwipeGesture()
     }
 }

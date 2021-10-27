@@ -10,7 +10,11 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-class ContentsRecordViewController: UIViewController, StoryboardView {
+protocol ContentsRecordViewControllerProtocol: AnyObject {
+    
+}
+
+class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRecordViewControllerProtocol {
 
     
     
