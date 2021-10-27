@@ -183,6 +183,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     }
     
     func setUICurrentEmotion(_ emotion: Emotion) {
+        self.addPhotoImgView.isHidden = false
+        self.addPhotoBtn.isHidden = false
         switch emotion {
         case .fun:
             self.coverImageView.image = Gen.Images.coverFun.image

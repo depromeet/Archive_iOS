@@ -79,7 +79,9 @@ internal enum Gen {
     internal static let logo = ImageAsset(name: "Logo")
     internal static let addPhoto = ImageAsset(name: "addPhoto")
     internal static let btnApple = ImageAsset(name: "btn_apple")
+    internal static let btnCancel = ImageAsset(name: "btn_cancel")
     internal static let expandMoreBlack24dp = ImageAsset(name: "expand_more_black_24dp")
+    internal static let iconDropDown = ImageAsset(name: "icon_drop down")
     internal static let iconDropUp = ImageAsset(name: "icon_drop up")
     internal static let iconRightArrow = ImageAsset(name: "icon_right-arrow")
     internal static let kakaotalk = ImageAsset(name: "kakaotalk")
@@ -107,6 +109,17 @@ internal final class ColorAsset {
     }
     return color
   }()
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal func color(compatibleWith traitCollection: UITraitCollection) -> Color {
+    let bundle = BundleToken.bundle
+    guard let color = Color(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load color asset named \(name).")
+    }
+    return color
+  }
+  #endif
 
   fileprivate init(name: String) {
     self.name = name
@@ -136,6 +149,7 @@ internal struct ImageAsset {
   internal typealias Image = UIImage
   #endif
 
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.7, *)
   internal var image: Image {
     let bundle = BundleToken.bundle
     #if os(iOS) || os(tvOS)
@@ -151,9 +165,21 @@ internal struct ImageAsset {
     }
     return result
   }
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 8.0, tvOS 9.0, *)
+  internal func image(compatibleWith traitCollection: UITraitCollection) -> Image {
+    let bundle = BundleToken.bundle
+    guard let result = Image(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load image asset named \(name).")
+    }
+    return result
+  }
+  #endif
 }
 
 internal extension ImageAsset.Image {
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, *)
   @available(macOS, deprecated,
     message: "This initializer is unsafe on macOS, please use the ImageAsset.image property")
   convenience init?(asset: ImageAsset) {

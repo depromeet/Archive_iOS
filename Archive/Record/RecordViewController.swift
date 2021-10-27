@@ -157,11 +157,12 @@ extension RecordViewController: ImageRecordViewControllerDelegate {
     }
 
     func clickedPhotoSeleteArea() {
-
+        
     }
 
     func clickedContentsArea() {
         self.pageViewController.moveToNextPage()
+        self.contentsRecordViewController?.setEmotion(self.reactor?.currentState.currentEmotion)
         removePageViewControllerSwipeGesture()
     }
 }
