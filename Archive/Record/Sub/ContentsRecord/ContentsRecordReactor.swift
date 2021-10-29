@@ -28,6 +28,7 @@ class ContentsRecordReactor: Reactor {
         case setContentsDate(_ dateStr: String)
         case setContentsTitle(_ title: String)
         case setFriends(_ friends: String)
+        case confirm
     }
     
     enum Mutation {
@@ -35,6 +36,7 @@ class ContentsRecordReactor: Reactor {
         case setContentsTitle(String)
         case setFriends([String])
         case checkIsAllContentsSetted
+        case complete
     }
     
     struct State {
@@ -42,6 +44,7 @@ class ContentsRecordReactor: Reactor {
         var contentsTitle: String = ""
         var friends: [String] = [String]()
         var isAllContentsSetted: Bool = false
+        var complete: ContentsRecordModelData? = nil
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -62,6 +65,8 @@ class ContentsRecordReactor: Reactor {
                 Observable.just(Mutation.setFriends(friends)),
                 Observable.just(Mutation.checkIsAllContentsSetted)
             ])
+        case .confirm:
+            return .just(.complete)
         }
     }
     
@@ -76,6 +81,8 @@ class ContentsRecordReactor: Reactor {
             newState.friends = friends
         case .checkIsAllContentsSetted:
             newState.isAllContentsSetted = checkIsAllContentsSetted()
+        case .complete:
+            newState.complete = ContentsRecordModelData(title: state.contentsTitle, date: state.contentsDate, friends: state.friends)
         }
         return newState
     }

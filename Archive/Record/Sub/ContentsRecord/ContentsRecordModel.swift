@@ -14,3 +14,9 @@ protocol ContentsRecordModelProtocol {
 class ContentsRecordModel: ContentsRecordModelProtocol {
 
 }
+
+struct ContentsRecordModelData {
+    let title: String
+    let date: String
+    let friends: [String]
+}

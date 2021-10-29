@@ -725,12 +725,21 @@
                                                                     <constraint firstAttribute="width" constant="44" id="rZo-Tp-9bA"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAR-fO-09O">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                         <constraints>
                                                             <constraint firstItem="sU8-Ke-hAU" firstAttribute="top" secondItem="4By-bo-YZR" secondAttribute="top" id="4Ss-K6-N0g"/>
+                                                            <constraint firstItem="PAR-fO-09O" firstAttribute="leading" secondItem="4By-bo-YZR" secondAttribute="leading" id="HCT-ui-toI"/>
+                                                            <constraint firstItem="PAR-fO-09O" firstAttribute="top" secondItem="4By-bo-YZR" secondAttribute="top" id="axo-zb-QXj"/>
                                                             <constraint firstAttribute="height" constant="47" id="jNo-fg-XHI"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PAR-fO-09O" secondAttribute="trailing" id="k0I-Mr-JLm"/>
                                                             <constraint firstItem="sU8-Ke-hAU" firstAttribute="centerX" secondItem="4By-bo-YZR" secondAttribute="centerX" id="uUh-7u-1wX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="PAR-fO-09O" secondAttribute="bottom" id="ud4-kI-oy0"/>
                                                             <constraint firstAttribute="bottom" secondItem="sU8-Ke-hAU" secondAttribute="bottom" id="zwU-Js-dt9"/>
                                                         </constraints>
                                                     </view>
@@ -972,6 +981,7 @@
                         <outlet property="scrollContainerViewBottomConstraint" destination="XPs-TA-vSC" id="47s-Yv-KcY"/>
                         <outlet property="scrollView" destination="Gyv-Ji-Dgx" id="oMQ-4b-pp8"/>
                         <outlet property="topCardView" destination="4By-bo-YZR" id="FNY-iE-vWB"/>
+                        <outlet property="upBtn" destination="PAR-fO-09O" id="V3U-1Y-VV6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYc-pB-omL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

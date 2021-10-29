@@ -13,6 +13,13 @@ import GrowingTextView
 
 protocol ContentsRecordViewControllerProtocol: AnyObject {
     func setEmotion(_ emotion: Emotion?)
+    
+    var delegate: ContentsRecordViewControllerDelegate? { get set }
+}
+
+protocol ContentsRecordViewControllerDelegate: AnyObject {
+    func completeContentsRecord(infoData: ContentsRecordModelData)
+    func moveToBeforeViewController()
 }
 
 class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRecordViewControllerProtocol {
@@ -26,6 +33,7 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var topCardView: UIView!
     @IBOutlet weak var mainContentsView: UIView!
+    @IBOutlet weak var upBtn: UIButton!
     
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventNameTextView: GrowingTextView!
@@ -48,10 +56,12 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     
     private var datePicker: UIDatePicker!
     private var originalScrollContainerViewBottomConstraint: CGFloat = 0
+    var editBtn: UIBarButtonItem?
     
     // MARK: internal property
     
     var disposeBag: DisposeBag = DisposeBag()
+    weak var delegate: ContentsRecordViewControllerDelegate?
     
     // MARK: lifeCycle
     
@@ -72,7 +82,20 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        makeConfirmBtn()
+    }
+    
     func bind(reactor: ContentsRecordReactor) {
+        
+        self.upBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.removeConfrimBtn()
+                self?.delegate?.moveToBeforeViewController()
+            })
+            .disposed(by: self.disposeBag)
+        
         reactor.state
             .map { $0.contentsDate }
             .asDriver(onErrorJustReturn: "")
@@ -111,8 +134,23 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         
         reactor.state
             .map { $0.isAllContentsSetted }
-            .subscribe(onNext: { value in
-                print("value: \(value)")
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isAllContentsSetted in
+                if isAllContentsSetted {
+                    self?.setEditBtnColor(Gen.Colors.black.color)
+                } else {
+                    self?.setEditBtnColor(Gen.Colors.gray04.color)
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.complete }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: { [weak self] infoData in
+                guard let info = infoData else { return }
+                self?.removeConfrimBtn()
+                self?.delegate?.completeContentsRecord(infoData: info)
             })
             .disposed(by: self.disposeBag)
         
@@ -204,6 +242,22 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         self.scrollContainerViewBottomConstraint.constant = self.originalScrollContainerViewBottomConstraint
     }
     
+    private func makeConfirmBtn() {
+        self.editBtn = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(confirmAction(_:)))
+        setEditBtnColor(Gen.Colors.gray04.color)
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = editBtn
+    }
+    
+    private func setEditBtnColor(_ color: UIColor) {
+        self.editBtn?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.fonts(.button), NSAttributedString.Key.foregroundColor: color], for: .normal)
+        self.editBtn?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.fonts(.button), NSAttributedString.Key.foregroundColor: color], for: .highlighted)
+    }
+    
+    private func removeConfrimBtn() {
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
+    }
+    
     // MARK: internal function
     
     func setEmotion(_ emotion: Emotion?) {
@@ -238,6 +292,12 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     
     @objc private func friendsTextViewDone() {
         self.friendsTextView.resignFirstResponder()
+    }
+    
+    @objc private func confirmAction(_ sender: UIButton) {
+        if self.reactor?.currentState.isAllContentsSetted ?? false {
+            self.reactor?.action.onNext(.confirm)
+        }
     }
 
 }

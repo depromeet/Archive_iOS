@@ -48,6 +48,7 @@ class RecordViewController: UIViewController, StoryboardView {
         guard let contentsRecordViewController = self.contentsRecordViewController else { return }
         subViewControllers.append((imageRecordViewController as? UIViewController) ?? UIViewController())
         subViewControllers.append((contentsRecordViewController as? UIViewController) ?? UIViewController())
+        contentsRecordViewController.delegate = self
         pageViewController.dataSource = self
         pageViewController.delegate = self
         if let firstVC = subViewControllers.first {
@@ -163,6 +164,20 @@ extension RecordViewController: ImageRecordViewControllerDelegate {
     func clickedContentsArea() {
         self.pageViewController.moveToNextPage()
         self.contentsRecordViewController?.setEmotion(self.reactor?.currentState.currentEmotion)
+        removePageViewControllerSwipeGesture()
+    }
+}
+
+extension RecordViewController: ContentsRecordViewControllerDelegate {
+    
+    func moveToBeforeViewController() {
+        self.pageViewController.moveToPreviousPage()
+        removePageViewControllerSwipeGesture()
+    }
+    
+    func completeContentsRecord(infoData: ContentsRecordModelData) {
+        print("infoData: \(infoData)")
+        self.pageViewController.moveToPreviousPage()
         removePageViewControllerSwipeGesture()
     }
 }
