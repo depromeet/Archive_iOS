@@ -20,6 +20,7 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var scrollContainerView: UIView!
+    @IBOutlet weak var scrollContainerViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainContainerView: UIView!
@@ -45,6 +46,9 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     
     // MARK: private property
     
+    private var datePicker: UIDatePicker!
+    private var originalScrollContainerViewBottomConstraint: CGFloat = 0
+    
     // MARK: internal property
     
     var disposeBag: DisposeBag = DisposeBag()
@@ -63,9 +67,54 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        makeDataPicker()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func bind(reactor: ContentsRecordReactor) {
+        reactor.state
+            .map { $0.contentsDate }
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] dateStr in
+                self?.dateTextField.text = dateStr
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.eventNameTextView.rx.didEndEditing
+            .subscribe(onNext: { [weak self] in
+                reactor.action.onNext(.setContentsTitle(self?.eventNameTextView.text ?? ""))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.eventCancelBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.eventNameTextView.resignFirstResponder()
+                self?.eventNameTextView.text = ""
+                reactor.action.onNext(.setContentsTitle(""))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.friendsTextView.rx.didEndEditing
+            .subscribe(onNext: { [weak self] in
+                reactor.action.onNext(.setFriends(self?.friendsTextView.text ?? ""))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.friendsCancelBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.friendsTextView.resignFirstResponder()
+                self?.friendsTextView.text = ""
+                reactor.action.onNext(.setFriends(""))
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isAllContentsSetted }
+            .subscribe(onNext: { value in
+                print("value: \(value)")
+            })
+            .disposed(by: self.disposeBag)
         
     }
     
@@ -73,6 +122,7 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     // MARK: private function
     
     private func initUI() {
+        self.originalScrollContainerViewBottomConstraint = self.scrollContainerViewBottomConstraint.constant
         self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
         self.scrollContainerView.backgroundColor = .clear
         self.scrollView.backgroundColor = .clear
@@ -89,6 +139,11 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         self.eventNameTextView.placeholder = "전시명을 입력해주세요."
         self.eventNameTextView.textContainerInset = .zero
         self.eventNameTextView.maxHeight = self.eventNameTextViewHeightConstraint.constant * 3
+        self.eventNameTextView.showsVerticalScrollIndicator = false
+        let eventNameTextViewDoneButton = UIBarButtonItem.init(title: "완료", style: .done, target: self, action: #selector(self.titleTextViewDone))
+        let eventNameTextViewToolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        eventNameTextViewToolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), eventNameTextViewDoneButton], animated: true)
+        self.eventNameTextView.inputAccessoryView = eventNameTextViewToolBar
         
         self.eventUnderLineView.backgroundColor = Gen.Colors.gray03.color
         
@@ -112,6 +167,11 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         self.friendsTextView.placeholder = "동행인은 쉼표로 구분됩니다."
         self.friendsTextView.textContainerInset = .zero
         self.friendsTextView.maxHeight = self.friendsTextViewHeightConstraint.constant * 3
+        self.friendsTextView.showsVerticalScrollIndicator = false
+        let friendsTextViewDoneButton = UIBarButtonItem.init(title: "완료", style: .done, target: self, action: #selector(self.friendsTextViewDone))
+        let friendsTextViewToolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        friendsTextViewToolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), friendsTextViewDoneButton], animated: true)
+        self.friendsTextView.inputAccessoryView = friendsTextViewToolBar
         
         self.friendsUnderLineView.backgroundColor = Gen.Colors.gray03.color
         
@@ -120,10 +180,34 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         self.friendsHelpLabel.text = "*이름은 5자까지 작성 가능합니다."
     }
     
+    private func makeDataPicker() {
+        self.datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 200))
+        self.datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            self.datePicker.preferredDatePickerStyle = .wheels
+        }
+        self.dateTextField.inputView = datePicker
+        let doneButton = UIBarButtonItem.init(title: "완료", style: .done, target: self, action: #selector(self.datePickerDone))
+        let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44))
+        toolBar.setItems([UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil), doneButton], animated: true)
+        self.dateTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.scrollContainerViewBottomConstraint.constant = self.originalScrollContainerViewBottomConstraint - keyboardSize.height
+        }
+
+    }
+
+    @objc private func keyboardWillHide(notification: Notification) {
+        self.scrollContainerViewBottomConstraint.constant = self.originalScrollContainerViewBottomConstraint
+    }
+    
     // MARK: internal function
     
     func setEmotion(_ emotion: Emotion?) {
-        self.topCardView.backgroundColor = Gen.Colors.white.color
+        self.topCardView.backgroundColor = Gen.Colors.pleasantRed.color
         guard let emotion = emotion else { return }
         switch emotion {
         case .fun:
@@ -140,5 +224,20 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     }
     
     // MARK: action
+    
+    @objc private func datePickerDone() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/MM/dd"
+        self.reactor?.action.onNext(.setContentsDate(dateFormatter.string(from: datePicker.date)))
+        self.dateTextField.resignFirstResponder()
+    }
+    
+    @objc private func titleTextViewDone() {
+        self.eventNameTextView.resignFirstResponder()
+    }
+    
+    @objc private func friendsTextViewDone() {
+        self.friendsTextView.resignFirstResponder()
+    }
 
 }

@@ -25,40 +25,83 @@ class ContentsRecordReactor: Reactor {
     }
     
     enum Action {
-//        case cardCnt
-//        case moveToLoginInfo
+        case setContentsDate(_ dateStr: String)
+        case setContentsTitle(_ title: String)
+        case setFriends(_ friends: String)
     }
     
     enum Mutation {
-//        case setCardCnt(Int)
+        case setContentsDate(String)
+        case setContentsTitle(String)
+        case setFriends([String])
+        case checkIsAllContentsSetted
     }
     
     struct State {
-//        var cardCnt: Int = 0
+        var contentsDate: String = ""
+        var contentsTitle: String = ""
+        var friends: [String] = [String]()
+        var isAllContentsSetted: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .cardCnt:
-//            let cnt = model.cardCount
-//            return .just(.setCardCnt(cnt))
-//        case .moveToLoginInfo:
-//            steps.accept(ArchiveStep.loginInfomationIsRequired(.eMail, self.model.cardCount)) // TODO: 여기서 로그인 정보 주입???
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .setContentsDate(date: let dateStr):
+            return Observable.concat([
+                Observable.just(Mutation.setContentsDate(dateStr)),
+                Observable.just(Mutation.checkIsAllContentsSetted)
+            ])
+        case .setContentsTitle(title: let title):
+            return Observable.concat([
+                Observable.just(Mutation.setContentsTitle(title)),
+                Observable.just(Mutation.checkIsAllContentsSetted)
+            ])
+        case .setFriends(value: let friendsStr):
+            let friends = convertStrFriendsToFriendsArray(friendsStr)
+            return Observable.concat([
+                Observable.just(Mutation.setFriends(friends)),
+                Observable.just(Mutation.checkIsAllContentsSetted)
+            ])
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setCardCnt(let cardCnt):
-//            newState.cardCnt = cardCnt
-//        }
+        switch mutation {
+        case .setContentsDate(let dateStr):
+            newState.contentsDate = dateStr
+        case .setContentsTitle(let title):
+            newState.contentsTitle = title
+        case .setFriends(let friends):
+            newState.friends = friends
+        case .checkIsAllContentsSetted:
+            newState.isAllContentsSetted = checkIsAllContentsSetted()
+        }
         return newState
     }
     
     // MARK: private function
+    
+    private func convertStrFriendsToFriendsArray(_ friendsStr: String) -> [String] {
+        var returnArr: [String] = [String]()
+        
+        let splited = friendsStr.split(separator: ",")
+        for item in splited {
+            returnArr.append(String(item))
+        }
+        
+        return returnArr
+    }
+    
+    private func checkIsAllContentsSetted() -> Bool {
+        var returnValue: Bool = false
+        if self.currentState.friends.count > 0 &&
+            self.currentState.contentsTitle != "" &&
+            self.currentState.contentsDate != "" {
+            returnValue = true
+        }
+        return returnValue
+    }
     
     // MARK: internal function
 }
