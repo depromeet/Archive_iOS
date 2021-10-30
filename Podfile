@@ -15,6 +15,7 @@ def pods
   pod 'Kingfisher', '~> 7.0'
   pod 'SnapKit', '~> 5.0.0'
   pod 'GrowingTextView', '0.7.2'
+  pod 'CropViewController'
 end
 
 def pods_debug

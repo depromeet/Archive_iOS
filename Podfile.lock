@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.4)
+  - CropViewController (2.6.0)
   - GrowingTextView (0.7.2)
   - Kingfisher (7.1.1)
   - Moya (15.0.0):
@@ -25,6 +26,7 @@ PODS:
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
+  - CropViewController
   - GrowingTextView (= 0.7.2)
   - Kingfisher (~> 7.0)
   - Moya
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - CropViewController
     - GrowingTextView
     - Kingfisher
     - Moya
@@ -56,6 +59,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  CropViewController: 7093b39ec3cb508531b22d35773e06cecd7378d8
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
@@ -70,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 6a7b61dd9cdd17931f1b190ae12fed98c7ece591
+PODFILE CHECKSUM: bf60c983667f32bb9e625e1c9cb4007b1d3a233c
 
 COCOAPODS: 1.11.2

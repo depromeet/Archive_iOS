@@ -34,7 +34,9 @@ class RecordReactor: Reactor, Stepper {
     enum Action {
         case moveToSelectEmotion
         case setEmotion(Emotion)
+        case setRecordInfo(ContentsRecordModelData)
         case moveToPhotoSelet
+        case setImages([UIImage])
     }
     
     enum Mutation {
@@ -51,11 +53,18 @@ class RecordReactor: Reactor, Stepper {
             steps.accept(ArchiveStep.recordEmotionEditIsRequired)
             return .empty()
         case .setEmotion(let emotion):
+            self.model.emotion = emotion
             return .just(.setEmotion(emotion))
         case .moveToPhotoSelet:
             checkPhotoAuth(completion: { [weak self] in
-                self?.steps.accept(ArchiveStep.recordImageSelectIsRequired)
+                self?.steps.accept(ArchiveStep.recordImageSelectIsRequired(self?.model.emotion ?? .fun))
             })
+            return .empty()
+        case .setRecordInfo(let info):
+            self.model.recordInfo = info
+            return .empty()
+        case .setImages(let images):
+            self.model.images = images
             return .empty()
         }
     }
@@ -93,7 +102,6 @@ class RecordReactor: Reactor, Stepper {
                 switch status {
                 case .authorized:
                     completion?()
-                    break
                 case .denied, .restricted, .notDetermined, .limited:
                     self?.error.onNext("티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.")
                 @unknown default:
@@ -105,7 +113,6 @@ class RecordReactor: Reactor, Stepper {
                 switch status {
                 case .authorized:
                     completion?()
-                    break
                 case .denied, .restricted, .notDetermined, .limited:
                     self?.error.onNext("티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.")
                 @unknown default:

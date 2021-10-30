@@ -1051,15 +1051,30 @@
                     </view>
                     <connections>
                         <outlet property="imageAlbumContainerView" destination="iFN-vz-u7f" id="zZj-cv-JGd"/>
-                        <outlet property="imageThumnailContainerView" destination="U0G-xk-v51" id="zN3-C0-MTB"/>
+                        <outlet property="imageThumbnailContainerView" destination="U0G-xk-v51" id="qij-YG-1k6"/>
                         <outlet property="mainBackgroundView" destination="N04-fc-WvT" id="Tnv-Z1-PNb"/>
                         <outlet property="mainContainerView" destination="BSx-37-SWu" id="6ZH-9N-lV7"/>
-                        <outlet property="thumnailImageView" destination="Wgu-7q-oH7" id="7NQ-3N-8kn"/>
+                        <outlet property="thumbnailImageView" destination="Wgu-7q-oH7" id="1Dv-sJ-gfH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdt-vQ-Jfl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="767" y="-1264"/>
+        </scene>
+        <!--Image Crop View Controller-->
+        <scene sceneID="z8t-Sf-b68">
+            <objects>
+                <viewController storyboardIdentifier="ImageCropViewController" id="Sgm-OE-hUu" customClass="ImageCropViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rPU-ZA-U3r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HFL-eB-Obx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzm-NU-HqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536" y="-1264"/>
         </scene>
     </scenes>
     <designables>

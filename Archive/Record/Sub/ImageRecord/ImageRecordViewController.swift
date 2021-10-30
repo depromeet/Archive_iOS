@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol ImageRecordViewControllerProtocol: AnyObject {
     func setUICurrentEmotion(_ emotion: Emotion)
+    func setRecordTitle(_ title: String)
     func hideTopView()
     func showTopView()
     

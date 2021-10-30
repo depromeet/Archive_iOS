@@ -38,10 +38,11 @@ class RecordFlow: Flow {
         case .recordEmotionEditIsComplete(let emotion):
             dismissEditEmotion(emotion: emotion)
             return .none
-        case .recordImageSelectIsRequired:
-            return navigationToImageSelect()
-        case .recordImageSelectIsComplete(let images):
-            return .none
+        case .recordImageSelectIsRequired(let emotion):
+            return navigationToImageSelect(emotion: emotion)
+        case .recordImageSelectIsComplete(let thumbnailImage, let images):
+            self.recordViewController?.reactor?.action.onNext(.setImages(images))
+            return navigationToImageCrop(image: thumbnailImage)
         default:
             return .none
         }
@@ -79,9 +80,9 @@ class RecordFlow: Flow {
         self.recordViewController?.reactor?.action.onNext(.setEmotion(emotion))
     }
     
-    private func navigationToImageSelect() -> FlowContributors {
+    private func navigationToImageSelect(emotion: Emotion) -> FlowContributors {
         let model: ImageSelectModel = ImageSelectModel()
-        let reactor = ImageSelectReactor(model: model)
+        let reactor = ImageSelectReactor(model: model, emotion: emotion)
         let imageSelectViewController: ImageSelectViewController = recordStoryBoard.instantiateViewController(identifier: ImageSelectViewController.identifier) { corder in
             return ImageSelectViewController(coder: corder, reactor: reactor)
         }
@@ -90,6 +91,18 @@ class RecordFlow: Flow {
         navi.modalPresentationStyle = .fullScreen
         rootViewController.present(navi, animated: true, completion: nil)
         return .one(flowContributor: .contribute(withNextPresentable: imageSelectViewController,
+                                                 withNextStepper: reactor))
+    }
+    
+    private func navigationToImageCrop(image: UIImage) -> FlowContributors {
+        let model: ImageCropModel = ImageCropModel(thumbnailImage: image)
+        let reactor = ImageCropReactor(model: model)
+        let imageCropViewController: ImageCropViewController = recordStoryBoard.instantiateViewController(identifier: ImageCropViewController.identifier) { corder in
+            return ImageCropViewController(coder: corder, reactor: reactor)
+        }
+        imageCropViewController.title = ""
+        rootViewController.pushViewController(imageCropViewController, animated: true)
+        return .one(flowContributor: .contribute(withNextPresentable: imageCropViewController,
                                                  withNextStepper: reactor))
     }
     

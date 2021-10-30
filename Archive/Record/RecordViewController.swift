@@ -200,5 +200,6 @@ extension RecordViewController: ContentsRecordViewControllerDelegate {
         print("infoData: \(infoData)")
         self.pageViewController.moveToPreviousPage()
         removePageViewControllerSwipeGesture()
+        self.imageRecordViewController?.setRecordTitle(infoData.title)
     }
 }

@@ -10,14 +10,15 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import Photos
+import CropViewController
 
 class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var imageThumnailContainerView: UIView!
-    @IBOutlet weak var thumnailImageView: UIImageView!
+    @IBOutlet weak var imageThumbnailContainerView: UIView!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var imageAlbumContainerView: UIView!
     
     // MARK: private property
@@ -60,11 +61,42 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
             .map { $0.selectedImageInfo }
             .asDriver(onErrorJustReturn: nil)
             .drive(onNext: { [weak self] asset in
-                self?.imageThumnailContainerView.backgroundColor = Gen.Colors.white.color
+                self?.imageThumbnailContainerView.backgroundColor = Gen.Colors.white.color
                 guard let asset = asset else { return }
                 self?.phAssetToImage(asset, ImageSize: CGSize(width: 300, height: 300), completion: { [weak self] image in
-                    self?.thumnailImageView.image = image
+                    self?.thumbnailImageView.image = image
                 })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.presentCrop
+            .asDriver(onErrorJustReturn: UIImage())
+            .drive(onNext: { [weak self] image in
+                let cropViewController: CropViewController = CropViewController(croppingStyle: .default, image: image)
+                cropViewController.aspectRatioLockEnabled = true
+                cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
+                cropViewController.aspectRatioPickerButtonHidden = true
+                if let emotionCoverImage = self?.getEmotionCoverImage(self?.reactor?.emotion ?? .fun) {
+                    let emotionCoverImageView: UIImageView = UIImageView()
+                    emotionCoverImageView.contentMode = .scaleToFill
+                    emotionCoverImageView.image = emotionCoverImage
+                    emotionCoverImageView.frame = CGRect(x: 0, y: 0,
+                                                         width: UIScreen.main.bounds.width,
+                                                         height: UIScreen.main.bounds.width
+                    )
+//                    cropViewController.cropView.gridOverlayView.addSubview(emotionCoverImageView)
+//                    emotionCoverImageView.sendSubviewToBack(cropViewController.cropView.gridOverlayView)
+                    cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
+//                    cropViewController.cropView.addSubview(emotionCoverImageView)
+                    emotionCoverImageView.snp.makeConstraints { (make) in
+//                        make.edges.equalTo(cropViewController.cropView)
+                        make.leading.equalTo(cropViewController.cropView.snp.leading).offset(20)
+                        make.trailing.equalTo(cropViewController.cropView.snp.trailing)
+                        make.top.equalTo(cropViewController.cropView.snp.top)
+                        make.bottom.equalTo(cropViewController.cropView.snp.bottom)
+                    }
+                }
+                self?.present(cropViewController, animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
     }
@@ -74,7 +106,7 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
     private func initUI() {
         self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
         self.mainContainerView.backgroundColor = .clear
-        self.imageThumnailContainerView.backgroundColor = Gen.Colors.gray03.color
+        self.imageThumbnailContainerView.backgroundColor = Gen.Colors.gray03.color
         setImageSelectView()
         makeConfirmBtn()
         makeCancelBtn()
@@ -133,6 +165,23 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         })
     }
     
+    private func getEmotionCoverImage(_ emotion: Emotion) -> UIImage {
+        switch emotion {
+        case .fun:
+            break
+        case .impressive:
+            break
+        case .pleasant:
+            break
+        case .splendid:
+            break
+        case .wonderful:
+            break
+        }
+        return Gen.Images.typeWonderful.image
+//        return UIImage()
+    }
+    
     // MARK: internal function
     
     // MARK: action
@@ -165,3 +214,7 @@ extension ImageSelectViewController: HWPhotoListFromAlbumViewDelegate {
         self.reactor?.action.onNext(.setSelectedImageInfo(focusIndexAsset))
     }
 }
+
+//extension ImageSelectViewController: CropViewControllerDelegate {
+//    
+//}

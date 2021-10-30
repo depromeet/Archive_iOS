@@ -10,23 +10,28 @@ import ReactorKit
 import RxRelay
 import RxFlow
 import Photos
+import UIKit
 
 class ImageSelectReactor: Reactor, Stepper {
     // MARK: private property
     
-    private let model: ImageSelectModelProtocol
+    private var model: ImageSelectModelProtocol
     
     // MARK: internal property
     
     let initialState = State()
     let steps = PublishRelay<Step>()
     var isLoading: PublishSubject<Bool>
+    var presentCrop: PublishSubject<UIImage>
+    var emotion: Emotion
     
     // MARK: lifeCycle
     
-    init(model: ImageSelectModel) {
+    init(model: ImageSelectModel, emotion: Emotion) {
         self.model = model
         self.isLoading = .init()
+        self.presentCrop = .init()
+        self.emotion = emotion
     }
     
     enum Action {
@@ -78,7 +83,12 @@ class ImageSelectReactor: Reactor, Stepper {
         }
         selectedAssetToImage { [weak self] images in
             self?.isLoading.onNext(false)
-            self?.steps.accept(ArchiveStep.recordImageSelectIsComplete(images))
+            var images = images
+            if images.count == 0 { return }
+            let thumbnailImage: UIImage = images.first!
+            images.removeFirst()
+            self?.model.images = images
+            self?.presentCrop.onNext(thumbnailImage)
         }
     }
     
