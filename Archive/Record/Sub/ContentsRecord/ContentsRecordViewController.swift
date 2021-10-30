@@ -85,6 +85,7 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         makeConfirmBtn()
+        self.reactor?.action.onNext(.clearCompleteData)
     }
     
     func bind(reactor: ContentsRecordReactor) {

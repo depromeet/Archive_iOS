@@ -12,6 +12,7 @@ import RxCocoa
 import RxFlow
 import SnapKit
 
+
 class RecordViewController: UIViewController, StoryboardView {
 
     // MARK: IBOutlet
@@ -40,7 +41,6 @@ class RecordViewController: UIViewController, StoryboardView {
         initUI()
         makeSubViewControllers()
         setPageViewController()
-        removePageViewControllerSwipeGesture()
         
         // 이하 테스트코드 todo 수정
         guard let imageRecordViewController = self.imageRecordViewController else { return }
@@ -54,6 +54,7 @@ class RecordViewController: UIViewController, StoryboardView {
         if let firstVC = subViewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        removePageViewControllerSwipeGesture()
     }
     
     init?(coder: NSCoder, reactor: RecordReactor) {
@@ -74,6 +75,26 @@ class RecordViewController: UIViewController, StoryboardView {
             self?.imageRecordViewController?.setUICurrentEmotion(emotion)
         })
         .disposed(by: self.disposeBag)
+        
+        reactor.moveToConfig
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                CommonAlertView.shared.show(message: "티켓 기록 사진을 선택하려면 Archive가 사진 라이브러리 접근권한이 필요합니다.", subMessage: nil, btnText: "확인", hapticType: .warning, confirmHandler: {
+                    Util.moveToSetting()
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { errorMsg in
+                CommonAlertView.shared.show(message: errorMsg, subMessage: nil, btnText: "확인", hapticType: .error, confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function
@@ -158,7 +179,7 @@ extension RecordViewController: ImageRecordViewControllerDelegate {
     }
 
     func clickedPhotoSeleteArea() {
-        
+        self.reactor?.action.onNext(.moveToPhotoSelet)
     }
 
     func clickedContentsArea() {

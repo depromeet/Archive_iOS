@@ -62,12 +62,14 @@
 		780478282723FAB300FAA1CF /* LoginInformationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478212723E83F00FAA1CF /* LoginInformationReactor.swift */; };
 		780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478232723E84900FAA1CF /* LoginInformationModel.swift */; };
 		7804782A2723FADD00FAA1CF /* LoginDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478252723EA0300FAA1CF /* LoginDefine.swift */; };
+		78458D2A272C18BB00392B45 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
 		784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD0270841B9004B1A23 /* .swiftlint.yml */; };
 		784D1DD827084869004B1A23 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD727084869004B1A23 /* swiftgen.yml */; };
 		784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
 		784D1E3527088EC8004B1A23 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E3427088EC7004B1A23 /* Assets.swift */; };
+		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */; };
 		78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */; };
@@ -171,6 +173,7 @@
 		780478212723E83F00FAA1CF /* LoginInformationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationReactor.swift; sourceTree = "<group>"; };
 		780478232723E84900FAA1CF /* LoginInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationModel.swift; sourceTree = "<group>"; };
 		780478252723EA0300FAA1CF /* LoginDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDefine.swift; sourceTree = "<group>"; };
+		78458D29272C18BB00392B45 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		784D1DD0270841B9004B1A23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 				784D1E1F27088BB0004B1A23 /* UI */,
 				789E61B82725817900D6E18F /* NibIdentifiable.swift */,
 				789E61BB2725847B00D6E18F /* ClassIdentifiable.swift */,
+				78458D29272C18BB00392B45 /* Util.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -821,6 +825,7 @@
 				44FB0A1827183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				789E61A82725601400D6E18F /* RecordFlow.swift in Sources */,
 				78B872DD2726C553009EFB54 /* EmotionSelectModel.swift in Sources */,
+				788243AA272CDCDC005E5CC0 /* Util.swift in Sources */,
 				44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				789E61AB2725601C00D6E18F /* RecordModel.swift in Sources */,
 				78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */,
@@ -881,6 +886,7 @@
 				789E61B92725817900D6E18F /* NibIdentifiable.swift in Sources */,
 				789E619B2725551400D6E18F /* RecordReactor.swift in Sources */,
 				78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */,
+				78458D2A272C18BB00392B45 /* Util.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
 				78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
@@ -920,7 +926,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -933,6 +939,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.Archive-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -944,7 +951,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -957,6 +964,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.depromeet.Archive-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1084,7 +1092,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Archive/Info.plist;
@@ -1095,6 +1103,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.Archive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1106,7 +1115,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Archive/Info.plist;
@@ -1117,6 +1126,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.Archive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
