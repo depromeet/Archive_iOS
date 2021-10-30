@@ -78,6 +78,8 @@
 		782FDF52272CFC1C004D1B6E /* PhotoFromAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 782FDF45272CFB6E004D1B6E /* PhotoFromAlbumCell.xib */; };
 		782FDF53272CFC1C004D1B6E /* PhotoFromAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF46272CFB6E004D1B6E /* PhotoFromAlbumCell.swift */; };
 		782FDF54272CFC1C004D1B6E /* PhotoFromAlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */; };
+		782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
+		782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
 		78458D2A272C18BB00392B45 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
@@ -197,6 +199,7 @@
 		782FDF47272CFB6E004D1B6E /* HWPhotoListFromAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWPhotoListFromAlbumView.xib; sourceTree = "<group>"; };
 		782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumModel.swift; sourceTree = "<group>"; };
 		782FDF4A272CFB6E004D1B6E /* HWPhotoListFromAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPhotoListFromAlbumView.swift; sourceTree = "<group>"; };
+		782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorable.swift; sourceTree = "<group>"; };
 		78458D29272C18BB00392B45 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -484,6 +487,7 @@
 			children = (
 				78C4B33727244ACB0006EBAD /* CommonAlertView.swift */,
 				784D1E2027088BC0004B1A23 /* HWFlipView.swift */,
+				782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -864,6 +868,7 @@
 				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33627243C930006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
+				782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */,
 				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */,
 				78C4B33C27244C310006EBAD /* UIViewExtension.swift in Sources */,
@@ -931,6 +936,7 @@
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
+				782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
 				789E619D2725551C00D6E18F /* RecordModel.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,

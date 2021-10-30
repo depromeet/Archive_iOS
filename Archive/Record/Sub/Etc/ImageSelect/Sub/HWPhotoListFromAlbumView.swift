@@ -57,7 +57,7 @@ class HWPhotoListFromAlbumView: UIView {
     }
     
     var selectedIndexDic: Dictionary = [PHAsset: PhotoFromAlbumModel]()
-    var focusImgIndex: Int = 0
+    var focusImgIndex: Int = -1
     
     // MARK: life cycle
     
@@ -88,14 +88,6 @@ class HWPhotoListFromAlbumView: UIView {
     
     func initFuntion() {
         setFetchAsset()
-        
-        if self.selectedIndexDic.count == 0 {
-            let modelObj: PhotoFromAlbumModel = PhotoFromAlbumModel()
-            modelObj.sequenceNum = 0
-            modelObj.asset = self.fetchResult[0]
-            self.selectedIndexDic[self.fetchResult[0]] = modelObj
-        }
-        setFocusAtIndex(index: 0)
         PHPhotoLibrary.shared().register(self)
     }
     

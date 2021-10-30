@@ -40,6 +40,8 @@ class RecordFlow: Flow {
             return .none
         case .recordImageSelectIsRequired:
             return navigationToImageSelect()
+        case .recordImageSelectIsComplete(let images):
+            return .none
         default:
             return .none
         }
