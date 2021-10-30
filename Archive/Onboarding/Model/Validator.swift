@@ -11,11 +11,14 @@ protocol SignInValidator {
     func isEnableSignIn(id: String, password: String) -> Bool
 }
 
-protocol EmailInputValidator {
+protocol SignUpValidator {
     func isValidEmail(_ email: String) -> Bool
+    func isContainsEnglish(_ text: String) -> Bool
+    func isContainsNumber(_ text: String) -> Bool
+    func isWithinRange(_ text: String, range: ClosedRange<Int>) -> Bool
 }
 
-struct Validator: SignInValidator, EmailInputValidator {
+struct Validator: SignInValidator, SignUpValidator {
     
     private enum Constants {
         static let mailScheme = "mailto"
@@ -28,6 +31,18 @@ struct Validator: SignInValidator, EmailInputValidator {
     
     func isValidEmail(_ email: String) -> Bool {
         return isValidID(email)
+    }
+    
+    func isContainsEnglish(_ text: String) -> Bool {
+        return text.rangeOfCharacter(from: .letters) != nil
+    }
+    
+    func isContainsNumber(_ text: String) -> Bool {
+        return text.rangeOfCharacter(from: .decimalDigits) != nil
+    }
+    
+    func isWithinRange(_ text: String, range: ClosedRange<Int>) -> Bool {
+        return range.contains(text.count)
     }
     
     private func isValidID(_ id: String) -> Bool {

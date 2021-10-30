@@ -106,7 +106,7 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     // MARK: private function
     
     private func initUI() {
-        self.mainBackgroundView.backgroundColor = Gen.Colors.dim.color
+        self.mainBackgroundView.backgroundColor = Gen.Colors.dIm.color
         self.mainContentsView.backgroundColor = .clear
         self.bottomPaddingView.backgroundColor = Gen.Colors.white.color
         self.bottomView.backgroundColor = Gen.Colors.white.color

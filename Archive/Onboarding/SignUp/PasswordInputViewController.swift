@@ -11,20 +11,33 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-final class PasswordInputViewController: UIViewController, View, Stepper {
+final class PasswordInputViewController: UIViewController, StoryboardView {
     
-    @IBOutlet private weak var nextButton: UIButton?
+    private enum Constant {
+        static let progress: Float = 1
+    }
     
-    let steps = PublishRelay<Step>()
+    @IBOutlet private weak var progressView: UIProgressView!
+    @IBOutlet private weak var passwordInputView: InputView!
+    @IBOutlet private weak var englishCombinationCheckView: ConditionCheckmarkView!
+    @IBOutlet private weak var numberCombinationCheckView: ConditionCheckmarkView!
+    @IBOutlet private weak var countCheckView: ConditionCheckmarkView!
+    @IBOutlet private weak var passwordConfirmInputView: InputView!
+    @IBOutlet private weak var passwordCofirmCheckView: ConditionCheckmarkView!
+    @IBOutlet private weak var nextButton: UIButton!
     var disposeBag = DisposeBag()
+    
+    init?(coder: NSCoder, reactor: SignUpReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: 로직이 Reactor를 거치도록 수정
-        nextButton?.rx.tap
-            .map { ArchiveStep.userIsSignedUp }
-            .bind(to: steps)
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +45,57 @@ final class PasswordInputViewController: UIViewController, View, Stepper {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        progressView.setProgress(Constant.progress, animated: true)
+    }
+    
     func bind(reactor: SignUpReactor) {
+        passwordInputView.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.passwordInput(text: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        passwordConfirmInputView.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.passwordCofirmInput(text: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        nextButton?.rx.tap
+            .map { Reactor.Action.completeSignUp }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isContainsEnglish }
+            .distinctUntilChanged()
+            .bind(to: englishCombinationCheckView.rx.isValid)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isContainsNumber }
+            .distinctUntilChanged()
+            .bind(to: numberCombinationCheckView.rx.isValid)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isWithinRange }
+            .distinctUntilChanged()
+            .bind(to: countCheckView.rx.isValid)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isSamePasswordInput }
+            .distinctUntilChanged()
+            .bind(to: passwordCofirmCheckView.rx.isValid)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isValidPassword }
+            .distinctUntilChanged()
+            .bind(to: nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
