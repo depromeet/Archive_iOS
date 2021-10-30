@@ -79,7 +79,7 @@ class RecordViewController: UIViewController, StoryboardView {
         reactor.moveToConfig
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: {
-                CommonAlertView.shared.show(message: "티켓 기록 사진을 선택하려면 Archive가 사진 라이브러리 접근권한이 필요합니다.", subMessage: nil, btnText: "확인", hapticType: .warning, confirmHandler: {
+                CommonAlertView.shared.show(message: "티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.", subMessage: nil, btnText: "확인", hapticType: .warning, confirmHandler: {
                     Util.moveToSetting()
                     CommonAlertView.shared.hide(nil)
                 })

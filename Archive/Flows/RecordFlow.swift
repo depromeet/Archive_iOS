@@ -38,6 +38,8 @@ class RecordFlow: Flow {
         case .recordEmotionEditIsComplete(let emotion):
             dismissEditEmotion(emotion: emotion)
             return .none
+        case .recordImageSelectIsRequired:
+            return navigationToImageSelect()
         default:
             return .none
         }
@@ -73,6 +75,20 @@ class RecordFlow: Flow {
     private func dismissEditEmotion(emotion: Emotion) {
         self.editEmotionViewController?.dismiss(animated: false, completion: nil)
         self.recordViewController?.reactor?.action.onNext(.setEmotion(emotion))
+    }
+    
+    private func navigationToImageSelect() -> FlowContributors {
+        let model: ImageSelectModel = ImageSelectModel()
+        let reactor = ImageSelectReactor(model: model)
+        let imageSelectViewController: ImageSelectViewController = recordStoryBoard.instantiateViewController(identifier: ImageSelectViewController.identifier) { corder in
+            return ImageSelectViewController(coder: corder, reactor: reactor)
+        }
+        imageSelectViewController.title = ""
+        let navi: UINavigationController = UINavigationController(rootViewController: imageSelectViewController)
+        navi.modalPresentationStyle = .fullScreen
+        rootViewController.present(navi, animated: true, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: imageSelectViewController,
+                                                 withNextStepper: reactor))
     }
     
 }

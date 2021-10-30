@@ -988,6 +988,45 @@
             </objects>
             <point key="canvasLocation" x="-317.39130434782612" y="-1290.4017857142856"/>
         </scene>
+        <!--Image Select View Controller-->
+        <scene sceneID="fZ4-p6-PHW">
+            <objects>
+                <viewController storyboardIdentifier="ImageSelectViewController" id="Z3x-0h-jHN" customClass="ImageSelectViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I4d-4E-mUO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N04-fc-WvT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSx-37-SWu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vn5-T0-EwS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BSx-37-SWu" firstAttribute="leading" secondItem="vn5-T0-EwS" secondAttribute="leading" id="2Iz-9T-KPa"/>
+                            <constraint firstItem="vn5-T0-EwS" firstAttribute="bottom" secondItem="BSx-37-SWu" secondAttribute="bottom" id="5yn-fI-vz2"/>
+                            <constraint firstItem="N04-fc-WvT" firstAttribute="leading" secondItem="vn5-T0-EwS" secondAttribute="leading" id="Hru-9S-50b"/>
+                            <constraint firstItem="vn5-T0-EwS" firstAttribute="trailing" secondItem="N04-fc-WvT" secondAttribute="trailing" id="Mrb-9f-tbv"/>
+                            <constraint firstItem="vn5-T0-EwS" firstAttribute="trailing" secondItem="BSx-37-SWu" secondAttribute="trailing" id="UKc-tK-QV0"/>
+                            <constraint firstItem="BSx-37-SWu" firstAttribute="top" secondItem="vn5-T0-EwS" secondAttribute="top" id="rZY-5W-vc7"/>
+                            <constraint firstAttribute="bottom" secondItem="N04-fc-WvT" secondAttribute="bottom" id="wcC-F3-j4c"/>
+                            <constraint firstItem="N04-fc-WvT" firstAttribute="top" secondItem="I4d-4E-mUO" secondAttribute="top" id="yW3-dS-joO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainBackgroundView" destination="N04-fc-WvT" id="Tnv-Z1-PNb"/>
+                        <outlet property="mainContainerView" destination="BSx-37-SWu" id="6ZH-9N-lV7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdt-vQ-Jfl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="-1264"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="FZP-1j-cTi">

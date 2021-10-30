@@ -53,6 +53,9 @@ class RecordReactor: Reactor, Stepper {
         case .setEmotion(let emotion):
             return .just(.setEmotion(emotion))
         case .moveToPhotoSelet:
+            checkPhotoAuth(completion: { [weak self] in
+                self?.steps.accept(ArchiveStep.recordImageSelectIsRequired)
+            })
             return .empty()
         }
     }
@@ -68,16 +71,15 @@ class RecordReactor: Reactor, Stepper {
     
     // MARK: private function
     
-    private func checkPhotoAuth() {
+    private func checkPhotoAuth(completion: (() -> Void)?) {
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
         case .authorized:
-            //handle authorized status
-            break
+            completion?()
         case .denied, .restricted :
             self.moveToConfig.onNext(())
         case .notDetermined:
-            requestPhotoAuth()
+            requestPhotoAuth(completion: completion)
         case .limited:
             break
         @unknown default:
@@ -85,15 +87,15 @@ class RecordReactor: Reactor, Stepper {
         }
     }
     
-    private func requestPhotoAuth() {
+    private func requestPhotoAuth(completion: (() -> Void)?) {
         if #available(iOS 14, *) {
             PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] (status) in
                 switch status {
                 case .authorized:
-                    // move to photo
+                    completion?()
                     break
                 case .denied, .restricted, .notDetermined, .limited:
-                    self?.error.onNext("티켓 기록 사진을 선택하려면 Archive가 사진 라이브러리 접근권한이 필요합니다.")
+                    self?.error.onNext("티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.")
                 @unknown default:
                     break
                 }
@@ -102,10 +104,10 @@ class RecordReactor: Reactor, Stepper {
             PHPhotoLibrary.requestAuthorization { [weak self] status in
                 switch status {
                 case .authorized:
-                    // move to photo
+                    completion?()
                     break
                 case .denied, .restricted, .notDetermined, .limited:
-                    self?.error.onNext("티켓 기록 사진을 선택하려면 Archive가 사진 라이브러리 접근권한이 필요합니다.")
+                    self?.error.onNext("티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.")
                 @unknown default:
                     break
                 }
