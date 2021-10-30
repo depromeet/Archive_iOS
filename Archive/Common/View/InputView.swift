@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 @IBDesignable
 final class InputView: UIView {
@@ -49,7 +50,6 @@ final class InputView: UIView {
     }
     fileprivate lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.spacing = Constants.contentStackViewSpacing
@@ -93,13 +93,11 @@ final class InputView: UIView {
     
     private func setupLayouts() {
         addSubview(contentStackView)
-        NSLayoutConstraint.activate([
-            contentStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            contentStackView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: .zero),
-            contentStackView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: .zero),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalPadding),
-            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalPadding)
-        ])
+        contentStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.top.bottom.greaterThanOrEqualToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalPadding)
+        }
         contentStackView.addArrangedSubview(textField)
         contentStackView.addArrangedSubview(rightButton)
     }

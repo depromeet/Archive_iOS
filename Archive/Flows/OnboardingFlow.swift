@@ -81,13 +81,14 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToPasswordInputScreen() -> FlowContributors {
-        guard let passwordInputViewController = onboardingStoryBoard
-                .instantiateViewController(identifier: PasswordInputViewController.identifier) as? PasswordInputViewController else {
-            return .none
-        }
+        let passwordInputViewController = onboardingStoryBoard
+            .instantiateViewController(identifier: PasswordInputViewController.identifier) { coder in
+                return PasswordInputViewController(coder: coder, reactor: self.signUpReactor)
+            }
         passwordInputViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(passwordInputViewController, animated: true)
-        return .one(flowContributor: .contribute(withNext: passwordInputViewController))
+        return .one(flowContributor: .contribute(withNextPresentable: passwordInputViewController,
+                                                 withNextStepper: signUpReactor))
     }
     
     private func navigationToSignUpCompletionScreen() -> FlowContributors {

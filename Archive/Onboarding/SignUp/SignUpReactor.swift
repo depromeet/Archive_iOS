@@ -23,6 +23,10 @@ final class SignUpReactor: Reactor, Stepper {
         case emailInput(text: String)
         case checkEmailDuplicate
         case goToPasswordInput
+        
+        case passwordInput(text: String)
+        case passwordCofirmInput(text: String)
+        case completeSignUp
     }
     
     enum Mutation {
@@ -33,6 +37,12 @@ final class SignUpReactor: Reactor, Stepper {
         case setEmailValidation(Bool)
         case setEmailDuplicate(Bool)
         case resetEmailValidation
+        
+        case setPassword(String)
+        case setEnglishCombination(Bool)
+        case setNumberCombination(Bool)
+        case setRangeValidation(Bool)
+        case setPasswordCofirmationInput(String)
     }
     
     struct State {
@@ -49,13 +59,25 @@ final class SignUpReactor: Reactor, Stepper {
             return isValidEmail && (isDuplicateEmail == false)
         }
         var emailValidationText: String = ""
+        
+        var password: String = ""
+        var isContainsEnglish: Bool = false
+        var isContainsNumber: Bool = false
+        var isWithinRange: Bool = false
+        var passwordConfirmationInput: String = ""
+        var isSamePasswordInput: Bool {
+            return password == passwordConfirmationInput
+        }
+        var isValidPassword: Bool {
+            return isContainsEnglish && isContainsNumber && isWithinRange && isSamePasswordInput
+        }
     }
     
     let initialState = State()
     let steps = PublishRelay<Step>()
-    private let validator: EmailInputValidator
+    private let validator: SignUpValidator
     
-    init(validator: EmailInputValidator) {
+    init(validator: SignUpValidator) {
         self.validator = validator
     }
     
@@ -99,6 +121,23 @@ final class SignUpReactor: Reactor, Stepper {
         case .goToPasswordInput:
             steps.accept(ArchiveStep.passwordInputRequired)
             return .empty()
+            
+        case let .passwordInput(text):
+            let isContainsEnglish = validator.isContainsEnglish(text)
+            let isContainsNumber = validator.isContainsNumber(text)
+            let isWithinRage = validator.isWithinRange(text, range: (8...20))
+            return .from([.setPassword(text),
+                          .setEnglishCombination(isContainsEnglish),
+                          .setNumberCombination(isContainsNumber),
+                          .setRangeValidation(isWithinRage)])
+            
+        case let .passwordCofirmInput(text):
+            return .just(.setPasswordCofirmationInput(text))
+            
+        case .completeSignUp:
+            // TODO: 회원가입 요청 후 화면 이동
+            steps.accept(ArchiveStep.userIsSignedUp)
+            return .empty()
         }
     }
     
@@ -125,7 +164,23 @@ final class SignUpReactor: Reactor, Stepper {
         case .resetEmailValidation:
             newState.isValidEmail = false
             newState.isDuplicateEmail = true
+            
+        case let .setPassword(password):
+            newState.password = password
+            
+        case let .setEnglishCombination(isContainsEnglish):
+            newState.isContainsEnglish = isContainsEnglish
+            
+        case let.setNumberCombination(isContainsNumber):
+            newState.isContainsNumber = isContainsNumber
+            
+        case let .setRangeValidation(isWithinRange):
+            newState.isWithinRange = isWithinRange
+            
+        case let .setPasswordCofirmationInput(password):
+            newState.passwordConfirmationInput = password
         }
+        
         return newState
     }
 }
