@@ -1002,7 +1002,38 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSx-37-SWu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0G-xk-v51">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wgu-7q-oH7">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Wgu-7q-oH7" secondAttribute="trailing" id="5Tu-AN-G54"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wgu-7q-oH7" secondAttribute="bottom" id="6Bv-2B-VhP"/>
+                                            <constraint firstItem="Wgu-7q-oH7" firstAttribute="leading" secondItem="U0G-xk-v51" secondAttribute="leading" id="lbj-0a-PF4"/>
+                                            <constraint firstItem="Wgu-7q-oH7" firstAttribute="top" secondItem="U0G-xk-v51" secondAttribute="top" id="srs-yq-KJe"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFN-vz-u7f">
+                                        <rect key="frame" x="0.0" y="409" width="414" height="409"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="U0G-xk-v51" firstAttribute="top" secondItem="BSx-37-SWu" secondAttribute="top" id="2i1-0l-Ulq"/>
+                                    <constraint firstItem="iFN-vz-u7f" firstAttribute="height" secondItem="U0G-xk-v51" secondAttribute="height" id="BPo-R4-WYj"/>
+                                    <constraint firstAttribute="bottom" secondItem="iFN-vz-u7f" secondAttribute="bottom" id="Sd7-Bd-MZu"/>
+                                    <constraint firstItem="iFN-vz-u7f" firstAttribute="leading" secondItem="BSx-37-SWu" secondAttribute="leading" id="bNE-Nu-gig"/>
+                                    <constraint firstItem="iFN-vz-u7f" firstAttribute="top" secondItem="U0G-xk-v51" secondAttribute="bottom" id="bYZ-sr-I2h"/>
+                                    <constraint firstAttribute="trailing" secondItem="U0G-xk-v51" secondAttribute="trailing" id="nuR-cQ-ZSs"/>
+                                    <constraint firstItem="U0G-xk-v51" firstAttribute="leading" secondItem="BSx-37-SWu" secondAttribute="leading" id="xHe-2f-yUz"/>
+                                    <constraint firstAttribute="trailing" secondItem="iFN-vz-u7f" secondAttribute="trailing" id="xwQ-hH-y6m"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vn5-T0-EwS"/>
@@ -1019,8 +1050,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageAlbumContainerView" destination="iFN-vz-u7f" id="zZj-cv-JGd"/>
+                        <outlet property="imageThumnailContainerView" destination="U0G-xk-v51" id="zN3-C0-MTB"/>
                         <outlet property="mainBackgroundView" destination="N04-fc-WvT" id="Tnv-Z1-PNb"/>
                         <outlet property="mainContainerView" destination="BSx-37-SWu" id="6ZH-9N-lV7"/>
+                        <outlet property="thumnailImageView" destination="Wgu-7q-oH7" id="7NQ-3N-8kn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdt-vQ-Jfl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

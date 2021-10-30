@@ -10,13 +10,11 @@ import ReactorKit
 import RxRelay
 import RxFlow
 import Photos
-import UIKit
-import Moya
 
 class ImageSelectReactor: Reactor, Stepper {
     // MARK: private property
     
-    private let model: ImageSelectModel
+    private let model: ImageSelectModelProtocol
     
     // MARK: internal property
     

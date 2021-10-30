@@ -16,6 +16,9 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var imageThumnailContainerView: UIView!
+    @IBOutlet weak var thumnailImageView: UIImageView!
+    @IBOutlet weak var imageAlbumContainerView: UIView!
     
     // MARK: private property
     
@@ -52,6 +55,18 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.selectedImageInfo }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: { [weak self] asset in
+                self?.imageThumnailContainerView.backgroundColor = Gen.Colors.white.color
+                guard let asset = asset else { return }
+                self?.phAssetToImage(asset, ImageSize: CGSize(width: 300, height: 300), completion: { [weak self] image in
+                    self?.thumnailImageView.image = image
+                })
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -59,6 +74,7 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
     private func initUI() {
         self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
         self.mainContainerView.backgroundColor = .clear
+        self.imageThumnailContainerView.backgroundColor = Gen.Colors.gray03.color
         setImageSelectView()
         makeConfirmBtn()
         makeCancelBtn()
@@ -69,9 +85,9 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         guard let imageSelectView = self.imageSelectView else { return }
         imageSelectView.delegate = self
         imageSelectView.selectType = .multi
-        self.mainContainerView.addSubview(imageSelectView)
+        self.imageAlbumContainerView.addSubview(imageSelectView)
         imageSelectView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.mainContainerView)
+            make.edges.equalTo(self.imageAlbumContainerView)
         }
     }
     
@@ -104,6 +120,17 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         setConfirmBtnColor(Gen.Colors.black.color)
         self.navigationController?.navigationBar.topItem?.leftBarButtonItems?.removeAll()
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = cancelBtn
+    }
+    
+    private func phAssetToImage(_ assets: PHAsset, ImageSize: CGSize, completion: @escaping (UIImage) -> Void) {
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.isSynchronous = true
+        manager.requestImage(for: assets, targetSize: ImageSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info) -> Void in
+            if result != nil {
+                completion(result!)
+            }
+        })
     }
     
     // MARK: internal function
