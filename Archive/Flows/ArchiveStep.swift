@@ -27,4 +27,9 @@ enum ArchiveStep: Step {
     case loginInfomationIsRequired(LoginType, Int)
     case withdrawalIsRequired(Int)
     case withdrawalIsComplete
+    
+    // Record
+    case recordIsRequired
+    case recordEmotionEditIsRequired
+    case recordEmotionEditIsComplete(Emotion)
 }

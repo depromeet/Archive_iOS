@@ -14,6 +14,7 @@ def pods
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher', '~> 7.0'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'GrowingTextView', '0.7.2'
 end
 
 def pods_debug
