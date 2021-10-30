@@ -16,8 +16,7 @@ enum HWPhotoListSelectType {
 
 protocol HWPhotoListFromAlbumViewDelegate: AnyObject {
     func selectedImgsFromAlbum(selectedImg: [PHAsset: PhotoFromAlbumModel], focusIndexAsset: PHAsset)
-//    func changeFocusImg(focusIndex:Int)
-    
+    func changeFocusImg(focusIndex: Int)
 }
 
 class HWPhotoListFromAlbumView: UIView {
@@ -29,8 +28,8 @@ class HWPhotoListFromAlbumView: UIView {
     // MARK: varReplace
     var imgWidth: CGFloat = 300
     var imgHeight: CGFloat = 300
-    var minimumLineSpacing: CGFloat = 1.0
-    var minimumInteritemSpacing: CGFloat = 1.0
+    var minimumLineSpacing: CGFloat = 4.0
+    var minimumInteritemSpacing: CGFloat = 4.0
     
     // MARK: var
     var fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: PHFetchOptions())
@@ -124,7 +123,6 @@ class HWPhotoListFromAlbumView: UIView {
         let option = PHImageRequestOptions()
         var thumbnail = UIImage()
         option.isSynchronous = true
-        //        contentMode:PHImageContentModeDefault
         manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info) -> Void in
             thumbnail = result!
         })
@@ -132,14 +130,9 @@ class HWPhotoListFromAlbumView: UIView {
     }
     
     func setFocusAtIndex(index: Int) {
-        print("nowFocus!!!:\(index)")
         self.focusImgIndex = index
-//        self.delegate?.changeFocusImg(focusIndex: self.focusImgIndex)
+        self.delegate?.changeFocusImg(focusIndex: self.focusImgIndex)
         self.delegate?.selectedImgsFromAlbum(selectedImg: self.selectedIndexDic, focusIndexAsset: self.fetchResult[self.focusImgIndex])
-    }
-    
-    public func switchSelectFlag(selectType: HWPhotoListSelectType) {
-
     }
 }
 
@@ -156,31 +149,24 @@ extension HWPhotoListFromAlbumView: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFromAlbumCell", for: indexPath) as? PhotoFromAlbumCell else { return UICollectionViewCell() }
         cell.mainImgView.image = getAssetThumbnail(asset: self.fetchResult.object(at: indexPath.row))
-//            let item = self.selectedIndexDic[indexPath.row]
-            let item = self.selectedIndexDic[self.fetchResult[indexPath.row]]
-            if self.selectType == .multi {
-                cell.sequenceNumberContainerView.isHidden = false
-            } else {
-                cell.sequenceNumberContainerView.isHidden = true
-            }
-            if item != nil {
-                cell.sequenceNumberLabel.text = "\(item!.sequenceNum + 1)"
-                cell.sequenceNumberContainerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            } else {
-                cell.sequenceNumberLabel.text = ""
-                cell.sequenceNumberContainerView.backgroundColor =  UIColor(red: 1, green: 1, blue: 1, alpha: 0.38)
-            }
-            
-            if self.focusImgIndex == indexPath.item {
-                cell.coverView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
-            } else {
-                cell.coverView.backgroundColor = .clear
-            }
+        let item = self.selectedIndexDic[self.fetchResult[indexPath.row]]
+        if self.selectType == .multi {
+            cell.sequenceNumberContainerView.isHidden = false
+        } else {
+            cell.sequenceNumberContainerView.isHidden = true
+        }
+        
+        cell.infoData = item
+        
+        if self.focusImgIndex == indexPath.item {
+            cell.coverView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        } else {
+            cell.coverView.backgroundColor = .clear
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected cell index:\(indexPath)")
         if collectionView == self.imgCollectionView {
             if self.selectType == .multi { // 다중선택모드
                 if self.selectedIndexDic[self.fetchResult[indexPath.row]] == nil { // 선택되지 않은 인덱스
@@ -215,7 +201,6 @@ extension HWPhotoListFromAlbumView: UICollectionViewDelegate, UICollectionViewDa
                                 self.selectedIndexDic[keyArr[i]]!.sequenceNum -= 1 // 선택된순서를 하나 줄인다.
                             }
                         }
-//                        let removeObjsSequenceNum = self.selectedIndexDic[self.fetchResult[indexPath.row]]?.sequenceNum ?? -1
                         self.selectedIndexDic[self.fetchResult[indexPath.row]] = nil // 삭제
                         let keyArr2 = Array(self.selectedIndexDic.keys)
                         for i in 0..<keyArr2.count { // 삭제 후 포커스인덱스 변경작업
@@ -231,14 +216,8 @@ extension HWPhotoListFromAlbumView: UICollectionViewDelegate, UICollectionViewDa
                         setFocusAtIndex(index: indexPath.row)
                     }
                 }
-//                /********** test log ************/
-//                print("now focusIndex : \(self.focusImgIndex)")
-//                print("내용: \(self.selectedIndexDic)")
-//                print("sequenceNum: \(self.selectedIndexDic[self.fetchResult[indexPath.row]]?.sequenceNum ?? -1)")
-//                /********** test log ************/
             } else { // 단일선택모드
                 let keyArr = Array(self.selectedIndexDic.keys)
-//                if indexPath.row != keyArr[0] {
                 if self.fetchResult[indexPath.row] != keyArr[0] {
                     self.selectedIndexDic.removeAll()
                     let modelObj: PhotoFromAlbumModel = PhotoFromAlbumModel()
@@ -246,12 +225,6 @@ extension HWPhotoListFromAlbumView: UICollectionViewDelegate, UICollectionViewDa
                     modelObj.asset = self.fetchResult[indexPath.row]
                     self.selectedIndexDic[self.fetchResult[indexPath.row]] = modelObj
                     setFocusAtIndex(index: indexPath.row)
-                    //                    self.delegate?.selectedImgsFromAlbum(selectedImg: self.selectedIndexDic, focusIndex: self.focusImgIndex)
-//                    /********** test log ************/
-//                    print("now focusIndex : \(self.focusImgIndex)")
-//                    print("내용: \(self.selectedIndexDic)")
-//                    print("sequenceNum: \(self.selectedIndexDic[self.fetchResult[indexPath.row]]?.sequenceNum ?? -1)")
-//                    /********** test log ************/
                 }
             }
         }
@@ -274,13 +247,6 @@ extension HWPhotoListFromAlbumView: UICollectionViewDelegate, UICollectionViewDa
         }
         return resultEdgeInsets
     }
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-       
-        return true
-    }
 }
 
 // MARK: - PHPhotoLibraryChangeObserver
@@ -290,24 +256,12 @@ extension HWPhotoListFromAlbumView: PHPhotoLibraryChangeObserver {
         let requestOptions: PHImageRequestOptions = PHImageRequestOptions()
         allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         requestOptions.isSynchronous = true
-        //        changeInstance.changeDetails(for: PHAsset.fetchAssets(with: PHAssetMediaType.image, options: allPhotosOptions))
         guard let changes = changeInstance.changeDetails(for: self.fetchResult) else { return }
-        //        print("change1:\(changes)")
-//                print("change2:\(changes.fetchResultAfterChanges)")
-        //        print("change3:\(changes.fetchResultBeforeChanges)")
-        //        print("chnage4:\(changes.insertedIndexes?.startIndex)")
-        //        print("change5:\(changes.insertedIndexes?.endIndex)")
-        //        print("change6:\(changes.removedIndexes)")
-        //        print("change7:\(changes.insertedObjects)")
-        //        print("chnage8:\(changes.removedObjects)")
         
         if changes.removedIndexes != nil {
             let removeArr = Array(changes.removedObjects)
-//            print("removeArr : \(removeArr)")
             var willFocusMoveNum = 0
             for i in 0..<removeArr.count {
-//                print("포커스 인덱스:\(self.focusImgIndex)")
-//                print("몇번일까:\(self.fetchResult.index(of: removeArr[i]))")
                 if self.fetchResult[self.focusImgIndex] == removeArr[i] {
                     self.focusImgIndex = 0
                     break
@@ -343,7 +297,6 @@ extension HWPhotoListFromAlbumView: PHPhotoLibraryChangeObserver {
         if changes.insertedIndexes != nil {
             let insertArr = Array(changes.insertedObjects)
             var willFocusMoveNum = 0
-//            print("insertArr :\(insertArr)")
             for i in 0..<insertArr.count {
                 if self.fetchResult[self.focusImgIndex].creationDate!.timeIntervalSince1970 <= insertArr[i].creationDate!.timeIntervalSince1970 {
                     willFocusMoveNum += 1
@@ -353,7 +306,6 @@ extension HWPhotoListFromAlbumView: PHPhotoLibraryChangeObserver {
         }
         
         DispatchQueue.main.async {
-//            print("call")
             self.setFetchAsset()
             self.setFocusAtIndex(index: self.focusImgIndex)
             if self.selectType == .single { // 싱글셀렉트모드의경우
@@ -365,7 +317,6 @@ extension HWPhotoListFromAlbumView: PHPhotoLibraryChangeObserver {
                 }
             }
             self.imgCollectionView.reloadData()
-            
         }
     }
 }

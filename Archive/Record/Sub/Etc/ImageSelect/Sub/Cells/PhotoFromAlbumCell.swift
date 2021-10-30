@@ -16,8 +16,29 @@ class PhotoFromAlbumCell: UICollectionViewCell {
     @IBOutlet weak var coverView: UIView!
     @IBOutlet weak var sequenceNumberContainerView: UIView!
     @IBOutlet weak var sequenceNumberLabel: UILabel!
+    @IBOutlet weak var coverLabelContainerView: UIView!
+    @IBOutlet weak var coverLabel: UILabel!
     
     // MARK: var
+    
+    var infoData: PhotoFromAlbumModel? {
+        didSet {
+            guard let info = self.infoData else {
+                self.coverView.layer.borderWidth = 0
+                self.sequenceNumberContainerView.isHidden = true
+                self.coverLabelContainerView.isHidden = true
+                return
+            }
+            self.coverView.layer.borderWidth = 1
+            self.sequenceNumberContainerView.isHidden = false
+            self.sequenceNumberLabel.text = "\(info.sequenceNum + 1)"
+            if info.sequenceNum == 0 {
+                self.coverLabelContainerView.isHidden = false
+            } else {
+                self.coverLabelContainerView.isHidden = true
+            }
+        }
+    }
     
     // MARK: life cycle
     
@@ -31,12 +52,15 @@ class PhotoFromAlbumCell: UICollectionViewCell {
     
     private func initUI() {
         self.coverView.backgroundColor = .clear
-        self.sequenceNumberContainerView.layer.cornerRadius = self.sequenceNumberContainerView.frame.width/2
-        self.sequenceNumberContainerView.layer.borderWidth = 1
-        self.sequenceNumberContainerView.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.38).cgColor
-        self.sequenceNumberLabel.textColor = .white
-        self.sequenceNumberLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 13)
+        self.coverView.layer.borderColor = Gen.Colors.black.color.cgColor
+        self.sequenceNumberContainerView.backgroundColor = Gen.Colors.black.color
+        self.sequenceNumberLabel.textColor = Gen.Colors.white.color
+        self.sequenceNumberLabel.font = .fonts(.button)
         self.sequenceNumberContainerView.sizeToFit()
+        self.coverLabelContainerView.backgroundColor = Gen.Colors.black.color
+        self.coverLabel.textColor = Gen.Colors.white.color
+        self.coverLabel.font = .fonts(.button)
+        self.coverLabel.text = "표지"
     }
     
     // MARK: action

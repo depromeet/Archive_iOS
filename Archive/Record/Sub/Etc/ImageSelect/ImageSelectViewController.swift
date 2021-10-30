@@ -69,6 +69,10 @@ class ImageSelectViewController: UIViewController, StoryboardView {
 }
 
 extension ImageSelectViewController: HWPhotoListFromAlbumViewDelegate {
+    func changeFocusImg(focusIndex: Int) {
+        print("focusIndex: \(focusIndex)")
+    }
+    
     func selectedImgsFromAlbum(selectedImg: [PHAsset: PhotoFromAlbumModel], focusIndexAsset: PHAsset) {
         
     }
