@@ -25,19 +25,24 @@ class ImageRecordReactor: Reactor {
     }
     
     enum Action {
+        case setThumbnailImage(_ image: UIImage)
         case setImages(_ images: [UIImage])
     }
     
     enum Mutation {
+        case setThumbnailImage(_ image: UIImage)
         case setImages(_ images: [UIImage])
     }
     
     struct State {
-        var images: [UIImage] = []
+        var thumbnailImage: UIImage?
+        var images: [UIImage]?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .setThumbnailImage(let image):
+            return .just(.setThumbnailImage(image))
         case .setImages(let images):
             return .just(.setImages(images))
         }
@@ -46,6 +51,8 @@ class ImageRecordReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
+        case .setThumbnailImage(let image):
+            newState.thumbnailImage = image
         case .setImages(let images):
             newState.images = images
         }

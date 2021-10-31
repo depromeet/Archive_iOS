@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ImageRecordModelProtocol {
-    var images: [UIImage] { get }
+    
 }
 
 class ImageRecordModel: ImageRecordModelProtocol {
@@ -19,12 +19,10 @@ class ImageRecordModel: ImageRecordModelProtocol {
     
     // MARK: property
     
-    var images: [UIImage]
-    
     // MARK: lifeCycle
     
-    init(images: [UIImage]) {
-        self.images = images
+    init() {
+        
     }
     
     // MARK: private func

@@ -25,7 +25,7 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
     func clickedContentsArea()
 }
 
-class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol { // 뷰컨만 있어도 될듯
+class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol {
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -96,13 +96,13 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.images }
-        .asDriver(onErrorJustReturn: [])
+        .asDriver(onErrorJustReturn: nil)
         .drive(onNext: { [weak self] images in
-            if images.count == 0 {
+            guard let images = images else {
                 self?.defaultImageContainerView.isHidden = false
-            } else {
-                self?.defaultImageContainerView.isHidden = true
+                return
             }
+            self?.defaultImageContainerView.isHidden = true
         })
         .disposed(by: self.disposeBag)
     }

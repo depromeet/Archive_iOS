@@ -109,7 +109,7 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     private func makeImageRecordViewController() {
-        let model: ImageRecordModel = ImageRecordModel(images: [])
+        let model: ImageRecordModel = ImageRecordModel()
         let reactor = ImageRecordReactor(model: model)
         let imageRecordViewController: ImageRecordViewController = UIStoryboard(name: "Record", bundle: nil).instantiateViewController(identifier: ImageRecordViewController.identifier) { corder in
             return ImageRecordViewController(coder: corder, reactor: reactor)
