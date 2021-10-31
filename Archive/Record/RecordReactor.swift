@@ -37,6 +37,7 @@ class RecordReactor: Reactor, Stepper {
         case setRecordInfo(ContentsRecordModelData)
         case moveToPhotoSelet
         case setImages([UIImage])
+        case setThumbnailImage(UIImage)
     }
     
     enum Mutation {
@@ -65,6 +66,9 @@ class RecordReactor: Reactor, Stepper {
             return .empty()
         case .setImages(let images):
             self.model.images = images
+            return .empty()
+        case .setThumbnailImage(let image):
+            self.model.thumbnailImage = image
             return .empty()
         }
     }

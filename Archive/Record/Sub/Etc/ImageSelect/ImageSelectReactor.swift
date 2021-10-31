@@ -38,6 +38,7 @@ class ImageSelectReactor: Reactor, Stepper {
         case setImageInfos([PHAsset: PhotoFromAlbumModel])
         case setSelectedImageInfo(PHAsset)
         case confirm
+        case imageCropDone(UIImage)
     }
     
     enum Mutation {
@@ -58,6 +59,10 @@ class ImageSelectReactor: Reactor, Stepper {
             return .just(.setSelectedImageInfo(info))
         case .confirm:
             confirm()
+            return .empty()
+        case .imageCropDone(let image):
+            self.model.coverImage = image
+            steps.accept(ArchiveStep.recordImageSelectIsComplete(model.coverImage ?? UIImage(), model.images ?? [UIImage]()))
             return .empty()
         }
     }

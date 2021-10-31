@@ -72,33 +72,10 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         reactor.presentCrop
             .asDriver(onErrorJustReturn: UIImage())
             .drive(onNext: { [weak self] image in
-                let cropViewController: CropViewController = CropViewController(croppingStyle: .default, image: image)
-                cropViewController.aspectRatioLockEnabled = true
-                cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
-                cropViewController.aspectRatioPickerButtonHidden = true
-                if let emotionCoverImage = self?.getEmotionCoverImage(self?.reactor?.emotion ?? .fun) {
-                    let emotionCoverImageView: UIImageView = UIImageView()
-                    emotionCoverImageView.contentMode = .scaleToFill
-                    emotionCoverImageView.image = emotionCoverImage
-                    emotionCoverImageView.frame = CGRect(x: 0, y: 0,
-                                                         width: UIScreen.main.bounds.width,
-                                                         height: UIScreen.main.bounds.width
-                    )
-//                    cropViewController.cropView.gridOverlayView.addSubview(emotionCoverImageView)
-//                    emotionCoverImageView.sendSubviewToBack(cropViewController.cropView.gridOverlayView)
-                    cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
-//                    cropViewController.cropView.addSubview(emotionCoverImageView)
-                    emotionCoverImageView.snp.makeConstraints { (make) in
-//                        make.edges.equalTo(cropViewController.cropView)
-                        make.leading.equalTo(cropViewController.cropView.snp.leading).offset(20)
-                        make.trailing.equalTo(cropViewController.cropView.snp.trailing)
-                        make.top.equalTo(cropViewController.cropView.snp.top)
-                        make.bottom.equalTo(cropViewController.cropView.snp.bottom)
-                    }
-                }
-                self?.present(cropViewController, animated: true, completion: nil)
+                self?.showImageEditView(image: image)
             })
             .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function
@@ -166,20 +143,45 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
     }
     
     private func getEmotionCoverImage(_ emotion: Emotion) -> UIImage {
+        var returnImage: UIImage = UIImage()
         switch emotion {
         case .fun:
-            break
+            returnImage = Gen.Images.typeWonderful.image
         case .impressive:
-            break
+            returnImage = Gen.Images.typeWonderful.image
         case .pleasant:
-            break
+            returnImage = Gen.Images.typeWonderful.image
         case .splendid:
-            break
+            returnImage = Gen.Images.typeWonderful.image
         case .wonderful:
-            break
+            returnImage = Gen.Images.typeWonderful.image
         }
-        return Gen.Images.typeWonderful.image
-//        return UIImage()
+        return returnImage
+    }
+    
+    private func showImageEditView(image: UIImage) {
+        let cropViewController: CropViewController = CropViewController(croppingStyle: .default, image: image)
+        cropViewController.delegate = self
+        cropViewController.doneButtonTitle = "확인"
+        cropViewController.doneButtonColor = Gen.Colors.white.color
+        cropViewController.cancelButtonTitle = "취소"
+        cropViewController.cancelButtonColor = Gen.Colors.white.color
+        cropViewController.aspectRatioLockEnabled = true
+        cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
+        cropViewController.aspectRatioPickerButtonHidden = true
+        let emotionCoverImage = self.getEmotionCoverImage(self.reactor?.emotion ?? .fun)
+        let emotionCoverImageView: UIImageView = UIImageView()
+        emotionCoverImageView.contentMode = .scaleToFill
+        emotionCoverImageView.image = emotionCoverImage
+        cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
+        emotionCoverImageView.snp.makeConstraints { (make) in
+//            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(24)
+            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(0)
+            make.leading.equalTo(cropViewController.cropView.snp.leading).offset(12)
+            make.trailing.equalTo(cropViewController.cropView.snp.trailing).offset(-12)
+            make.height.equalTo(UIScreen.main.bounds.width - 24)
+        }
+        self.present(cropViewController, animated: true, completion: nil)
     }
     
     // MARK: internal function
@@ -215,6 +217,12 @@ extension ImageSelectViewController: HWPhotoListFromAlbumViewDelegate {
     }
 }
 
-//extension ImageSelectViewController: CropViewControllerDelegate {
-//    
-//}
+extension ImageSelectViewController: CropViewControllerDelegate {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        DispatchQueue.main.async { [weak self] in
+            cropViewController.dismiss(animated: true, completion: { [weak self] in
+                self?.reactor?.action.onNext(.imageCropDone(image))
+            })
+        }
+    }
+}

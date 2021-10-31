@@ -197,7 +197,7 @@ extension RecordViewController: ContentsRecordViewControllerDelegate {
     }
     
     func completeContentsRecord(infoData: ContentsRecordModelData) {
-        print("infoData: \(infoData)")
+        self.reactor?.action.onNext(.setRecordInfo(infoData))
         self.pageViewController.moveToPreviousPage()
         removePageViewControllerSwipeGesture()
         self.imageRecordViewController?.setRecordTitle(infoData.title)

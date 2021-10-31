@@ -27,6 +27,7 @@ class RecordFlow: Flow {
     
     weak var recordViewController: RecordViewController?
     weak var editEmotionViewController: EmotionSelectViewController?
+    weak var imageSelectViewControllerNavi: UINavigationController?
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else { return .none }
@@ -42,7 +43,9 @@ class RecordFlow: Flow {
             return navigationToImageSelect(emotion: emotion)
         case .recordImageSelectIsComplete(let thumbnailImage, let images):
             self.recordViewController?.reactor?.action.onNext(.setImages(images))
-            return navigationToImageCrop(image: thumbnailImage)
+            self.recordViewController?.reactor?.action.onNext(.setThumbnailImage(thumbnailImage))
+            dismissImageSelect()
+            return .none
         default:
             return .none
         }
@@ -89,21 +92,14 @@ class RecordFlow: Flow {
         imageSelectViewController.title = ""
         let navi: UINavigationController = UINavigationController(rootViewController: imageSelectViewController)
         navi.modalPresentationStyle = .fullScreen
+        self.imageSelectViewControllerNavi = navi
         rootViewController.present(navi, animated: true, completion: nil)
         return .one(flowContributor: .contribute(withNextPresentable: imageSelectViewController,
                                                  withNextStepper: reactor))
     }
     
-    private func navigationToImageCrop(image: UIImage) -> FlowContributors {
-        let model: ImageCropModel = ImageCropModel(thumbnailImage: image)
-        let reactor = ImageCropReactor(model: model)
-        let imageCropViewController: ImageCropViewController = recordStoryBoard.instantiateViewController(identifier: ImageCropViewController.identifier) { corder in
-            return ImageCropViewController(coder: corder, reactor: reactor)
-        }
-        imageCropViewController.title = ""
-        rootViewController.pushViewController(imageCropViewController, animated: true)
-        return .one(flowContributor: .contribute(withNextPresentable: imageCropViewController,
-                                                 withNextStepper: reactor))
+    private func dismissImageSelect() {
+        self.imageSelectViewControllerNavi?.dismiss(animated: true, completion: nil)
     }
     
 }
