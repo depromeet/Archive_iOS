@@ -101,7 +101,6 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             if images.count == 0 {
                 self?.defaultImageContainerView.isHidden = false
             } else {
-                print("images set!! :\(images)")
                 self?.defaultImageContainerView.isHidden = true
             }
         })
@@ -144,38 +143,6 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     // MARK: internal function
     
-    func selectEmotion(_ emotion: Emotion) {
-        switch emotion {
-        case .fun:
-            self.topContainerView.backgroundColor = Gen.Colors.funYellow.color
-            self.emotionMainImageView.image = Gen.Images.coverFun.image
-            self.miniEmotionImageView.image = Gen.Images.typeFunMini.image
-            self.emotionLabel.text = "재미있는"
-        case .impressive:
-            self.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-            self.emotionMainImageView.image = Gen.Images.coverImpressive.image
-            self.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
-            self.emotionLabel.text = "인상적인"
-        case .pleasant:
-            self.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-            self.emotionMainImageView.image = Gen.Images.coverPleasant.image
-            self.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
-            self.emotionLabel.text = "기분좋은"
-        case .splendid:
-            self.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-            self.emotionMainImageView.image = Gen.Images.coverSplendid.image
-            self.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
-            self.emotionLabel.text = "아름다운"
-        case .wonderful:
-            self.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
-            self.emotionMainImageView.image = Gen.Images.coverWonderful.image
-            self.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
-            self.emotionLabel.text = "경이로운"
-        }
-        self.addPhotoImgView.isHidden = false
-        self.addPhotoBtn.isHidden = false
-    }
-    
     func setRecordTitle(_ title: String) {
         DispatchQueue.main.async { [weak self] in
             self?.doWriteLabel.text = title
@@ -190,18 +157,28 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         case .fun:
             self.coverImageView.image = Gen.Images.coverFun.image
             self.topContainerView.backgroundColor = Gen.Colors.funYellow.color
+            self.miniEmotionImageView.image = Gen.Images.typeFunMini.image
+            self.emotionLabel.text = "재미있는"
         case .impressive:
             self.coverImageView.image = Gen.Images.coverImpressive.image
             self.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
+            self.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
+            self.emotionLabel.text = "인상적인"
         case .pleasant:
             self.coverImageView.image = Gen.Images.coverPleasant.image
             self.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
+            self.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
+            self.emotionLabel.text = "기분좋은"
         case .splendid:
             self.coverImageView.image = Gen.Images.coverSplendid.image
             self.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
+            self.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
+            self.emotionLabel.text = "아름다운"
         case .wonderful:
             self.coverImageView.image = Gen.Images.coverWonderful.image
             self.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
+            self.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
+            self.emotionLabel.text = "경이로운"
         }
     }
     

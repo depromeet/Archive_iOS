@@ -42,7 +42,6 @@ class RecordViewController: UIViewController, StoryboardView {
         makeSubViewControllers()
         setPageViewController()
         
-        // 이하 테스트코드 todo 수정
         guard let imageRecordViewController = self.imageRecordViewController else { return }
         imageRecordViewController.delegate = self
         guard let contentsRecordViewController = self.contentsRecordViewController else { return }

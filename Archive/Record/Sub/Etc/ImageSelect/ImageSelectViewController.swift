@@ -167,6 +167,7 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         cropViewController.cancelButtonTitle = "취소"
         cropViewController.cancelButtonColor = Gen.Colors.white.color
         cropViewController.aspectRatioLockEnabled = true
+        cropViewController.resetButtonHidden = true
         cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
         cropViewController.aspectRatioPickerButtonHidden = true
         let emotionCoverImage = self.getEmotionCoverImage(self.reactor?.emotion ?? .fun)
@@ -175,8 +176,8 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         emotionCoverImageView.image = emotionCoverImage
         cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
         emotionCoverImageView.snp.makeConstraints { (make) in
-//            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(24)
-            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(0)
+            let offset: CGFloat = UIDevice.current.hasNotch ? 24 : 0
+            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(offset)
             make.leading.equalTo(cropViewController.cropView.snp.leading).offset(12)
             make.trailing.equalTo(cropViewController.cropView.snp.trailing).offset(-12)
             make.height.equalTo(UIScreen.main.bounds.width - 24)
