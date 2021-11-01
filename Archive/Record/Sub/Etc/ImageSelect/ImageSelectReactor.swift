@@ -99,12 +99,18 @@ class ImageSelectReactor: Reactor, Stepper {
     
     private func selectedAssetToImage(comletion: @escaping ([UIImage]) -> Void) {
         let selectedItems = self.currentState.imageInfos
-        var assets: [PHAsset] = [PHAsset]()
         let allKeys = selectedItems.keys
+        var infos: [PhotoFromAlbumModel] = [PhotoFromAlbumModel]()
         for key in allKeys {
-            if let item = selectedItems[key], let asset = item.asset {
-                assets.append(asset)
+            if let item = selectedItems[key] {
+                infos.append(item)
             }
+        }
+        infos.sort(by: { $0.sequenceNum < $1.sequenceNum })
+        var assets: [PHAsset] = [PHAsset]()
+        for item in infos {
+            guard let asset = item.asset else { continue }
+            assets.append(asset)
         }
         phAssetToImages(assets, ImageSize: CGSize(width: 300, height: 300), completion: comletion)
     }

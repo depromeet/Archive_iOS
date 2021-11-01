@@ -104,7 +104,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         reactor.state
             .map { $0.emotion }
             .asDriver(onErrorJustReturn: nil)
-            .compactMap{ $0 }
+            .compactMap { $0 }
             .drive(onNext: { [weak self] emotion in
                 self?.addPhotoImgView.isHidden = false
                 self?.addPhotoBtn.isHidden = false
