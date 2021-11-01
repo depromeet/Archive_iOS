@@ -71,7 +71,7 @@ class RecordViewController: UIViewController, StoryboardView {
             .drive(onNext: { [weak self] emotion in
                 guard let emotion = emotion else { return }
                 self?.imageRecordViewController?.showTopView()
-                self?.imageRecordViewController?.setUICurrentEmotion(emotion)
+                self?.imageRecordViewController?.reactor?.action.onNext(.setEmotion(emotion))
             })
             .disposed(by: self.disposeBag)
         

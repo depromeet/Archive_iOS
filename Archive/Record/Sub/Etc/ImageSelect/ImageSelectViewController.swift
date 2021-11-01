@@ -146,15 +146,15 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
         var returnImage: UIImage = UIImage()
         switch emotion {
         case .fun:
-            returnImage = Gen.Images.typeWonderful.image
+            returnImage = Gen.Images.dimFun.image
         case .impressive:
-            returnImage = Gen.Images.typeWonderful.image
+            returnImage = Gen.Images.dimImpressive.image
         case .pleasant:
-            returnImage = Gen.Images.typeWonderful.image
+            returnImage = Gen.Images.dimPleasant.image
         case .splendid:
-            returnImage = Gen.Images.typeWonderful.image
+            returnImage = Gen.Images.dimSplendid.image
         case .wonderful:
-            returnImage = Gen.Images.typeWonderful.image
+            returnImage = Gen.Images.dimWonderful.image
         }
         return returnImage
     }

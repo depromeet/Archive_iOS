@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="331" height="322"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mew-zh-IbA">
-                                <rect key="frame" x="32" y="0.0" width="267" height="322"/>
+                                <rect key="frame" x="0.0" y="0.0" width="331" height="322"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Mew-zh-IbA" firstAttribute="leading" secondItem="g9h-cy-CN1" secondAttribute="leading" constant="32" id="0F7-Uq-9w8"/>
-                            <constraint firstAttribute="trailing" secondItem="Mew-zh-IbA" secondAttribute="trailing" constant="32" id="0GM-vH-0oM"/>
+                            <constraint firstItem="Mew-zh-IbA" firstAttribute="leading" secondItem="g9h-cy-CN1" secondAttribute="leading" id="0F7-Uq-9w8"/>
+                            <constraint firstAttribute="trailing" secondItem="Mew-zh-IbA" secondAttribute="trailing" id="0GM-vH-0oM"/>
                             <constraint firstItem="Mew-zh-IbA" firstAttribute="top" secondItem="g9h-cy-CN1" secondAttribute="top" id="4cK-4g-X3x"/>
                             <constraint firstAttribute="bottom" secondItem="Mew-zh-IbA" secondAttribute="bottom" id="ONX-Uc-Ffr"/>
                         </constraints>

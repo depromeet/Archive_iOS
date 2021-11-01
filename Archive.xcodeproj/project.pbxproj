@@ -97,6 +97,8 @@
 		784D1E3527088EC8004B1A23 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E3427088EC7004B1A23 /* Assets.swift */; };
 		78557A2A272ECFC800C5BD62 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */; };
 		78557A2B272ECFD300C5BD62 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */; };
+		785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
+		785F5E44273018EB00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
 		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */; };
@@ -222,6 +224,7 @@
 		784D1E2027088BC0004B1A23 /* HWFlipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWFlipView.swift; sourceTree = "<group>"; };
 		784D1E3427088EC7004B1A23 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -547,6 +550,7 @@
 				78C4B33A27244C000006EBAD /* UIViewExtension.swift */,
 				78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */,
 				78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */,
+				785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -969,6 +973,7 @@
 				78B872E22726C6D4009EFB54 /* EmotionDefine.swift in Sources */,
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				4FD4F1DD272F870D00BDB4BB /* RecordCardCollectionViewCell.swift in Sources */,
+				785F5E44273018EB00ACC7BA /* UIImageViewExtension.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
 				78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */,
@@ -1040,6 +1045,7 @@
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				78B872E12726C6D1009EFB54 /* EmotionDefine.swift in Sources */,
 				4FD4F1D4272F869A00BDB4BB /* RecordCardCollectionViewCell.swift in Sources */,
+				785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
