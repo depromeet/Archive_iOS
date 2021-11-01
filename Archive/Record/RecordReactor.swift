@@ -10,6 +10,7 @@ import RxRelay
 import RxFlow
 import ReactorKit
 import Photos
+import UIKit
 
 class RecordReactor: Reactor, Stepper {
     // MARK: private property
@@ -42,10 +43,14 @@ class RecordReactor: Reactor, Stepper {
     
     enum Mutation {
         case setEmotion(Emotion)
+        case setThumbnailImage(UIImage)
+        case setImages([UIImage])
     }
     
     struct State {
         var currentEmotion: Emotion?
+        var thumbnailImage: UIImage?
+        var images: [UIImage]?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -66,10 +71,10 @@ class RecordReactor: Reactor, Stepper {
             return .empty()
         case .setImages(let images):
             self.model.images = images
-            return .empty()
+            return .just(.setImages(images))
         case .setThumbnailImage(let image):
             self.model.thumbnailImage = image
-            return .empty()
+            return .just(.setThumbnailImage(image))
         }
     }
     
@@ -78,6 +83,10 @@ class RecordReactor: Reactor, Stepper {
         switch mutation {
         case .setEmotion(let emotion):
             newState.currentEmotion = emotion
+        case .setThumbnailImage(let image):
+            newState.thumbnailImage = image
+        case .setImages(let images):
+            newState.images = images
         }
         return newState
     }

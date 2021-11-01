@@ -8,6 +8,7 @@ def pods
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxFlow'
+  pod 'RxDataSources', '~> 5.0'
   pod 'ReactorKit'
   pod 'Moya'
   pod 'SwiftGen'

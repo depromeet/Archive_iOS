@@ -9,6 +9,7 @@ import UIKit
 import ReactorKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 protocol ImageRecordViewControllerProtocol: AnyObject {
     func setUICurrentEmotion(_ emotion: Emotion)
@@ -16,6 +17,7 @@ protocol ImageRecordViewControllerProtocol: AnyObject {
     func hideTopView()
     func showTopView()
     
+    var reactor: ImageRecordReactor? { get }
     var delegate: ImageRecordViewControllerDelegate? { get set }
 }
 
@@ -26,6 +28,11 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
 }
 
 class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol {
+    
+    enum CellModel {
+        case cover(UIImage)
+        case commonImage(UIImage)
+    }
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -95,16 +102,39 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.images }
-        .asDriver(onErrorJustReturn: nil)
-        .drive(onNext: { [weak self] images in
-            guard let images = images else {
-                self?.defaultImageContainerView.isHidden = false
-                return
-            }
-            self?.defaultImageContainerView.isHidden = true
-        })
-        .disposed(by: self.disposeBag)
+        Observable.zip(reactor.state.map { $0.thumbnailImage }, reactor.state.map { $0.images }.map { $0 })
+            .asDriver(onErrorJustReturn: (nil, nil))
+            .drive(onNext: {[weak self] zippedImages in
+                self?.imagesCollectionView.delegate = nil
+                self?.imagesCollectionView.dataSource = nil
+                guard let cardImage = zippedImages.0 else { return }
+                guard let images = zippedImages.1 else { return }
+                self?.defaultImageContainerView.isHidden = true
+                self?.imagesCollectionView.isHidden = false
+                var imageCellArr: [CellModel] = []
+                for imageItem in images {
+                    imageCellArr.append(CellModel.commonImage(imageItem))
+                }
+                let sections = Observable.just([
+                    SectionModel(model: "card", items: [
+                        CellModel.cover(cardImage)
+                    ]),
+                    SectionModel(model: "image", items: imageCellArr)
+                ])
+                let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
+                    switch item {
+                    case .cover(let image):
+                        return self!.makeCardCell(with: image, from: collectionView, indexPath: indexPath)
+                    case .commonImage(let image):
+                        return self!.makeImageCell(with: image, from: collectionView, indexPath: indexPath)
+                    }
+                })
+                sections
+                    .bind(to: self!.imagesCollectionView.rx.items(dataSource: dataSource))
+                    .disposed(by: self!.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function
@@ -138,7 +168,30 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
         self.addPhotoImgView.isHidden = true
         self.addPhotoBtn.isHidden = true
+        self.imagesCollectionView.showsHorizontalScrollIndicator = false
         self.imagesCollectionView.isHidden = true
+        self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width - 64)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.imagesCollectionView.collectionViewLayout = layout
+    }
+    
+    private func makeCardCell(with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordCardCollectionViewCell.identifier, for: indexPath) as? RecordCardCollectionViewCell else { return UICollectionViewCell() }
+        cell.mainImageView.image = element
+        return cell
+    }
+    
+    private func makeImageCell(with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.mainImageView.image = element
+        return cell
     }
     
     // MARK: internal function

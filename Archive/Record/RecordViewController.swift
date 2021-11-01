@@ -12,7 +12,6 @@ import RxCocoa
 import RxFlow
 import SnapKit
 
-
 class RecordViewController: UIViewController, StoryboardView {
 
     // MARK: IBOutlet
@@ -66,14 +65,15 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordReactor) {
-        reactor.state.map { $0.currentEmotion }
-        .asDriver(onErrorJustReturn: nil)
-        .drive(onNext: { [weak self] emotion in
-            guard let emotion = emotion else { return }
-            self?.imageRecordViewController?.showTopView()
-            self?.imageRecordViewController?.setUICurrentEmotion(emotion)
-        })
-        .disposed(by: self.disposeBag)
+        reactor.state
+            .map { $0.currentEmotion }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: { [weak self] emotion in
+                guard let emotion = emotion else { return }
+                self?.imageRecordViewController?.showTopView()
+                self?.imageRecordViewController?.setUICurrentEmotion(emotion)
+            })
+            .disposed(by: self.disposeBag)
         
         reactor.moveToConfig
             .asDriver(onErrorJustReturn: ())
@@ -91,6 +91,22 @@ class RecordViewController: UIViewController, StoryboardView {
                 CommonAlertView.shared.show(message: errorMsg, subMessage: nil, btnText: "확인", hapticType: .error, confirmHandler: {
                     CommonAlertView.shared.hide(nil)
                 })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.thumbnailImage }
+            .subscribe(onNext: { [weak self] image in
+                guard let image = image else { return }
+                self?.imageRecordViewController?.reactor?.action.onNext(.setThumbnailImage(image))
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.images }
+            .subscribe(onNext: { [weak self] images in
+                guard let images = images else { return }
+                self?.imageRecordViewController?.reactor?.action.onNext(.setImages(images))
             })
             .disposed(by: self.disposeBag)
         

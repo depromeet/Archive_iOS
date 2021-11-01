@@ -476,7 +476,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NEe-Ad-o7U">
-                                                                <rect key="frame" x="32" y="112" width="350" height="350"/>
+                                                                <rect key="frame" x="0.0" y="112" width="414" height="350"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OaA-fc-leo">
                                                                     <size key="itemSize" width="128" height="128"/>
@@ -540,11 +540,10 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="NEe-Ad-o7U" firstAttribute="top" secondItem="AeB-3c-qve" secondAttribute="top" id="4vN-25-SOz"/>
-                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="trailing" secondItem="AeB-3c-qve" secondAttribute="trailing" id="CVE-Uf-C5y"/>
                                                             <constraint firstItem="AeB-3c-qve" firstAttribute="top" secondItem="2sJ-3I-4l5" secondAttribute="bottom" id="HB6-MD-4fi"/>
                                                             <constraint firstAttribute="trailing" secondItem="AeB-3c-qve" secondAttribute="trailing" constant="32" id="IJD-pu-dHF"/>
                                                             <constraint firstItem="NEe-Ad-o7U" firstAttribute="bottom" secondItem="AeB-3c-qve" secondAttribute="bottom" id="LjF-ww-6L9"/>
-                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="leading" secondItem="AeB-3c-qve" secondAttribute="leading" id="Pjw-q1-eWG"/>
+                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="Pxz-U9-LSt"/>
                                                             <constraint firstItem="Ofn-Vv-fd9" firstAttribute="centerX" secondItem="64d-oj-4FK" secondAttribute="centerX" id="SwW-Zw-9aF"/>
                                                             <constraint firstAttribute="trailing" secondItem="2sJ-3I-4l5" secondAttribute="trailing" id="T2Z-zQ-blv"/>
                                                             <constraint firstItem="AeB-3c-qve" firstAttribute="centerY" secondItem="64d-oj-4FK" secondAttribute="centerY" id="cO0-T7-ex6"/>
@@ -552,6 +551,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="Ofn-Vv-fd9" secondAttribute="bottom" id="gkG-CL-kVa"/>
                                                             <constraint firstAttribute="width" secondItem="64d-oj-4FK" secondAttribute="height" multiplier="375:520" id="jYG-Mq-9NP"/>
                                                             <constraint firstItem="2sJ-3I-4l5" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="kc0-cY-wmA"/>
+                                                            <constraint firstAttribute="trailing" secondItem="NEe-Ad-o7U" secondAttribute="trailing" id="lbf-r4-a9B"/>
                                                             <constraint firstItem="AeB-3c-qve" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" constant="32" id="mZe-rs-DD2"/>
                                                         </constraints>
                                                     </view>
