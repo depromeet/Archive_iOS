@@ -33,7 +33,7 @@ class RecordReactor: Reactor, Stepper {
     }
     
     enum Action {
-        case moveToSelectEmotion
+        case moveToSelectEmotion(Emotion?)
         case setEmotion(Emotion)
         case setRecordInfo(ContentsRecordModelData)
         case moveToPhotoSelet
@@ -55,8 +55,8 @@ class RecordReactor: Reactor, Stepper {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .moveToSelectEmotion:
-            steps.accept(ArchiveStep.recordEmotionEditIsRequired)
+        case .moveToSelectEmotion(let emotion):
+            steps.accept(ArchiveStep.recordEmotionEditIsRequired(emotion))
             return .empty()
         case .setEmotion(let emotion):
             self.model.emotion = emotion

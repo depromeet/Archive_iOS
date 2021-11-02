@@ -188,9 +188,9 @@ extension RecordViewController: UIPageViewControllerDataSource, UIPageViewContro
 
 
 extension RecordViewController: ImageRecordViewControllerDelegate {
-    func clickedEmotionSelectArea() {
+    func clickedEmotionSelectArea(currentEmotion: Emotion?) {
         self.imageRecordViewController?.hideTopView()
-        self.reactor?.action.onNext(.moveToSelectEmotion)
+        self.reactor?.action.onNext(.moveToSelectEmotion(currentEmotion))
     }
 
     func clickedPhotoSeleteArea() {

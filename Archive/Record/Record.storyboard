@@ -362,6 +362,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="baseContainerView" destination="mYE-Rz-8gH" id="wYJ-xI-qJH"/>
                         <outlet property="bottomPaddingView" destination="9Ac-QQ-dGf" id="MBH-2Z-f30"/>
                         <outlet property="bottomView" destination="aff-zh-lEF" id="uQF-sA-jRd"/>
                         <outlet property="completeBtn" destination="w0N-1t-tdR" id="OPF-4U-RsD"/>

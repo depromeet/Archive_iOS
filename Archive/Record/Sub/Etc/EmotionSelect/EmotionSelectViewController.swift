@@ -13,6 +13,7 @@ import RxCocoa
 class EmotionSelectViewController: UIViewController, StoryboardView {
     
     // MARK: IBOutlet
+    @IBOutlet weak var baseContainerView: UIView!
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var bottomPaddingView: UIView!
     @IBOutlet weak var mainContentsView: UIView!
@@ -177,6 +178,10 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     }
     
     // MARK: internal function
+    
+    func fadeInAnimation() {
+        self.baseContainerView.fadeIn(duration: 0.25, completeHandler: nil)
+    }
     
     // MARK: action
 

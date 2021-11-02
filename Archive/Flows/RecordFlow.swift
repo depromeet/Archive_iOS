@@ -34,8 +34,8 @@ class RecordFlow: Flow {
         switch step {
         case .recordIsRequired:
             return navigationToRecordScreen()
-        case .recordEmotionEditIsRequired:
-            return navigationToEditEmotion()
+        case .recordEmotionEditIsRequired(let emotion):
+            return navigationToEditEmotion(currentEmotion: emotion)
         case .recordEmotionEditIsComplete(let emotion):
             dismissEditEmotion(emotion: emotion)
             return .none
@@ -64,16 +64,18 @@ class RecordFlow: Flow {
                                                  withNextStepper: reactor))
     }
     
-    private func navigationToEditEmotion() -> FlowContributors {
+    private func navigationToEditEmotion(currentEmotion: Emotion?) -> FlowContributors {
         let model: EmotionSelectModel = EmotionSelectModel()
-        let reactor = EmotionSelectReactor(model: model)
+        let reactor = EmotionSelectReactor(model: model, currentEmotion: currentEmotion)
         let emotionSelectViewController: EmotionSelectViewController = recordStoryBoard.instantiateViewController(identifier: EmotionSelectViewController.identifier) { corder in
             return EmotionSelectViewController(coder: corder, reactor: reactor)
         }
         emotionSelectViewController.title = ""
         emotionSelectViewController.modalPresentationStyle = .overFullScreen
         self.editEmotionViewController = emotionSelectViewController
-        rootViewController.present(emotionSelectViewController, animated: false, completion: nil)
+        rootViewController.present(emotionSelectViewController, animated: false, completion: {
+            emotionSelectViewController.fadeInAnimation()
+        })
         return .one(flowContributor: .contribute(withNextPresentable: emotionSelectViewController,
                                                  withNextStepper: reactor))
     }

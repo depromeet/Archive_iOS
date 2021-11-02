@@ -21,7 +21,7 @@ protocol ImageRecordViewControllerProtocol: AnyObject {
 }
 
 protocol ImageRecordViewControllerDelegate: AnyObject {
-    func clickedEmotionSelectArea()
+    func clickedEmotionSelectArea(currentEmotion: Emotion?)
     func clickedPhotoSeleteArea()
     func clickedContentsArea()
 }
@@ -91,7 +91,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
         self.emotionSelectBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.delegate?.clickedEmotionSelectArea()
+                self?.delegate?.clickedEmotionSelectArea(currentEmotion: reactor.currentState.emotion)
             })
             .disposed(by: self.disposeBag)
         
