@@ -202,6 +202,10 @@ extension RecordViewController: ImageRecordViewControllerDelegate {
         self.contentsRecordViewController?.setEmotion(self.reactor?.currentState.currentEmotion)
         removePageViewControllerSwipeGesture()
     }
+    
+    func addMorePhoto() {
+        self.reactor?.action.onNext(.moveToPhotoSelet)
+    }
 }
 
 extension RecordViewController: ContentsRecordViewControllerDelegate {

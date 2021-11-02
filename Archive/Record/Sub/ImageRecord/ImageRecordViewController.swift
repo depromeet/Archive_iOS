@@ -24,6 +24,7 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
     func clickedEmotionSelectArea(currentEmotion: Emotion?)
     func clickedPhotoSeleteArea()
     func clickedContentsArea()
+    func addMorePhoto()
 }
 
 class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol {
@@ -172,6 +173,13 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                         return self.makeAddImageCell(from: collectionView, indexPath: indexPath)
                     }
                 })
+                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+                layout.minimumLineSpacing = 0
+                layout.minimumInteritemSpacing = 0
+                layout.scrollDirection = .horizontal
+                layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.imagesCollectionView.bounds.height)
+                layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                self.imagesCollectionView.collectionViewLayout = layout
                 sections
                     .bind(to: self.imagesCollectionView.rx.items(dataSource: dataSource))
                     .disposed(by: self.disposeBag)
@@ -194,7 +202,9 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             .asDriver()
             .compactMap { $0 }
             .drive(onNext: { [weak self] selectedItem in
-                print("selected: \(selectedItem)")
+                if selectedItem.section == 2 {
+                    self?.delegate?.addMorePhoto()
+                }
             })
             .disposed(by: self.disposeBag)
         
@@ -236,13 +246,6 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
         self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
         self.imagesCollectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.imagesCollectionView.bounds.height)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.imagesCollectionView.collectionViewLayout = layout
     }
     
     private func makeCardCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {

@@ -50,6 +50,10 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     
     // MARK: lifeCycle
     
+    deinit {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()

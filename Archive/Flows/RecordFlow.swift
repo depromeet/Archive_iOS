@@ -101,7 +101,9 @@ class RecordFlow: Flow {
     }
     
     private func dismissImageSelect() {
-        self.imageSelectViewControllerNavi?.dismiss(animated: true, completion: nil)
+        self.imageSelectViewControllerNavi?.dismiss(animated: true, completion: {
+            self.imageSelectViewControllerNavi?.viewControllers = []
+        })
     }
     
 }

@@ -31,6 +31,10 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
     
     // MARK: lifeCycle
     
+    deinit {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
