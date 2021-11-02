@@ -420,6 +420,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64d-oj-4FK">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="574"/>
                                                         <subviews>
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NEe-Ad-o7U">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="574"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OaA-fc-leo">
+                                                                    <size key="itemSize" width="128" height="128"/>
+                                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                </collectionViewFlowLayout>
+                                                            </collectionView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sJ-3I-4l5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="112"/>
                                                                 <subviews>
@@ -475,16 +485,6 @@
                                                                     <constraint firstItem="I2l-D5-4r6" firstAttribute="centerX" secondItem="2sJ-3I-4l5" secondAttribute="centerX" id="e9H-gA-Bz2"/>
                                                                 </constraints>
                                                             </view>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NEe-Ad-o7U">
-                                                                <rect key="frame" x="0.0" y="112" width="414" height="350"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OaA-fc-leo">
-                                                                    <size key="itemSize" width="128" height="128"/>
-                                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                </collectionViewFlowLayout>
-                                                            </collectionView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeB-3c-qve">
                                                                 <rect key="frame" x="32" y="112" width="350" height="350"/>
                                                                 <subviews>
@@ -539,10 +539,9 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="top" secondItem="AeB-3c-qve" secondAttribute="top" id="4vN-25-SOz"/>
+                                                            <constraint firstAttribute="bottom" secondItem="NEe-Ad-o7U" secondAttribute="bottom" id="DcW-7n-edT"/>
                                                             <constraint firstItem="AeB-3c-qve" firstAttribute="top" secondItem="2sJ-3I-4l5" secondAttribute="bottom" id="HB6-MD-4fi"/>
                                                             <constraint firstAttribute="trailing" secondItem="AeB-3c-qve" secondAttribute="trailing" constant="32" id="IJD-pu-dHF"/>
-                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="bottom" secondItem="AeB-3c-qve" secondAttribute="bottom" id="LjF-ww-6L9"/>
                                                             <constraint firstItem="NEe-Ad-o7U" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="Pxz-U9-LSt"/>
                                                             <constraint firstItem="Ofn-Vv-fd9" firstAttribute="centerX" secondItem="64d-oj-4FK" secondAttribute="centerX" id="SwW-Zw-9aF"/>
                                                             <constraint firstAttribute="trailing" secondItem="2sJ-3I-4l5" secondAttribute="trailing" id="T2Z-zQ-blv"/>
@@ -553,6 +552,7 @@
                                                             <constraint firstItem="2sJ-3I-4l5" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="kc0-cY-wmA"/>
                                                             <constraint firstAttribute="trailing" secondItem="NEe-Ad-o7U" secondAttribute="trailing" id="lbf-r4-a9B"/>
                                                             <constraint firstItem="AeB-3c-qve" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" constant="32" id="mZe-rs-DD2"/>
+                                                            <constraint firstItem="NEe-Ad-o7U" firstAttribute="top" secondItem="64d-oj-4FK" secondAttribute="top" id="x7m-w8-E1r"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZS7-ED-tL8">
@@ -693,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM7-P8-eQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-767" y="-617"/>
+            <point key="canvasLocation" x="-768.11594202898561" y="-617.41071428571422"/>
         </scene>
         <!--Contents Record View Controller-->
         <scene sceneID="mA9-bM-xKg">

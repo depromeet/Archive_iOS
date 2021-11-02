@@ -22,22 +22,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="318" height="250"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z9m-j8-jsx">
-                                <rect key="frame" x="32" y="0.0" width="254" height="250"/>
+                                <rect key="frame" x="32" y="-2" width="254" height="254"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Z9m-j8-jsx" secondAttribute="height" multiplier="1:1" id="Mch-VT-eV6"/>
+                                </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o6M-kt-dwg">
-                                <rect key="frame" x="32" y="0.0" width="254" height="250"/>
+                                <rect key="frame" x="32" y="-2" width="254" height="254"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Z9m-j8-jsx" firstAttribute="top" secondItem="va8-fy-B8k" secondAttribute="top" id="5pb-sz-il9"/>
-                            <constraint firstItem="o6M-kt-dwg" firstAttribute="top" secondItem="va8-fy-B8k" secondAttribute="top" id="8A9-Cj-APi"/>
-                            <constraint firstAttribute="bottom" secondItem="Z9m-j8-jsx" secondAttribute="bottom" id="8Yw-QB-50i"/>
                             <constraint firstItem="o6M-kt-dwg" firstAttribute="leading" secondItem="va8-fy-B8k" secondAttribute="leading" constant="32" id="Bo7-kx-FPd"/>
+                            <constraint firstItem="o6M-kt-dwg" firstAttribute="top" secondItem="Z9m-j8-jsx" secondAttribute="top" id="D2C-Ga-Mh9"/>
                             <constraint firstAttribute="trailing" secondItem="o6M-kt-dwg" secondAttribute="trailing" constant="32" id="Ds9-hI-yTw"/>
+                            <constraint firstItem="o6M-kt-dwg" firstAttribute="bottom" secondItem="Z9m-j8-jsx" secondAttribute="bottom" id="L9h-gh-ZKg"/>
+                            <constraint firstItem="Z9m-j8-jsx" firstAttribute="centerY" secondItem="va8-fy-B8k" secondAttribute="centerY" id="b3z-vS-uGE"/>
                             <constraint firstAttribute="trailing" secondItem="Z9m-j8-jsx" secondAttribute="trailing" constant="32" id="oED-bC-epA"/>
                             <constraint firstItem="Z9m-j8-jsx" firstAttribute="leading" secondItem="va8-fy-B8k" secondAttribute="leading" constant="32" id="pWC-XR-Hm8"/>
-                            <constraint firstAttribute="bottom" secondItem="o6M-kt-dwg" secondAttribute="bottom" id="txF-Ui-bYY"/>
                         </constraints>
                     </view>
                 </subviews>

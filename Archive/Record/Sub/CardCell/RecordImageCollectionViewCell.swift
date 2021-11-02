@@ -37,7 +37,7 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     private func initUI() {
         self.mainContainerView.backgroundColor = .clear
-        self.mainImageView.contentMode = .scaleToFill
+//        self.mainImageView.contentMode = 
     }
     
     private func setNewEmotion(_ emotion: Emotion) {

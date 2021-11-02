@@ -148,6 +148,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 guard let images = zippedImages.1 else { return }
                 self?.defaultImageContainerView.isHidden = true
                 self?.imagesCollectionView.isHidden = false
+                self?.topContentsContainerView.backgroundColor = .clear
                 var imageCellArr: [CellModel] = []
                 for imageItem in images {
                     imageCellArr.append(CellModel.commonImage(imageItem))
@@ -215,7 +216,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width - 64)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.imagesCollectionView.bounds.height)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.imagesCollectionView.collectionViewLayout = layout
     }
