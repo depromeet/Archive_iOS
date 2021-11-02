@@ -31,6 +31,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     enum CellModel {
         case cover(UIImage)
         case commonImage(UIImage)
+        case addImage(Void)
     }
     
     // MARK: IBOutlet
@@ -157,7 +158,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                     SectionModel(model: "card", items: [
                         CellModel.cover(cardImage)
                     ]),
-                    SectionModel(model: "image", items: imageCellArr)
+                    SectionModel(model: "image", items: imageCellArr),
+                    SectionModel(model: "addImage", items: [CellModel.addImage(())])
                 ])
                 guard let self = self else { return }
                 let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
@@ -166,11 +168,33 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                         return self.makeCardCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
                     case .commonImage(let image):
                         return self.makeImageCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
+                    case .addImage:
+                        return self.makeAddImageCell(from: collectionView, indexPath: indexPath)
                     }
                 })
                 sections
                     .bind(to: self.imagesCollectionView.rx.items(dataSource: dataSource))
                     .disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] item in
+                if item.at.section == 0 {
+                    self?.emotionSelectView.isHidden = false
+                } else {
+                    self?.emotionSelectView.isHidden = true
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.itemSelected
+            .asDriver()
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] selectedItem in
+                print("selected: \(selectedItem)")
             })
             .disposed(by: self.disposeBag)
         
@@ -211,8 +235,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.imagesCollectionView.isHidden = true
         self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
         self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
@@ -232,6 +256,11 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
         cell.mainImageView.image = element
         cell.emotion = emotion
+        return cell
+    }
+    
+    private func makeAddImageCell(from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordAddImageCollectionViewCell.identifier, for: indexPath) as? RecordAddImageCollectionViewCell else { return UICollectionViewCell() }
         return cell
     }
     

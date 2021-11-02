@@ -90,6 +90,10 @@
 		782FDF54272CFC1C004D1B6E /* PhotoFromAlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */; };
 		782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
 		782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
+		784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */; };
+		784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */; };
+		784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */; };
+		784377B1273173B60005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */; };
 		78458D2A272C18BB00392B45 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
@@ -219,6 +223,8 @@
 		782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumModel.swift; sourceTree = "<group>"; };
 		782FDF4A272CFB6E004D1B6E /* HWPhotoListFromAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPhotoListFromAlbumView.swift; sourceTree = "<group>"; };
 		782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorable.swift; sourceTree = "<group>"; };
+		784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAddImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordAddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		78458D29272C18BB00392B45 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -414,6 +420,8 @@
 				4FD4F1D3272F869A00BDB4BB /* RecordCardCollectionViewCell.xib */,
 				4FD4F1D8272F86B800BDB4BB /* RecordImageCollectionViewCell.swift */,
 				4FD4F1D9272F86B800BDB4BB /* RecordImageCollectionViewCell.xib */,
+				784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */,
+				784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */,
 			);
 			path = CardCell;
 			sourceTree = "<group>";
@@ -766,6 +774,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */,
+				784377B1273173B60005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				44922DC12719CE9100A5EA2B /* Images.xcassets in Resources */,
 				78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */,
 				78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */,
@@ -787,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */,
+				784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */,
 				784D1DD827084869004B1A23 /* swiftgen.yml in Resources */,
 				78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */,
@@ -934,6 +944,7 @@
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
 				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33627243C930006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
+				784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
 				782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */,
 				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
@@ -1007,6 +1018,7 @@
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
+				784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */,
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
