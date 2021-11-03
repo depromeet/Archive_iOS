@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIImageColors
 
 class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
@@ -16,6 +17,16 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     // MARK: private property
     
     // MARK: property
+    
+    var imageInfo: ImageInfo? {
+        didSet {
+            guard let info = self.imageInfo else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.mainImageView.image = info.image
+                self?.mainContainerView.backgroundColor = info.backgroundColor
+            }
+        }
+    }
     
     var emotion: Emotion? {
         didSet {
@@ -41,18 +52,19 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     }
     
     private func setNewEmotion(_ emotion: Emotion) {
-        switch emotion {
-        case .fun:
-            self.mainContainerView.backgroundColor = Gen.Colors.funYellow.color
-        case .impressive:
-            self.mainContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-        case .pleasant:
-            self.mainContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-        case .splendid:
-            self.mainContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-        case .wonderful:
-            self.mainContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
-        }
+//        switch emotion {
+//        case .fun:
+//            self.mainContainerView.backgroundColor = Gen.Colors.funYellow.color
+//        case .impressive:
+//            self.mainContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
+//        case .pleasant:
+//            self.mainContainerView.backgroundColor = Gen.Colors.pleasantRed.color
+//        case .splendid:
+//            self.mainContainerView.backgroundColor = Gen.Colors.splendidBlue.color
+//        case .wonderful:
+//            self.mainContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
+//        }
+//        self.mainContainerView.backgroundColor = self.mainImageView.image?.getColors()?.background
     }
     
     // MARK: func

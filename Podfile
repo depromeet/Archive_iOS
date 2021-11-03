@@ -17,6 +17,7 @@ def pods
   pod 'SnapKit', '~> 5.0.0'
   pod 'GrowingTextView', '0.7.2'
   pod 'CropViewController'
+  pod 'UIImageColors'
 end
 
 def pods_debug

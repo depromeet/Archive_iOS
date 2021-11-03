@@ -27,11 +27,11 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
     func addMorePhoto()
 }
 
-class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol {
+class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol, ActivityIndicatorable {
     
     enum CellModel {
         case cover(UIImage)
-        case commonImage(UIImage)
+        case commonImage(ImageInfo)
         case addImage(Void)
     }
     
@@ -141,7 +141,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             .disposed(by: self.disposeBag)
             
         
-        Observable.zip(reactor.state.map { $0.thumbnailImage }, reactor.state.map { $0.images }.map { $0 })
+        Observable.zip(reactor.state.map { $0.thumbnailImage }, reactor.state.map { $0.imageInfos }.map { $0 })
             .asDriver(onErrorJustReturn: (nil, nil))
             .drive(onNext: {[weak self] zippedImages in
                 self?.imagesCollectionView.delegate = nil
@@ -167,8 +167,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                     switch item {
                     case .cover(let image):
                         return self.makeCardCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
-                    case .commonImage(let image):
-                        return self.makeImageCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
+                    case .commonImage(let imageInfo):
+                        return self.makeImageCell(emotion: reactor.currentState.emotion, with: imageInfo, from: collectionView, indexPath: indexPath)
                     case .addImage:
                         return self.makeAddImageCell(from: collectionView, indexPath: indexPath)
                     }
@@ -207,6 +207,29 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 }
             })
             .disposed(by: self.disposeBag)
+        
+//        reactor.isLoading
+//            .asDriver(onErrorJustReturn: false)
+//            .drive(onNext: { [weak self] isLoading in
+//                if isLoading {
+//                    self?.startIndicatorAnimating()
+//                } else {
+//                    self?.stopIndicatorAnimating()
+//                }
+//            })
+//            .disposed(by: self.disposeBag)
+        
+        reactor.isLoading
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isLoading in
+                if isLoading {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
+                    
         
     }
     
@@ -255,9 +278,9 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         return cell
     }
     
-    private func makeImageCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeImageCell(emotion: Emotion?, with element: ImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
-        cell.mainImageView.image = element
+        cell.imageInfo = element
         cell.emotion = emotion
         return cell
     }
