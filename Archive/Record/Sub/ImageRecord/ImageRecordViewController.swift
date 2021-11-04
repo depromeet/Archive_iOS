@@ -9,22 +9,31 @@ import UIKit
 import ReactorKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 protocol ImageRecordViewControllerProtocol: AnyObject {
-    func setUICurrentEmotion(_ emotion: Emotion)
+    func setRecordTitle(_ title: String)
     func hideTopView()
     func showTopView()
     
+    var reactor: ImageRecordReactor? { get }
     var delegate: ImageRecordViewControllerDelegate? { get set }
 }
 
 protocol ImageRecordViewControllerDelegate: AnyObject {
-    func clickedEmotionSelectArea()
+    func clickedEmotionSelectArea(currentEmotion: Emotion?)
     func clickedPhotoSeleteArea()
     func clickedContentsArea()
+    func addMorePhoto()
 }
 
-class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol { // 뷰컨만 있어도 될듯
+class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol, ActivityIndicatorable {
+    
+    enum CellModel {
+        case cover(UIImage)
+        case commonImage(ImageInfo)
+        case addImage(Void)
+    }
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
@@ -84,7 +93,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
         self.emotionSelectBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.delegate?.clickedEmotionSelectArea()
+                self?.delegate?.clickedEmotionSelectArea(currentEmotion: reactor.currentState.emotion)
             })
             .disposed(by: self.disposeBag)
         
@@ -94,17 +103,134 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.images }
-        .asDriver(onErrorJustReturn: [])
-        .drive(onNext: { [weak self] images in
-            if images.count == 0 {
-                self?.defaultImageContainerView.isHidden = false
-            } else {
-                print("images set!! :\(images)")
+        reactor.state
+            .map { $0.emotion }
+            .asDriver(onErrorJustReturn: nil)
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] emotion in
+                self?.addPhotoImgView.isHidden = false
+                self?.addPhotoBtn.isHidden = false
+                switch emotion {
+                case .fun:
+                    self?.coverImageView.image = Gen.Images.coverFun.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.funYellow.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeFunMini.image
+                    self?.emotionLabel.text = "재미있는"
+                case .impressive:
+                    self?.coverImageView.image = Gen.Images.coverImpressive.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
+                    self?.emotionLabel.text = "인상적인"
+                case .pleasant:
+                    self?.coverImageView.image = Gen.Images.coverPleasant.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
+                    self?.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
+                    self?.emotionLabel.text = "기분좋은"
+                case .splendid:
+                    self?.coverImageView.image = Gen.Images.coverSplendid.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
+                    self?.emotionLabel.text = "아름다운"
+                case .wonderful:
+                    self?.coverImageView.image = Gen.Images.coverWonderful.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
+                    self?.emotionLabel.text = "경이로운"
+                }
+            })
+            .disposed(by: self.disposeBag)
+            
+        
+        Observable.zip(reactor.state.map { $0.thumbnailImage }, reactor.state.map { $0.imageInfos }.map { $0 })
+            .asDriver(onErrorJustReturn: (nil, nil))
+            .drive(onNext: {[weak self] zippedImages in
+                self?.imagesCollectionView.delegate = nil
+                self?.imagesCollectionView.dataSource = nil
+                guard let cardImage = zippedImages.0 else { return }
+                guard let images = zippedImages.1 else { return }
                 self?.defaultImageContainerView.isHidden = true
-            }
-        })
-        .disposed(by: self.disposeBag)
+                self?.imagesCollectionView.isHidden = false
+                self?.topContentsContainerView.backgroundColor = .clear
+                var imageCellArr: [CellModel] = []
+                for imageItem in images {
+                    imageCellArr.append(CellModel.commonImage(imageItem))
+                }
+                let sections = Observable.just([
+                    SectionModel(model: "card", items: [
+                        CellModel.cover(cardImage)
+                    ]),
+                    SectionModel(model: "image", items: imageCellArr),
+                    SectionModel(model: "addImage", items: [CellModel.addImage(())])
+                ])
+                guard let self = self else { return }
+                let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
+                    switch item {
+                    case .cover(let image):
+                        return self.makeCardCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
+                    case .commonImage(let imageInfo):
+                        return self.makeImageCell(emotion: reactor.currentState.emotion, with: imageInfo, from: collectionView, indexPath: indexPath)
+                    case .addImage:
+                        return self.makeAddImageCell(from: collectionView, indexPath: indexPath)
+                    }
+                })
+                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+                layout.minimumLineSpacing = 0
+                layout.minimumInteritemSpacing = 0
+                layout.scrollDirection = .horizontal
+                layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.imagesCollectionView.bounds.height)
+                layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                self.imagesCollectionView.collectionViewLayout = layout
+                sections
+                    .bind(to: self.imagesCollectionView.rx.items(dataSource: dataSource))
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] item in
+                if item.at.section == 0 {
+                    self?.emotionSelectView.isHidden = false
+                } else {
+                    self?.emotionSelectView.isHidden = true
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.itemSelected
+            .asDriver()
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] selectedItem in
+                if selectedItem.section == 2 {
+                    self?.delegate?.addMorePhoto()
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+//        reactor.isLoading
+//            .asDriver(onErrorJustReturn: false)
+//            .drive(onNext: { [weak self] isLoading in
+//                if isLoading {
+//                    self?.startIndicatorAnimating()
+//                } else {
+//                    self?.stopIndicatorAnimating()
+//                }
+//            })
+//            .disposed(by: self.disposeBag)
+        
+        reactor.isLoading
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isLoading in
+                if isLoading {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
+                    
+        
     }
     
     // MARK: private function
@@ -138,69 +264,38 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
         self.addPhotoImgView.isHidden = true
         self.addPhotoBtn.isHidden = true
+        self.imagesCollectionView.showsHorizontalScrollIndicator = false
         self.imagesCollectionView.isHidden = true
+        self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
+    }
+    
+    private func makeCardCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordCardCollectionViewCell.identifier, for: indexPath) as? RecordCardCollectionViewCell else { return UICollectionViewCell() }
+        cell.mainImageView.image = element
+        cell.emotion = emotion
+        return cell
+    }
+    
+    private func makeImageCell(emotion: Emotion?, with element: ImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.imageInfo = element
+        cell.emotion = emotion
+        return cell
+    }
+    
+    private func makeAddImageCell(from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordAddImageCollectionViewCell.identifier, for: indexPath) as? RecordAddImageCollectionViewCell else { return UICollectionViewCell() }
+        return cell
     }
     
     // MARK: internal function
-    
-    func selectEmotion(_ emotion: Emotion) {
-        switch emotion {
-        case .fun:
-            self.topContainerView.backgroundColor = Gen.Colors.funYellow.color
-            self.emotionMainImageView.image = Gen.Images.coverFun.image
-            self.miniEmotionImageView.image = Gen.Images.typeFunMini.image
-            self.emotionLabel.text = "재미있는"
-        case .impressive:
-            self.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-            self.emotionMainImageView.image = Gen.Images.coverImpressive.image
-            self.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
-            self.emotionLabel.text = "인상적인"
-        case .pleasant:
-            self.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-            self.emotionMainImageView.image = Gen.Images.coverPleasant.image
-            self.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
-            self.emotionLabel.text = "기분좋은"
-        case .splendid:
-            self.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-            self.emotionMainImageView.image = Gen.Images.coverSplendid.image
-            self.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
-            self.emotionLabel.text = "아름다운"
-        case .wonderful:
-            self.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
-            self.emotionMainImageView.image = Gen.Images.coverWonderful.image
-            self.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
-            self.emotionLabel.text = "경이로운"
-        }
-        self.addPhotoImgView.isHidden = false
-        self.addPhotoBtn.isHidden = false
-    }
     
     func setRecordTitle(_ title: String) {
         DispatchQueue.main.async { [weak self] in
             self?.doWriteLabel.text = title
             self?.doWriteLabel.textColor = Gen.Colors.black.color
-        }
-    }
-    
-    func setUICurrentEmotion(_ emotion: Emotion) {
-        self.addPhotoImgView.isHidden = false
-        self.addPhotoBtn.isHidden = false
-        switch emotion {
-        case .fun:
-            self.coverImageView.image = Gen.Images.coverFun.image
-            self.topContainerView.backgroundColor = Gen.Colors.funYellow.color
-        case .impressive:
-            self.coverImageView.image = Gen.Images.coverImpressive.image
-            self.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-        case .pleasant:
-            self.coverImageView.image = Gen.Images.coverPleasant.image
-            self.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-        case .splendid:
-            self.coverImageView.image = Gen.Images.coverSplendid.image
-            self.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-        case .wonderful:
-            self.coverImageView.image = Gen.Images.coverWonderful.image
-            self.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
         }
     }
     

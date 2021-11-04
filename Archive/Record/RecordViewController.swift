@@ -40,9 +40,7 @@ class RecordViewController: UIViewController, StoryboardView {
         initUI()
         makeSubViewControllers()
         setPageViewController()
-        removePageViewControllerSwipeGesture()
         
-        // 이하 테스트코드 todo 수정
         guard let imageRecordViewController = self.imageRecordViewController else { return }
         imageRecordViewController.delegate = self
         guard let contentsRecordViewController = self.contentsRecordViewController else { return }
@@ -54,6 +52,7 @@ class RecordViewController: UIViewController, StoryboardView {
         if let firstVC = subViewControllers.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        removePageViewControllerSwipeGesture()
     }
     
     init?(coder: NSCoder, reactor: RecordReactor) {
@@ -66,14 +65,51 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordReactor) {
-        reactor.state.map { $0.currentEmotion }
-        .asDriver(onErrorJustReturn: nil)
-        .drive(onNext: { [weak self] emotion in
-            guard let emotion = emotion else { return }
-            self?.imageRecordViewController?.showTopView()
-            self?.imageRecordViewController?.setUICurrentEmotion(emotion)
-        })
-        .disposed(by: self.disposeBag)
+        reactor.state
+            .map { $0.currentEmotion }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: { [weak self] emotion in
+                guard let emotion = emotion else { return }
+                self?.imageRecordViewController?.showTopView()
+                self?.imageRecordViewController?.reactor?.action.onNext(.setEmotion(emotion))
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.moveToConfig
+            .asDriver(onErrorJustReturn: ())
+            .drive(onNext: {
+                CommonAlertView.shared.show(message: "티켓 기록 사진을 선택하려면 사진 라이브러리 접근권한이 필요합니다.", subMessage: nil, btnText: "확인", hapticType: .warning, confirmHandler: {
+                    Util.moveToSetting()
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { errorMsg in
+                CommonAlertView.shared.show(message: errorMsg, subMessage: nil, btnText: "확인", hapticType: .error, confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.thumbnailImage }
+            .subscribe(onNext: { [weak self] image in
+                guard let image = image else { return }
+                self?.imageRecordViewController?.reactor?.action.onNext(.setThumbnailImage(image))
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.images }
+            .subscribe(onNext: { [weak self] images in
+                guard let images = images else { return }
+                self?.imageRecordViewController?.reactor?.action.onNext(.setImages(images))
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function
@@ -89,7 +125,7 @@ class RecordViewController: UIViewController, StoryboardView {
     }
     
     private func makeImageRecordViewController() {
-        let model: ImageRecordModel = ImageRecordModel(images: [])
+        let model: ImageRecordModel = ImageRecordModel()
         let reactor = ImageRecordReactor(model: model)
         let imageRecordViewController: ImageRecordViewController = UIStoryboard(name: "Record", bundle: nil).instantiateViewController(identifier: ImageRecordViewController.identifier) { corder in
             return ImageRecordViewController(coder: corder, reactor: reactor)
@@ -152,19 +188,23 @@ extension RecordViewController: UIPageViewControllerDataSource, UIPageViewContro
 
 
 extension RecordViewController: ImageRecordViewControllerDelegate {
-    func clickedEmotionSelectArea() {
+    func clickedEmotionSelectArea(currentEmotion: Emotion?) {
         self.imageRecordViewController?.hideTopView()
-        self.reactor?.action.onNext(.moveToSelectEmotion)
+        self.reactor?.action.onNext(.moveToSelectEmotion(currentEmotion))
     }
 
     func clickedPhotoSeleteArea() {
-        
+        self.reactor?.action.onNext(.moveToPhotoSelet)
     }
 
     func clickedContentsArea() {
         self.pageViewController.moveToNextPage()
         self.contentsRecordViewController?.setEmotion(self.reactor?.currentState.currentEmotion)
         removePageViewControllerSwipeGesture()
+    }
+    
+    func addMorePhoto() {
+        self.reactor?.action.onNext(.moveToPhotoSelet)
     }
 }
 
@@ -176,8 +216,9 @@ extension RecordViewController: ContentsRecordViewControllerDelegate {
     }
     
     func completeContentsRecord(infoData: ContentsRecordModelData) {
-        print("infoData: \(infoData)")
+        self.reactor?.action.onNext(.setRecordInfo(infoData))
         self.pageViewController.moveToPreviousPage()
         removePageViewControllerSwipeGesture()
+        self.imageRecordViewController?.setRecordTitle(infoData.title)
     }
 }

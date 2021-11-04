@@ -27,16 +27,24 @@ class RecordFlow: Flow {
     
     weak var recordViewController: RecordViewController?
     weak var editEmotionViewController: EmotionSelectViewController?
+    weak var imageSelectViewControllerNavi: UINavigationController?
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else { return .none }
         switch step {
         case .recordIsRequired:
             return navigationToRecordScreen()
-        case .recordEmotionEditIsRequired:
-            return navigationToEditEmotion()
+        case .recordEmotionEditIsRequired(let emotion):
+            return navigationToEditEmotion(currentEmotion: emotion)
         case .recordEmotionEditIsComplete(let emotion):
             dismissEditEmotion(emotion: emotion)
+            return .none
+        case .recordImageSelectIsRequired(let emotion):
+            return navigationToImageSelect(emotion: emotion)
+        case .recordImageSelectIsComplete(let thumbnailImage, let images):
+            self.recordViewController?.reactor?.action.onNext(.setImages(images))
+            self.recordViewController?.reactor?.action.onNext(.setThumbnailImage(thumbnailImage))
+            dismissImageSelect()
             return .none
         default:
             return .none
@@ -56,16 +64,18 @@ class RecordFlow: Flow {
                                                  withNextStepper: reactor))
     }
     
-    private func navigationToEditEmotion() -> FlowContributors {
+    private func navigationToEditEmotion(currentEmotion: Emotion?) -> FlowContributors {
         let model: EmotionSelectModel = EmotionSelectModel()
-        let reactor = EmotionSelectReactor(model: model)
+        let reactor = EmotionSelectReactor(model: model, currentEmotion: currentEmotion)
         let emotionSelectViewController: EmotionSelectViewController = recordStoryBoard.instantiateViewController(identifier: EmotionSelectViewController.identifier) { corder in
             return EmotionSelectViewController(coder: corder, reactor: reactor)
         }
         emotionSelectViewController.title = ""
         emotionSelectViewController.modalPresentationStyle = .overFullScreen
         self.editEmotionViewController = emotionSelectViewController
-        rootViewController.present(emotionSelectViewController, animated: false, completion: nil)
+        rootViewController.present(emotionSelectViewController, animated: false, completion: {
+            emotionSelectViewController.fadeInAnimation()
+        })
         return .one(flowContributor: .contribute(withNextPresentable: emotionSelectViewController,
                                                  withNextStepper: reactor))
     }
@@ -73,6 +83,27 @@ class RecordFlow: Flow {
     private func dismissEditEmotion(emotion: Emotion) {
         self.editEmotionViewController?.dismiss(animated: false, completion: nil)
         self.recordViewController?.reactor?.action.onNext(.setEmotion(emotion))
+    }
+    
+    private func navigationToImageSelect(emotion: Emotion) -> FlowContributors {
+        let model: ImageSelectModel = ImageSelectModel()
+        let reactor = ImageSelectReactor(model: model, emotion: emotion)
+        let imageSelectViewController: ImageSelectViewController = recordStoryBoard.instantiateViewController(identifier: ImageSelectViewController.identifier) { corder in
+            return ImageSelectViewController(coder: corder, reactor: reactor)
+        }
+        imageSelectViewController.title = ""
+        let navi: UINavigationController = UINavigationController(rootViewController: imageSelectViewController)
+        navi.modalPresentationStyle = .fullScreen
+        self.imageSelectViewControllerNavi = navi
+        rootViewController.present(navi, animated: true, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: imageSelectViewController,
+                                                 withNextStepper: reactor))
+    }
+    
+    private func dismissImageSelect() {
+        self.imageSelectViewControllerNavi?.dismiss(animated: true, completion: {
+            self.imageSelectViewControllerNavi?.viewControllers = []
+        })
     }
     
 }

@@ -22,8 +22,11 @@ class EmotionSelectReactor: Reactor, Stepper {
     
     // MARK: lifeCycle
     
-    init(model: EmotionSelectModelProtocol) {
+    init(model: EmotionSelectModelProtocol, currentEmotion: Emotion?) {
         self.model = model
+        if let emotion = currentEmotion {
+            self.action.onNext(.select(emotion))
+        }
     }
     
     enum Action {

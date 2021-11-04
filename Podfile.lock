@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.4.4)
+  - CropViewController (2.6.0)
+  - Differentiator (5.0.0)
   - GrowingTextView (0.7.2)
   - Kingfisher (7.1.1)
   - Moya (15.0.0):
@@ -12,6 +14,10 @@ PODS:
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxFlow (2.12.4):
     - RxCocoa (>= 6.0.0)
     - RxSwift (>= 6.0.0)
@@ -22,29 +28,36 @@ PODS:
   - SwiftGen (6.5.1)
   - SwiftLint (0.45.0)
   - SwiftyJSON (4.3.0)
+  - UIImageColors (2.1.0)
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
+  - CropViewController
   - GrowingTextView (= 0.7.2)
   - Kingfisher (~> 7.0)
   - Moya
   - ReactorKit
   - RxCocoa
+  - RxDataSources (~> 5.0)
   - RxFlow
   - RxSwift
   - SnapKit (~> 5.0.0)
   - SwiftGen
   - SwiftLint
   - SwiftyJSON (~> 4.0)
+  - UIImageColors
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - CropViewController
+    - Differentiator
     - GrowingTextView
     - Kingfisher
     - Moya
     - ReactorKit
     - RxCocoa
+    - RxDataSources
     - RxFlow
     - RxRelay
     - RxSwift
@@ -52,15 +65,19 @@ SPEC REPOS:
     - SwiftGen
     - SwiftLint
     - SwiftyJSON
+    - UIImageColors
     - WeakMapTable
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  CropViewController: 7093b39ec3cb508531b22d35773e06cecd7378d8
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   ReactorKit: a06dd2a5c9339287aedf3dc821cfab6347eca106
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxFlow: 03a73c83fb8f183107074b40ab2544c668583f73
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
@@ -68,8 +85,9 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 6a7b61dd9cdd17931f1b190ae12fed98c7ece591
+PODFILE CHECKSUM: 5d3562aef6a597c829e4948dc0f16a4851cac32b
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1

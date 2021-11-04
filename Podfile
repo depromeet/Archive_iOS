@@ -8,6 +8,7 @@ def pods
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxFlow'
+  pod 'RxDataSources', '~> 5.0'
   pod 'ReactorKit'
   pod 'Moya'
   pod 'SwiftGen'
@@ -15,6 +16,8 @@ def pods
   pod 'Kingfisher', '~> 7.0'
   pod 'SnapKit', '~> 5.0.0'
   pod 'GrowingTextView', '0.7.2'
+  pod 'CropViewController'
+  pod 'UIImageColors'
 end
 
 def pods_debug

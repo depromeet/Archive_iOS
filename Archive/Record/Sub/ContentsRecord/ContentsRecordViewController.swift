@@ -85,6 +85,7 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         makeConfirmBtn()
+        self.reactor?.action.onNext(.clearCompleteData)
     }
     
     func bind(reactor: ContentsRecordReactor) {
@@ -235,7 +236,6 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.scrollContainerViewBottomConstraint.constant = self.originalScrollContainerViewBottomConstraint - keyboardSize.height
         }
-
     }
 
     @objc private func keyboardWillHide(notification: Notification) {

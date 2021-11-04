@@ -13,6 +13,7 @@ import RxCocoa
 class EmotionSelectViewController: UIViewController, StoryboardView {
     
     // MARK: IBOutlet
+    @IBOutlet weak var baseContainerView: UIView!
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var bottomPaddingView: UIView!
     @IBOutlet weak var mainContentsView: UIView!
@@ -48,6 +49,10 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     var disposeBag: DisposeBag = DisposeBag()
     
     // MARK: lifeCycle
+    
+    deinit {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +111,7 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     // MARK: private function
     
     private func initUI() {
-        self.mainBackgroundView.backgroundColor = Gen.Colors.dIm.color
+        self.mainBackgroundView.backgroundColor = Gen.Colors.dim.color
         self.mainContentsView.backgroundColor = .clear
         self.bottomPaddingView.backgroundColor = Gen.Colors.white.color
         self.bottomView.backgroundColor = Gen.Colors.white.color
@@ -177,6 +182,10 @@ class EmotionSelectViewController: UIViewController, StoryboardView {
     }
     
     // MARK: internal function
+    
+    func fadeInAnimation() {
+        self.baseContainerView.fadeIn(duration: 0.25, completeHandler: nil)
+    }
     
     // MARK: action
 
