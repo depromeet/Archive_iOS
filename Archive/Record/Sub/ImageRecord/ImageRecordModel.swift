@@ -35,7 +35,7 @@ class ImageRecordModel: ImageRecordModelProtocol {
 }
 
 struct ImageInfo {
-    let image: UIImage
+    var image: UIImage
     var backgroundColor: UIColor
     var contents: String?
 }

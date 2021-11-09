@@ -93,6 +93,7 @@ internal enum Gen {
     internal static let btnApple = ImageAsset(name: "btn_apple")
     internal static let btnCancel = ImageAsset(name: "btn_cancel")
     internal static let expandMoreBlack24dp = ImageAsset(name: "expand_more_black_24dp")
+    internal static let iconCrop = ImageAsset(name: "icon_crop")
     internal static let iconDropDown = ImageAsset(name: "icon_drop down")
     internal static let iconDropUp = ImageAsset(name: "icon_drop up")
     internal static let iconRightArrow = ImageAsset(name: "icon_right-arrow")

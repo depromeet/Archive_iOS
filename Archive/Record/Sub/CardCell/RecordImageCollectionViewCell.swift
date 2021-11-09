@@ -8,6 +8,10 @@
 import UIKit
 import UIImageColors
 
+protocol RecordImageCollectionViewCellDelegate: AnyObject {
+    func imageCrop(image: UIImage, index: Int)
+}
+
 class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     // MARK: outlet
@@ -37,6 +41,10 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
         }
     }
     
+    var index: Int = -1
+    
+    weak var delegate: RecordImageCollectionViewCellDelegate?
+    
     // MARK: lifeCycle
     
     override func awakeFromNib() {
@@ -48,27 +56,18 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     private func initUI() {
         self.mainContainerView.backgroundColor = .clear
-//        self.mainImageView.contentMode = 
     }
     
     private func setNewEmotion(_ emotion: Emotion) {
-//        switch emotion {
-//        case .fun:
-//            self.mainContainerView.backgroundColor = Gen.Colors.funYellow.color
-//        case .impressive:
-//            self.mainContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-//        case .pleasant:
-//            self.mainContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-//        case .splendid:
-//            self.mainContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-//        case .wonderful:
-//            self.mainContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
-//        }
-//        self.mainContainerView.backgroundColor = self.mainImageView.image?.getColors()?.background
+        
     }
     
     // MARK: func
     
     // MARK: action
-
+    @IBAction func imageCropAction(_ sender: Any) {
+        guard let image = self.mainImageView.image else { return }
+        self.delegate?.imageCrop(image: image, index: self.index)
+    }
+    
 }

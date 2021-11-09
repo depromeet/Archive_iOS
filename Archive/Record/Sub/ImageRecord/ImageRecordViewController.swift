@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import SnapKit
+import CropViewController
 
 protocol ImageRecordViewControllerProtocol: AnyObject {
     func setRecordTitle(_ title: String)
@@ -214,7 +215,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.imagesCollectionView.rx.willDisplayCell
             .asDriver()
             .drive(onNext: { [weak self] info in
-                if info.at.section == 0 {
+                if info.at.section == 0 || info.at.section == 2 {
                     self?.photoContentsView?.isHidden = true
                 } else {
                     self?.photoContentsView?.isHidden = false
@@ -297,14 +298,43 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     private func makeImageCell(emotion: Emotion?, with element: ImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.index = indexPath.item
         cell.imageInfo = element
         cell.emotion = emotion
+        cell.delegate = self
         return cell
     }
     
     private func makeAddImageCell(from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordAddImageCollectionViewCell.identifier, for: indexPath) as? RecordAddImageCollectionViewCell else { return UICollectionViewCell() }
         return cell
+    }
+    
+    private func showImageEditView(image: UIImage, index: Int) {
+        let cropViewController: CropViewController = CropViewController(croppingStyle: .default, image: image)
+        cropViewController.delegate = self
+        cropViewController.doneButtonTitle = "확인"
+        cropViewController.doneButtonColor = Gen.Colors.white.color
+        cropViewController.cancelButtonTitle = "취소"
+        cropViewController.cancelButtonColor = Gen.Colors.white.color
+//        cropViewController.aspectRatioLockEnabled = true
+//        cropViewController.resetButtonHidden = true
+//        cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
+//        cropViewController.aspectRatioPickerButtonHidden = true
+//        let emotionCoverImage = self.getEmotionCoverImage(self.reactor?.emotion ?? .fun)
+//        let emotionCoverImageView: UIImageView = UIImageView()
+//        emotionCoverImageView.contentMode = .scaleToFill
+//        emotionCoverImageView.image = emotionCoverImage
+//        cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
+//        emotionCoverImageView.snp.makeConstraints { (make) in
+//            let offset: CGFloat = UIDevice.current.hasNotch ? 24 : 0
+//            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(offset)
+//            make.leading.equalTo(cropViewController.cropView.snp.leading).offset(12)
+//            make.trailing.equalTo(cropViewController.cropView.snp.trailing).offset(-12)
+//            make.height.equalTo(UIScreen.main.bounds.width - 24)
+//        }
+        self.present(cropViewController, animated: true, completion: nil)
+        cropViewController.cropView.tag = index
     }
     
     // MARK: internal function
@@ -335,6 +365,26 @@ extension ImageRecordViewController: PhotoContentsViewDelegate {
             infos[index].contents = text
             self.reactor?.action.onNext(.setImageInfos(infos))
             self.imagesCollectionView.scrollToItem(at: IndexPath(item: index, section: 1), at: .left, animated: false)
+        }
+    }
+}
+
+extension ImageRecordViewController: RecordImageCollectionViewCellDelegate {
+    func imageCrop(image: UIImage, index: Int) {
+        showImageEditView(image: image, index: index)
+    }
+}
+
+extension ImageRecordViewController: CropViewControllerDelegate {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        DispatchQueue.main.async { [weak self] in
+            cropViewController.dismiss(animated: true, completion: { [weak self] in
+                if var infos = self?.reactor?.currentState.imageInfos {
+                    infos[cropViewController.cropView.tag].image = image
+                    self?.reactor?.action.onNext(.setImageInfos(infos))
+                    self?.imagesCollectionView.scrollToItem(at: IndexPath(item: cropViewController.cropView.tag, section: 1), at: .left, animated: false)
+                }
+            })
         }
     }
 }
