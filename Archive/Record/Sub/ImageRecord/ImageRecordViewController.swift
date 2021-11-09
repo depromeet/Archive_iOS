@@ -10,6 +10,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import SnapKit
 
 protocol ImageRecordViewControllerProtocol: AnyObject {
     func setRecordTitle(_ title: String)
@@ -61,6 +62,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
     // MARK: private property
+    
+    let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
     
     // MARK: internal property
     
@@ -208,20 +211,24 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-//        reactor.isLoading
-//            .asDriver(onErrorJustReturn: false)
-//            .drive(onNext: { [weak self] isLoading in
-//                if isLoading {
-//                    self?.startIndicatorAnimating()
-//                } else {
-//                    self?.stopIndicatorAnimating()
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                if info.at.section == 0 {
+                    self?.photoContentsView?.isHidden = true
+                } else {
+                    self?.photoContentsView?.isHidden = false
+                    if let imageInfo = reactor.currentState.imageInfos?[info.at.item] {
+                        self?.photoContentsView?.imageInfo = imageInfo
+                        self?.photoContentsView?.index = info.at.item
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
         
         reactor.isLoading
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] isLoading in
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isLoading in
                 if isLoading {
                     self?.startIndicatorAnimating()
                 } else {
@@ -229,7 +236,6 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 }
             })
             .disposed(by: self.disposeBag)
-                    
         
     }
     
@@ -269,6 +275,17 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
         self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
         self.imagesCollectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
+        
+        if let photoContentsView = self.photoContentsView {
+            self.bottomContainerView.addSubview(photoContentsView)
+            photoContentsView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            photoContentsView.isHidden = true
+            photoContentsView.delegate = self
+        }
+        
+        
     }
     
     private func makeCardCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -310,8 +327,14 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     // MARK: action
     
     
+}
 
-    
-    
-    
+extension ImageRecordViewController: PhotoContentsViewDelegate {
+    func photoCellContentsConfirmed(text: String?, index: Int) {
+        if var infos = self.reactor?.currentState.imageInfos {
+            infos[index].contents = text
+            self.reactor?.action.onNext(.setImageInfos(infos))
+            self.imagesCollectionView.scrollToItem(at: IndexPath(item: index, section: 1), at: .left, animated: false)
+        }
+    }
 }
