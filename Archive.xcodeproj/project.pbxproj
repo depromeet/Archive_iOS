@@ -105,6 +105,10 @@
 		78557A2B272ECFD300C5BD62 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */; };
 		785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
 		785F5E44273018EB00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
+		787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
+		787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
+		787769A2273AA98400519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
+		787769A3273AA99000519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
 		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */; };
@@ -234,6 +238,8 @@
 		784D1E3427088EC7004B1A23 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		7877699E273AA98100519B58 /* PhotoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentsView.swift; sourceTree = "<group>"; };
+		7877699F273AA98100519B58 /* PhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoContentsView.xib; sourceTree = "<group>"; };
 		78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -533,6 +539,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		7877699D273AA98100519B58 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				7877699E273AA98100519B58 /* PhotoContentsView.swift */,
+				7877699F273AA98100519B58 /* PhotoContentsView.xib */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		78958E0827129FA6003FF724 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +618,7 @@
 		789E61A027255D8300D6E18F /* ImageRecord */ = {
 			isa = PBXGroup;
 			children = (
+				7877699D273AA98100519B58 /* Sub */,
 				78B872E42726E420009EFB54 /* ImageRecordViewController.swift */,
 				789E61AF27257BCB00D6E18F /* ImageRecordReactor.swift */,
 				789E61B127257BD400D6E18F /* ImageRecordModel.swift */,
@@ -782,6 +798,7 @@
 				44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */,
 				78958E172712A510003FF724 /* Pretendard-Regular.ttf in Resources */,
 				4FD4F1DF272F870D00BDB4BB /* RecordImageCollectionViewCell.xib in Resources */,
+				787769A3273AA99000519B58 /* PhotoContentsView.xib in Resources */,
 				4FD4F1DC272F870D00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				448936AE2708415500EA423A /* Onboarding.storyboard in Resources */,
 				44922DBE2719CC5700A5EA2B /* Colors.xcassets in Resources */,
@@ -804,6 +821,7 @@
 				44F9B0ED270606EE005418F0 /* LaunchScreen.storyboard in Resources */,
 				782FDF4D272CFB6E004D1B6E /* HWPhotoListFromAlbumView.xib in Resources */,
 				4FD4F1DB272F86B800BDB4BB /* RecordImageCollectionViewCell.xib in Resources */,
+				787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */,
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				782FDF4B272CFB6E004D1B6E /* PhotoFromAlbumCell.xib in Resources */,
@@ -958,6 +976,7 @@
 				44FB0A2A27186E33006E1048 /* AppStepper.swift in Sources */,
 				780478142723CC6400FAA1CF /* MyPageReactor.swift in Sources */,
 				78958E152712A3EF003FF724 /* UIFontExtension.swift in Sources */,
+				787769A2273AA98400519B58 /* PhotoContentsView.swift in Sources */,
 				44FB0A2327184376006E1048 /* ReuseIdentifiable.swift in Sources */,
 				789E61AA2725601C00D6E18F /* RecordReactor.swift in Sources */,
 				780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */,
@@ -1032,6 +1051,7 @@
 				44BE6F01271144AB00E74A7D /* TermsAgreementViewController.swift in Sources */,
 				789E61BC2725847B00D6E18F /* ClassIdentifiable.swift in Sources */,
 				78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */,
+				787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */,
 				44FB0A2927186E33006E1048 /* AppStepper.swift in Sources */,
 				44FB0A1027183BDA006E1048 /* EmailInputViewController.swift in Sources */,
 				44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */,

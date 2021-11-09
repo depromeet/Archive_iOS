@@ -43,6 +43,7 @@
                     <connections>
                         <outlet property="mainBackgroundView" destination="fRn-CY-XSf" id="r3a-CZ-naC"/>
                         <outlet property="mainContainerView" destination="gox-67-o9e" id="eyM-c2-oHs"/>
+                        <outlet property="mainContainerViewBottomConstraint" destination="XL0-Mt-M38" id="5iO-YG-VO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1078,14 +1079,6 @@
             <point key="canvasLocation" x="1536" y="-1264"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="FZP-1j-cTi">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-        <designable name="Yjl-Ms-Ur9">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <image name="addPhoto" width="44" height="44"/>
         <image name="btn_cancel" width="48" height="48"/>

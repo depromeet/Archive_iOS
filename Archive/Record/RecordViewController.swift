@@ -17,6 +17,7 @@ class RecordViewController: UIViewController, StoryboardView {
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var mainContainerViewBottomConstraint: NSLayoutConstraint!
     
     // MARK: private property
     
@@ -29,6 +30,8 @@ class RecordViewController: UIViewController, StoryboardView {
     private var contentsRecordViewController: ContentsRecordViewControllerProtocol?
     
     lazy var subViewControllers: [UIViewController] = Array()
+    
+    private var originMainContainerViewBottomConstraint: CGFloat = 0
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -53,6 +56,8 @@ class RecordViewController: UIViewController, StoryboardView {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         removePageViewControllerSwipeGesture()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     init?(coder: NSCoder, reactor: RecordReactor) {
@@ -157,6 +162,18 @@ class RecordViewController: UIViewController, StoryboardView {
                 subView.isScrollEnabled = false
             }
         }
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        self.mainContainerViewBottomConstraint.constant = keyboardHeight
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.mainContainerViewBottomConstraint.constant = self.originMainContainerViewBottomConstraint
+        UIView.animate(withDuration: 1.0, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
     // MARK: internal function
