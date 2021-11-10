@@ -63,13 +63,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-QQ-dGf">
-                                <rect key="frame" x="0.0" y="657" width="414" height="239"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="793.5" width="414" height="102.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhV-uw-mYE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aff-zh-lEF">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aff-zh-lEF" customClass="TopConerRadiusView" customModule="Archive" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="613" width="414" height="205"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-nY-faU">
@@ -333,7 +333,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="2bC-oP-2ad" firstAttribute="leading" secondItem="lhV-uw-mYE" secondAttribute="leading" constant="32" id="1Qh-0j-E57"/>
                                     <constraint firstItem="2bC-oP-2ad" firstAttribute="centerX" secondItem="lhV-uw-mYE" secondAttribute="centerX" id="27M-6l-az3"/>
@@ -354,9 +354,9 @@
                             <constraint firstItem="9Ac-QQ-dGf" firstAttribute="trailing" secondItem="Msg-Jy-F00" secondAttribute="trailing" id="8hy-Pb-9j1"/>
                             <constraint firstItem="lhV-uw-mYE" firstAttribute="leading" secondItem="Msg-Jy-F00" secondAttribute="leading" id="8qs-Tu-a7R"/>
                             <constraint firstItem="NVD-MA-T4N" firstAttribute="leading" secondItem="Msg-Jy-F00" secondAttribute="leading" id="Cme-Ya-4le"/>
-                            <constraint firstItem="9Ac-QQ-dGf" firstAttribute="top" secondItem="aff-zh-lEF" secondAttribute="top" id="JVF-qO-P5M"/>
                             <constraint firstAttribute="bottom" secondItem="9Ac-QQ-dGf" secondAttribute="bottom" id="JaS-I1-k43"/>
                             <constraint firstItem="lhV-uw-mYE" firstAttribute="top" secondItem="Msg-Jy-F00" secondAttribute="top" id="NAs-gM-SXj"/>
+                            <constraint firstItem="9Ac-QQ-dGf" firstAttribute="height" secondItem="aff-zh-lEF" secondAttribute="height" multiplier="0.5" id="UFK-7D-iwx"/>
                             <constraint firstAttribute="bottom" secondItem="NVD-MA-T4N" secondAttribute="bottom" id="cv2-qS-jTQ"/>
                             <constraint firstItem="9Ac-QQ-dGf" firstAttribute="leading" secondItem="Msg-Jy-F00" secondAttribute="leading" id="lwr-Zy-0QO"/>
                             <constraint firstItem="Msg-Jy-F00" firstAttribute="trailing" secondItem="lhV-uw-mYE" secondAttribute="trailing" id="wGy-Yl-05I"/>

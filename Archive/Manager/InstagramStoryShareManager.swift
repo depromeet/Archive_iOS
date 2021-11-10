@@ -47,14 +47,14 @@ class InstagramStoryShareManager: NSObject {
                 let renderImage = renderer.image { _ in
                     view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
                 }
-                guard let imageData = renderImage.pngData() else {return}
-                let pasteboardItems : [String:Any] = [
+                guard let imageData = renderImage.pngData() else { return }
+                let pasteboardItems: [String: Any] = [
                     self.stickerImageKey: imageData,
-                    self.backgroundTopColorKey : colorToHexStr(backgroundTopColor),
-                    self.backgroundBottomColorKey : colorToHexStr(backgroundBottomColor),
+                    self.backgroundTopColorKey: colorToHexStr(backgroundTopColor),
+                    self.backgroundBottomColorKey: colorToHexStr(backgroundBottomColor)
                 ]
                 let pasteboardOptions = [
-                    UIPasteboard.OptionsKey.expirationDate : Date().addingTimeInterval(300)
+                    UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(300)
                 ]
                 UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
                 UIApplication.shared.open(storyShareURL, options: [:], completionHandler: { value in
