@@ -1079,6 +1079,14 @@
             <point key="canvasLocation" x="1536" y="-1264"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="FZP-1j-cTi">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+        <designable name="Yjl-Ms-Ur9">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="addPhoto" width="44" height="44"/>
         <image name="btn_cancel" width="48" height="48"/>

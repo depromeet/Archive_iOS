@@ -90,6 +90,8 @@
 		782FDF54272CFC1C004D1B6E /* PhotoFromAlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */; };
 		782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
 		782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */; };
+		783A61DF273BEB02004D848F /* InstagramStoryShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */; };
+		783A61E0273BEB06004D848F /* InstagramStoryShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */; };
 		784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */; };
 		784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */; };
 		784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */; };
@@ -227,6 +229,7 @@
 		782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumModel.swift; sourceTree = "<group>"; };
 		782FDF4A272CFB6E004D1B6E /* HWPhotoListFromAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPhotoListFromAlbumView.swift; sourceTree = "<group>"; };
 		782FDF55272D1D70004D1B6E /* ActivityIndicatorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorable.swift; sourceTree = "<group>"; };
+		783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramStoryShareManager.swift; sourceTree = "<group>"; };
 		784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordAddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		78458D29272C18BB00392B45 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 				44FB09EF27182963006E1048 /* Flows */,
 				78958E122712A094003FF724 /* Extension */,
 				78958E0F2712A03C003FF724 /* Define */,
+				783A61DD273BEAE3004D848F /* Manager */,
 				784D1E1E27088BB0004B1A23 /* Module */,
 				784D1DBD27083D1C004B1A23 /* Resources */,
 				44893688270837EB00EA423A /* Onboarding */,
@@ -497,6 +501,14 @@
 				782FDF49272CFB6E004D1B6E /* PhotoFromAlbumModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		783A61DD273BEAE3004D848F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		784D1DBD27083D1C004B1A23 /* Resources */ = {
@@ -1009,6 +1021,7 @@
 				4FD4F1DD272F870D00BDB4BB /* RecordCardCollectionViewCell.swift in Sources */,
 				785F5E44273018EB00ACC7BA /* UIImageViewExtension.swift in Sources */,
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
+				783A61E0273BEB06004D848F /* InstagramStoryShareManager.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
 				78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */,
@@ -1084,6 +1097,7 @@
 				4FD4F1D4272F869A00BDB4BB /* RecordCardCollectionViewCell.swift in Sources */,
 				785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
+				783A61DF273BEB02004D848F /* InstagramStoryShareManager.swift in Sources */,
 				789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
 				78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */,
