@@ -27,6 +27,7 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
     func clickedPhotoSeleteArea()
     func clickedContentsArea()
     func addMorePhoto()
+    func settedImageInfos(infos: [ImageInfo])
 }
 
 class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol, ActivityIndicatorable {
@@ -64,7 +65,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     // MARK: private property
     
-    let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
+    private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
     
     // MARK: internal property
     
@@ -238,6 +239,15 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
+        reactor.state
+            .map { $0.imageInfos }
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] infos in
+                self?.delegate?.settedImageInfos(infos: infos)
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function
@@ -317,22 +327,6 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         cropViewController.doneButtonColor = Gen.Colors.white.color
         cropViewController.cancelButtonTitle = "취소"
         cropViewController.cancelButtonColor = Gen.Colors.white.color
-//        cropViewController.aspectRatioLockEnabled = true
-//        cropViewController.resetButtonHidden = true
-//        cropViewController.customAspectRatio = CGSize(width: 300, height: 300)
-//        cropViewController.aspectRatioPickerButtonHidden = true
-//        let emotionCoverImage = self.getEmotionCoverImage(self.reactor?.emotion ?? .fun)
-//        let emotionCoverImageView: UIImageView = UIImageView()
-//        emotionCoverImageView.contentMode = .scaleToFill
-//        emotionCoverImageView.image = emotionCoverImage
-//        cropViewController.cropView.insertSubview(emotionCoverImageView, belowSubview: cropViewController.cropView.gridOverlayView)
-//        emotionCoverImageView.snp.makeConstraints { (make) in
-//            let offset: CGFloat = UIDevice.current.hasNotch ? 24 : 0
-//            make.centerY.equalTo(cropViewController.cropView.snp.centerY).offset(offset)
-//            make.leading.equalTo(cropViewController.cropView.snp.leading).offset(12)
-//            make.trailing.equalTo(cropViewController.cropView.snp.trailing).offset(-12)
-//            make.height.equalTo(UIScreen.main.bounds.width - 24)
-//        }
         self.present(cropViewController, animated: true, completion: nil)
         cropViewController.cropView.tag = index
     }

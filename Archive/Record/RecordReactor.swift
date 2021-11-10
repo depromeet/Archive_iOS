@@ -23,6 +23,7 @@ class RecordReactor: Reactor, Stepper {
     let initialState = State()
     let moveToConfig: PublishSubject<Void>
     let error: PublishSubject<String>
+    let isAllDataSetted: PublishSubject<Bool>
     
     // MARK: lifeCycle
     
@@ -30,6 +31,7 @@ class RecordReactor: Reactor, Stepper {
         self.model = model
         self.moveToConfig = .init()
         self.error = .init()
+        self.isAllDataSetted = .init()
     }
     
     enum Action {
@@ -39,6 +41,7 @@ class RecordReactor: Reactor, Stepper {
         case moveToPhotoSelet
         case setImages([UIImage])
         case setThumbnailImage(UIImage)
+        case setImageInfos([ImageInfo])
     }
     
     enum Mutation {
@@ -68,13 +71,18 @@ class RecordReactor: Reactor, Stepper {
             return .empty()
         case .setRecordInfo(let info):
             self.model.recordInfo = info
+            checkIsAllDataSetted()
             return .empty()
         case .setImages(let images):
-            self.model.images = images
             return .just(.setImages(images))
         case .setThumbnailImage(let image):
             self.model.thumbnailImage = image
+            checkIsAllDataSetted()
             return .just(.setThumbnailImage(image))
+        case .setImageInfos(let infos):
+            self.model.imageInfos = infos
+            checkIsAllDataSetted()
+            return .empty()
         }
     }
     
@@ -132,6 +140,16 @@ class RecordReactor: Reactor, Stepper {
                     break
                 }
             }
+        }
+    }
+    
+    private func checkIsAllDataSetted() {
+        if self.model.isAllDataSetted() {
+            print("1")
+            self.isAllDataSetted.onNext(true)
+        } else {
+            print("2")
+            self.isAllDataSetted.onNext(false)
         }
     }
     

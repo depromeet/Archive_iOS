@@ -34,7 +34,7 @@ class ImageRecordModel: ImageRecordModelProtocol {
     // MARK: action
 }
 
-struct ImageInfo {
+struct ImageInfo: Equatable {
     var image: UIImage
     var backgroundColor: UIColor
     var contents: String?

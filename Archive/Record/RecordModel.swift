@@ -10,10 +10,10 @@ import UIKit
 protocol RecordModelProtocol: AnyObject {
     var recordInfo: ContentsRecordModelData? { get set }
     var thumbnailImage: UIImage? { get set }
-    var images: [UIImage]? { get set }
     var emotion: Emotion? { get set }
+    var imageInfos: [ImageInfo]? { get set }
     
-    func isAllDatasetted() -> Bool
+    func isAllDataSetted() -> Bool
 }
 
 class RecordModel: RecordModelProtocol {
@@ -24,8 +24,8 @@ class RecordModel: RecordModelProtocol {
     
     var recordInfo: ContentsRecordModelData?
     var thumbnailImage: UIImage?
-    var images: [UIImage]?
     var emotion: Emotion?
+    var imageInfos: [ImageInfo]?
     
     // MARK: lifeCycle
     
@@ -33,7 +33,7 @@ class RecordModel: RecordModelProtocol {
     
     // MARK: internal function
     
-    func isAllDatasetted() -> Bool {
+    func isAllDataSetted() -> Bool {
         if recordInfo != nil && thumbnailImage != nil && emotion != nil {
             return true
         } else {

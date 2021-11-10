@@ -29,9 +29,11 @@ class RecordViewController: UIViewController, StoryboardView {
     private var imageRecordViewController: ImageRecordViewControllerProtocol?
     private var contentsRecordViewController: ContentsRecordViewControllerProtocol?
     
-    lazy var subViewControllers: [UIViewController] = Array()
+    private lazy var subViewControllers: [UIViewController] = Array()
     
     private var originMainContainerViewBottomConstraint: CGFloat = 0
+    
+    private var confirmBtn: UIBarButtonItem?
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -115,6 +117,19 @@ class RecordViewController: UIViewController, StoryboardView {
             })
             .disposed(by: self.disposeBag)
         
+        reactor.isAllDataSetted
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isSetted in
+                if isSetted {
+                    self?.setConfirmBtnColor(Gen.Colors.black.color)
+                    self?.confirmBtn?.isEnabled = true
+                } else {
+                    self?.setConfirmBtnColor(Gen.Colors.gray04.color)
+                    self?.confirmBtn?.isEnabled = false
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -122,6 +137,8 @@ class RecordViewController: UIViewController, StoryboardView {
     private func initUI() {
         self.mainContainerView.backgroundColor = .clear
         self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
+        makeConfirmBtn()
+        self.confirmBtn?.isEnabled = false
     }
     
     private func makeSubViewControllers() {
@@ -176,9 +193,30 @@ class RecordViewController: UIViewController, StoryboardView {
         })
     }
     
+    private func makeConfirmBtn() {
+        self.confirmBtn = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(confirmAction(_:)))
+        setConfirmBtnColor(Gen.Colors.gray04.color)
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = confirmBtn
+    }
+    
+    private func setConfirmBtnColor(_ color: UIColor) {
+        self.confirmBtn?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.fonts(.button), NSAttributedString.Key.foregroundColor: color], for: .normal)
+        self.confirmBtn?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.fonts(.button), NSAttributedString.Key.foregroundColor: color], for: .highlighted)
+        self.confirmBtn?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.fonts(.button), NSAttributedString.Key.foregroundColor: color], for: .disabled)
+    }
+    
+    private func removeConfrimBtn() {
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
+    }
+    
     // MARK: internal function
     
     // MARK: action
+    
+    @objc private func confirmAction(_ sender: UIButton) {
+        
+    }
 
 }
 
@@ -190,6 +228,7 @@ extension RecordViewController: UIPageViewControllerDataSource, UIPageViewContro
         if previousIndex < 0 {
             return nil
         }
+        makeConfirmBtn()
         return subViewControllers[previousIndex]
     }
 
@@ -205,6 +244,10 @@ extension RecordViewController: UIPageViewControllerDataSource, UIPageViewContro
 
 
 extension RecordViewController: ImageRecordViewControllerDelegate {
+    func settedImageInfos(infos: [ImageInfo]) {
+        self.reactor?.action.onNext(.setImageInfos(infos))
+    }
+    
     func clickedEmotionSelectArea(currentEmotion: Emotion?) {
         self.imageRecordViewController?.hideTopView()
         self.reactor?.action.onNext(.moveToSelectEmotion(currentEmotion))
