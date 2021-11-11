@@ -105,7 +105,7 @@ class ImageRecordReactor: Reactor {
                     space: CGColorSpaceCreateDeviceRGB(),
                     bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
                 context.interpolationQuality = .low
-                context.draw(image, in: CGRect(origin:.zero, size:size))
+                context.draw(image, in: CGRect(origin: .zero, size: size))
                 guard let resultImage = context.makeImage() else { continue }
                 let resultUIImage: UIImage = UIImage(cgImage: resultImage)
                 responseImages.append(resultUIImage)

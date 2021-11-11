@@ -24,12 +24,26 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mew-zh-IbA">
                                 <rect key="frame" x="0.0" y="0.0" width="331" height="322"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-sD-oUD">
+                                <rect key="frame" x="266" y="238" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="6ZS-4r-lU7"/>
+                                    <constraint firstAttribute="height" constant="44" id="qdJ-oe-SAS"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="icon_crop" title=" "/>
+                                <connections>
+                                    <action selector="imageCropAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="SrF-ZR-wbz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Mew-zh-IbA" firstAttribute="leading" secondItem="g9h-cy-CN1" secondAttribute="leading" id="0F7-Uq-9w8"/>
                             <constraint firstAttribute="trailing" secondItem="Mew-zh-IbA" secondAttribute="trailing" id="0GM-vH-0oM"/>
                             <constraint firstItem="Mew-zh-IbA" firstAttribute="top" secondItem="g9h-cy-CN1" secondAttribute="top" id="4cK-4g-X3x"/>
+                            <constraint firstAttribute="bottom" secondItem="Zdt-sD-oUD" secondAttribute="bottom" constant="40" id="Dhu-g9-80D"/>
+                            <constraint firstAttribute="trailing" secondItem="Zdt-sD-oUD" secondAttribute="trailing" constant="21" id="FVv-Zp-KAu"/>
                             <constraint firstAttribute="bottom" secondItem="Mew-zh-IbA" secondAttribute="bottom" id="ONX-Uc-Ffr"/>
                         </constraints>
                     </view>
@@ -51,6 +65,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="icon_crop" width="44" height="44"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
