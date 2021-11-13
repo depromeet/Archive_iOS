@@ -84,6 +84,9 @@
 		78212335273F89BA007DEC28 /* RecordUploadCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821232C273F894B007DEC28 /* RecordUploadCompleteViewController.swift */; };
 		78212336273F89BA007DEC28 /* RecordUploadCompleteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821232E273F8954007DEC28 /* RecordUploadCompleteReactor.swift */; };
 		78212337273F89BA007DEC28 /* RecordUploadCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78212330273F895B007DEC28 /* RecordUploadCompleteModel.swift */; };
+		7821233A273F9623007DEC28 /* CodableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78212339273F9623007DEC28 /* CodableWrapper.swift */; };
+		7821233C273F9F58007DEC28 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821233B273F9F58007DEC28 /* StringExtension.swift */; };
+		7821233D273FA04D007DEC28 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821233B273F9F58007DEC28 /* StringExtension.swift */; };
 		782FDF3B272CF9B6004D1B6E /* ImageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF3A272CF9B6004D1B6E /* ImageSelectViewController.swift */; };
 		782FDF3D272CF9C3004D1B6E /* ImageSelectReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF3C272CF9C3004D1B6E /* ImageSelectReactor.swift */; };
 		782FDF3F272CF9CC004D1B6E /* ImageSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782FDF3E272CF9CC004D1B6E /* ImageSelectModel.swift */; };
@@ -240,6 +243,8 @@
 		7821232C273F894B007DEC28 /* RecordUploadCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUploadCompleteViewController.swift; sourceTree = "<group>"; };
 		7821232E273F8954007DEC28 /* RecordUploadCompleteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUploadCompleteReactor.swift; sourceTree = "<group>"; };
 		78212330273F895B007DEC28 /* RecordUploadCompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUploadCompleteModel.swift; sourceTree = "<group>"; };
+		78212339273F9623007DEC28 /* CodableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableWrapper.swift; sourceTree = "<group>"; };
+		7821233B273F9F58007DEC28 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		782FDF3A272CF9B6004D1B6E /* ImageSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectViewController.swift; sourceTree = "<group>"; };
 		782FDF3C272CF9C3004D1B6E /* ImageSelectReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectReactor.swift; sourceTree = "<group>"; };
 		782FDF3E272CF9CC004D1B6E /* ImageSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectModel.swift; sourceTree = "<group>"; };
@@ -354,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				44FB0A2127184376006E1048 /* ReuseIdentifiable.swift */,
+				78212339273F9623007DEC28 /* CodableWrapper.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -632,6 +638,7 @@
 				78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */,
 				78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */,
 				785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */,
+				7821233B273F9F58007DEC28 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1075,6 +1082,7 @@
 				78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */,
 				789E61BF2725849400D6E18F /* ClassIdentifiable.swift in Sources */,
+				7821233D273FA04D007DEC28 /* StringExtension.swift in Sources */,
 				44AA7D8C2724494E006EEA98 /* ConditionCheckView.swift in Sources */,
 				44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
@@ -1109,6 +1117,7 @@
 				789E619D2725551C00D6E18F /* RecordModel.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
 				7821232A273F83A1007DEC28 /* RecordUploadModel.swift in Sources */,
+				7821233A273F9623007DEC28 /* CodableWrapper.swift in Sources */,
 				78C4B33B27244C000006EBAD /* UIViewExtension.swift in Sources */,
 				44FB09FF271832AD006E1048 /* AppFlow.swift in Sources */,
 				780478262723EA0300FAA1CF /* LoginDefine.swift in Sources */,
@@ -1143,6 +1152,7 @@
 				78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */,
 				789E61B92725817900D6E18F /* NibIdentifiable.swift in Sources */,
 				789E619B2725551400D6E18F /* RecordReactor.swift in Sources */,
+				7821233C273F9F58007DEC28 /* StringExtension.swift in Sources */,
 				78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */,
 				78458D2A272C18BB00392B45 /* Util.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
