@@ -5,6 +5,8 @@
 //  Created by hanwe on 2021/11/13.
 //
 
+import Foundation
+
 public protocol CodableWrapper: Codable, Equatable {
     
     associatedtype selfType: CodableWrapper
@@ -16,7 +18,7 @@ public protocol CodableWrapper: Codable, Equatable {
 
 extension CodableWrapper {
     public static func fromJson(jsonData: Data?) -> selfType? {
-        var returnValue: selfType? = nil
+        var returnValue: selfType?
         let decoder = JSONDecoder()
         if let data = jsonData, let result = try? decoder.decode(selfType.self, from: data) {
             returnValue = result

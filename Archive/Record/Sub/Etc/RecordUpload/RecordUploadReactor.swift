@@ -28,51 +28,46 @@ class RecordUploadReactor: Reactor, Stepper {
     }
     
     enum Action {
-//        case setImageInfos([PHAsset: PhotoFromAlbumModel])
-//        case setSelectedImageInfo(PHAsset)
-//        case confirm
-//        case imageCropDone(UIImage)
+        case record
+        case setRecordIsDone(Bool)
+        case cancel
     }
     
     enum Mutation {
-//        case setImageInfos([PHAsset: PhotoFromAlbumModel])
-//        case setSelectedImageInfo(PHAsset)
+        case setRecordIsDone(Bool)
     }
     
     struct State {
-//        var imageInfos: [PHAsset: PhotoFromAlbumModel] = [PHAsset: PhotoFromAlbumModel]()
-//        var selectedImageInfo: PHAsset?
+        var recordIsDone: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .setImageInfos(let imageInfos):
-//            return .just(.setImageInfos(imageInfos))
-//        case .setSelectedImageInfo(let info):
-//            return .just(.setSelectedImageInfo(info))
-//        case .confirm:
-//            confirm()
-//            return .empty()
-//        case .imageCropDone(let image):
-//            self.model.coverImage = image
-//            steps.accept(ArchiveStep.recordImageSelectIsComplete(model.coverImage ?? UIImage(), model.images ?? [UIImage]()))
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .record:
+            return .empty()
+        case .setRecordIsDone(let isDone):
+            return .just(.setRecordIsDone(isDone))
+        case .cancel:
+            return .empty()
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setImageInfos(let infos):
-//            newState.imageInfos = infos
-//        case .setSelectedImageInfo(let info):
-//            newState.selectedImageInfo = info
-//        }
+        switch mutation {
+        case .setRecordIsDone(let isDone):
+            newState.recordIsDone = isDone
+        }
         return newState
     }
     
     // MARK: private function
+    
+    private func record(completion: @escaping () -> Void) {
+        self.model.record {
+            self.action.onNext(.setRecordIsDone(true))
+        }
+    }
     
     // MARK: internal function
 }

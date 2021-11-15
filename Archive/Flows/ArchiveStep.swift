@@ -34,4 +34,5 @@ enum ArchiveStep: Step {
     case recordEmotionEditIsComplete(Emotion)
     case recordImageSelectIsRequired(Emotion)
     case recordImageSelectIsComplete(UIImage, [UIImage])
+    case recordUploadIsRequired(ContentsRecordModelData, UIImage, Emotion, [ImageInfo]?)
 }

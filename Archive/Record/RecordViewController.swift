@@ -215,7 +215,7 @@ class RecordViewController: UIViewController, StoryboardView {
     // MARK: action
     
     @objc private func confirmAction(_ sender: UIButton) {
-        
+        self.reactor?.action.onNext(.record)
     }
 
 }

@@ -42,6 +42,7 @@ class RecordReactor: Reactor, Stepper {
         case setImages([UIImage])
         case setThumbnailImage(UIImage)
         case setImageInfos([ImageInfo])
+        case record
     }
     
     enum Mutation {
@@ -82,6 +83,13 @@ class RecordReactor: Reactor, Stepper {
         case .setImageInfos(let infos):
             self.model.imageInfos = infos
             checkIsAllDataSetted()
+            return .empty()
+        case .record:
+            guard let contents = self.model.recordInfo else { return .empty() }
+            guard let thumbnailImage = self.model.thumbnailImage else { return .empty() }
+            guard let emotion = self.model.emotion else { return .empty() }
+            let imageInfos = self.model.imageInfos
+            steps.accept(ArchiveStep.recordUploadIsRequired(contents, thumbnailImage, emotion, imageInfos))
             return .empty()
         }
     }
@@ -145,10 +153,8 @@ class RecordReactor: Reactor, Stepper {
     
     private func checkIsAllDataSetted() {
         if self.model.isAllDataSetted() {
-            print("1")
             self.isAllDataSetted.onNext(true)
         } else {
-            print("2")
             self.isAllDataSetted.onNext(false)
         }
     }

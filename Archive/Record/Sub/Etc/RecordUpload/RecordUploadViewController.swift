@@ -42,11 +42,13 @@ class RecordUploadViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordUploadReactor) {
-//        self.cancelBtn..rx.tap
-//            .map { Reactor.Action.agreeTerms }
-//            .bind(to: reactor.action)
-//            .disposed(by: disposeBag)
-            
+        self.cancelBtn.rx
+            .tap
+            .subscribe(onNext: {
+                print("cancel clicked")
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     deinit {

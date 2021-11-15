@@ -160,6 +160,7 @@
 		789E61C7272584FC00D6E18F /* ContentsRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */; };
 		789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C4272584ED00D6E18F /* ContentsRecordReactor.swift */; };
 		789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */; };
+		78A0E90327427A080097C25C /* CodableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78212339273F9623007DEC28 /* CodableWrapper.swift */; };
 		78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */; };
 		78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */; };
 		78B872DC2726C54C009EFB54 /* EmotionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */; };
@@ -1024,6 +1025,7 @@
 				789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
 				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
+				78A0E90327427A080097C25C /* CodableWrapper.swift in Sources */,
 				78C4B33627243C930006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				78212332273F89B7007DEC28 /* RecordUploadReactor.swift in Sources */,
 				784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
