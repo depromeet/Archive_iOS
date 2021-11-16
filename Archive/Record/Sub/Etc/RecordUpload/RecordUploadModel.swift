@@ -38,7 +38,14 @@ class RecordUploadModel: RecordUploadModelProtocol {
     // MARK: private function
     
     private func uploadImages(completion: @escaping ([RecordImageData]) -> Void) {
-        
+        var recordImageDatas: [RecordImageData] = [RecordImageData]()
+        if let infos = self.imageInfos {
+            for item in infos {
+                // TODO: 이미지 업로드 및 데이터 처리
+            }
+        } else {
+            completion(recordImageDatas)
+        }
     }
     
     // MARK: internal function

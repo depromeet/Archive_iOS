@@ -128,6 +128,7 @@
 		787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
 		787769A2273AA98400519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
 		787769A3273AA99000519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
+		787C316F2743CF16002B04D7 /* uploadTmp.json in Resources */ = {isa = PBXBuildFile; fileRef = 787C316E2743CF16002B04D7 /* uploadTmp.json */; };
 		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */; };
@@ -270,6 +271,7 @@
 		785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		7877699E273AA98100519B58 /* PhotoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentsView.swift; sourceTree = "<group>"; };
 		7877699F273AA98100519B58 /* PhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoContentsView.xib; sourceTree = "<group>"; };
+		787C316E2743CF16002B04D7 /* uploadTmp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploadTmp.json; sourceTree = "<group>"; };
 		78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		78958E0B27129FBB003FF724 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 		784D1DBD27083D1C004B1A23 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				787C316D2743CF16002B04D7 /* Lottie */,
 				78958E0827129FA6003FF724 /* Font */,
 				784D1E3427088EC7004B1A23 /* Assets.swift */,
 				784D1DC627083D88004B1A23 /* Assets */,
@@ -607,6 +610,14 @@
 				7877699F273AA98100519B58 /* PhotoContentsView.xib */,
 			);
 			path = Sub;
+			sourceTree = "<group>";
+		};
+		787C316D2743CF16002B04D7 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				787C316E2743CF16002B04D7 /* uploadTmp.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		78958E0827129FA6003FF724 /* Font */ = {
@@ -889,6 +900,7 @@
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				782FDF4B272CFB6E004D1B6E /* PhotoFromAlbumCell.xib in Resources */,
+				787C316F2743CF16002B04D7 /* uploadTmp.json in Resources */,
 				78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */,
 				4489368A2708380100EA423A /* Onboarding.storyboard in Resources */,
 				789E6197272554F400D6E18F /* Record.storyboard in Resources */,

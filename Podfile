@@ -18,6 +18,7 @@ def pods
   pod 'GrowingTextView', '0.7.2'
   pod 'CropViewController'
   pod 'UIImageColors'
+  pod 'lottie-ios'
 end
 
 def pods_debug

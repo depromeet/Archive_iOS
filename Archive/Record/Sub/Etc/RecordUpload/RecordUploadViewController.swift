@@ -9,6 +9,7 @@ import UIKit
 import ReactorKit
 import RxSwift
 import RxCocoa
+import Lottie
 
 class RecordUploadViewController: UIViewController, StoryboardView {
     

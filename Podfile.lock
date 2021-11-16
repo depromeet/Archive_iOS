@@ -4,6 +4,7 @@ PODS:
   - Differentiator (5.0.0)
   - GrowingTextView (0.7.2)
   - Kingfisher (7.1.1)
+  - lottie-ios (3.2.3)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - CropViewController
   - GrowingTextView (= 0.7.2)
   - Kingfisher (~> 7.0)
+  - lottie-ios
   - Moya
   - ReactorKit
   - RxCocoa
@@ -54,6 +56,7 @@ SPEC REPOS:
     - Differentiator
     - GrowingTextView
     - Kingfisher
+    - lottie-ios
     - Moya
     - ReactorKit
     - RxCocoa
@@ -74,6 +77,7 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   ReactorKit: a06dd2a5c9339287aedf3dc821cfab6347eca106
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
@@ -88,6 +92,6 @@ SPEC CHECKSUMS:
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 5d3562aef6a597c829e4948dc0f16a4851cac32b
+PODFILE CHECKSUM: f3e8ecf0b706c53619353b7a7fe6bfc42795d1b6
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
