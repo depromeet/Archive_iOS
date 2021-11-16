@@ -43,7 +43,6 @@ class RecordUploadCompleteViewController: UIViewController, StoryboardView {
     
     func bind(reactor: RecordUploadCompleteReactor) {
         
-            
     }
     
     deinit {

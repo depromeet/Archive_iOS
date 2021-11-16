@@ -19,6 +19,7 @@ class RecordUploadViewController: UIViewController, StoryboardView {
     @IBOutlet weak var contetnsContainerView: UIView!
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var lottieContainerView: UIView!
+    @IBOutlet weak var animationView: AnimationView!
     @IBOutlet weak var cancelBtn: UIButton!
     
     // MARK: private property
@@ -31,6 +32,12 @@ class RecordUploadViewController: UIViewController, StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        self.reactor?.action.onNext(.record)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.animationView.play(completion: nil)
     }
     
     init?(coder: NSCoder, reactor: RecordUploadReactor) {
@@ -47,6 +54,19 @@ class RecordUploadViewController: UIViewController, StoryboardView {
             .tap
             .subscribe(onNext: {
                 print("cancel clicked")
+                self.animationView.stop()
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.recordIsDone }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isDone in
+                if isDone {
+                    print("done")
+                    self?.animationView.stop()
+                }
             })
             .disposed(by: self.disposeBag)
         
@@ -70,6 +90,11 @@ class RecordUploadViewController: UIViewController, StoryboardView {
         self.contentsLabel.text = "아카이브를\n보관  중입니다."
         
         self.lottieContainerView.backgroundColor = .clear
+        
+        self.animationView.backgroundColor = .clear
+        self.animationView.animation = Animation.named("uploadTmp")
+        self.animationView.contentMode = .scaleAspectFit
+        self.animationView.loopMode = .loop
     }
     
     // MARK: internal function

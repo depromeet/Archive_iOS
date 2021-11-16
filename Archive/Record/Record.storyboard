@@ -1104,10 +1104,20 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3H5-gI-Dgo">
                                                 <rect key="frame" x="0.0" y="25" width="215" height="215"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yph-Tz-Dn4" customClass="AnimationView" customModule="Lottie">
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="215"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="yph-Tz-Dn4" secondAttribute="trailing" id="Oqv-5a-LGa"/>
+                                                    <constraint firstItem="yph-Tz-Dn4" firstAttribute="leading" secondItem="3H5-gI-Dgo" secondAttribute="leading" id="Rbd-bU-zQa"/>
+                                                    <constraint firstAttribute="bottom" secondItem="yph-Tz-Dn4" secondAttribute="bottom" id="SSU-xR-6Re"/>
                                                     <constraint firstAttribute="height" constant="215" id="YTL-mT-hHc"/>
                                                     <constraint firstAttribute="width" constant="215" id="nka-Wz-Vcf"/>
+                                                    <constraint firstItem="yph-Tz-Dn4" firstAttribute="top" secondItem="3H5-gI-Dgo" secondAttribute="top" id="uuj-un-6VN"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1155,6 +1165,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animationView" destination="yph-Tz-Dn4" id="VAg-OO-nlY"/>
                         <outlet property="cancelBtn" destination="u8c-M6-x7a" id="TAU-Db-npW"/>
                         <outlet property="contentsLabel" destination="U7E-5r-o2G" id="LUd-t0-eea"/>
                         <outlet property="contetnsContainerView" destination="aXg-41-Qnx" id="e3T-ZU-j95"/>
@@ -1309,14 +1320,6 @@
             <point key="canvasLocation" x="2350.7246376811595" y="-283.25892857142856"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="FZP-1j-cTi">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-        <designable name="Yjl-Ms-Ur9">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <image name="InstaShare" width="56" height="56"/>
         <image name="addPhoto" width="44" height="44"/>

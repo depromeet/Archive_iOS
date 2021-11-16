@@ -43,6 +43,7 @@ class RecordUploadModel: RecordUploadModelProtocol {
             for item in infos {
                 // TODO: 이미지 업로드 및 데이터 처리
             }
+            completion(recordImageDatas) // testCode
         } else {
             completion(recordImageDatas)
         }
@@ -52,7 +53,14 @@ class RecordUploadModel: RecordUploadModelProtocol {
     
     func record(completion: @escaping () -> Void) {
         uploadImages(completion: { [weak self] recordImageDatas in
-            
+            // test code
+            DispatchQueue.global().async {
+                usleep(3 * 1000 * 1000)
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+            // test code
         })
     }
     

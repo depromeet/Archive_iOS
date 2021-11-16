@@ -48,6 +48,9 @@ class RecordFlow: Flow {
             return .none
         case .recordUploadIsRequired(let contents, let thumbnail, let emotion, let imageInfos):
             return navigationToRecordUpload(contents: contents, thumbnail: thumbnail, emotion: emotion, imageInfos: imageInfos)
+        case .recordUploadIsComplete:
+            rootViewController.dismiss(animated: false, completion: nil)
+            return navigationToRecordUploadComplete()
         default:
             return .none
         }
@@ -117,6 +120,18 @@ class RecordFlow: Flow {
         recordUploadViewController.modalPresentationStyle = .fullScreen
         rootViewController.present(recordUploadViewController, animated: true, completion: nil)
         return .one(flowContributor: .contribute(withNextPresentable: recordUploadViewController,
+                                                 withNextStepper: reactor))
+    }
+    
+    private func navigationToRecordUploadComplete() -> FlowContributors {
+        let model: RecordUploadCompleteModel = RecordUploadCompleteModel()
+        let reactor = RecordUploadCompleteReactor(model: model)
+        let recordUploadCompleteViewController: RecordUploadCompleteViewController = recordStoryBoard.instantiateViewController(identifier: RecordUploadCompleteViewController.identifier) { corder in
+            return RecordUploadCompleteViewController(coder: corder, reactor: reactor)
+        }
+        recordUploadCompleteViewController.modalPresentationStyle = .fullScreen
+        rootViewController.present(recordUploadCompleteViewController, animated: false, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: recordUploadCompleteViewController,
                                                  withNextStepper: reactor))
     }
     

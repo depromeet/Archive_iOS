@@ -31,6 +31,7 @@ class RecordUploadReactor: Reactor, Stepper {
         case record
         case setRecordIsDone(Bool)
         case cancel
+        case moveToCompleteView
     }
     
     enum Mutation {
@@ -44,10 +45,14 @@ class RecordUploadReactor: Reactor, Stepper {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .record:
+            record()
             return .empty()
         case .setRecordIsDone(let isDone):
             return .just(.setRecordIsDone(isDone))
         case .cancel:
+            return .empty()
+        case .moveToCompleteView:
+            steps.accept(ArchiveStep.recordUploadIsComplete)
             return .empty()
         }
     }
@@ -63,9 +68,10 @@ class RecordUploadReactor: Reactor, Stepper {
     
     // MARK: private function
     
-    private func record(completion: @escaping () -> Void) {
+    private func record() {
         self.model.record {
             self.action.onNext(.setRecordIsDone(true))
+            self.action.onNext(.moveToCompleteView)
         }
     }
     

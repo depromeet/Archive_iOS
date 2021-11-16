@@ -129,6 +129,7 @@
 		787769A2273AA98400519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
 		787769A3273AA99000519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
 		787C316F2743CF16002B04D7 /* uploadTmp.json in Resources */ = {isa = PBXBuildFile; fileRef = 787C316E2743CF16002B04D7 /* uploadTmp.json */; };
+		787C31702743D9B8002B04D7 /* uploadTmp.json in Resources */ = {isa = PBXBuildFile; fileRef = 787C316E2743CF16002B04D7 /* uploadTmp.json */; };
 		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
 		78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */; };
@@ -877,6 +878,7 @@
 				4FD4F1DC272F870D00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				448936AE2708415500EA423A /* Onboarding.storyboard in Resources */,
 				44922DBE2719CC5700A5EA2B /* Colors.xcassets in Resources */,
+				787C31702743D9B8002B04D7 /* uploadTmp.json in Resources */,
 				782FDF51272CFC1C004D1B6E /* HWPhotoListFromAlbumView.xib in Resources */,
 				782FDF52272CFC1C004D1B6E /* PhotoFromAlbumCell.xib in Resources */,
 				789E61AE2725777700D6E18F /* Record.storyboard in Resources */,
