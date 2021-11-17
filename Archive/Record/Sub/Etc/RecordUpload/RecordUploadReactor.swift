@@ -52,7 +52,10 @@ class RecordUploadReactor: Reactor, Stepper {
         case .cancel:
             return .empty()
         case .moveToCompleteView:
-            steps.accept(ArchiveStep.recordUploadIsComplete)
+            let thumbnail: UIImage = self.model.thumbnailImage
+            let emotion: Emotion = self.model.emotion
+            let info: ContentsRecordModelData = self.model.contents
+            steps.accept(ArchiveStep.recordUploadIsComplete(thumbnail, emotion, info))
             return .empty()
         }
     }

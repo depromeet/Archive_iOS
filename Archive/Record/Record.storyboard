@@ -1307,6 +1307,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeBtn" destination="F2H-2Y-kZa" id="FZT-Vk-X49"/>
                         <outlet property="instagramShareBtn" destination="Qjr-hS-u0U" id="yes-Nq-NuS"/>
                         <outlet property="mainBackgroundView" destination="JUs-43-Z44" id="Zeq-Xe-jA7"/>
                         <outlet property="mainContainerView" destination="pY0-OY-T7y" id="xvp-Xx-xi3"/>
@@ -1320,6 +1321,15 @@
             <point key="canvasLocation" x="2350.7246376811595" y="-283.25892857142856"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="FZP-1j-cTi">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+        <designable name="Yjl-Ms-Ur9">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+        <designable name="yph-Tz-Dn4"/>
+    </designables>
     <resources>
         <image name="InstaShare" width="56" height="56"/>
         <image name="addPhoto" width="44" height="44"/>

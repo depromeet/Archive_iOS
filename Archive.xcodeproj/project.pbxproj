@@ -198,6 +198,10 @@
 		78C62C6E2729759A005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
 		78C62C6F2729759D005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
 		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
+		78EDAD61274525D40028F56D /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EDAD60274525D40028F56D /* ShareCardView.swift */; };
+		78EDAD63274525E80028F56D /* ShareCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EDAD62274525E80028F56D /* ShareCardView.xib */; };
+		78EDAD6427452AAF0028F56D /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EDAD60274525D40028F56D /* ShareCardView.swift */; };
+		78EDAD6527452AC10028F56D /* ShareCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EDAD62274525E80028F56D /* ShareCardView.xib */; };
 		A95C21FD6652E13041320AF5 /* Pods_Archive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C34E0C4CFA05B0DB2E343 /* Pods_Archive.framework */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +311,8 @@
 		78C4B33727244ACB0006EBAD /* CommonAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAlertView.swift; sourceTree = "<group>"; };
 		78C4B33A27244C000006EBAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewControllerExtension.swift; sourceTree = "<group>"; };
+		78EDAD60274525D40028F56D /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
+		78EDAD62274525E80028F56D /* ShareCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareCardView.xib; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -508,6 +514,7 @@
 		7821232B273F893A007DEC28 /* RecordUploadComplete */ = {
 			isa = PBXGroup;
 			children = (
+				78EDAD5F274525A50028F56D /* Sub */,
 				7821232C273F894B007DEC28 /* RecordUploadCompleteViewController.swift */,
 				7821232E273F8954007DEC28 /* RecordUploadCompleteReactor.swift */,
 				78212330273F895B007DEC28 /* RecordUploadCompleteModel.swift */,
@@ -743,6 +750,15 @@
 			path = Withdrawal;
 			sourceTree = "<group>";
 		};
+		78EDAD5F274525A50028F56D /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				78EDAD60274525D40028F56D /* ShareCardView.swift */,
+				78EDAD62274525E80028F56D /* ShareCardView.xib */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		7A78CD9881593A0B9DDBF955 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +885,7 @@
 				784377B1273173B60005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				44922DC12719CE9100A5EA2B /* Images.xcassets in Resources */,
 				78958E182712A510003FF724 /* Pretendard-Bold.ttf in Resources */,
+				78EDAD6527452AC10028F56D /* ShareCardView.xib in Resources */,
 				78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */,
 				78C4B33327242EFB0006EBAD /* MyPage.storyboard in Resources */,
 				44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */,
@@ -893,6 +910,7 @@
 				784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */,
 				784D1DD827084869004B1A23 /* swiftgen.yml in Resources */,
+				78EDAD63274525E80028F56D /* ShareCardView.xib in Resources */,
 				78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */,
 				78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */,
 				44F9B0ED270606EE005418F0 /* LaunchScreen.storyboard in Resources */,
@@ -1034,6 +1052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78B872DE2726C553009EFB54 /* EmotionSelectViewController.swift in Sources */,
+				78EDAD6427452AAF0028F56D /* ShareCardView.swift in Sources */,
 				789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */,
 				78B872ED2726F38A009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */,
@@ -1119,6 +1138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FB0A2227184376006E1048 /* ReuseIdentifiable.swift in Sources */,
+				78EDAD61274525D40028F56D /* ShareCardView.swift in Sources */,
 				789E61C7272584FC00D6E18F /* ContentsRecordModel.swift in Sources */,
 				78B872EC2726F32E009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				782FDF3B272CF9B6004D1B6E /* ImageSelectViewController.swift in Sources */,

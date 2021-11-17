@@ -28,51 +28,56 @@ class RecordUploadCompleteReactor: Reactor, Stepper {
     }
     
     enum Action {
-//        case setImageInfos([PHAsset: PhotoFromAlbumModel])
-//        case setSelectedImageInfo(PHAsset)
-//        case confirm
-//        case imageCropDone(UIImage)
+        case close
+        case shareToInstagram
+        case saveToAlbum
     }
     
     enum Mutation {
-//        case setImageInfos([PHAsset: PhotoFromAlbumModel])
-//        case setSelectedImageInfo(PHAsset)
+        case setInstagramCardView(UIView)
     }
     
     struct State {
-//        var imageInfos: [PHAsset: PhotoFromAlbumModel] = [PHAsset: PhotoFromAlbumModel]()
-//        var selectedImageInfo: PHAsset?
+        var willSharedCarView: UIView?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .setImageInfos(let imageInfos):
-//            return .just(.setImageInfos(imageInfos))
-//        case .setSelectedImageInfo(let info):
-//            return .just(.setSelectedImageInfo(info))
-//        case .confirm:
-//            confirm()
-//            return .empty()
-//        case .imageCropDone(let image):
-//            self.model.coverImage = image
-//            steps.accept(ArchiveStep.recordImageSelectIsComplete(model.coverImage ?? UIImage(), model.images ?? [UIImage]()))
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .close:
+            steps.accept(ArchiveStep.recordComplete)
+            return .empty()
+        case .shareToInstagram:
+            DispatchQueue.main.async { [weak self] in
+                guard let cardView: ShareCardView = self?.makeCardView() else { return }
+                InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: cardView.topBackgroundColor, backgroundBottomColor: cardView.bottomBackgroundColor, completion: { _ in
+                    
+                }, failure: { _ in
+                    
+                })
+            }
+            return .empty()
+        case .saveToAlbum:
+            return .empty()
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setImageInfos(let infos):
-//            newState.imageInfos = infos
-//        case .setSelectedImageInfo(let info):
-//            newState.selectedImageInfo = info
-//        }
+        switch mutation {
+        case .setInstagramCardView(let carView):
+            newState.willSharedCarView = carView
+        }
         return newState
     }
     
     // MARK: private function
+    
+    private func makeCardView() -> ShareCardView? {
+        guard let cardView: ShareCardView = ShareCardView.instance() else { return nil }
+        cardView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 1.73)
+        cardView.setInfoData(emotion: self.model.emotion, thumbnailImage: self.model.thumbnail, eventName: self.model.contentsInfo.title, date: self.model.contentsInfo.date)
+        return cardView
+    }
     
     // MARK: internal function
 }

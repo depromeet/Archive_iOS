@@ -19,6 +19,7 @@ class RecordUploadCompleteViewController: UIViewController, StoryboardView {
     @IBOutlet weak var shareLabel: UILabel!
     @IBOutlet weak var saveImageBtn: UIButton!
     @IBOutlet weak var instagramShareBtn: UIButton!
+    @IBOutlet weak var closeBtn: UIButton!
     
     // MARK: private property
     
@@ -42,7 +43,33 @@ class RecordUploadCompleteViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: RecordUploadCompleteReactor) {
+        self.closeBtn.rx.tap
+            .map { Reactor.Action.close }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        self.instagramShareBtn.rx.tap
+            .map { Reactor.Action.shareToInstagram }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+        self.saveImageBtn.rx.tap
+            .map { Reactor.Action.saveToAlbum }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
+//        reactor.state
+//            .map { $0.willSharedCarView }
+//        .asDriver(onErrorJustReturn: nil)
+//        .drive(onNext: { [weak self] cardView in
+//            guard let cardView = cardView else { return }
+//            InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: .blue, backgroundBottomColor: .red, completion: { _ in
+//                
+//            }, failure: { _ in
+//                
+//            })
+//        })
+//        .disposed(by: self.disposeBag)
     }
     
     deinit {
