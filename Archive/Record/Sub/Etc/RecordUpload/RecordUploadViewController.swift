@@ -64,7 +64,6 @@ class RecordUploadViewController: UIViewController, StoryboardView {
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] isDone in
                 if isDone {
-                    print("done")
                     self?.animationView.stop()
                 }
             })

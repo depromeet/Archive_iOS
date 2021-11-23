@@ -5,7 +5,7 @@
 //  Created by hanwe lee on 2021/10/25.
 //
 
-enum Emotion {
+enum Emotion: String {
     case fun
     case impressive
     case pleasant

@@ -11,6 +11,7 @@ def pods
   pod 'RxDataSources', '~> 5.0'
   pod 'ReactorKit'
   pod 'Moya'
+  pod 'Moya/RxSwift'
   pod 'SwiftGen'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher', '~> 7.0'

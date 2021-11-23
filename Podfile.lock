@@ -9,6 +9,9 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - Moya/RxSwift (15.0.0):
+    - Moya/Core
+    - RxSwift (~> 6.0)
   - ReactorKit (3.1.0):
     - RxSwift (~> 6.0)
     - WeakMapTable (~> 1.1)
@@ -38,6 +41,7 @@ DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - lottie-ios
   - Moya
+  - Moya/RxSwift
   - ReactorKit
   - RxCocoa
   - RxDataSources (~> 5.0)
@@ -92,6 +96,6 @@ SPEC CHECKSUMS:
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: f3e8ecf0b706c53619353b7a7fe6bfc42795d1b6
+PODFILE CHECKSUM: 6babafb9425c3a55a376f48cb57883ed809394fa
 
 COCOAPODS: 1.11.2

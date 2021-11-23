@@ -114,6 +114,12 @@
 		784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */; };
 		784377B1273173B60005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */; };
 		78458D2A272C18BB00392B45 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
+		784CFFD8274BBB770052B1EC /* ArchiveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFD7274BBB770052B1EC /* ArchiveAPI.swift */; };
+		784CFFD9274BBB940052B1EC /* ArchiveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFD7274BBB770052B1EC /* ArchiveAPI.swift */; };
+		784CFFDB274BBFF10052B1EC /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFDA274BBFF10052B1EC /* ProviderProtocol.swift */; };
+		784CFFDC274BC0020052B1EC /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFDA274BBFF10052B1EC /* ProviderProtocol.swift */; };
+		784CFFDE274BC0290052B1EC /* ArchiveProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFDD274BC0290052B1EC /* ArchiveProvider.swift */; };
+		784CFFDF274BC02C0052B1EC /* ArchiveProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784CFFDD274BC0290052B1EC /* ArchiveProvider.swift */; };
 		784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC727083D88004B1A23 /* Colors.xcassets */; };
 		784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DC827083D88004B1A23 /* Images.xcassets */; };
 		784D1DD2270841CF004B1A23 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 784D1DD0270841B9004B1A23 /* .swiftlint.yml */; };
@@ -266,6 +272,9 @@
 		784377AC273172820005CB51 /* RecordAddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		784377AD273172820005CB51 /* RecordAddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordAddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		78458D29272C18BB00392B45 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		784CFFD7274BBB770052B1EC /* ArchiveAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAPI.swift; sourceTree = "<group>"; };
+		784CFFDA274BBFF10052B1EC /* ProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderProtocol.swift; sourceTree = "<group>"; };
+		784CFFDD274BC0290052B1EC /* ArchiveProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProvider.swift; sourceTree = "<group>"; };
 		784D1DC727083D88004B1A23 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		784D1DC827083D88004B1A23 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		784D1DD0270841B9004B1A23 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -419,6 +428,7 @@
 		44F9B0DF270606E7005418F0 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				784CFFD6274BB65D0052B1EC /* Network */,
 				44FB0A20271842FA006E1048 /* Common */,
 				44FB09EF27182963006E1048 /* Flows */,
 				78958E122712A094003FF724 /* Extension */,
@@ -567,6 +577,16 @@
 				783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		784CFFD6274BB65D0052B1EC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				784CFFD7274BBB770052B1EC /* ArchiveAPI.swift */,
+				784CFFDA274BBFF10052B1EC /* ProviderProtocol.swift */,
+				784CFFDD274BC0290052B1EC /* ArchiveProvider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		784D1DBD27083D1C004B1A23 /* Resources */ = {
@@ -1056,6 +1076,7 @@
 				789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */,
 				78B872ED2726F38A009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */,
+				784CFFDC274BC0020052B1EC /* ProviderProtocol.swift in Sources */,
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
 				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78A0E90327427A080097C25C /* CodableWrapper.swift in Sources */,
@@ -1106,6 +1127,7 @@
 				44922DCB2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				789E61AB2725601C00D6E18F /* RecordModel.swift in Sources */,
 				78C4B33927244B510006EBAD /* CommonAlertView.swift in Sources */,
+				784CFFD9274BBB940052B1EC /* ArchiveAPI.swift in Sources */,
 				78B872E22726C6D4009EFB54 /* EmotionDefine.swift in Sources */,
 				44922DA82719B89200A5EA2B /* Validator.swift in Sources */,
 				4FD4F1DD272F870D00BDB4BB /* RecordCardCollectionViewCell.swift in Sources */,
@@ -1122,6 +1144,7 @@
 				44922DA22719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				44B4F2D8270755FF00D53F27 /* SceneDelegate.swift in Sources */,
 				44922DD32719FB9300A5EA2B /* InputView.swift in Sources */,
+				784CFFDF274BC02C0052B1EC /* ArchiveProvider.swift in Sources */,
 				44FB09F72718309F006E1048 /* SignUpReactor.swift in Sources */,
 				782FDF54272CFC1C004D1B6E /* PhotoFromAlbumModel.swift in Sources */,
 				78958E162712A3F1003FF724 /* FontDefine.swift in Sources */,
@@ -1142,6 +1165,7 @@
 				789E61C7272584FC00D6E18F /* ContentsRecordModel.swift in Sources */,
 				78B872EC2726F32E009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				782FDF3B272CF9B6004D1B6E /* ImageSelectViewController.swift in Sources */,
+				784CFFDB274BBFF10052B1EC /* ProviderProtocol.swift in Sources */,
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
@@ -1192,6 +1216,7 @@
 				78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */,
 				78458D2A272C18BB00392B45 /* Util.swift in Sources */,
 				44922DA72719B89200A5EA2B /* Validator.swift in Sources */,
+				784CFFD8274BBB770052B1EC /* ArchiveAPI.swift in Sources */,
 				78C4B33827244ACC0006EBAD /* CommonAlertView.swift in Sources */,
 				784D1E3527088EC8004B1A23 /* Assets.swift in Sources */,
 				78B872E12726C6D1009EFB54 /* EmotionDefine.swift in Sources */,
@@ -1208,6 +1233,7 @@
 				44AA7D892724494B006EEA98 /* ConditionCheckView.swift in Sources */,
 				44922DA12719512A00A5EA2B /* SignInViewController.swift in Sources */,
 				78B872E52726E420009EFB54 /* ImageRecordViewController.swift in Sources */,
+				784CFFDE274BC0290052B1EC /* ArchiveProvider.swift in Sources */,
 				44F9B0E3270606E7005418F0 /* SceneDelegate.swift in Sources */,
 				44922DD22719FB9300A5EA2B /* InputView.swift in Sources */,
 				44FB0A1C27183C9C006E1048 /* SignUpCompletionViewController.swift in Sources */,

@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
+import Alamofire
+import SwiftyJSON
 
 protocol RecordUploadModelProtocol: AnyObject {
     var contents: ContentsRecordModelData { get set }
@@ -18,6 +22,8 @@ protocol RecordUploadModelProtocol: AnyObject {
 
 class RecordUploadModel: RecordUploadModelProtocol {
     // MARK: private property
+    
+    private var disposeBag: DisposeBag = DisposeBag()
     
     // MARK: internal property
     
@@ -40,27 +46,68 @@ class RecordUploadModel: RecordUploadModelProtocol {
     private func uploadImages(completion: @escaping ([RecordImageData]) -> Void) {
         var recordImageDatas: [RecordImageData] = [RecordImageData]()
         if let infos = self.imageInfos {
+            var observarbleRequests = [Observable<Response>]()
+            var photoContents: [String] = [String]()
+            let provider = MoyaProvider<ArchiveAPI>()
             for item in infos {
-                // TODO: 이미지 업로드 및 데이터 처리
+                let request = provider.rx.request(.uploadImage(item.image)).asObservable()
+                observarbleRequests.append(request)
+                photoContents.append(item.contents ?? "")
             }
-            completion(recordImageDatas) // testCode
+            Observable.zip(observarbleRequests)
+                .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe(onNext: { results in
+                    for i in 0..<results.count {
+                        if let result: JSON = try? JSON.init(data: results[i].data) {
+                            let data = RecordImageData(image: result["imageUrl"].stringValue, review: photoContents[i])
+                            recordImageDatas.append(data)
+                        }
+                    }
+                    completion(recordImageDatas)
+                })
+                .disposed(by: self.disposeBag)
         } else {
             completion(recordImageDatas)
         }
+    }
+    
+    private func uploadMainImage(completion: @escaping (String) -> Void) {
+        let provider = MoyaProvider<ArchiveAPI>()
+        provider.request(.uploadImage(self.thumbnailImage), completion: { response in
+            switch response {
+            case .success(let result):
+                if let result: JSON = try? JSON.init(data: result.data) {
+                    completion(result["imageUrl"].stringValue)
+                } else {
+                    completion("")
+                }
+            case .failure(_):
+                completion("")
+            }
+        })
     }
     
     // MARK: internal function
     
     func record(completion: @escaping () -> Void) {
         uploadImages(completion: { [weak self] recordImageDatas in
-            // test code
-            DispatchQueue.global().async {
-                usleep(3 * 1000 * 1000)
-                DispatchQueue.main.async {
-                    completion()
-                }
-            }
-            // test code
+            self?.uploadMainImage(completion: { mainImageUrl in
+                let recordData = RecordData(name: self?.contents.title ?? "",
+                                            watchedOn: self?.contents.date ?? "",
+                                            companions: self?.contents.friends ?? nil,
+                                            emotion: self?.emotion.rawValue ?? "",
+                                            mainImage: mainImageUrl,
+                                            images: recordImageDatas)
+                let provider = MoyaProvider<ArchiveAPI>()
+                provider.request(.registArchive(recordData), completion: { response in
+                    switch response {
+                    case .success(_):
+                        completion()
+                    case .failure(_):
+                        completion()
+                    }
+                })
+            })
         })
     }
     
@@ -83,5 +130,5 @@ struct RecordImageData: CodableWrapper {
     typealias selfType = RecordImageData
     
     let image: String
-    let review: String?
+    let review: String
 }
