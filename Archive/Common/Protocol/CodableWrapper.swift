@@ -32,8 +32,7 @@ extension CodableWrapper {
         var jsonString: String = ""
         
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        encoder.outputFormatting = .sortedKeys
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let jsonData = try? encoder.encode(self)
         if jsonData != nil {
             jsonString = String(data: jsonData!, encoding: .utf8) ?? ""

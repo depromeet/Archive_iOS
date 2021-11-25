@@ -11,6 +11,12 @@ class ArchiveProvider: ProviderPtotocol {
     typealias T = ArchiveAPI
     var provider: MoyaProvider<ArchiveAPI>
     
+    static let shared: ArchiveProvider = {
+        let isStub = Bundle.main.object(forInfoDictionaryKey: "IsStubing") as? Bool
+        let instance = ArchiveProvider(isStub: isStub ?? false)
+        return instance
+    }()
+    
     required init(isStub: Bool, sampleStatusCode: Int = 200, customEndpointClosure: ((ArchiveAPI) -> Endpoint)? = nil) {
         provider = Self.consProvider(isStub, sampleStatusCode, customEndpointClosure)
     }

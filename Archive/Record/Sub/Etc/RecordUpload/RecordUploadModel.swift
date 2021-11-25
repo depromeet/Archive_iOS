@@ -48,7 +48,7 @@ class RecordUploadModel: RecordUploadModelProtocol {
         if let infos = self.imageInfos {
             var observarbleRequests = [Observable<Response>]()
             var photoContents: [String] = [String]()
-            let provider = MoyaProvider<ArchiveAPI>()
+            let provider = ArchiveProvider.shared.provider
             for item in infos {
                 let request = provider.rx.request(.uploadImage(item.image)).asObservable()
                 observarbleRequests.append(request)
@@ -72,7 +72,7 @@ class RecordUploadModel: RecordUploadModelProtocol {
     }
     
     private func uploadMainImage(completion: @escaping (String) -> Void) {
-        let provider = MoyaProvider<ArchiveAPI>()
+        let provider = ArchiveProvider.shared.provider
         provider.request(.uploadImage(self.thumbnailImage), completion: { response in
             switch response {
             case .success(let result):
@@ -98,7 +98,7 @@ class RecordUploadModel: RecordUploadModelProtocol {
                                             emotion: self?.emotion.rawValue ?? "",
                                             mainImage: mainImageUrl,
                                             images: recordImageDatas)
-                let provider = MoyaProvider<ArchiveAPI>()
+                let provider = ArchiveProvider.shared.provider
                 provider.request(.registArchive(recordData), completion: { response in
                     switch response {
                     case .success(_):
