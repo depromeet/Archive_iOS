@@ -27,7 +27,7 @@ class ImageSelectReactor: Reactor, Stepper {
     
     // MARK: lifeCycle
     
-    init(model: ImageSelectModel, emotion: Emotion) {
+    init(model: ImageSelectModelProtocol, emotion: Emotion) {
         self.model = model
         self.isLoading = .init()
         self.presentCrop = .init()

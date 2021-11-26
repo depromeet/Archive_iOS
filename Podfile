@@ -11,6 +11,7 @@ def pods
   pod 'RxDataSources', '~> 5.0'
   pod 'ReactorKit'
   pod 'Moya'
+  pod 'Moya/RxSwift'
   pod 'SwiftGen'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher', '~> 7.0'
@@ -18,6 +19,7 @@ def pods
   pod 'GrowingTextView', '0.7.2'
   pod 'CropViewController'
   pod 'UIImageColors'
+  pod 'lottie-ios'
 end
 
 def pods_debug

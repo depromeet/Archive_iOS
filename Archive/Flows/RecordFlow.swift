@@ -46,6 +46,16 @@ class RecordFlow: Flow {
             self.recordViewController?.reactor?.action.onNext(.setThumbnailImage(thumbnailImage))
             dismissImageSelect()
             return .none
+        case .recordUploadIsRequired(let contents, let thumbnail, let emotion, let imageInfos):
+            return navigationToRecordUpload(contents: contents, thumbnail: thumbnail, emotion: emotion, imageInfos: imageInfos)
+        case .recordUploadIsComplete(let thumbnail, let emotion, let contentsInfo):
+            rootViewController.dismiss(animated: false, completion: nil)
+            return navigationToRecordUploadComplete(thumbnail: thumbnail, emotion: emotion, conetentsInfo: contentsInfo)
+        case .recordComplete:
+            rootViewController.dismiss(animated: true, completion: { [weak self] in
+                self?.rootViewController.dismiss(animated: true, completion: nil)
+            })
+            return .none
         default:
             return .none
         }
@@ -104,6 +114,30 @@ class RecordFlow: Flow {
         self.imageSelectViewControllerNavi?.dismiss(animated: true, completion: {
             self.imageSelectViewControllerNavi?.viewControllers = []
         })
+    }
+    
+    private func navigationToRecordUpload(contents: ContentsRecordModelData, thumbnail: UIImage, emotion: Emotion, imageInfos: [ImageInfo]?) -> FlowContributors {
+        let model: RecordUploadModel = RecordUploadModel(contents: contents, thumbnailImage: thumbnail, emotion: emotion, imageInfos: imageInfos)
+        let reactor = RecordUploadReactor(model: model)
+        let recordUploadViewController: RecordUploadViewController = recordStoryBoard.instantiateViewController(identifier: RecordUploadViewController.identifier) { corder in
+            return RecordUploadViewController(coder: corder, reactor: reactor)
+        }
+        recordUploadViewController.modalPresentationStyle = .fullScreen
+        rootViewController.present(recordUploadViewController, animated: true, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: recordUploadViewController,
+                                                 withNextStepper: reactor))
+    }
+    
+    private func navigationToRecordUploadComplete(thumbnail: UIImage, emotion: Emotion, conetentsInfo: ContentsRecordModelData) -> FlowContributors {
+        let model: RecordUploadCompleteModel = RecordUploadCompleteModel(thumbnail: thumbnail, emotion: emotion, contentsInfo: conetentsInfo)
+        let reactor = RecordUploadCompleteReactor(model: model)
+        let recordUploadCompleteViewController: RecordUploadCompleteViewController = recordStoryBoard.instantiateViewController(identifier: RecordUploadCompleteViewController.identifier) { corder in
+            return RecordUploadCompleteViewController(coder: corder, reactor: reactor)
+        }
+        recordUploadCompleteViewController.modalPresentationStyle = .fullScreen
+        rootViewController.present(recordUploadCompleteViewController, animated: false, completion: nil)
+        return .one(flowContributor: .contribute(withNextPresentable: recordUploadCompleteViewController,
+                                                 withNextStepper: reactor))
     }
     
 }
