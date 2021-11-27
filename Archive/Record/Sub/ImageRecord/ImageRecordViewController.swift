@@ -63,6 +63,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
+    @IBOutlet weak var pageControl: UIPageControl!
     // MARK: private property
     
     private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
@@ -153,6 +154,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 self?.imagesCollectionView.dataSource = nil
                 guard let cardImage = zippedImages.0 else { return }
                 guard let images = zippedImages.1 else { return }
+                self?.pageControl.numberOfPages = images.count + 1
                 self?.defaultImageContainerView.isHidden = true
                 self?.imagesCollectionView.isHidden = false
                 self?.topContentsContainerView.backgroundColor = .clear
@@ -228,6 +230,21 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                if info.at.section == 0 {
+                    self?.pageControl.isHidden = false
+                    self?.pageControl.currentPage = 0
+                } else if info.at.section == 2 {
+                    self?.pageControl.isHidden = true
+                } else {
+                    self?.pageControl.isHidden = false
+                    self?.pageControl.currentPage = info.at.item + 1
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
         reactor.isLoading
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] isLoading in
@@ -295,7 +312,9 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             photoContentsView.isHidden = true
             photoContentsView.delegate = self
         }
-        
+        self.pageControl.numberOfPages = 0
+        self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
+        self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
         
     }
     

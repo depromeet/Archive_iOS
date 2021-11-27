@@ -617,17 +617,26 @@
                                                             <constraint firstAttribute="height" constant="40" id="r40-3d-aJ0"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="CZS-Xe-bpy">
+                                                        <rect key="frame" x="117" y="707" width="180" height="26"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="180" id="HX2-3M-VFa"/>
+                                                        </constraints>
+                                                    </pageControl>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                                 <constraints>
                                                     <constraint firstItem="d3G-0b-2Op" firstAttribute="leading" secondItem="nAc-lK-ajb" secondAttribute="leading" id="3TI-lq-JbL"/>
                                                     <constraint firstItem="H5o-0B-1oG" firstAttribute="height" secondItem="64d-oj-4FK" secondAttribute="height" id="D4V-5d-Z29"/>
                                                     <constraint firstItem="rw8-2B-bPx" firstAttribute="top" secondItem="ZS7-ED-tL8" secondAttribute="top" constant="-20" id="DOd-5L-ood"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CZS-Xe-bpy" secondAttribute="bottom" constant="11" id="H0i-jo-M0W"/>
                                                     <constraint firstAttribute="trailing" secondItem="64d-oj-4FK" secondAttribute="trailing" id="N4l-55-RfF"/>
                                                     <constraint firstAttribute="bottom" secondItem="ZS7-ED-tL8" secondAttribute="bottom" id="OEb-VL-2zK"/>
                                                     <constraint firstItem="H5o-0B-1oG" firstAttribute="top" secondItem="nAc-lK-ajb" secondAttribute="top" id="OVg-06-pIh"/>
                                                     <constraint firstItem="d3G-0b-2Op" firstAttribute="top" secondItem="ZS7-ED-tL8" secondAttribute="top" constant="-20" id="RMd-8S-aQW"/>
                                                     <constraint firstItem="H5o-0B-1oG" firstAttribute="width" secondItem="64d-oj-4FK" secondAttribute="width" id="TuX-sG-6Dj"/>
+                                                    <constraint firstItem="CZS-Xe-bpy" firstAttribute="centerX" secondItem="nAc-lK-ajb" secondAttribute="centerX" id="Vw6-Pg-y9s"/>
                                                     <constraint firstItem="64d-oj-4FK" firstAttribute="leading" secondItem="nAc-lK-ajb" secondAttribute="leading" id="W9S-o5-eEu"/>
                                                     <constraint firstItem="ZS7-ED-tL8" firstAttribute="top" secondItem="64d-oj-4FK" secondAttribute="bottom" id="b5Z-is-9k2"/>
                                                     <constraint firstItem="ZS7-ED-tL8" firstAttribute="leading" secondItem="nAc-lK-ajb" secondAttribute="leading" id="gOY-kn-IWf"/>
@@ -686,6 +695,7 @@
                         <outlet property="mainBackgroundView" destination="Uiv-95-LTo" id="guZ-nO-Pe5"/>
                         <outlet property="mainContainerView" destination="nAc-lK-ajb" id="H8l-sN-KEs"/>
                         <outlet property="miniEmotionImageView" destination="Abh-wA-jqJ" id="YYg-CX-K52"/>
+                        <outlet property="pageControl" destination="CZS-Xe-bpy" id="60h-lT-ryC"/>
                         <outlet property="scrollContainerView" destination="nrg-TM-l40" id="bZ0-tX-kvJ"/>
                         <outlet property="scrollView" destination="c0z-cC-sFR" id="jBj-gw-uvl"/>
                         <outlet property="topContainerBackgroundView" destination="H5o-0B-1oG" id="KzU-cW-Af1"/>
