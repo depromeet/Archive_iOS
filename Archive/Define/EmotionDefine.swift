@@ -6,9 +6,9 @@
 //
 
 enum Emotion: String {
-    case fun
-    case impressive
-    case pleasant
-    case splendid
-    case wonderful
+    case fun = "INTERESTING"
+    case impressive = "IMPRESSIVE"
+    case pleasant = "PLEASANT"
+    case splendid = "BEAUTIFUL"
+    case wonderful = "AMAZING"
 }
