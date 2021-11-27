@@ -35,10 +35,12 @@ class RecordUploadCompleteReactor: Reactor, Stepper {
     
     enum Mutation {
         case setInstagramCardView(UIView)
+        case setShareActivityController(UIActivityViewController)
     }
     
     struct State {
         var willSharedCarView: UIView?
+        var shareActivityController: UIActivityViewController?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -57,7 +59,9 @@ class RecordUploadCompleteReactor: Reactor, Stepper {
             }
             return .empty()
         case .saveToAlbum:
-            return .empty()
+            guard let cardView: ShareCardView = self.makeCardView() else { return .empty() }
+            guard let activityViewController = CardShareManager.shared.share(view: cardView) else { return .empty() }
+            return .just(.setShareActivityController(activityViewController))
         }
     }
     
@@ -66,6 +70,8 @@ class RecordUploadCompleteReactor: Reactor, Stepper {
         switch mutation {
         case .setInstagramCardView(let carView):
             newState.willSharedCarView = carView
+        case .setShareActivityController(let controller):
+            newState.shareActivityController = controller
         }
         return newState
     }

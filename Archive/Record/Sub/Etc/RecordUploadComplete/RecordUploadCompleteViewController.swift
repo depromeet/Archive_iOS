@@ -58,18 +58,17 @@ class RecordUploadCompleteViewController: UIViewController, StoryboardView {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-//        reactor.state
-//            .map { $0.willSharedCarView }
-//        .asDriver(onErrorJustReturn: nil)
-//        .drive(onNext: { [weak self] cardView in
-//            guard let cardView = cardView else { return }
-//            InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: .blue, backgroundBottomColor: .red, completion: { _ in
-//                
-//            }, failure: { _ in
-//                
-//            })
-//        })
-//        .disposed(by: self.disposeBag)
+        reactor.state
+            .map { $0.shareActivityController }
+            .asDriver(onErrorJustReturn: nil)
+            .compactMap { $0 }
+            .drive(onNext: { controller in
+                controller.isModalInPresentation = true
+                controller.excludedActivityTypes = [.airDrop, .message]
+                self.present(controller, animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
     }
     
     deinit {

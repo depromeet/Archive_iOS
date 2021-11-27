@@ -60,6 +60,8 @@
 		4FD4F1DE272F870D00BDB4BB /* RecordImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4F1D8272F86B800BDB4BB /* RecordImageCollectionViewCell.swift */; };
 		4FD4F1DF272F870D00BDB4BB /* RecordImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FD4F1D9272F86B800BDB4BB /* RecordImageCollectionViewCell.xib */; };
 		565A35543932E4595BE1DD5A /* Pods_Archive_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EB9EAFE492E4886567AE92 /* Pods_Archive_debug.framework */; };
+		780161D42751FD5200F77193 /* CardShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780161D32751FD5200F77193 /* CardShareManager.swift */; };
+		780161D52752020E00F77193 /* CardShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780161D32751FD5200F77193 /* CardShareManager.swift */; };
 		780478102723CB7900FAA1CF /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
 		780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
 		780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
@@ -246,6 +248,7 @@
 		4FD4F1D9272F86B800BDB4BB /* RecordImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		53EB9EAFE492E4886567AE92 /* Pods_Archive_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Archive_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C4423C0F1934D8C0AFE14D /* Pods-Archive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive.release.xcconfig"; path = "Target Support Files/Pods-Archive/Pods-Archive.release.xcconfig"; sourceTree = "<group>"; };
+		780161D32751FD5200F77193 /* CardShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareManager.swift; sourceTree = "<group>"; };
 		7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationViewController.swift; sourceTree = "<group>"; };
 		780478212723E83F00FAA1CF /* LoginInformationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationReactor.swift; sourceTree = "<group>"; };
 		780478232723E84900FAA1CF /* LoginInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationModel.swift; sourceTree = "<group>"; };
@@ -575,6 +578,7 @@
 			isa = PBXGroup;
 			children = (
 				783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */,
+				780161D32751FD5200F77193 /* CardShareManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1103,6 +1107,7 @@
 				789E61AA2725601C00D6E18F /* RecordReactor.swift in Sources */,
 				780478122723CC5C00FAA1CF /* MyPageModel.swift in Sources */,
 				78B872DF2726C553009EFB54 /* EmotionSelectReactor.swift in Sources */,
+				780161D52752020E00F77193 /* CardShareManager.swift in Sources */,
 				44FB09F427183097006E1048 /* TermsAgreementViewController.swift in Sources */,
 				78212333273F89B7007DEC28 /* RecordUploadViewController.swift in Sources */,
 				44FB0A02271832D2006E1048 /* ArchiveStep.swift in Sources */,
@@ -1192,6 +1197,7 @@
 				78212328273F8397007DEC28 /* RecordUploadReactor.swift in Sources */,
 				44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */,
 				782FDF4F272CFB6E004D1B6E /* HWPhotoListFromAlbumView.swift in Sources */,
+				780161D42751FD5200F77193 /* CardShareManager.swift in Sources */,
 				78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */,
 				448936AA2708401500EA423A /* SignInReactor.swift in Sources */,
 				44F9B0E1270606E7005418F0 /* AppDelegate.swift in Sources */,
