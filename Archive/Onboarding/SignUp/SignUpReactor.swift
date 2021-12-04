@@ -28,6 +28,8 @@ final class SignUpReactor: Reactor, Stepper {
         case passwordInput(text: String)
         case passwordCofirmInput(text: String)
         case completeSignUp
+        
+        case startArchive
     }
     
     enum Mutation {
@@ -138,6 +140,10 @@ final class SignUpReactor: Reactor, Stepper {
         case .completeSignUp:
             registEmail(eMail: self.currentState.email, password: self.currentState.password)
             return .empty()
+            
+        case .startArchive:
+            steps.accept(ArchiveStep.signUpComplete)
+            return .empty()
         }
     }
     
@@ -189,7 +195,7 @@ final class SignUpReactor: Reactor, Stepper {
         let param = RequestEmailParam(email: eMail, password: password)
         provider.request(.registEmial(param), completion: { [weak self] response in
             switch response {
-            case .success(let result):
+            case .success(_):
                 DispatchQueue.main.async {
                     self?.steps.accept(ArchiveStep.userIsSignedUp)
                 }

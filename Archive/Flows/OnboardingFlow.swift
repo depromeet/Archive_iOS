@@ -42,6 +42,9 @@ final class OnboardingFlow: Flow {
             return navigationToPasswordInputScreen()
         case .userIsSignedUp:
             return navigationToSignUpCompletionScreen()
+        case .signUpComplete:
+            rootViewController.popToRootViewController(animated: true)
+            return .none
         default:
             return .none
         }
@@ -92,11 +95,20 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToSignUpCompletionScreen() -> FlowContributors {
-        guard let signUpCompletionViewController = onboardingStoryBoard
-                .instantiateViewController(identifier: SignUpCompletionViewController.identifier) as? SignUpCompletionViewController else {
-            return .none
-        }
+//        guard let  = onboardingStoryBoard
+//                .instantiateViewController(identifier: .identifier) as? SignUpCompletionViewController else {
+//            return .none
+//        }
+//        rootViewController.pushViewController(signUpCompletionViewController, animated: true)
+//        return .one(flowContributor: .contribute(withNext: signUpCompletionViewController))
+        
+        let signUpCompletionViewController = onboardingStoryBoard
+            .instantiateViewController(identifier: SignUpCompletionViewController.identifier) { coder in
+                return SignUpCompletionViewController(coder: coder, reactor: self.signUpReactor)
+            }
+//        signUpCompletionViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(signUpCompletionViewController, animated: true)
-        return .one(flowContributor: .contribute(withNext: signUpCompletionViewController))
+        return .one(flowContributor: .contribute(withNextPresentable: signUpCompletionViewController,
+                                                 withNextStepper: signUpReactor))
     }
 }
