@@ -12,6 +12,7 @@ enum ArchiveAPI {
     case registArchive(_ info: RecordData)
     case registEmail(_ param: RequestEmailParam)
     case loginEmail(_ param: LoginEmailParam)
+    case isDuplicatedEmail(_ eMail: String)
 }
 
 extension ArchiveAPI: TargetType {
@@ -30,6 +31,8 @@ extension ArchiveAPI: TargetType {
             return "/api/v1/auth/register"
         case .loginEmail:
             return "/api/v1/auth/login"
+        case .isDuplicatedEmail(let eMail):
+            return "/api/v1/auth/email/" + eMail
         }
     }
     
@@ -43,6 +46,8 @@ extension ArchiveAPI: TargetType {
             return .post
         case .loginEmail:
             return .post
+        case .isDuplicatedEmail:
+            return .get
         }
     }
     
@@ -55,6 +60,8 @@ extension ArchiveAPI: TargetType {
         case .registEmail:
             return Data()
         case .loginEmail:
+            return Data()
+        case .isDuplicatedEmail:
             return Data()
         }
     }
@@ -72,6 +79,8 @@ extension ArchiveAPI: TargetType {
             return .requestJSONEncodable(param)
         case .loginEmail(let param):
             return .requestJSONEncodable(param)
+        case .isDuplicatedEmail:
+            return .requestPlain
         }
     }
     

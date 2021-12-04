@@ -87,5 +87,14 @@ final class EmailInputViewController: UIViewController, StoryboardView {
             .distinctUntilChanged()
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        reactor.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { msg in
+                CommonAlertView.shared.show(message: msg, btnText: "확인", hapticType: .warning, confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
     }
 }
