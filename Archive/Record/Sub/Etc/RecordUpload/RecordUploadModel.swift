@@ -48,18 +48,20 @@ class RecordUploadModel: RecordUploadModelProtocol {
         if let infos = self.imageInfos {
             var observarbleRequests = [Observable<Response>]()
             var photoContents: [String] = [String]()
+            var colors: [String] = [String]()
             let provider = ArchiveProvider.shared.provider
             for item in infos {
                 let request = provider.rx.request(.uploadImage(item.image)).asObservable()
                 observarbleRequests.append(request)
                 photoContents.append(item.contents ?? "")
+                colors.append(item.backgroundColor.hexStringFromColor())
             }
             Observable.zip(observarbleRequests)
                 .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe(onNext: { results in
                     for i in 0..<results.count {
                         if let result: JSON = try? JSON.init(data: results[i].data) {
-                            let data = RecordImageData(image: result["imageUrl"].stringValue, review: photoContents[i])
+                            let data = RecordImageData(image: result["imageUrl"].stringValue, review: photoContents[i], backgroundColor: colors[i])
                             recordImageDatas.append(data)
                         }
                     }
@@ -132,4 +134,5 @@ struct RecordImageData: CodableWrapper {
     
     let image: String
     let review: String
+    let backgroundColor: String
 }

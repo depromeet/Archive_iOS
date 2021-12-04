@@ -25,45 +25,34 @@ class DetailReactor: Reactor, Stepper {
     
     init(model: DetailModelProtocol) {
         self.model = model
+        self.action.onNext(.setDetailData(self.model.recordData))
     }
     
     enum Action {
-        
+        case setDetailData(RecordData)
     }
     
     enum Mutation {
-        
+        case setDetailData(RecordData)
     }
     
     struct State {
-        
+        var detailData: RecordData?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .record:
-//            record()
-//            return .empty()
-//        case .setRecordIsDone(let isDone):
-//            return .just(.setRecordIsDone(isDone))
-//        case .cancel:
-//            return .empty()
-//        case .moveToCompleteView:
-//            let thumbnail: UIImage = self.model.thumbnailImage
-//            let emotion: Emotion = self.model.emotion
-//            let info: ContentsRecordModelData = self.model.contents
-//            steps.accept(ArchiveStep.recordUploadIsComplete(thumbnail, emotion, info))
-//            return .empty()
-//        }
-        return .empty()
+        switch action {
+        case .setDetailData(let data):
+            return .just(.setDetailData(data))
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-//        switch mutation {
-//        case .setRecordIsDone(let isDone):
-//            newState.recordIsDone = isDone
-//        }
+        switch mutation {
+        case .setDetailData(let data):
+            newState.detailData = data
+        }
         return newState
     }
     

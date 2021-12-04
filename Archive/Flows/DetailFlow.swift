@@ -8,11 +8,11 @@
 import UIKit
 import RxFlow
 
-class DetailStep: Flow {
+class DetailFlow: Flow {
     
     private enum Constants {
         static let DetailStoryBoardName = "Detail"
-//        static let MyPageNavigationTitle = "내정보"
+        static let DetailNavigationTitle = "테스트"
 //        static let LoginInfoNavigationTitle = "로그인 정보"
 //        static let WithdrawalNavigationTitle = "회원탈퇴"
     }
@@ -44,12 +44,8 @@ class DetailStep: Flow {
         let detailViewController: DetailViewController = storyBoard.instantiateViewController(identifier: DetailViewController.identifier) { corder in
             return DetailViewController(coder: corder, reactor: reactor)
         }
-        
-//        imageSelectViewController.title = ""
-        let navi: UINavigationController = UINavigationController(rootViewController: detailViewController)
-        navi.modalPresentationStyle = .fullScreen
-//        self.imageSelectViewControllerNavi = navi
-        rootViewController.present(navi, animated: true, completion: nil)
+        detailViewController.title = Constants.DetailNavigationTitle
+        rootViewController.pushViewController(detailViewController, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: detailViewController,
                                                  withNextStepper: reactor))
     }

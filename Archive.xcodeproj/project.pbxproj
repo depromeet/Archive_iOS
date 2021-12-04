@@ -171,8 +171,8 @@
 		789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C4272584ED00D6E18F /* ContentsRecordReactor.swift */; };
 		789E61CB2725855F00D6E18F /* ContentsRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */; };
 		78A0E90327427A080097C25C /* CodableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78212339273F9623007DEC28 /* CodableWrapper.swift */; };
-		78A32160275B90F40078650D /* DetailStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3215F275B90F40078650D /* DetailStep.swift */; };
-		78A32161275B90F90078650D /* DetailStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3215F275B90F40078650D /* DetailStep.swift */; };
+		78A32160275B90F40078650D /* DetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3215F275B90F40078650D /* DetailFlow.swift */; };
+		78A32161275B90F90078650D /* DetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3215F275B90F40078650D /* DetailFlow.swift */; };
 		78A32164275B91580078650D /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A32163275B91580078650D /* Detail.storyboard */; };
 		78A32165275B921D0078650D /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A32163275B91580078650D /* Detail.storyboard */; };
 		78A32167275B92530078650D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32166275B92530078650D /* DetailViewController.swift */; };
@@ -189,6 +189,8 @@
 		78A3217B275B96B50078650D /* DetailMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */; };
 		78A3217C275B96B50078650D /* DetailContentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */; };
 		78A3217D275B96B50078650D /* DetailContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */; };
+		78A3217F275BBEB20078650D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3217E275BBEB20078650D /* UIColorExtension.swift */; };
+		78A32180275BBED10078650D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3217E275BBEB20078650D /* UIColorExtension.swift */; };
 		78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */; };
 		78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */; };
 		78B872DC2726C54C009EFB54 /* EmotionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */; };
@@ -325,7 +327,7 @@
 		789E61BB2725847B00D6E18F /* ClassIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassIdentifiable.swift; sourceTree = "<group>"; };
 		789E61C4272584ED00D6E18F /* ContentsRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsRecordReactor.swift; sourceTree = "<group>"; };
 		789E61C6272584FC00D6E18F /* ContentsRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsRecordModel.swift; sourceTree = "<group>"; };
-		78A3215F275B90F40078650D /* DetailStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStep.swift; sourceTree = "<group>"; };
+		78A3215F275B90F40078650D /* DetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFlow.swift; sourceTree = "<group>"; };
 		78A32163275B91580078650D /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		78A32166275B92530078650D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78A32168275B92600078650D /* DetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReactor.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentsCollectionViewCell.xib; sourceTree = "<group>"; };
+		78A3217E275BBEB20078650D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectModel.swift; sourceTree = "<group>"; };
 		78B872D82726C54C009EFB54 /* EmotionSelectReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectReactor.swift; sourceTree = "<group>"; };
 		78B872D92726C54C009EFB54 /* EmotionSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectViewController.swift; sourceTree = "<group>"; };
@@ -491,7 +494,7 @@
 				44FB0A08271832E9006E1048 /* OnboardingFlow.swift */,
 				78BA15462721956A0078B88E /* MyPageFlow.swift */,
 				789E61A627255F8500D6E18F /* RecordFlow.swift */,
-				78A3215F275B90F40078650D /* DetailStep.swift */,
+				78A3215F275B90F40078650D /* DetailFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				78557A29272ECFC800C5BD62 /* UIDeviceExtension.swift */,
 				785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */,
 				7821233B273F9F58007DEC28 /* StringExtension.swift */,
+				78A3217E275BBEB20078650D /* UIColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -799,8 +803,8 @@
 		78A32170275B968B0078650D /* DetailContents */ = {
 			isa = PBXGroup;
 			children = (
-				78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */,
 				78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */,
+				78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */,
 			);
 			path = DetailContents;
 			sourceTree = "<group>";
@@ -808,8 +812,8 @@
 		78A32171275B968B0078650D /* DetailMain */ = {
 			isa = PBXGroup;
 			children = (
-				78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */,
 				78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */,
+				78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */,
 			);
 			path = DetailMain;
 			sourceTree = "<group>";
@@ -1224,6 +1228,7 @@
 				448936AB2708401500EA423A /* SignInReactor.swift in Sources */,
 				783A61E0273BEB06004D848F /* InstagramStoryShareManager.swift in Sources */,
 				44FB0A1327183BDD006E1048 /* EmailInputViewController.swift in Sources */,
+				78A32180275BBED10078650D /* UIColorExtension.swift in Sources */,
 				78C4B33127242B650006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478292723FAB500FAA1CF /* LoginInformationModel.swift in Sources */,
 				789E61BF2725849400D6E18F /* ClassIdentifiable.swift in Sources */,
@@ -1240,7 +1245,7 @@
 				78212335273F89BA007DEC28 /* RecordUploadCompleteViewController.swift in Sources */,
 				78B872EA2726E51C009EFB54 /* ImageRecordModel.swift in Sources */,
 				782FDF40272CFA59004D1B6E /* ImageSelectReactor.swift in Sources */,
-				78A32161275B90F90078650D /* DetailStep.swift in Sources */,
+				78A32161275B90F90078650D /* DetailFlow.swift in Sources */,
 				783A61E3273BF069004D848F /* TopConerRadiusView.swift in Sources */,
 				78557A2B272ECFD300C5BD62 /* UIDeviceExtension.swift in Sources */,
 			);
@@ -1321,6 +1326,7 @@
 				785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */,
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				783A61DF273BEB02004D848F /* InstagramStoryShareManager.swift in Sources */,
+				78A3217F275BBEB20078650D /* UIColorExtension.swift in Sources */,
 				789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
 				78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */,
@@ -1337,7 +1343,7 @@
 				7821232D273F894B007DEC28 /* RecordUploadCompleteViewController.swift in Sources */,
 				78958E112712A04B003FF724 /* FontDefine.swift in Sources */,
 				782FDF4C272CFB6E004D1B6E /* PhotoFromAlbumCell.swift in Sources */,
-				78A32160275B90F40078650D /* DetailStep.swift in Sources */,
+				78A32160275B90F40078650D /* DetailFlow.swift in Sources */,
 				783A61E2273BEE9F004D848F /* TopConerRadiusView.swift in Sources */,
 				782FDF3F272CF9CC004D1B6E /* ImageSelectModel.swift in Sources */,
 			);
