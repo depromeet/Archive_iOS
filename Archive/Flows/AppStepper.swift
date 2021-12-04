@@ -15,7 +15,7 @@ final class AppStepper: Stepper {
     var initialStep: Step {
         if UserDefaultManager.shared.isLoggedIn { // TODO: 홈화면 ㄱㄱ
             print("로그인 됨")
-            return ArchiveStep.onboardingIsRequired
+            return ArchiveStep.recordIsRequired
         } else {
             print("로그인 안됨")
             return ArchiveStep.onboardingIsRequired

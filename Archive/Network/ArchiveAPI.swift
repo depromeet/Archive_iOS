@@ -89,7 +89,18 @@ extension ArchiveAPI: TargetType {
     }
     
     var headers: [String: String]? {
-        return nil
+        switch self {
+        case .isDuplicatedEmail:
+            return nil
+        case .loginEmail:
+            return nil
+        case .registArchive:
+            return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
+        case .registEmail:
+            return nil
+        case .uploadImage:
+            return nil
+        }
     }
     
 }
