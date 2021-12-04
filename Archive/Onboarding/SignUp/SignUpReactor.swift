@@ -79,9 +79,11 @@ final class SignUpReactor: Reactor, Stepper {
     let initialState = State()
     let steps = PublishRelay<Step>()
     private let validator: SignUpValidator
+    var isLoading: PublishSubject<Bool>
     
     init(validator: SignUpValidator) {
         self.validator = validator
+        self.isLoading = .init()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -191,9 +193,11 @@ final class SignUpReactor: Reactor, Stepper {
     }
     
     private func registEmail(eMail: String, password: String) {
+        self.isLoading.onNext(true)
         let provider = ArchiveProvider.shared.provider
         let param = RequestEmailParam(email: eMail, password: password)
-        provider.request(.registEmial(param), completion: { [weak self] response in
+        provider.request(.registEmail(param), completion: { [weak self] response in
+            self?.isLoading.onNext(false)
             switch response {
             case .success(_):
                 DispatchQueue.main.async {

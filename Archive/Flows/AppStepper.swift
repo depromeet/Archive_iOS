@@ -13,7 +13,12 @@ final class AppStepper: Stepper {
     let steps = PublishRelay<Step>()
 
     var initialStep: Step {
-        // TODO: 홈화면으로 변경하고 로그인 여부 확인하는 로직 추가 필요
-        return ArchiveStep.onboardingIsRequired
+        if UserDefaultManager.shared.isLoggedIn { // TODO: 홈화면 ㄱㄱ
+            print("로그인 됨")
+            return ArchiveStep.onboardingIsRequired
+        } else {
+            print("로그인 안됨")
+            return ArchiveStep.onboardingIsRequired
+        }
     }
 }
