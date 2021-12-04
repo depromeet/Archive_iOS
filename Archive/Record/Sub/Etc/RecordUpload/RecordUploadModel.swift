@@ -103,7 +103,8 @@ class RecordUploadModel: RecordUploadModelProtocol {
                     switch response {
                     case .success(_):
                         completion()
-                    case .failure(_):
+                    case .failure(let err):
+                        print("err:\(err)")
                         completion()
                     }
                 })
