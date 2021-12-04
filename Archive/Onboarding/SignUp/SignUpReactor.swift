@@ -9,6 +9,7 @@ import ReactorKit
 import RxSwift
 import RxRelay
 import RxFlow
+import SwiftyJSON
 
 final class SignUpReactor: Reactor, Stepper {
     
@@ -135,8 +136,7 @@ final class SignUpReactor: Reactor, Stepper {
             return .just(.setPasswordCofirmationInput(text))
             
         case .completeSignUp:
-            // TODO: 회원가입 요청 후 화면 이동
-            steps.accept(ArchiveStep.userIsSignedUp)
+            registEmail(eMail: self.currentState.email, password: self.currentState.password)
             return .empty()
         }
     }
@@ -183,4 +183,24 @@ final class SignUpReactor: Reactor, Stepper {
         
         return newState
     }
+    
+    private func registEmail(eMail: String, password: String) {
+        let provider = ArchiveProvider.shared.provider
+        let param = RequestEmailParam(email: eMail, password: password)
+        provider.request(.registEmial(param), completion: { [weak self] response in
+            switch response {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self?.steps.accept(ArchiveStep.userIsSignedUp)
+                }
+            case .failure(let err):
+                print("err: \(err.localizedDescription)")
+            }
+        })
+    }
+}
+
+struct RequestEmailParam: Encodable {
+    var email: String
+    var password: String
 }

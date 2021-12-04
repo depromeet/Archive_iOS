@@ -10,6 +10,7 @@ import Moya
 enum ArchiveAPI {
     case uploadImage(_ image: UIImage)
     case registArchive(_ info: RecordData)
+    case registEmial(_ param: RequestEmailParam)
 }
 
 extension ArchiveAPI: TargetType {
@@ -24,6 +25,8 @@ extension ArchiveAPI: TargetType {
             return "/api/v1/archive/image/upload"
         case .registArchive:
             return "/api/v1/archive"
+        case .registEmial:
+            return "/api/v1/auth/register"
         }
     }
     
@@ -33,6 +36,8 @@ extension ArchiveAPI: TargetType {
             return .post
         case .registArchive:
             return .post
+        case .registEmial:
+            return .post
         }
     }
     
@@ -41,6 +46,8 @@ extension ArchiveAPI: TargetType {
         case .uploadImage:
             return Data()
         case .registArchive:
+            return Data()
+        case .registEmial:
             return Data()
         }
     }
@@ -54,6 +61,8 @@ extension ArchiveAPI: TargetType {
             return .uploadMultipart([data])
         case .registArchive(let infoData):
             return .requestJSONEncodable(infoData)
+        case .registEmial(let param):
+            return .requestJSONEncodable(param)
         }
     }
     
