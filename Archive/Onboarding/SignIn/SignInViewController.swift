@@ -76,5 +76,14 @@ final class SignInViewController: UIViewController, StoryboardView {
             .distinctUntilChanged()
             .bind(to: signInButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        reactor.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { errorMsg in
+                CommonAlertView.shared.show(message: errorMsg, btnText: "확인", hapticType: .error, confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
     }
 }

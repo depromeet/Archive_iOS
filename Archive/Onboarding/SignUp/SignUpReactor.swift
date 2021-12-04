@@ -9,6 +9,7 @@ import ReactorKit
 import RxSwift
 import RxRelay
 import RxFlow
+import SwiftyJSON
 
 final class SignUpReactor: Reactor, Stepper {
     
@@ -27,6 +28,8 @@ final class SignUpReactor: Reactor, Stepper {
         case passwordInput(text: String)
         case passwordCofirmInput(text: String)
         case completeSignUp
+        
+        case startArchive
     }
     
     enum Mutation {
@@ -76,9 +79,11 @@ final class SignUpReactor: Reactor, Stepper {
     let initialState = State()
     let steps = PublishRelay<Step>()
     private let validator: SignUpValidator
+    var isLoading: PublishSubject<Bool>
     
     init(validator: SignUpValidator) {
         self.validator = validator
+        self.isLoading = .init()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -135,8 +140,11 @@ final class SignUpReactor: Reactor, Stepper {
             return .just(.setPasswordCofirmationInput(text))
             
         case .completeSignUp:
-            // TODO: 회원가입 요청 후 화면 이동
-            steps.accept(ArchiveStep.userIsSignedUp)
+            registEmail(eMail: self.currentState.email, password: self.currentState.password)
+            return .empty()
+            
+        case .startArchive:
+            steps.accept(ArchiveStep.signUpComplete)
             return .empty()
         }
     }
@@ -183,4 +191,26 @@ final class SignUpReactor: Reactor, Stepper {
         
         return newState
     }
+    
+    private func registEmail(eMail: String, password: String) {
+        self.isLoading.onNext(true)
+        let provider = ArchiveProvider.shared.provider
+        let param = RequestEmailParam(email: eMail, password: password)
+        provider.request(.registEmail(param), completion: { [weak self] response in
+            self?.isLoading.onNext(false)
+            switch response {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self?.steps.accept(ArchiveStep.userIsSignedUp)
+                }
+            case .failure(let err):
+                print("err: \(err.localizedDescription)")
+            }
+        })
+    }
+}
+
+struct RequestEmailParam: Encodable {
+    var email: String
+    var password: String
 }

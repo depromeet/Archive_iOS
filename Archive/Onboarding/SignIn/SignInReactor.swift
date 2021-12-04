@@ -34,9 +34,13 @@ final class SignInReactor: Reactor, Stepper {
     let initialState = State()
     let steps = PublishRelay<Step>()
     private let validator: SignInValidator
+    var error: PublishSubject<String>
+    var isLoading: PublishSubject<Bool>
     
     init(validator: SignInValidator) {
         self.validator = validator
+        self.error = .init()
+        self.isLoading = .init()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -52,7 +56,8 @@ final class SignInReactor: Reactor, Stepper {
                           .setValidation(isValid)])
             
         case .signIn:
-            // TODO: 자체 로그인 로직
+            loginEmail(eMail: self.currentState.id, password: self.currentState.password)
+            // Todo 메인으로 이동
             return .empty()
             
         case .signUp:
@@ -75,4 +80,29 @@ final class SignInReactor: Reactor, Stepper {
         }
         return newState
     }
+    
+    private func loginEmail(eMail: String, password: String) {
+        self.isLoading.onNext(true)
+        let provider = ArchiveProvider.shared.provider
+        let param = LoginEmailParam(email: eMail, password: password)
+        provider.request(.loginEmail(param), completion: { [weak self] response in
+            self?.isLoading.onNext(false)
+            switch response {
+            case .success(let response):
+                guard let token: String = response.response?.headers["Authorization"] else {
+                    self?.error.onNext("[오류] 토큰이 존재하지 않습니다.")
+                    return
+                }
+                UserDefaultManager.shared.setLoginToken(token)
+            case .failure(let err):
+                print("err: \(err.localizedDescription)")
+                self?.error.onNext("로그인 정보가 정확하지 않습니다.")
+            }
+        })
+    }
+}
+
+struct LoginEmailParam: Encodable {
+    var email: String
+    var password: String
 }

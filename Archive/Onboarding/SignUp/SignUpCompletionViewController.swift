@@ -11,10 +11,20 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-final class SignUpCompletionViewController: UIViewController, View, Stepper {
+final class SignUpCompletionViewController: UIViewController, StoryboardView, Stepper {
+    @IBOutlet weak var startArchiveBtn: UIButton!
     
     let steps = PublishRelay<Step>()
     var disposeBag = DisposeBag()
+    
+    init?(coder: NSCoder, reactor: SignUpReactor) {
+        super.init(coder: coder)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,6 +32,9 @@ final class SignUpCompletionViewController: UIViewController, View, Stepper {
     }
     
     func bind(reactor: SignUpReactor) {
-        
+        startArchiveBtn.rx.tap
+            .map { Reactor.Action.startArchive }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
 }

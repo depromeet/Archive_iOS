@@ -206,6 +206,8 @@
 		78C62C6E2729759A005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
 		78C62C6F2729759D005BF3DE /* UIPageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */; };
 		78D603C4270B409F00B9B033 /* HWFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D1E2027088BC0004B1A23 /* HWFlipView.swift */; };
+		78ED6766275B4DAB004E8AEC /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED6765275B4DAB004E8AEC /* UserDefaultManager.swift */; };
+		78ED6767275B4F11004E8AEC /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED6765275B4DAB004E8AEC /* UserDefaultManager.swift */; };
 		78EDAD61274525D40028F56D /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EDAD60274525D40028F56D /* ShareCardView.swift */; };
 		78EDAD63274525E80028F56D /* ShareCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EDAD62274525E80028F56D /* ShareCardView.xib */; };
 		78EDAD6427452AAF0028F56D /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EDAD60274525D40028F56D /* ShareCardView.swift */; };
@@ -323,6 +325,7 @@
 		78C4B33727244ACB0006EBAD /* CommonAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAlertView.swift; sourceTree = "<group>"; };
 		78C4B33A27244C000006EBAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		78C62C6D2729759A005BF3DE /* UIPageViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewControllerExtension.swift; sourceTree = "<group>"; };
+		78ED6765275B4DAB004E8AEC /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		78EDAD60274525D40028F56D /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		78EDAD62274525E80028F56D /* ShareCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareCardView.xib; sourceTree = "<group>"; };
 		FA175B2EB22AA1439476C6F2 /* Pods-Archive_debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive_debug.debug.xcconfig"; path = "Target Support Files/Pods-Archive_debug/Pods-Archive_debug.debug.xcconfig"; sourceTree = "<group>"; };
@@ -401,8 +404,8 @@
 		44BE6EFB2711445D00E74A7D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				448936A92708401500EA423A /* SignInReactor.swift */,
 				44922DA02719512A00A5EA2B /* SignInViewController.swift */,
+				448936A92708401500EA423A /* SignInReactor.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 			children = (
 				783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */,
 				780161D32751FD5200F77193 /* CardShareManager.swift */,
+				78ED6765275B4DAB004E8AEC /* UserDefaultManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1081,6 +1085,7 @@
 				78B872ED2726F38A009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				789E61CA2725855D00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				784CFFDC274BC0020052B1EC /* ProviderProtocol.swift in Sources */,
+				78ED6767275B4F11004E8AEC /* UserDefaultManager.swift in Sources */,
 				780478132723CC5F00FAA1CF /* MyPageViewController.swift in Sources */,
 				780478272723FAB100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78A0E90327427A080097C25C /* CodableWrapper.swift in Sources */,
@@ -1171,6 +1176,7 @@
 				78B872EC2726F32E009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				782FDF3B272CF9B6004D1B6E /* ImageSelectViewController.swift in Sources */,
 				784CFFDB274BBFF10052B1EC /* ProviderProtocol.swift in Sources */,
+				78ED6766275B4DAB004E8AEC /* UserDefaultManager.swift in Sources */,
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
