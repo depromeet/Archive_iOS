@@ -12,9 +12,7 @@ class DetailFlow: Flow {
     
     private enum Constants {
         static let DetailStoryBoardName = "Detail"
-        static let DetailNavigationTitle = "테스트"
-//        static let LoginInfoNavigationTitle = "로그인 정보"
-//        static let WithdrawalNavigationTitle = "회원탈퇴"
+        static let DetailNavigationTitle = "나의 아카이브"
     }
     
     var root: Presentable {

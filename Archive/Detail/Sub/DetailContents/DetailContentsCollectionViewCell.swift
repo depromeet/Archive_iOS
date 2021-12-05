@@ -22,8 +22,13 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
         didSet {
             guard let info = self.imageInfo else { return }
             DispatchQueue.main.async { [weak self] in
-//                self?.mainImageView.image = info.image
                 self?.mainContainerView.backgroundColor = info.backgroundColor.colorWithHexString()
+                self?.mainImageView.kf.setImage(with: URL(string: info.image),
+                                               placeholder: nil,
+                                               options: [.cacheMemoryOnly],
+                                               completionHandler: { [weak self] _ in
+                    self?.mainImageView.fadeIn(duration: 0.1, completeHandler: nil)
+                })
             }
         }
     }

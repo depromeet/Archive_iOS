@@ -153,7 +153,7 @@
                     </view>
                     <connections>
                         <outlet property="archiveTitleLabel" destination="GmA-VH-dCy" id="m5W-SR-wbx"/>
-                        <outlet property="bottomContainerCiew" destination="blT-k7-Ul4" id="e44-6P-vnf"/>
+                        <outlet property="bottomContainerView" destination="blT-k7-Ul4" id="xsy-ta-hPF"/>
                         <outlet property="collectionView" destination="WeH-WE-7Yl" id="U1E-pf-0X1"/>
                         <outlet property="dateLabel" destination="kKt-gM-Jv7" id="YSJ-tP-Svl"/>
                         <outlet property="mainBackgroundView" destination="iLt-Uh-Sk4" id="tL8-sD-SlL"/>

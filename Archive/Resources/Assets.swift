@@ -96,6 +96,7 @@ internal enum Gen {
     internal static let dotLine = ImageAsset(name: "dot_line")
     internal static let download = ImageAsset(name: "download")
     internal static let expandMoreBlack24dp = ImageAsset(name: "expand_more_black_24dp")
+    internal static let friends = ImageAsset(name: "friends")
     internal static let iconCrop = ImageAsset(name: "icon_crop")
     internal static let iconDropDown = ImageAsset(name: "icon_drop down")
     internal static let iconDropUp = ImageAsset(name: "icon_drop up")

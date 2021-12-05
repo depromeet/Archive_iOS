@@ -29,7 +29,7 @@ class DetailViewController: UIViewController, StoryboardView {
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var bottomContainerCiew: UIView!
+    @IBOutlet weak var bottomContainerView: UIView!
     @IBOutlet weak var archiveTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -59,13 +59,12 @@ class DetailViewController: UIViewController, StoryboardView {
     }
     
     func bind(reactor: DetailReactor) {
-        print("d")
         reactor.state
             .map { $0.detailData }
             .asDriver(onErrorJustReturn: nil)
             .compactMap { $0 }
             .drive(onNext: { [weak self] info in
-                print("음")
+                self?.setCardInfo(info)
                 self?.collectionView.delegate = nil
                 self?.collectionView.dataSource = nil
                 guard let images = info.images else { return }
@@ -81,7 +80,7 @@ class DetailViewController: UIViewController, StoryboardView {
                     SectionModel(model: "card", items: [
                         CellModel.cover(info)
                     ]),
-                    SectionModel(model: "image", items: imageCellArr),
+                    SectionModel(model: "image", items: imageCellArr)
                 ])
                 guard let self = self else { return }
                 let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
@@ -96,12 +95,25 @@ class DetailViewController: UIViewController, StoryboardView {
                 layout.minimumLineSpacing = 0
                 layout.minimumInteritemSpacing = 0
                 layout.scrollDirection = .horizontal
-                layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.bounds.height)
+                let width = UIScreen.main.bounds.width
+                let height = width * 520 / 375
+                layout.itemSize = CGSize(width: width, height: height)
                 layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 self.collectionView.collectionViewLayout = layout
                 sections
                     .bind(to: self.collectionView.rx.items(dataSource: dataSource))
                     .disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.collectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                if info.at.section == 0 {
+                    self?.pageControl.currentPage = 0
+                } else {
+                    self?.pageControl.currentPage = info.at.item + 1
+                }
             })
             .disposed(by: self.disposeBag)
     }
@@ -113,24 +125,27 @@ class DetailViewController: UIViewController, StoryboardView {
     // MARK: private function
     
     private func initUI() {
-//        self.mainContainerView.backgroundColor = .clear
-//        self.scrollContainerView.backgroundColor = .clear
-//        self.scrollView.backgroundColor = .clear
+        self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
+        self.mainContainerView.backgroundColor = .clear
+        self.scrollContainerView.backgroundColor = .clear
+        self.scrollView.backgroundColor = .clear
+        self.topContainerView.backgroundColor = Gen.Colors.white.color
+        self.collectionView.backgroundColor = .clear
         
-        self.mainContainerView.backgroundColor = .gray
-//
-//        @IBOutlet weak var topContainerView: UIView!
-//        @IBOutlet weak var collectionView: UICollectionView!
-//
-//        @IBOutlet weak var bottomContainerCiew: UIView!
-//        @IBOutlet weak var archiveTitleLabel: UILabel!
-//        @IBOutlet weak var dateLabel: UILabel!
-//
+        self.bottomContainerView.backgroundColor = Gen.Colors.white.color
+        self.archiveTitleLabel.font = .fonts(.header2)
+        self.archiveTitleLabel.textColor = Gen.Colors.black.color
+        self.dateLabel.font = .fonts(.header3)
+        self.dateLabel.textColor = Gen.Colors.black.color
+        
 //        @IBOutlet weak var pageControl: UIPageControl!
+        self.topContainerView.backgroundColor = .gray
         self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.isHidden = true
         self.collectionView.register(UINib(nibName: DetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailMainCollectionViewCell.identifier)
         self.collectionView.register(UINib(nibName: DetailContentsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailContentsCollectionViewCell.identifier)
+        
+        self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
+        self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
     }
     
     private func makeCardCell(with element: RecordData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -144,6 +159,12 @@ class DetailViewController: UIViewController, StoryboardView {
         cell.imageInfo = element
         return cell
     }
+    
+    private func setCardInfo(_ info: RecordData) {
+        self.archiveTitleLabel.text = info.name
+        self.dateLabel.text = info.watchedOn
+    }
+    
     // MARK: internal function
     
     // MARK: action
