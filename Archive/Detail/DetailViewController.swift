@@ -35,9 +35,9 @@ class DetailViewController: UIViewController, StoryboardView {
     
     @IBOutlet weak var pageControl: UIPageControl!
     
-   
-    
     // MARK: private property
+    
+    private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -69,9 +69,6 @@ class DetailViewController: UIViewController, StoryboardView {
                 self?.collectionView.dataSource = nil
                 guard let images = info.images else { return }
                 self?.pageControl.numberOfPages = images.count + 1
-//                self?.defaultImageContainerView.isHidden = true
-//                self?.imagesCollectionView.isHidden = false
-//                self?.topContentsContainerView.backgroundColor = .clear
                 var imageCellArr: [CellModel] = []
                 for imageItem in images {
                     imageCellArr.append(CellModel.commonImage(imageItem))
@@ -116,6 +113,21 @@ class DetailViewController: UIViewController, StoryboardView {
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        self.collectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                if info.at.section == 0 {
+                    self?.photoContentsView?.isHidden = true
+                } else {
+                    self?.photoContentsView?.isHidden = false
+                    if let imageInfo = reactor.currentState.detailData?.images?[info.at.item] {
+                        self?.photoContentsView?.imageInfo = imageInfo
+                        self?.photoContentsView?.index = info.at.item
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
     deinit {
@@ -138,14 +150,20 @@ class DetailViewController: UIViewController, StoryboardView {
         self.dateLabel.font = .fonts(.header3)
         self.dateLabel.textColor = Gen.Colors.black.color
         
-//        @IBOutlet weak var pageControl: UIPageControl!
-        self.topContainerView.backgroundColor = .gray
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.register(UINib(nibName: DetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailMainCollectionViewCell.identifier)
         self.collectionView.register(UINib(nibName: DetailContentsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailContentsCollectionViewCell.identifier)
         
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+        
+        if let photoContentsView = self.photoContentsView {
+            self.bottomContainerView.addSubview(photoContentsView)
+            photoContentsView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            photoContentsView.isHidden = true
+        }
     }
     
     private func makeCardCell(with element: RecordData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -164,6 +182,13 @@ class DetailViewController: UIViewController, StoryboardView {
         self.archiveTitleLabel.text = info.name
         self.dateLabel.text = info.watchedOn
     }
+    
+//    private func makeConfirmBtn() {
+//        self.confirmBtn = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(confirmAction(_:)))
+//        setConfirmBtnColor(Gen.Colors.gray04.color)
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = confirmBtn
+//    }
     
     // MARK: internal function
     
