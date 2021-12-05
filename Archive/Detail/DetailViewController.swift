@@ -38,6 +38,7 @@ class DetailViewController: UIViewController, StoryboardView {
     // MARK: private property
     
     private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
+    private let modalShareViewController: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -128,6 +129,19 @@ class DetailViewController: UIViewController, StoryboardView {
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.shareActivityController }
+            .asDriver(onErrorJustReturn: nil)
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] controller in
+                self?.modalShareViewController.dismiss(animated: false, completion: { [weak self] in
+                    controller.isModalInPresentation = true
+                    controller.excludedActivityTypes = [.airDrop, .message]
+                    self?.present(controller, animated: true, completion: nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
     }
     
     deinit {
@@ -206,12 +220,11 @@ class DetailViewController: UIViewController, StoryboardView {
         let deleteAction: UIAlertAction = UIAlertAction(title: "삭제", style: .default) { (delete) in
             
         }
-        let shareAction: UIAlertAction = UIAlertAction(title: "공유", style: .default) { (share) in
-            let vc: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
-            vc.modalPresentationStyle = .overFullScreen
-            vc.delegate = self
-            self.present(vc, animated: false, completion: {
-                vc.fadeIn()
+        let shareAction: UIAlertAction = UIAlertAction(title: "공유", style: .default) { [weak self] (share) in
+            self?.modalShareViewController.modalPresentationStyle = .overFullScreen
+            self?.modalShareViewController.delegate = self
+            self?.present(self!.modalShareViewController, animated: false, completion: {
+                self?.modalShareViewController.fadeIn()
             })
         }
         alert.addAction(deleteAction)
@@ -232,6 +245,6 @@ extension DetailViewController: ModalShareViewControllerDelegate {
     }
     
     func photoShareClicked() {
-        
+        self.reactor?.action.onNext(.saveToAlbum)
     }
 }

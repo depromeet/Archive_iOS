@@ -40,6 +40,10 @@ class ModalShareViewController: UIViewController {
         self.closeLabel.font = .fonts(.button)
         self.closeLabel.textColor = Gen.Colors.black.color
         self.closeLabel.text = "취소"
+        self.closeLabel.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.close(_:)))
+        self.closeLabel.addGestureRecognizer(tap)
         
         self.contentsContainerView.isHidden = true
     }
@@ -57,5 +61,9 @@ class ModalShareViewController: UIViewController {
     
     @IBAction func sharePhotoAction(_ sender: Any) {
         self.delegate?.photoShareClicked()
+    }
+    
+    @objc func close(_ sender: UITapGestureRecognizer? = nil) {
+        self.dismiss(animated: false)
     }
 }

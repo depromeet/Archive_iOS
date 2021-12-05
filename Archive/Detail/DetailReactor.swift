@@ -32,6 +32,7 @@ class DetailReactor: Reactor, Stepper {
         case setDetailData(RecordData)
         case shareToInstagram
         case saveToAlbum
+        case openShare(UIActivityViewController)
     }
     
     enum Mutation {
@@ -61,10 +62,15 @@ class DetailReactor: Reactor, Stepper {
             }
             return .empty()
         case .saveToAlbum:
-//            guard let cardView: ShareCardView = self.makeCardView() else { return .empty() }
-//            guard let activityViewController = CardShareManager.shared.share(view: cardView) else { return .empty() }
-//            return .just(.setShareActivityController(activityViewController))
+            DispatchQueue.main.async { [weak self] in
+                self?.makeCardView(completion: { [weak self] cardView in
+                    guard let activityViewController = CardShareManager.shared.share(view: cardView) else { return }
+                    self?.action.onNext(.openShare(activityViewController))
+                })
+            }
             return .empty()
+        case .openShare(let controller):
+            return .just(.setShareActivityController(controller))
         }
     }
     
@@ -95,7 +101,6 @@ class DetailReactor: Reactor, Stepper {
                 completion(ShareCardView())
             }
         }
-//        return cardView
     }
     
     // MARK: internal function
