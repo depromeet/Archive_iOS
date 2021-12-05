@@ -73,8 +73,13 @@ class RecordUploadReactor: Reactor, Stepper {
     
     private func record() {
         self.model.record {
-            self.action.onNext(.setRecordIsDone(true))
-            self.action.onNext(.moveToCompleteView)
+            DispatchQueue.global().async { [weak self] in
+                usleep(1 * 1000 * 1000)
+                DispatchQueue.main.async {
+                    self?.action.onNext(.setRecordIsDone(true))
+                    self?.action.onNext(.moveToCompleteView)
+                }
+            }
         }
     }
     
