@@ -140,6 +140,10 @@
 		787C285B275C99E900C1FB17 /* DetailPhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */; };
 		787C285C275C9B0300C1FB17 /* DetailPhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */; };
 		787C285D275C9B0700C1FB17 /* DetailPhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */; };
+		787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */; };
+		787C2862275CC04B00C1FB17 /* ModalShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */; };
+		787C2863275CC17500C1FB17 /* ModalShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */; };
+		787C2864275CC17500C1FB17 /* ModalShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */; };
 		787C316F2743CF16002B04D7 /* uploadTmp.json in Resources */ = {isa = PBXBuildFile; fileRef = 787C316E2743CF16002B04D7 /* uploadTmp.json */; };
 		787C31702743D9B8002B04D7 /* uploadTmp.json in Resources */ = {isa = PBXBuildFile; fileRef = 787C316E2743CF16002B04D7 /* uploadTmp.json */; };
 		788243AA272CDCDC005E5CC0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78458D29272C18BB00392B45 /* Util.swift */; };
@@ -316,6 +320,8 @@
 		7877699F273AA98100519B58 /* PhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoContentsView.xib; sourceTree = "<group>"; };
 		787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPhotoContentsView.xib; sourceTree = "<group>"; };
 		787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPhotoContentsView.swift; sourceTree = "<group>"; };
+		787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalShareViewController.swift; sourceTree = "<group>"; };
+		787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalShareViewController.xib; sourceTree = "<group>"; };
 		787C316E2743CF16002B04D7 /* uploadTmp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploadTmp.json; sourceTree = "<group>"; };
 		78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		78958E0A27129FBB003FF724 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
@@ -695,6 +701,15 @@
 			path = DetailPhotoContents;
 			sourceTree = "<group>";
 		};
+		787C285E275CC03700C1FB17 /* ModalShare */ = {
+			isa = PBXGroup;
+			children = (
+				787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */,
+				787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */,
+			);
+			path = ModalShare;
+			sourceTree = "<group>";
+		};
 		787C316D2743CF16002B04D7 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +824,7 @@
 		78A3216F275B96690078650D /* Sub */ = {
 			isa = PBXGroup;
 			children = (
+				787C285E275CC03700C1FB17 /* ModalShare */,
 				787C2857275C99C100C1FB17 /* DetailPhotoContents */,
 				78A32171275B968B0078650D /* DetailMain */,
 				78A32170275B968B0078650D /* DetailContents */,
@@ -1006,6 +1022,7 @@
 				787C285D275C9B0700C1FB17 /* DetailPhotoContentsView.xib in Resources */,
 				78958E192712A510003FF724 /* Pretendard-Medium.ttf in Resources */,
 				78C4B33327242EFB0006EBAD /* MyPage.storyboard in Resources */,
+				787C2863275CC17500C1FB17 /* ModalShareViewController.xib in Resources */,
 				44B4F2E42707560800D53F27 /* LaunchScreen.storyboard in Resources */,
 				78958E172712A510003FF724 /* Pretendard-Regular.ttf in Resources */,
 				78A3217C275B96B50078650D /* DetailContentsCollectionViewCell.xib in Resources */,
@@ -1048,6 +1065,7 @@
 				78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */,
 				4489368A2708380100EA423A /* Onboarding.storyboard in Resources */,
 				789E6197272554F400D6E18F /* Record.storyboard in Resources */,
+				787C2862275CC04B00C1FB17 /* ModalShareViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,6 +1277,7 @@
 				784CFFDF274BC02C0052B1EC /* ArchiveProvider.swift in Sources */,
 				44FB09F72718309F006E1048 /* SignUpReactor.swift in Sources */,
 				782FDF54272CFC1C004D1B6E /* PhotoFromAlbumModel.swift in Sources */,
+				787C2864275CC17500C1FB17 /* ModalShareViewController.swift in Sources */,
 				78A3216D275B92870078650D /* DetailReactor.swift in Sources */,
 				78958E162712A3F1003FF724 /* FontDefine.swift in Sources */,
 				78212335273F89BA007DEC28 /* RecordUploadCompleteViewController.swift in Sources */,
@@ -1283,6 +1302,7 @@
 				784CFFDB274BBFF10052B1EC /* ProviderProtocol.swift in Sources */,
 				78ED6766275B4DAB004E8AEC /* UserDefaultManager.swift in Sources */,
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
+				787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,

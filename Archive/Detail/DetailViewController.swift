@@ -164,6 +164,8 @@ class DetailViewController: UIViewController, StoryboardView {
             }
             photoContentsView.isHidden = true
         }
+        
+        makeNaviBtn()
     }
     
     private func makeCardCell(with element: RecordData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -183,15 +185,53 @@ class DetailViewController: UIViewController, StoryboardView {
         self.dateLabel.text = info.watchedOn
     }
     
-//    private func makeConfirmBtn() {
-//        self.confirmBtn = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(confirmAction(_:)))
-//        setConfirmBtnColor(Gen.Colors.gray04.color)
-//        self.navigationController?.navigationBar.topItem?.rightBarButtonItems?.removeAll()
-//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = confirmBtn
-//    }
+    private func makeNaviBtn() {
+        let moreImage = Gen.Images.moreVertBlack24dp.image
+        moreImage.withRenderingMode(.alwaysTemplate)
+        let moreBarButtonItem = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(moreButtonClicked(_:)))
+        self.navigationItem.rightBarButtonItem = moreBarButtonItem
+        
+        let backImage = Gen.Images.back.image
+        backImage.withRenderingMode(.alwaysTemplate)
+        let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
+        self.navigationItem.leftBarButtonItem = backBarButtonItem
+    }
     
     // MARK: internal function
     
     // MARK: action
+    
+    @objc private func moreButtonClicked(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction: UIAlertAction = UIAlertAction(title: "삭제", style: .default) { (delete) in
+            
+        }
+        let shareAction: UIAlertAction = UIAlertAction(title: "공유", style: .default) { (share) in
+            let vc: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
+            vc.modalPresentationStyle = .overFullScreen
+            vc.delegate = self
+            self.present(vc, animated: false, completion: {
+                vc.fadeIn()
+            })
+        }
+        alert.addAction(deleteAction)
+        alert.addAction(shareAction)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @objc private func backButtonClicked(_ sender: UIButton) {
+        print("backButtonClicked")
+    }
 
+}
+
+extension DetailViewController: ModalShareViewControllerDelegate {
+    func instagramShareClicked() {
+        self.reactor?.action.onNext(.shareToInstagram)
+    }
+    
+    func photoShareClicked() {
+        
+    }
 }
