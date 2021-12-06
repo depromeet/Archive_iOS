@@ -13,6 +13,7 @@ enum ArchiveAPI {
     case registEmail(_ param: RequestEmailParam)
     case loginEmail(_ param: LoginEmailParam)
     case isDuplicatedEmail(_ eMail: String)
+    case deleteArchive(archiveId: String)
 }
 
 extension ArchiveAPI: TargetType {
@@ -33,6 +34,8 @@ extension ArchiveAPI: TargetType {
             return "/api/v1/auth/login"
         case .isDuplicatedEmail(let eMail):
             return "/api/v1/auth/email/" + eMail
+        case .deleteArchive(let archiveId):
+            return "/api/v1/archive/" + archiveId
         }
     }
     
@@ -48,6 +51,8 @@ extension ArchiveAPI: TargetType {
             return .post
         case .isDuplicatedEmail:
             return .get
+        case .deleteArchive:
+            return .delete
         }
     }
     
@@ -62,6 +67,8 @@ extension ArchiveAPI: TargetType {
         case .loginEmail:
             return Data()
         case .isDuplicatedEmail:
+            return Data()
+        case .deleteArchive:
             return Data()
         }
     }
@@ -80,6 +87,8 @@ extension ArchiveAPI: TargetType {
         case .loginEmail(let param):
             return .requestJSONEncodable(param)
         case .isDuplicatedEmail:
+            return .requestPlain
+        case .deleteArchive:
             return .requestPlain
         }
     }
@@ -100,6 +109,8 @@ extension ArchiveAPI: TargetType {
             return nil
         case .uploadImage:
             return nil
+        case .deleteArchive:
+            return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
         }
     }
     

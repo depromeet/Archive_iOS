@@ -33,17 +33,22 @@ class DetailReactor: Reactor, Stepper {
         case shareToInstagram
         case saveToAlbum
         case openShare(UIActivityViewController)
+        case deleteArchive
     }
     
     enum Mutation {
         case setDetailData(RecordData)
         case setShareActivityController(UIActivityViewController)
+        case setIsDeletedArchive(Bool)
+        case setLoading(Bool)
     }
     
     struct State {
         var detailData: RecordData?
         var willSharedCarView: UIView?
         var shareActivityController: UIActivityViewController?
+        var isDeletedArchive: Bool = false
+        var isLoading: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -52,7 +57,7 @@ class DetailReactor: Reactor, Stepper {
             return .just(.setDetailData(data))
         case .shareToInstagram:
             DispatchQueue.main.async { [weak self] in
-                self?.makeCardView(completion: { [weak self] cardView in
+                self?.makeCardView(completion: { cardView in
                     InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: cardView.topBackgroundColor, backgroundBottomColor: cardView.bottomBackgroundColor, completion: { _ in
                         
                     }, failure: { _ in
@@ -71,6 +76,19 @@ class DetailReactor: Reactor, Stepper {
             return .empty()
         case .openShare(let controller):
             return .just(.setShareActivityController(controller))
+        case .deleteArchive:
+            return Observable.concat([
+                Observable.just(Mutation.setLoading(true)),
+                self.deleteArchive().map { result in
+                    switch result {
+                    case .success(_):
+                        return .setIsDeletedArchive(true)
+                    case .failure(_):
+                        return .setIsDeletedArchive(false)
+                    }
+                },
+                Observable.just(Mutation.setLoading(false))
+            ])
         }
     }
     
@@ -81,6 +99,10 @@ class DetailReactor: Reactor, Stepper {
             newState.detailData = data
         case .setShareActivityController(let controller):
             newState.shareActivityController = controller
+        case .setIsDeletedArchive(let isDeleted):
+            newState.isDeletedArchive = isDeleted
+        case .setLoading(let isLoading):
+            newState.isLoading = isLoading
         }
         return newState
     }
@@ -101,6 +123,20 @@ class DetailReactor: Reactor, Stepper {
                 completion(ShareCardView())
             }
         }
+    }
+    
+    private func deleteArchive() -> Observable<Result<Data, Error>> {
+        let archiveId: String = "" // 임시, 모델 바꿔야함
+        let provider = ArchiveProvider.shared.provider
+        
+        return provider.rx.request(.deleteArchive(archiveId: archiveId), callbackQueue: DispatchQueue.global())
+            .asObservable()
+            .map { result in
+                return .success(result.data)
+            }
+            .catch { err in
+                .just(.failure(err))
+            }
     }
     
     // MARK: internal function

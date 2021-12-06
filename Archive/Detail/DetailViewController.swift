@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import SnapKit
 
-class DetailViewController: UIViewController, StoryboardView {
+class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     enum CellModel {
         case cover(RecordData)
@@ -142,6 +142,28 @@ class DetailViewController: UIViewController, StoryboardView {
                 })
             })
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isLoading in
+                if isLoading {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isDeletedArchive }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isDeleted in
+                if isDeleted {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
     deinit {
@@ -218,7 +240,12 @@ class DetailViewController: UIViewController, StoryboardView {
     @objc private func moreButtonClicked(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction: UIAlertAction = UIAlertAction(title: "삭제", style: .default) { (delete) in
-            
+            CommonAlertView.shared.show(message: "기록을 삭제하겠습니까?", subMessage: "삭제된 이미지와 글은 복구가 불가능합니다.", confirmBtnTxt: "삭제", cancelBtnTxt: "취소", confirmHandler: { [weak self] in
+                CommonAlertView.shared.hide(nil)
+                self?.reactor?.action.onNext(.deleteArchive)
+            }, cancelHandler: {
+                CommonAlertView.shared.hide(nil)
+            })
         }
         let shareAction: UIAlertAction = UIAlertAction(title: "공유", style: .default) { [weak self] (share) in
             self?.modalShareViewController.modalPresentationStyle = .overFullScreen
