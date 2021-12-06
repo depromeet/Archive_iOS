@@ -33,6 +33,8 @@ final class AppFlow: Flow {
             return navigationToMyPageScreen(cardCnt: cardCnt)
         case .recordIsRequired:
             return navigationToRecordScreen()
+        case .detailIsRequired(let data):
+            return navigationToDetailScreen(data: data)
         default:
             return .none
         }
@@ -78,5 +80,19 @@ final class AppFlow: Flow {
         
         return .one(flowContributor: .contribute(withNextPresentable: recordFlow,
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.recordIsRequired)))
+    }
+    
+    private func navigationToDetailScreen(data: RecordData) -> FlowContributors {
+        let detailFlow = DetailFlow()
+        
+        Flows.use(detailFlow, when: .created) { [weak self] root in
+            DispatchQueue.main.async {
+                root.modalPresentationStyle = .fullScreen
+                self?.rootViewController.present(root, animated: false)
+            }
+        }
+        
+        return .one(flowContributor: .contribute(withNextPresentable: detailFlow,
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.detailIsRequired(data))))
     }
 }

@@ -23,6 +23,7 @@ final class SignUpReactor: Reactor, Stepper {
         
         case emailInput(text: String)
         case checkEmailDuplicate
+        case setIsEmailDuplicated(Bool)
         case goToPasswordInput
         
         case passwordInput(text: String)
@@ -80,10 +81,12 @@ final class SignUpReactor: Reactor, Stepper {
     let steps = PublishRelay<Step>()
     private let validator: SignUpValidator
     var isLoading: PublishSubject<Bool>
+    var error: PublishSubject<String>
     
     init(validator: SignUpValidator) {
         self.validator = validator
         self.isLoading = .init()
+        self.error = .init()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -120,9 +123,15 @@ final class SignUpReactor: Reactor, Stepper {
                           .setEmailValidation(isValid)])
             
         case .checkEmailDuplicate:
-            // TODO: 이메일 중복 확인 요청
-            return .just(.setEmailDuplicate(false))
-            
+            checkIsDuplicatedEmail(eMail: self.currentState.email, completion: { [weak self] isDup in
+                if isDup {
+                    self?.error.onNext("이미 가입된 아이디입니다.")
+                }
+                self?.action.onNext(.setIsEmailDuplicated(isDup))
+            })
+            return .empty()
+        case .setIsEmailDuplicated(let isDup):
+            return .just(.setEmailDuplicate(isDup))
         case .goToPasswordInput:
             steps.accept(ArchiveStep.passwordInputRequired)
             return .empty()
@@ -205,6 +214,30 @@ final class SignUpReactor: Reactor, Stepper {
                 }
             case .failure(let err):
                 print("err: \(err.localizedDescription)")
+            }
+        })
+    }
+    
+    private func checkIsDuplicatedEmail(eMail: String, completion: @escaping (Bool) -> Void) {
+        self.isLoading.onNext(true)
+        let provider = ArchiveProvider.shared.provider
+        provider.request(.isDuplicatedEmail(eMail), completion: { [weak self] response in
+            self?.isLoading.onNext(false)
+            switch response {
+            case .success(let response):
+                if let result: JSON = try? JSON.init(data: response.data) {
+                    let isDup: Bool = result["duplicatedEmail"].boolValue
+                    if isDup {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                } else {
+                    completion(true)
+                }
+            case .failure(let err):
+                print("err: \(err.localizedDescription)")
+                completion(true)
             }
         })
     }

@@ -53,7 +53,6 @@ class RecordUploadViewController: UIViewController, StoryboardView {
         self.cancelBtn.rx
             .tap
             .subscribe(onNext: {
-                print("cancel clicked")
                 self.animationView.stop()
                 self.dismiss(animated: true, completion: nil)
             })
