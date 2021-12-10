@@ -126,7 +126,7 @@ class DetailReactor: Reactor, Stepper {
     }
     
     private func deleteArchive() -> Observable<Result<Data, Error>> {
-        let archiveId: String = "" // 임시, 모델 바꿔야함
+        let archiveId: String = "" // TODO: 임시, 모델 바꿔야함
         let provider = ArchiveProvider.shared.provider
         
         return provider.rx.request(.deleteArchive(archiveId: archiveId), callbackQueue: DispatchQueue.global())

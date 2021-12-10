@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="qT4-Af-fRX">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="Su4-tL-GRr" customClass="HomeViewController" customModule="Archive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fnp-Ob-E2d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cF-Wp-c5z">
+                                <rect key="frame" x="32" y="96" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AWx-k8-KNs">
+                                <rect key="frame" x="0.0" y="135" width="414" height="627"/>
+                                <color key="backgroundColor" name="White"/>
+                                <collectionViewLayout key="collectionViewLayout" id="GeS-7Z-eEQ"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TicketCollectionViewCell" id="nTx-YN-LeS" customClass="TicketCollectionViewCell" customModule="Archive" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="46j-YF-7eq">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="603-gu-jzb">
+                                <rect key="frame" x="177" y="794" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="RM1-ic-JNc"/>
+                                    <constraint firstAttribute="width" constant="60" id="esm-oH-RJs"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n4g-2g-gSz">
+                                <rect key="frame" x="0.0" y="762" width="414" height="26"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TzV-jn-0Aq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="n4g-2g-gSz" secondAttribute="trailing" id="10T-Jq-aVc"/>
+                            <constraint firstItem="TzV-jn-0Aq" firstAttribute="bottom" secondItem="603-gu-jzb" secondAttribute="bottom" constant="8" id="Edr-9n-qnu"/>
+                            <constraint firstItem="AWx-k8-KNs" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="Hkq-46-6cy"/>
+                            <constraint firstItem="2cF-Wp-c5z" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" constant="32" id="S9k-UG-rmi"/>
+                            <constraint firstItem="AWx-k8-KNs" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" id="Wz9-xk-iSo"/>
+                            <constraint firstItem="2cF-Wp-c5z" firstAttribute="top" secondItem="TzV-jn-0Aq" secondAttribute="top" constant="8" id="XII-zM-2iN"/>
+                            <constraint firstItem="n4g-2g-gSz" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" id="Z35-I7-MEb"/>
+                            <constraint firstItem="603-gu-jzb" firstAttribute="top" secondItem="n4g-2g-gSz" secondAttribute="bottom" constant="6" id="hGw-xk-P56"/>
+                            <constraint firstItem="n4g-2g-gSz" firstAttribute="top" secondItem="AWx-k8-KNs" secondAttribute="bottom" id="jIn-bR-nrz"/>
+                            <constraint firstItem="AWx-k8-KNs" firstAttribute="top" secondItem="2cF-Wp-c5z" secondAttribute="bottom" constant="18" id="uRi-T8-ADD"/>
+                            <constraint firstItem="603-gu-jzb" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="ull-IZ-DUz"/>
+                            <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="AWx-k8-KNs" secondAttribute="trailing" id="yT5-Jv-mNr"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mainContainerView" destination="fnp-Ob-E2d" id="IOy-wA-Qkj"/>
+                        <outlet property="ticketCollectionView" destination="AWx-k8-KNs" id="i7g-vA-135"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmN-2r-i9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="38"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
