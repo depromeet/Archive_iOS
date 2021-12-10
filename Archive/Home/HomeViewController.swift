@@ -23,7 +23,6 @@ final class HomeViewController: UIViewController, StoryboardView {
                                                                   horizontalInset: 32,
                                                                   spacing: 24)
             ticketCollectionView.collectionViewLayout = collectionViewLayout
-            ticketCollectionView.dataSource = self
             ticketCollectionView.delaysContentTouches = false
         }
     }
@@ -50,10 +49,17 @@ final class HomeViewController: UIViewController, StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        self.reactor?.action.onNext(.getMyArchives)
     }
     
     func bind(reactor: HomeReactor) {
         
+        reactor.state.map { $0.archives }
+        .distinctUntilChanged()
+        .bind(to: self.ticketCollectionView.rx.items(cellIdentifier: TicketCollectionViewCell.identifier, cellType: TicketCollectionViewCell.self)) { index, element, cell in
+            cell.infoData = element
+        }
+        .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -76,16 +82,4 @@ final class HomeViewController: UIViewController, StoryboardView {
     
     
     
-}
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TicketCollectionViewCell.identifier, for: indexPath) as? TicketCollectionViewCell
-        
-        return cell ?? UICollectionViewCell()
-    }
 }

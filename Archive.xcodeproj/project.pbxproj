@@ -152,6 +152,8 @@
 		78599DEA27638221003FD959 /* HomeShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78599DE927638221003FD959 /* HomeShimmerView.swift */; };
 		78599DEB27638224003FD959 /* HomeShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78599DE927638221003FD959 /* HomeShimmerView.swift */; };
 		78599DED27638241003FD959 /* HomeShimmerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78599DEC27638241003FD959 /* HomeShimmerView.xib */; };
+		78599DEE27638500003FD959 /* ArchiveInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78599DE7276381A9003FD959 /* ArchiveInfo.swift */; };
+		78599DEF27638CFD003FD959 /* HomeShimmerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78599DEC27638241003FD959 /* HomeShimmerView.xib */; };
 		785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
 		785F5E44273018EB00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
 		787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
@@ -1081,6 +1083,7 @@
 				78958E172712A510003FF724 /* Pretendard-Regular.ttf in Resources */,
 				78A3217C275B96B50078650D /* DetailContentsCollectionViewCell.xib in Resources */,
 				4FD4F1DF272F870D00BDB4BB /* RecordImageCollectionViewCell.xib in Resources */,
+				78599DEF27638CFD003FD959 /* HomeShimmerView.xib in Resources */,
 				787769A3273AA99000519B58 /* PhotoContentsView.xib in Resources */,
 				78599DE327637629003FD959 /* Home.storyboard in Resources */,
 				4FD4F1DC272F870D00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
@@ -1267,6 +1270,7 @@
 				784377B0273173B00005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
 				78599DE027637629003FD959 /* TicketImageContentView.swift in Sources */,
 				44FB0A05271832D4006E1048 /* AppFlow.swift in Sources */,
+				78599DEE27638500003FD959 /* ArchiveInfo.swift in Sources */,
 				782FDF57272D1D78004D1B6E /* ActivityIndicatorable.swift in Sources */,
 				78212336273F89BA007DEC28 /* RecordUploadCompleteReactor.swift in Sources */,
 				44922DC62719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,

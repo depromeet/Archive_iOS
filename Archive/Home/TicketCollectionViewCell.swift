@@ -30,6 +30,12 @@ final class TicketCollectionViewCell: UICollectionViewCell, ReuseIdentifiable {
         return view
     }()
     
+    var infoData: ArchiveInfo? {
+        didSet {
+            print("infoData: \(infoData)")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupAttributes()
