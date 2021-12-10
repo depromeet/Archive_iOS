@@ -8,7 +8,8 @@
 import UIKit
 
 final class TicketImageContentView: UIView {
-    
+
+    var bgColor: UIColor?
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
@@ -42,7 +43,7 @@ final class TicketImageContentView: UIView {
         path.addQuadCurve(to: p7, controlPoint: cp67)
         path.close()
 
-        UIColor.red.set()
+        self.bgColor?.set()
         path.fill()
     }
 }

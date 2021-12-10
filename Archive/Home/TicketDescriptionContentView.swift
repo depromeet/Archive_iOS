@@ -6,8 +6,23 @@
 //
 
 import UIKit
+import SnapKit
 
 final class TicketDescriptionContentView: UIView {
+    
+    lazy var titleLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.font = .fonts(.header3)
+        label.textColor = Gen.Colors.black.color
+        return label
+    }()
+    
+    lazy var dateLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.font = .fonts(.subTitle)
+        label.textColor = Gen.Colors.black.color
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +58,24 @@ final class TicketDescriptionContentView: UIView {
         path.addQuadCurve(to: p8, controlPoint: cp78)
         path.close()
 
-        UIColor.orange.set()
+        UIColor.white.set()
+        
         path.fill()
+    }
+    
+    func setLayout() {
+        self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top).offset(14)
+            $0.leading.equalTo(self.snp.leading).offset(20)
+            $0.trailing.equalTo(self.snp.trailing).offset(20)
+        }
+        
+        self.addSubview(dateLabel)
+        dateLabel.snp.makeConstraints {
+            $0.top.equalTo(self.titleLabel.snp.bottom).offset(10)
+            $0.leading.equalTo(self.titleLabel.snp.leading)
+            $0.trailing.equalTo(self.titleLabel.snp.trailing)
+        }
     }
 }
