@@ -41,9 +41,7 @@ enum ArchiveStep: Step {
     
     // Detail
     case detailIsRequired(ArchiveDetailInfo)
-    case detailMainIsRequired(ArchiveDetailInfo)
     
     // Home
     case homeIsRequired
-    case test
 }

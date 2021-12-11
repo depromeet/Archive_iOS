@@ -42,6 +42,8 @@ final class AppFlow: Flow {
             return navigationToRecordScreen()
         case .homeIsRequired:
             return navigationToHomeScreen()
+        case .onboardingIsComplete:
+            return navigationToHomeScreen()
         default:
             return .none
         }
@@ -49,16 +51,15 @@ final class AppFlow: Flow {
     
     private func navigationToOnboardingScreen() -> FlowContributors {
         let onboardingFlow = OnboardingFlow()
-        
-        Flows.use(onboardingFlow, when: .created) { [weak self] root in
-            DispatchQueue.main.async {
-                root.modalPresentationStyle = .fullScreen
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
+        Flows.use(onboardingFlow, when: Flows.ExecuteStrategy.ready, block: { [weak self] root in
+            self?.rootWindow.rootViewController = root
+            self?.rootWindow.makeKeyAndVisible()
+        })
         
         return .one(flowContributor: .contribute(withNextPresentable: onboardingFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired)))
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired),
+                                                 allowStepWhenNotPresented: false,
+                                                 allowStepWhenDismissed: false))
     }
     
     private func navigationToMyPageScreen(cardCnt: Int) -> FlowContributors {
@@ -90,10 +91,6 @@ final class AppFlow: Flow {
     }
     
     private func navigationToHomeScreen() -> FlowContributors {
-        
-//        if let rootViewController = self.rootWindow.rootViewController {
-//            rootViewController.dismiss(animated: false)
-//        }
 
         let homeFlow = HomeFlow()
         Flows.use(homeFlow, when: Flows.ExecuteStrategy.ready, block: { [weak self] root in

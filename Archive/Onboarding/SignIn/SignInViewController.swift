@@ -10,7 +10,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-final class SignInViewController: UIViewController, StoryboardView {
+final class SignInViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     @IBOutlet private weak var idInputView: InputView!
     @IBOutlet private weak var passwordInputView: InputView!

@@ -61,6 +61,7 @@ class HomeFlow: Flow {
             return DetailViewController(coder: corder, reactor: reactor)
         }
         detailViewController.title = Constants.DetailNavigationTitle
+        detailViewController.delegate = self
         DispatchQueue.main.async {
             self.subVCNavi = UINavigationController(rootViewController: detailViewController)
             if let navi = self.subVCNavi {
@@ -72,4 +73,11 @@ class HomeFlow: Flow {
                                                  withNextStepper: reactor))
     }
     
+}
+
+extension HomeFlow: CommonViewControllerProtocol, DetailViewControllerDelegate {
+    func closed(from: UIViewController) {
+        self.subVCNavi?.viewControllers = []
+        self.subVCNavi = nil
+    }
 }

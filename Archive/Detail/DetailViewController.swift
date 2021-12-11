@@ -12,6 +12,10 @@ import RxCocoa
 import RxDataSources
 import SnapKit
 
+protocol DetailViewControllerDelegate: CommonViewControllerProtocol {
+    
+}
+
 class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     enum CellModel {
@@ -39,6 +43,8 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     
     private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
     private let modalShareViewController: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
+    
+    weak var delegate: DetailViewControllerDelegate?
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -261,7 +267,9 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     }
     
     @objc private func backButtonClicked(_ sender: UIButton) {
-        print("backButtonClicked")
+        self.dismiss(animated: true, completion: { [weak self] in
+            self?.delegate?.closed(from: self ?? UIViewController())
+        })
     }
 
 }
