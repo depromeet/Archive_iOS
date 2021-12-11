@@ -15,8 +15,8 @@ import SnapKit
 class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     enum CellModel {
-        case cover(RecordData)
-        case commonImage(RecordImageData)
+        case cover(ArchiveDetailInfo)
+        case commonImage(ArchiveDetailImageInfo)
     }
     
     // MARK: IBOutlet
@@ -204,19 +204,19 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         makeNaviBtn()
     }
     
-    private func makeCardCell(with element: RecordData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeCardCell(with element: ArchiveDetailInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMainCollectionViewCell.identifier, for: indexPath) as? DetailMainCollectionViewCell else { return UICollectionViewCell() }
         cell.infoData = element
         return cell
     }
     
-    private func makeImageCell(with element: RecordImageData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeImageCell(with element: ArchiveDetailImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailContentsCollectionViewCell.identifier, for: indexPath) as? DetailContentsCollectionViewCell else { return UICollectionViewCell() }
         cell.imageInfo = element
         return cell
     }
     
-    private func setCardInfo(_ info: RecordData) {
+    private func setCardInfo(_ info: ArchiveDetailInfo) {
         self.archiveTitleLabel.text = info.name
         self.dateLabel.text = info.watchedOn
     }

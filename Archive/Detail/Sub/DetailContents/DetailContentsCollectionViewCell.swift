@@ -18,7 +18,7 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
     
     // MARK: property
     
-    var imageInfo: RecordImageData? {
+    var imageInfo: ArchiveDetailImageInfo? {
         didSet {
             guard let info = self.imageInfo else { return }
             DispatchQueue.main.async { [weak self] in

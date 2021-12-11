@@ -17,6 +17,8 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var contentsCountTitleLabel: UILabel!
     @IBOutlet weak var contentsCountLabel: UILabel!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var addArchiveBtn: UIButton!
     @IBOutlet private weak var ticketCollectionView: UICollectionView! {
         didSet {
             let collectionViewLayout = TicketCollectionViewLayout(visibleItemsCount: 3,
@@ -67,6 +69,57 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         .map { String("\($0)") }
         .bind(to: self.contentsCountLabel.rx.text)
         .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.arvhivesCount }
+        .distinctUntilChanged()
+        .bind(to: self.pageControl.rx.numberOfPages)
+        .disposed(by: self.disposeBag)
+        
+        self.ticketCollectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                self?.pageControl.currentPage = info.at.item
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.ticketCollectionView.rx.itemSelected
+            .asDriver()
+            .drive(onNext: { info in
+                reactor.action.onNext(.showDetail(info.item))
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.addArchiveBtn.rx.tap
+            .map { Reactor.Action.addArchive }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isLoading }
+        .distinctUntilChanged()
+        .asDriver(onErrorJustReturn: false)
+        .drive(onNext: { [weak self] in
+            if $0 {
+                self?.startIndicatorAnimating()
+            } else {
+                self?.stopIndicatorAnimating()
+            }
+        })
+        .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isShimmering }
+        .distinctUntilChanged()
+        .asDriver(onErrorJustReturn: false)
+        .drive(onNext: { [weak self] in
+            if $0 {
+                self?.shimmerView?.isHidden = false
+                self?.shimmerView?.startShimmering()
+            } else {
+                self?.shimmerView?.stopShimmering()
+                self?.shimmerView?.isHidden = true
+            }
+        })
+        .disposed(by: self.disposeBag)
+        
     }
     
     // MARK: private function

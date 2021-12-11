@@ -45,6 +45,7 @@ internal enum Gen {
     internal static let wonderfulPurpleDarken = ColorAsset(name: "WonderfulPurpleDarken")
   }
   internal enum Images {
+    internal static let addArchive = ImageAsset(name: "Add_Archive")
     internal static let back = ImageAsset(name: "Back")
     internal static let checkBoxAllDeselected = ImageAsset(name: "Check box_all_deselected")
     internal static let checkBoxAllSelected = ImageAsset(name: "Check box_all_selected")

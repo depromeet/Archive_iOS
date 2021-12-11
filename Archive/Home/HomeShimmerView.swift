@@ -33,6 +33,14 @@ class HomeShimmerView: UIView, NibIdentifiable {
         return nib.instantiate(withOwner: nil, options: nil).first as? HomeShimmerView
     }
     
+    func startShimmering() {
+        
+    }
+    
+    func stopShimmering() {
+        
+    }
+    
     // MARK: action
     
 }

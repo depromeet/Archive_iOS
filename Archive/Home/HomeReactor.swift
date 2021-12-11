@@ -23,6 +23,8 @@ final class HomeReactor: Reactor, Stepper {
     
     enum Action {
         case getMyArchives
+        case showDetail(Int)
+        case addArchive
     }
     
     enum Mutation {
@@ -53,6 +55,24 @@ final class HomeReactor: Reactor, Stepper {
                     }
                 },
                 Observable.just(.setIsShimmering(false))
+            ])
+        case .showDetail(let index):
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                self.getDetailArchiveInfo(id: "\(currentState.archives[index].archiveId)").map { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        self?.moveToDetail(data: data)
+                    case .failure(let err):
+                        print("err: ")
+                    }
+                    return .setIsLoading(false)
+                }
+            ])
+        case .addArchive:
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                Observable.just(.setIsLoading(false))
             ])
         }
     }
@@ -90,6 +110,18 @@ final class HomeReactor: Reactor, Stepper {
             }
     }
     
+    private func getDetailArchiveInfo(id: String) -> Observable<Result<Data, Error>> {
+        let provider = ArchiveProvider.shared.provider
+        return provider.rx.request(.getDetailArchive(archiveId: id), callbackQueue: DispatchQueue.global())
+            .asObservable()
+            .map { result in
+                return .success(result.data)
+            }
+            .catch { err in
+                .just(.failure(err))
+            }
+    }
+    
     private func convertDataToArchivesInfos(data: Data) -> ([ArchiveInfo], Int) {
         var items: [ArchiveInfo] = [ArchiveInfo]()
         var itemsCount = 0
@@ -105,6 +137,16 @@ final class HomeReactor: Reactor, Stepper {
             }
         }
         return (items, itemsCount)
+    }
+    
+    private func moveToDetail(data: Data) {
+        if let detailDataJson: JSON = try? JSON.init(data: data) {
+            if let info = ArchiveDetailInfo.fromJson(jsonData: data) {
+                print("test!@#@#: \(info)")
+//                self?.steps.accept(ArchiveStep.recordImageSelectIsRequired(self?.model.emotion ?? .fun))
+                self.steps.accept(ArchiveStep.detailIsRequired(info))
+            }
+        }
     }
     
     // MARK: internal function

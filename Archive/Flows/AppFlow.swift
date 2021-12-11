@@ -84,7 +84,7 @@ final class AppFlow: Flow {
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.recordIsRequired)))
     }
     
-    private func navigationToDetailScreen(data: RecordData) -> FlowContributors {
+    private func navigationToDetailScreen(data: ArchiveDetailInfo) -> FlowContributors {
         let detailFlow = DetailFlow()
         
         Flows.use(detailFlow, when: .created) { [weak self] root in

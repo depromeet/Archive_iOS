@@ -36,7 +36,7 @@ class DetailFlow: Flow {
         }
     }
     
-    private func navigationToDetailScreen(infoData: RecordData) -> FlowContributors {
+    private func navigationToDetailScreen(infoData: ArchiveDetailInfo) -> FlowContributors {
         let model: DetailModel = DetailModel(recordData: infoData)
         let reactor = DetailReactor(model: model)
         let detailViewController: DetailViewController = storyBoard.instantiateViewController(identifier: DetailViewController.identifier) { corder in

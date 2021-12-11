@@ -15,6 +15,7 @@ enum ArchiveAPI {
     case isDuplicatedEmail(_ eMail: String)
     case deleteArchive(archiveId: String)
     case getArchives
+    case getDetailArchive(archiveId: String)
 }
 
 extension ArchiveAPI: TargetType {
@@ -39,6 +40,8 @@ extension ArchiveAPI: TargetType {
             return "/api/v1/archive/" + archiveId
         case .getArchives:
             return "/api/v1/archive"
+        case .getDetailArchive(let archiveId):
+            return "/api/v1/archive/" + archiveId
         }
     }
     
@@ -58,6 +61,8 @@ extension ArchiveAPI: TargetType {
             return .delete
         case .getArchives:
             return .get
+        case .getDetailArchive:
+            return .get
         }
     }
     
@@ -76,6 +81,8 @@ extension ArchiveAPI: TargetType {
         case .deleteArchive:
             return Data()
         case .getArchives:
+            return Data()
+        case .getDetailArchive:
             return Data()
         }
     }
@@ -99,6 +106,8 @@ extension ArchiveAPI: TargetType {
             return .requestPlain
         case .getArchives:
             return .requestPlain
+        case .getDetailArchive:
+            return .requestPlain
         }
     }
     
@@ -121,6 +130,8 @@ extension ArchiveAPI: TargetType {
         case .deleteArchive:
             return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
         case .getArchives:
+            return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
+        case .getDetailArchive:
             return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
         }
     }

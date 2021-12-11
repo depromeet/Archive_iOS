@@ -46,13 +46,13 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="603-gu-jzb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="603-gu-jzb">
                                 <rect key="frame" x="177" y="794" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="RM1-ic-JNc"/>
                                     <constraint firstAttribute="width" constant="60" id="esm-oH-RJs"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=" " image="Add_Archive"/>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n4g-2g-gSz">
                                 <rect key="frame" x="0.0" y="762" width="414" height="26"/>
@@ -79,9 +79,11 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="addArchiveBtn" destination="603-gu-jzb" id="vKS-Dv-bpk"/>
                         <outlet property="contentsCountLabel" destination="Puk-e0-XiE" id="YnS-Lf-A80"/>
                         <outlet property="contentsCountTitleLabel" destination="2cF-Wp-c5z" id="EGJ-mH-gal"/>
                         <outlet property="mainContainerView" destination="fnp-Ob-E2d" id="IOy-wA-Qkj"/>
+                        <outlet property="pageControl" destination="n4g-2g-gSz" id="MhK-PY-YSC"/>
                         <outlet property="ticketCollectionView" destination="AWx-k8-KNs" id="i7g-vA-135"/>
                     </connections>
                 </viewController>
@@ -91,6 +93,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add_Archive" width="60" height="60"/>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

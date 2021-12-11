@@ -29,7 +29,7 @@ class DetailReactor: Reactor, Stepper {
     }
     
     enum Action {
-        case setDetailData(RecordData)
+        case setDetailData(ArchiveDetailInfo)
         case shareToInstagram
         case saveToAlbum
         case openShare(UIActivityViewController)
@@ -37,14 +37,14 @@ class DetailReactor: Reactor, Stepper {
     }
     
     enum Mutation {
-        case setDetailData(RecordData)
+        case setDetailData(ArchiveDetailInfo)
         case setShareActivityController(UIActivityViewController)
         case setIsDeletedArchive(Bool)
         case setLoading(Bool)
     }
     
     struct State {
-        var detailData: RecordData?
+        var detailData: ArchiveDetailInfo?
         var willSharedCarView: UIView?
         var shareActivityController: UIActivityViewController?
         var isDeletedArchive: Bool = false
