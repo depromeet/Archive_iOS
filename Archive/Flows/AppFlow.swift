@@ -12,14 +12,21 @@ import RxFlow
 
 final class AppFlow: Flow {
     
+    private let rootWindow: UIWindow
+    
     var root: Presentable {
-        return rootViewController
+        return self.rootWindow
     }
+    
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
         viewController.setNavigationBarHidden(true, animated: false)
         return viewController
     }()
+    
+    init(rootWindow: UIWindow) {
+        self.rootWindow = rootWindow
+    }
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? ArchiveStep else {
@@ -33,8 +40,6 @@ final class AppFlow: Flow {
             return navigationToMyPageScreen(cardCnt: cardCnt)
         case .recordIsRequired:
             return navigationToRecordScreen()
-        case .detailIsRequired(let data):
-            return navigationToDetailScreen(data: data)
         case .homeIsRequired:
             return navigationToHomeScreen()
         default:
@@ -84,31 +89,21 @@ final class AppFlow: Flow {
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.recordIsRequired)))
     }
     
-    private func navigationToDetailScreen(data: ArchiveDetailInfo) -> FlowContributors {
-        let detailFlow = DetailFlow()
-        
-        Flows.use(detailFlow, when: .created) { [weak self] root in
-            DispatchQueue.main.async {
-                root.modalPresentationStyle = .fullScreen
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
-        
-        return .one(flowContributor: .contribute(withNextPresentable: detailFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.detailIsRequired(data))))
-    }
-    
     private func navigationToHomeScreen() -> FlowContributors {
-        let homeFlow = HomeFlow()
         
-        Flows.use(homeFlow, when: .created) { [weak self] root in
-            DispatchQueue.main.async {
-                root.modalPresentationStyle = .fullScreen
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
+//        if let rootViewController = self.rootWindow.rootViewController {
+//            rootViewController.dismiss(animated: false)
+//        }
+
+        let homeFlow = HomeFlow()
+        Flows.use(homeFlow, when: Flows.ExecuteStrategy.ready, block: { [weak self] root in
+            self?.rootWindow.rootViewController = root
+            self?.rootWindow.makeKeyAndVisible()
+        })
         
         return .one(flowContributor: .contribute(withNextPresentable: homeFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.homeIsRequired)))
+                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.homeIsRequired),
+                                                 allowStepWhenNotPresented: false,
+                                                 allowStepWhenDismissed: false))
     }
 }

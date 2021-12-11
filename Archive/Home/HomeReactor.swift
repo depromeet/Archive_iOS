@@ -142,9 +142,10 @@ final class HomeReactor: Reactor, Stepper {
     private func moveToDetail(data: Data) {
         if let detailDataJson: JSON = try? JSON.init(data: data) {
             if let info = ArchiveDetailInfo.fromJson(jsonData: data) {
-                print("test!@#@#: \(info)")
-//                self?.steps.accept(ArchiveStep.recordImageSelectIsRequired(self?.model.emotion ?? .fun))
-                self.steps.accept(ArchiveStep.detailIsRequired(info))
+                DispatchQueue.main.async { [weak self] in
+                    self?.steps.accept(ArchiveStep.detailIsRequired(info))
+//                    self?.steps.accept(ArchiveStep.test)
+                }
             }
         }
     }
