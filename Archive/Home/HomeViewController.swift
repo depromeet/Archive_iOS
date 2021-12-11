@@ -11,11 +11,12 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class HomeViewController: UIViewController, StoryboardView {
+final class HomeViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     // MARK: IBOutlet
-    
-    @IBOutlet var mainContainerView: UIView!
+    @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var contentsCountTitleLabel: UILabel!
+    @IBOutlet weak var contentsCountLabel: UILabel!
     @IBOutlet private weak var ticketCollectionView: UICollectionView! {
         didSet {
             let collectionViewLayout = TicketCollectionViewLayout(visibleItemsCount: 3,
@@ -60,6 +61,12 @@ final class HomeViewController: UIViewController, StoryboardView {
             cell.infoData = element
         }
         .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.arvhivesCount }
+        .distinctUntilChanged()
+        .map { String("\($0)") }
+        .bind(to: self.contentsCountLabel.rx.text)
+        .disposed(by: self.disposeBag)
     }
     
     // MARK: private function
@@ -72,6 +79,11 @@ final class HomeViewController: UIViewController, StoryboardView {
             }
             shimmerView.isHidden = true
         }
+        self.contentsCountTitleLabel.font = .fonts(.subTitle)
+        self.contentsCountTitleLabel.textColor = Gen.Colors.black.color
+        self.contentsCountTitleLabel.text = "기록한 전시"
+        self.contentsCountLabel.font = .fonts(.header3)
+        self.contentsCountLabel.textColor = Gen.Colors.black.color
     }
     
     // MARK: internal function

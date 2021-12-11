@@ -25,6 +25,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puk-e0-XiE">
+                                <rect key="frame" x="84" y="96" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AWx-k8-KNs">
                                 <rect key="frame" x="0.0" y="135" width="414" height="627"/>
                                 <color key="backgroundColor" name="White"/>
@@ -58,6 +64,7 @@
                             <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="n4g-2g-gSz" secondAttribute="trailing" id="10T-Jq-aVc"/>
                             <constraint firstItem="TzV-jn-0Aq" firstAttribute="bottom" secondItem="603-gu-jzb" secondAttribute="bottom" constant="8" id="Edr-9n-qnu"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="Hkq-46-6cy"/>
+                            <constraint firstItem="Puk-e0-XiE" firstAttribute="leading" secondItem="2cF-Wp-c5z" secondAttribute="trailing" constant="10" id="Nkw-uS-45O"/>
                             <constraint firstItem="2cF-Wp-c5z" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" constant="32" id="S9k-UG-rmi"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" id="Wz9-xk-iSo"/>
                             <constraint firstItem="2cF-Wp-c5z" firstAttribute="top" secondItem="TzV-jn-0Aq" secondAttribute="top" constant="8" id="XII-zM-2iN"/>
@@ -66,11 +73,14 @@
                             <constraint firstItem="n4g-2g-gSz" firstAttribute="top" secondItem="AWx-k8-KNs" secondAttribute="bottom" id="jIn-bR-nrz"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="top" secondItem="2cF-Wp-c5z" secondAttribute="bottom" constant="18" id="uRi-T8-ADD"/>
                             <constraint firstItem="603-gu-jzb" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="ull-IZ-DUz"/>
+                            <constraint firstItem="Puk-e0-XiE" firstAttribute="centerY" secondItem="2cF-Wp-c5z" secondAttribute="centerY" id="vM9-Dn-KzO"/>
                             <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="AWx-k8-KNs" secondAttribute="trailing" id="yT5-Jv-mNr"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="contentsCountLabel" destination="Puk-e0-XiE" id="YnS-Lf-A80"/>
+                        <outlet property="contentsCountTitleLabel" destination="2cF-Wp-c5z" id="EGJ-mH-gal"/>
                         <outlet property="mainContainerView" destination="fnp-Ob-E2d" id="IOy-wA-Qkj"/>
                         <outlet property="ticketCollectionView" destination="AWx-k8-KNs" id="i7g-vA-135"/>
                     </connections>
