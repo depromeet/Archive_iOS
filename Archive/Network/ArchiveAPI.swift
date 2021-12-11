@@ -16,6 +16,8 @@ enum ArchiveAPI {
     case deleteArchive(archiveId: String)
     case getArchives
     case getDetailArchive(archiveId: String)
+    case getCurrentUserInfo
+    case withdrawal
 }
 
 extension ArchiveAPI: TargetType {
@@ -42,6 +44,10 @@ extension ArchiveAPI: TargetType {
             return "/api/v1/archive"
         case .getDetailArchive(let archiveId):
             return "/api/v1/archive/" + archiveId
+        case .getCurrentUserInfo:
+            return "/api/v1/auth/info"
+        case .withdrawal:
+            return "/api/v1/auth/quit"
         }
     }
     
@@ -63,6 +69,10 @@ extension ArchiveAPI: TargetType {
             return .get
         case .getDetailArchive:
             return .get
+        case .getCurrentUserInfo:
+            return .get
+        case .withdrawal:
+            return .delete
         }
     }
     
@@ -83,6 +93,10 @@ extension ArchiveAPI: TargetType {
         case .getArchives:
             return Data()
         case .getDetailArchive:
+            return Data()
+        case .getCurrentUserInfo:
+            return Data()
+        case .withdrawal:
             return Data()
         }
     }
@@ -108,6 +122,10 @@ extension ArchiveAPI: TargetType {
             return .requestPlain
         case .getDetailArchive:
             return .requestPlain
+        case .getCurrentUserInfo:
+            return .requestPlain
+        case .withdrawal:
+            return .requestPlain
         }
     }
     
@@ -132,6 +150,10 @@ extension ArchiveAPI: TargetType {
         case .getArchives:
             return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
         case .getDetailArchive:
+            return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
+        case .getCurrentUserInfo:
+            return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
+        case .withdrawal:
             return ["Authorization": UserDefaultManager.shared.getInfo(.loginToken)]
         }
     }

@@ -155,13 +155,22 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3C-61-Hw3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="n3C-61-Hw3" firstAttribute="top" secondItem="ruY-Ym-jZP" secondAttribute="top" id="1r9-51-rG0"/>
                                                             <constraint firstAttribute="height" constant="60" id="KH7-Uh-8pg"/>
+                                                            <constraint firstItem="n3C-61-Hw3" firstAttribute="leading" secondItem="ruY-Ym-jZP" secondAttribute="leading" id="LfG-Ny-tAJ"/>
                                                             <constraint firstItem="kRJ-Nj-Eag" firstAttribute="centerY" secondItem="ruY-Ym-jZP" secondAttribute="centerY" id="MgU-Df-dgT"/>
                                                             <constraint firstAttribute="trailing" secondItem="kRJ-Nj-Eag" secondAttribute="trailing" constant="32" id="Wdq-9y-hRd"/>
+                                                            <constraint firstAttribute="trailing" secondItem="n3C-61-Hw3" secondAttribute="trailing" id="kez-su-e9S"/>
                                                             <constraint firstItem="kRJ-Nj-Eag" firstAttribute="leading" secondItem="ruY-Ym-jZP" secondAttribute="leading" constant="32" id="m6p-97-FvY"/>
+                                                            <constraint firstAttribute="bottom" secondItem="n3C-61-Hw3" secondAttribute="bottom" id="o9y-oV-ezS"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bib-lI-uhZ" userLabel="4">
@@ -173,13 +182,22 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQU-Zy-Gkd">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="yQU-Zy-Gkd" firstAttribute="leading" secondItem="Bib-lI-uhZ" secondAttribute="leading" id="29L-M8-IrE"/>
                                                             <constraint firstAttribute="height" constant="60" id="6X6-kg-P6P"/>
                                                             <constraint firstAttribute="trailing" secondItem="4Bk-Cd-R4I" secondAttribute="trailing" constant="32" id="92k-Tg-Lxe"/>
                                                             <constraint firstItem="4Bk-Cd-R4I" firstAttribute="leading" secondItem="Bib-lI-uhZ" secondAttribute="leading" constant="32" id="Bii-gk-E7o"/>
+                                                            <constraint firstAttribute="bottom" secondItem="yQU-Zy-Gkd" secondAttribute="bottom" id="Ge6-DR-B0S"/>
                                                             <constraint firstItem="4Bk-Cd-R4I" firstAttribute="centerY" secondItem="Bib-lI-uhZ" secondAttribute="centerY" id="LEi-Xk-Ztg"/>
+                                                            <constraint firstItem="yQU-Zy-Gkd" firstAttribute="top" secondItem="Bib-lI-uhZ" secondAttribute="top" id="lw1-vL-xkx"/>
+                                                            <constraint firstAttribute="trailing" secondItem="yQU-Zy-Gkd" secondAttribute="trailing" id="z8Q-w4-QTa"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -247,11 +265,13 @@
                         <outlet property="mainContainerView" destination="zoE-HH-FxS" id="7Yc-7T-Z2S"/>
                         <outlet property="myCardCntLabel" destination="xFf-XY-Pg7" id="Yo1-9W-gyn"/>
                         <outlet property="myCardCntTitleLabel" destination="dWC-P0-A8b" id="4zE-X0-7u9"/>
+                        <outlet property="privacyBtn" destination="yQU-Zy-Gkd" id="sI9-4e-9bA"/>
                         <outlet property="privacyTitleLabel" destination="4Bk-Cd-R4I" id="Vln-De-ZeH"/>
                         <outlet property="privacyView" destination="Bib-lI-uhZ" id="sJg-kt-WX7"/>
                         <outlet property="pushAgreeContentsLabel" destination="mVO-Hm-8vZ" id="vh8-9T-HeL"/>
                         <outlet property="pushAgreeSwitch" destination="UER-2p-uZu" id="ET2-co-ScL"/>
                         <outlet property="pushAgreeTitleLabel" destination="7dr-Us-E8s" id="ow7-Qq-uvu"/>
+                        <outlet property="termsBtn" destination="n3C-61-Hw3" id="AJv-HE-zJc"/>
                         <outlet property="termsTitleLabel" destination="kRJ-Nj-Eag" id="Nhv-T3-bTI"/>
                         <outlet property="termsView" destination="ruY-Ym-jZP" id="VP6-V5-Ak9"/>
                     </connections>
@@ -591,7 +611,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check box_all_deselected" translatesAutoresizingMaskIntoConstraints="NO" id="W5Y-Ap-MZ4">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop" translatesAutoresizingMaskIntoConstraints="NO" id="W5Y-Ap-MZ4">
                                                         <rect key="frame" x="32" y="60.5" width="350" height="363.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="W5Y-Ap-MZ4" secondAttribute="height" multiplier="311:323" id="XGi-xT-uwc"/>
@@ -704,8 +724,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Check box_all_deselected" width="26" height="26"/>
         <image name="CheckSquare_deselected" width="26" height="26"/>
+        <image name="drop" width="282" height="323"/>
         <image name="icon_right-arrow" width="24" height="25.5"/>
         <image name="kakaotalk" width="21" height="21"/>
         <namedColor name="Black">

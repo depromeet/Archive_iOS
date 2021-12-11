@@ -41,5 +41,12 @@ class UserDefaultManager: NSObject {
             return (manager.object(forKey: UserDefaultInfoType.loginToken.rawValue) as? String) ?? ""
         }
     }
+    
+    func removeInfo(_ type: UserDefaultManager.UserDefaultInfoType) {
+        switch type {
+        case .loginToken:
+            manager.set(nil, forKey: UserDefaultInfoType.loginToken.rawValue)
+        }
+    }
 
 }

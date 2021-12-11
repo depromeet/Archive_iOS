@@ -122,7 +122,6 @@
 		78B872EC2726F32E009EFB54 /* ContentsRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872EB2726F32E009EFB54 /* ContentsRecordViewController.swift */; };
 		78BA154127218F430078B88E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154027218F430078B88E /* MyPageViewController.swift */; };
 		78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
-		78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA15462721956A0078B88E /* MyPageFlow.swift */; };
 		78BA1549272197250078B88E /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
 		78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
 		78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */; };
@@ -263,7 +262,6 @@
 		78B872EB2726F32E009EFB54 /* ContentsRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsRecordViewController.swift; sourceTree = "<group>"; };
 		78BA154027218F430078B88E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		78BA154227218F4E0078B88E /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
-		78BA15462721956A0078B88E /* MyPageFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlow.swift; sourceTree = "<group>"; };
 		78BA1548272197250078B88E /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		78C4B327272428AB0006EBAD /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
@@ -403,7 +401,6 @@
 				44FB09FE271832AD006E1048 /* AppFlow.swift */,
 				44FB0A2827186E33006E1048 /* AppStepper.swift */,
 				44FB0A08271832E9006E1048 /* OnboardingFlow.swift */,
-				78BA15462721956A0078B88E /* MyPageFlow.swift */,
 				789E61A627255F8500D6E18F /* RecordFlow.swift */,
 				78599DE4276379AE003FD959 /* HomeFlow.swift */,
 			);
@@ -1053,7 +1050,6 @@
 				44BE6F01271144AB00E74A7D /* TermsAgreementViewController.swift in Sources */,
 				78A32167275B92530078650D /* DetailViewController.swift in Sources */,
 				789E61BC2725847B00D6E18F /* ClassIdentifiable.swift in Sources */,
-				78BA15472721956A0078B88E /* MyPageFlow.swift in Sources */,
 				787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */,
 				44FB0A2927186E33006E1048 /* AppStepper.swift in Sources */,
 				44FB0A1027183BDA006E1048 /* EmailInputViewController.swift in Sources */,

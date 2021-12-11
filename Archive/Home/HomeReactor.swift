@@ -25,6 +25,7 @@ final class HomeReactor: Reactor, Stepper {
         case getMyArchives
         case showDetail(Int)
         case addArchive
+        case showMyPage(Int)
     }
     
     enum Mutation {
@@ -64,7 +65,7 @@ final class HomeReactor: Reactor, Stepper {
                     case .success(let data):
                         self?.moveToDetail(data: data)
                     case .failure(let err):
-                        print("err: ")
+                        print("err: \(err.localizedDescription)")
                     }
                     return .setIsLoading(false)
                 }
@@ -74,6 +75,9 @@ final class HomeReactor: Reactor, Stepper {
                 Observable.just(.setIsLoading(true)),
                 Observable.just(.setIsLoading(false))
             ])
+        case .showMyPage(let archiveCnt):
+            self.steps.accept(ArchiveStep.myPageIsRequired(archiveCnt))
+            return .empty()
         }
     }
     

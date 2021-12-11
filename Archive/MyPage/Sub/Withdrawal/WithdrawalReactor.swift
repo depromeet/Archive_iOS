@@ -34,11 +34,12 @@ class WithdrawalReactor: Reactor, Stepper {
     
     enum Mutation {
         case setCardCnt(Int)
-        case withrawal
+        case setIsLoading(Bool)
     }
     
     struct State {
         var cardCnt: Int = 0
+        var isLoading: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -50,8 +51,18 @@ class WithdrawalReactor: Reactor, Stepper {
             steps.accept(ArchiveStep.withdrawalIsComplete)
             return .empty()
         case .withrawal:
-            // TODO: 탈퇴처리
-            return .just(.withrawal)
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                self.withdrawal().map { [weak self] result in
+                    switch result {
+                    case .success(_):
+                        self?.steps.accept(ArchiveStep.logout)
+                    case .failure(let err):
+                        print("err: \(err.localizedDescription)")
+                    }
+                    return .setIsLoading(false)
+                }
+            ])
         }
     }
     
@@ -60,13 +71,26 @@ class WithdrawalReactor: Reactor, Stepper {
         switch mutation {
         case .setCardCnt(let cardCnt):
             newState.cardCnt = cardCnt
-        case .withrawal:
-            break
+        case .setIsLoading(let isLoading):
+            newState.isLoading = isLoading
         }
         return newState
     }
     
     // MARK: private function
+    
+    private func withdrawal() -> Observable<Result<Data, Error>> {
+        let provider = ArchiveProvider.shared.provider
+        
+        return provider.rx.request(.withdrawal, callbackQueue: DispatchQueue.global())
+            .asObservable()
+            .map { result in
+                return .success(result.data)
+            }
+            .catch { err in
+                .just(.failure(err))
+            }
+    }
     
     // MARK: internal function
 }

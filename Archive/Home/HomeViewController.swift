@@ -159,7 +159,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     }
     
     @objc private func myPageAction(_ sender: UIButton) {
-        
+        self.reactor?.action.onNext(.showMyPage(self.reactor?.currentState.arvhivesCount ?? 0))
     }
     
     // MARK: internal function

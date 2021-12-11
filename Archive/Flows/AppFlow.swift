@@ -36,14 +36,14 @@ final class AppFlow: Flow {
         switch step {
         case .onboardingIsRequired:
             return navigationToOnboardingScreen()
-        case .myPageIsRequired(let cardCnt):
-            return navigationToMyPageScreen(cardCnt: cardCnt)
         case .recordIsRequired:
             return navigationToRecordScreen()
         case .homeIsRequired:
             return navigationToHomeScreen()
         case .onboardingIsComplete:
             return navigationToHomeScreen()
+        case .logout:
+            return navigationToOnboardingScreen()
         default:
             return .none
         }
@@ -60,20 +60,6 @@ final class AppFlow: Flow {
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired),
                                                  allowStepWhenNotPresented: false,
                                                  allowStepWhenDismissed: false))
-    }
-    
-    private func navigationToMyPageScreen(cardCnt: Int) -> FlowContributors {
-        let myPageFlow = MyPageFlow()
-        
-        Flows.use(myPageFlow, when: .created) { [weak self] root in
-            DispatchQueue.main.async {
-                root.modalPresentationStyle = .fullScreen
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
-        
-        return .one(flowContributor: .contribute(withNextPresentable: myPageFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.myPageIsRequired(cardCnt))))
     }
     
     private func navigationToRecordScreen() -> FlowContributors {
