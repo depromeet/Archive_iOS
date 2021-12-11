@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol LoginInformationModelProtocol {
-    var loginInfo: String { get } // TODO: 로그인 정보 객체타입 클래스 or 프로토콜로 바뀌어야함. 우선 String타입으로 임시로 박아놓음
+    var email: String { get }
     var cardCnt: Int { get }
 }
 
@@ -19,13 +19,13 @@ class LoginInformationModel: LoginInformationModelProtocol {
     
     // MARK: internal property
     
-    var loginInfo: String
+    var email: String
     var cardCnt: Int
     
     // MARK: lifeCycle
     
-    init(loginInfo: String, cardCount: Int) {
-        self.loginInfo = loginInfo
+    init(email: String, cardCount: Int) {
+        self.email = email
         self.cardCnt = cardCount
     }
     // MARK: private function

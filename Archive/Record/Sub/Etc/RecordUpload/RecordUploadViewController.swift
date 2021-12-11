@@ -90,7 +90,7 @@ class RecordUploadViewController: UIViewController, StoryboardView {
         self.lottieContainerView.backgroundColor = .clear
         
         self.animationView.backgroundColor = .clear
-        self.animationView.animation = Animation.named("uploadTmp")
+        self.animationView.animation = Animation.named("Upload")
         self.animationView.contentMode = .scaleAspectFit
         self.animationView.loopMode = .loop
     }

@@ -57,7 +57,6 @@ final class SignInReactor: Reactor, Stepper {
             
         case .signIn:
             loginEmail(eMail: self.currentState.id, password: self.currentState.password)
-            // Todo 메인으로 이동
             return .empty()
             
         case .signUp:
@@ -94,6 +93,7 @@ final class SignInReactor: Reactor, Stepper {
                     return
                 }
                 UserDefaultManager.shared.setLoginToken(token)
+                self?.steps.accept(ArchiveStep.userIsSignedIn)
             case .failure(let err):
                 print("err: \(err.localizedDescription)")
                 self?.error.onNext("로그인 정보가 정확하지 않습니다.")

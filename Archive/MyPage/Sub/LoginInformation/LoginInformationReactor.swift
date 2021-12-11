@@ -32,15 +32,17 @@ class LoginInformationReactor: Reactor, Stepper {
         case refreshLoginType
         case moveWithdrawalPage
         case logout
+        case getEmail
     }
     
     enum Mutation {
         case setLoginType(LoginType)
-        case loggedOut
+        case setEmail(String)
     }
     
     struct State {
         var type: LoginType = .kakao
+        var eMail: String = ""
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -52,8 +54,11 @@ class LoginInformationReactor: Reactor, Stepper {
             steps.accept(ArchiveStep.withdrawalIsRequired(self.model.cardCnt))
             return .empty()
         case .logout:
-            // TODO: 로그아웃 처리
-            return .just(.loggedOut)
+            UserDefaultManager.shared.removeInfo(.loginToken)
+            steps.accept(ArchiveStep.logout)
+            return .empty()
+        case .getEmail:
+            return .just(.setEmail(self.model.email))
         }
     }
     
@@ -62,8 +67,8 @@ class LoginInformationReactor: Reactor, Stepper {
         switch mutation {
         case .setLoginType(let type):
             newState.type = type
-        case .loggedOut:
-            break
+        case .setEmail(let email):
+            newState.eMail = email
         }
         return newState
     }

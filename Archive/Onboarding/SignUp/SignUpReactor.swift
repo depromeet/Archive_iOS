@@ -101,7 +101,7 @@ final class SignUpReactor: Reactor, Stepper {
             return .just(.setTermsAgreement(isSelected))
             
         case .viewTerms:
-            // TODO: 약관 화면 이동
+            Util.openUseSafari("https://wise-icicle-d10.notion.site/8ad4c5884b814ff6a6330f1a6143c1e6")
             return.empty()
             
         case .agreePersonalInformationPolicy:
@@ -109,7 +109,7 @@ final class SignUpReactor: Reactor, Stepper {
             return .just(.setPersonalInformationPolicyAgreement(isSelected))
             
         case .viewPersonalInformationPolicy:
-            // TODO: 개인정보 처리방침 화면 이동
+            Util.openUseSafari("https://wise-icicle-d10.notion.site/13ff403ad4e2402ca657fb20be31e4ae")
             return .empty()
             
         case .goToEmailInput:

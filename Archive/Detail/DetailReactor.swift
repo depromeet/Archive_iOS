@@ -29,7 +29,7 @@ class DetailReactor: Reactor, Stepper {
     }
     
     enum Action {
-        case setDetailData(RecordData)
+        case setDetailData(ArchiveDetailInfo)
         case shareToInstagram
         case saveToAlbum
         case openShare(UIActivityViewController)
@@ -37,14 +37,14 @@ class DetailReactor: Reactor, Stepper {
     }
     
     enum Mutation {
-        case setDetailData(RecordData)
+        case setDetailData(ArchiveDetailInfo)
         case setShareActivityController(UIActivityViewController)
         case setIsDeletedArchive(Bool)
         case setLoading(Bool)
     }
     
     struct State {
-        var detailData: RecordData?
+        var detailData: ArchiveDetailInfo?
         var willSharedCarView: UIView?
         var shareActivityController: UIActivityViewController?
         var isDeletedArchive: Bool = false
@@ -79,7 +79,7 @@ class DetailReactor: Reactor, Stepper {
         case .deleteArchive:
             return Observable.concat([
                 Observable.just(Mutation.setLoading(true)),
-                self.deleteArchive().map { result in
+                self.deleteArchive(archiveId: "\(self.currentState.detailData?.archiveId ?? 0)").map { result in
                     switch result {
                     case .success(_):
                         return .setIsDeletedArchive(true)
@@ -87,6 +87,7 @@ class DetailReactor: Reactor, Stepper {
                         return .setIsDeletedArchive(false)
                     }
                 },
+                Observable.just(.setIsDeletedArchive(true)),
                 Observable.just(Mutation.setLoading(false))
             ])
         }
@@ -125,8 +126,8 @@ class DetailReactor: Reactor, Stepper {
         }
     }
     
-    private func deleteArchive() -> Observable<Result<Data, Error>> {
-        let archiveId: String = "" // 임시, 모델 바꿔야함
+    private func deleteArchive(archiveId: String) -> Observable<Result<Data, Error>> {
+        let archiveId: String = archiveId
         let provider = ArchiveProvider.shared.provider
         
         return provider.rx.request(.deleteArchive(archiveId: archiveId), callbackQueue: DispatchQueue.global())

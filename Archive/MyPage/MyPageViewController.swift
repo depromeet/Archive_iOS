@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-class MyPageViewController: UIViewController, StoryboardView {
+class MyPageViewController: UIViewController, StoryboardView, ActivityIndicatorable {
 
     // Todo: StackView나 TableView로? 뷰로 했는데 셀 높이를 고정시켜서 글자가 개행되면 답이 없는걸..
     
@@ -29,6 +29,8 @@ class MyPageViewController: UIViewController, StoryboardView {
     @IBOutlet weak var termsTitleLabel: UILabel!
     @IBOutlet weak var privacyView: UIView!
     @IBOutlet weak var privacyTitleLabel: UILabel!
+    @IBOutlet weak var termsBtn: UIButton!
+    @IBOutlet weak var privacyBtn: UIButton!
     
     // MARK: private property
     
@@ -62,6 +64,16 @@ class MyPageViewController: UIViewController, StoryboardView {
         
         self.loginInfomationBtn.rx.tap
             .map { Reactor.Action.moveToLoginInfo }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        self.termsBtn.rx.tap
+            .map { Reactor.Action.openTerms }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        self.privacyBtn.rx.tap
+            .map { Reactor.Action.openPrivacy }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }

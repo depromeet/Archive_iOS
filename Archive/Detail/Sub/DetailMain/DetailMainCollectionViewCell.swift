@@ -25,7 +25,7 @@ class DetailMainCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     // MARK: property
     
-    var infoData: RecordData? {
+    var infoData: ArchiveDetailInfo? {
         didSet {
             guard let info = self.infoData else { return }
             DispatchQueue.main.async { [weak self] in

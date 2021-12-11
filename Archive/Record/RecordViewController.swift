@@ -12,6 +12,10 @@ import RxCocoa
 import RxFlow
 import SnapKit
 
+protocol RecordViewControllerDelegate: CommonViewControllerProtocol {
+    
+}
+
 class RecordViewController: UIViewController, StoryboardView {
 
     // MARK: IBOutlet
@@ -37,6 +41,7 @@ class RecordViewController: UIViewController, StoryboardView {
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
+    weak var delegate: RecordViewControllerDelegate?
     
     // MARK: lifeCycle
     

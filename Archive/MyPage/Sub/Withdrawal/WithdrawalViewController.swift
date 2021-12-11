@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-class WithdrawalViewController: UIViewController, StoryboardView {
+class WithdrawalViewController: UIViewController, StoryboardView, ActivityIndicatorable {
 
     // MARK: IBOutlet
     @IBOutlet weak var backgroundView: UIView!
@@ -62,8 +62,22 @@ class WithdrawalViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         self.stayBtn.rx.tap
-            .map { Reactor.Action.completion }
-            .bind(to: reactor.action)
+            .asDriver()
+            .drive(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
             .disposed(by: self.disposeBag)
     }
     

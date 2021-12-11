@@ -70,6 +70,7 @@ class LoginInformationViewController: UIViewController, StoryboardView {
         self.reactor?.action.onNext(.refreshLoginType)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+        self.reactor?.action.onNext(.getEmail)
     }
     
     init?(coder: NSCoder, reactor: LoginInformationReactor) {
@@ -100,6 +101,15 @@ class LoginInformationViewController: UIViewController, StoryboardView {
             .map { Reactor.Action.moveWithdrawalPage }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
+        
+        self.logoutBtn.rx.tap
+            .map { Reactor.Action.logout }
+            .bind(to: reactor.action )
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.eMail }
+        .bind(to: self.eMailLabel.rx.text)
+        .disposed(by: self.disposeBag)
     }
     
     // MARK: private function

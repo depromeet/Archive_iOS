@@ -12,11 +12,15 @@ import RxCocoa
 import RxDataSources
 import SnapKit
 
+protocol DetailViewControllerDelegate: CommonViewControllerProtocol {
+    func deletedArchive()
+}
+
 class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     enum CellModel {
-        case cover(RecordData)
-        case commonImage(RecordImageData)
+        case cover(ArchiveDetailInfo)
+        case commonImage(ArchiveDetailImageInfo)
     }
     
     // MARK: IBOutlet
@@ -39,6 +43,8 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     
     private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
     private let modalShareViewController: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
+    
+    weak var delegate: DetailViewControllerDelegate?
     
     // MARK: internal property
     var disposeBag: DisposeBag = DisposeBag()
@@ -160,6 +166,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] isDeleted in
                 if isDeleted {
+                    self?.delegate?.deletedArchive()
                     self?.dismiss(animated: true, completion: nil)
                 }
             })
@@ -204,19 +211,19 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         makeNaviBtn()
     }
     
-    private func makeCardCell(with element: RecordData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeCardCell(with element: ArchiveDetailInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMainCollectionViewCell.identifier, for: indexPath) as? DetailMainCollectionViewCell else { return UICollectionViewCell() }
         cell.infoData = element
         return cell
     }
     
-    private func makeImageCell(with element: RecordImageData, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeImageCell(with element: ArchiveDetailImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailContentsCollectionViewCell.identifier, for: indexPath) as? DetailContentsCollectionViewCell else { return UICollectionViewCell() }
         cell.imageInfo = element
         return cell
     }
     
-    private func setCardInfo(_ info: RecordData) {
+    private func setCardInfo(_ info: ArchiveDetailInfo) {
         self.archiveTitleLabel.text = info.name
         self.dateLabel.text = info.watchedOn
     }
@@ -227,9 +234,9 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         let moreBarButtonItem = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(moreButtonClicked(_:)))
         self.navigationItem.rightBarButtonItem = moreBarButtonItem
         
-        let backImage = Gen.Images.back.image
-        backImage.withRenderingMode(.alwaysTemplate)
-        let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
+        let closeImage = Gen.Images.xIcon.image
+        closeImage.withRenderingMode(.alwaysTemplate)
+        let backBarButtonItem = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
         self.navigationItem.leftBarButtonItem = backBarButtonItem
     }
     
@@ -261,7 +268,9 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     }
     
     @objc private func backButtonClicked(_ sender: UIButton) {
-        print("backButtonClicked")
+        self.dismiss(animated: true, completion: { [weak self] in
+            self?.delegate?.closed(from: self ?? UIViewController())
+        })
     }
 
 }
