@@ -101,6 +101,7 @@ internal enum Gen {
     internal static let iconCrop = ImageAsset(name: "icon_crop")
     internal static let iconDropDown = ImageAsset(name: "icon_drop down")
     internal static let iconDropUp = ImageAsset(name: "icon_drop up")
+    internal static let iconMyPage = ImageAsset(name: "icon_my page")
     internal static let iconRightArrow = ImageAsset(name: "icon_right-arrow")
     internal static let kakaotalk = ImageAsset(name: "kakaotalk")
     internal static let moreVertBlack24dp = ImageAsset(name: "more_vert_black_24dp")

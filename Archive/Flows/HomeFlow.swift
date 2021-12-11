@@ -12,7 +12,7 @@ class HomeFlow: Flow {
     
     private enum Constants {
         static let HomeStoryBoardName = "Home"
-        static let HomeNavigationTitle = "나의 아카이브"
+        static let HomeNavigationTitle = ""
         static let DetailStoryBoardName = "Detail"
         static let DetailNavigationTitle = "나의 아카이브"
     }

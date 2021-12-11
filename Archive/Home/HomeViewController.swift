@@ -52,6 +52,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        makeNavigationItems()
         self.reactor?.action.onNext(.getMyArchives)
     }
     
@@ -137,6 +138,28 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         self.contentsCountTitleLabel.text = "기록한 전시"
         self.contentsCountLabel.font = .fonts(.header3)
         self.contentsCountLabel.textColor = Gen.Colors.black.color
+        self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
+        self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+    }
+    
+    private func makeNavigationItems() {
+        let logoImage = Gen.Images.logo.image
+        let logoImageView = UIImageView.init(image: logoImage)
+        logoImageView.frame = CGRect(x: -40, y: 0, width: 98, height: 18)
+        logoImageView.contentMode = .scaleAspectFit
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -25
+        navigationItem.leftBarButtonItems = [negativeSpacer, imageItem]
+        
+        let backImage = Gen.Images.iconMyPage.image // iconmypage
+        backImage.withRenderingMode(.alwaysTemplate)
+        let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(myPageAction(_:)))
+        self.navigationItem.rightBarButtonItem = backBarButtonItem
+    }
+    
+    @objc private func myPageAction(_ sender: UIButton) {
+        
     }
     
     // MARK: internal function
