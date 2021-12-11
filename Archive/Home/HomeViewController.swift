@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     @IBOutlet weak var contentsCountLabel: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var addArchiveBtn: UIButton!
+    @IBOutlet weak var emptyTicketImageView: UIImageView!
     @IBOutlet private weak var ticketCollectionView: UICollectionView! {
         didSet {
             let collectionViewLayout = TicketCollectionViewLayout(visibleItemsCount: 3,
@@ -68,6 +69,21 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
             cell.infoData = element
         }
         .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.archives }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] in
+                if $0.count == 0 {
+                    self?.emptyTicketImageView.isHidden = false
+                    self?.ticketCollectionView.isHidden = true
+                } else {
+                    self?.emptyTicketImageView.isHidden = true
+                    self?.ticketCollectionView.isHidden = false
+                }
+            })
+            .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.arvhivesCount }
         .distinctUntilChanged()

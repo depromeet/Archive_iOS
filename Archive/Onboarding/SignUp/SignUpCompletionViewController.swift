@@ -10,9 +10,11 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 import RxFlow
+import Lottie
 
 final class SignUpCompletionViewController: UIViewController, StoryboardView, Stepper {
     @IBOutlet weak var startArchiveBtn: UIButton!
+    @IBOutlet weak var animationView: AnimationView!
     
     let steps = PublishRelay<Step>()
     var disposeBag = DisposeBag()
@@ -26,9 +28,26 @@ final class SignUpCompletionViewController: UIViewController, StoryboardView, St
         super.init(coder: coder)
     }
     
+    deinit {
+        print("qwjoid")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.animationView.backgroundColor = .clear
+        self.animationView.animation = Animation.named("SignUp")
+        self.animationView.contentMode = .scaleAspectFit
+        self.animationView.loopMode = .loop
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.animationView.play(completion: nil)
     }
     
     func bind(reactor: SignUpReactor) {

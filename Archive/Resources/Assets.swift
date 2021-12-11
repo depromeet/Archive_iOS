@@ -87,6 +87,7 @@ internal enum Gen {
     internal static let typeWonderful = ImageAsset(name: "type=wonderful")
     internal static let typeWonderfulMini = ImageAsset(name: "type=wonderful_mini")
     internal static let typeWonderfulNo = ImageAsset(name: "type=wonderful_no")
+    internal static let emptyTicket = ImageAsset(name: "EmptyTicket")
     internal static let instaShare = ImageAsset(name: "InstaShare")
     internal static let logo = ImageAsset(name: "Logo")
     internal static let logoImage = ImageAsset(name: "LogoImage")

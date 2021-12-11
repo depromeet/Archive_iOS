@@ -234,9 +234,9 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         let moreBarButtonItem = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(moreButtonClicked(_:)))
         self.navigationItem.rightBarButtonItem = moreBarButtonItem
         
-        let backImage = Gen.Images.back.image
-        backImage.withRenderingMode(.alwaysTemplate)
-        let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
+        let closeImage = Gen.Images.xIcon.image
+        closeImage.withRenderingMode(.alwaysTemplate)
+        let backBarButtonItem = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
         self.navigationItem.leftBarButtonItem = backBarButtonItem
     }
     

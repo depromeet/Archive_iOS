@@ -46,6 +46,12 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyTicket" translatesAutoresizingMaskIntoConstraints="NO" id="JOp-sB-xJD">
+                                <rect key="frame" x="32" y="136" width="350" height="575"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JOp-sB-xJD" secondAttribute="height" multiplier="311:511" id="Urr-gp-SQF"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="603-gu-jzb">
                                 <rect key="frame" x="177" y="794" width="60" height="60"/>
                                 <constraints>
@@ -65,15 +71,19 @@
                             <constraint firstItem="TzV-jn-0Aq" firstAttribute="bottom" secondItem="603-gu-jzb" secondAttribute="bottom" constant="8" id="Edr-9n-qnu"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="Hkq-46-6cy"/>
                             <constraint firstItem="Puk-e0-XiE" firstAttribute="leading" secondItem="2cF-Wp-c5z" secondAttribute="trailing" constant="10" id="Nkw-uS-45O"/>
+                            <constraint firstItem="JOp-sB-xJD" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="RKb-hE-xgt"/>
                             <constraint firstItem="2cF-Wp-c5z" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" constant="32" id="S9k-UG-rmi"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" id="Wz9-xk-iSo"/>
                             <constraint firstItem="2cF-Wp-c5z" firstAttribute="top" secondItem="TzV-jn-0Aq" secondAttribute="top" constant="8" id="XII-zM-2iN"/>
                             <constraint firstItem="n4g-2g-gSz" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" id="Z35-I7-MEb"/>
+                            <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="JOp-sB-xJD" secondAttribute="trailing" constant="32" id="ZAB-aM-uDE"/>
+                            <constraint firstItem="JOp-sB-xJD" firstAttribute="top" secondItem="Puk-e0-XiE" secondAttribute="bottom" constant="19" id="caA-f5-zFL"/>
                             <constraint firstItem="603-gu-jzb" firstAttribute="top" secondItem="n4g-2g-gSz" secondAttribute="bottom" constant="6" id="hGw-xk-P56"/>
                             <constraint firstItem="n4g-2g-gSz" firstAttribute="top" secondItem="AWx-k8-KNs" secondAttribute="bottom" id="jIn-bR-nrz"/>
                             <constraint firstItem="AWx-k8-KNs" firstAttribute="top" secondItem="2cF-Wp-c5z" secondAttribute="bottom" constant="18" id="uRi-T8-ADD"/>
                             <constraint firstItem="603-gu-jzb" firstAttribute="centerX" secondItem="fnp-Ob-E2d" secondAttribute="centerX" id="ull-IZ-DUz"/>
                             <constraint firstItem="Puk-e0-XiE" firstAttribute="centerY" secondItem="2cF-Wp-c5z" secondAttribute="centerY" id="vM9-Dn-KzO"/>
+                            <constraint firstItem="JOp-sB-xJD" firstAttribute="leading" secondItem="TzV-jn-0Aq" secondAttribute="leading" constant="32" id="wB0-RO-JV1"/>
                             <constraint firstItem="TzV-jn-0Aq" firstAttribute="trailing" secondItem="AWx-k8-KNs" secondAttribute="trailing" id="yT5-Jv-mNr"/>
                         </constraints>
                     </view>
@@ -82,6 +92,7 @@
                         <outlet property="addArchiveBtn" destination="603-gu-jzb" id="vKS-Dv-bpk"/>
                         <outlet property="contentsCountLabel" destination="Puk-e0-XiE" id="YnS-Lf-A80"/>
                         <outlet property="contentsCountTitleLabel" destination="2cF-Wp-c5z" id="EGJ-mH-gal"/>
+                        <outlet property="emptyTicketImageView" destination="JOp-sB-xJD" id="7hm-bI-f7s"/>
                         <outlet property="mainContainerView" destination="fnp-Ob-E2d" id="IOy-wA-Qkj"/>
                         <outlet property="pageControl" destination="n4g-2g-gSz" id="MhK-PY-YSC"/>
                         <outlet property="ticketCollectionView" destination="AWx-k8-KNs" id="i7g-vA-135"/>
@@ -94,6 +105,7 @@
     </scenes>
     <resources>
         <image name="Add_Archive" width="60" height="60"/>
+        <image name="EmptyTicket" width="311" height="520"/>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

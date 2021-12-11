@@ -45,7 +45,7 @@ class RecordUploadModel: RecordUploadModelProtocol {
     
     private func uploadImages(completion: @escaping ([RecordImageData]) -> Void) {
         var recordImageDatas: [RecordImageData] = [RecordImageData]()
-        if let infos = self.imageInfos {
+        if let infos = self.imageInfos, infos.count != 0 {
             var observarbleRequests = [Observable<Response>]()
             var photoContents: [String] = [String]()
             var colors: [String] = [String]()
