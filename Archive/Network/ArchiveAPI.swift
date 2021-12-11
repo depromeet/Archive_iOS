@@ -47,7 +47,7 @@ extension ArchiveAPI: TargetType {
         case .getCurrentUserInfo:
             return "/api/v1/auth/info"
         case .withdrawal:
-            return "/api/v1/auth/quit"
+            return "/api/v1/auth/unregister"
         }
     }
     

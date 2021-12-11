@@ -71,10 +71,8 @@ final class HomeReactor: Reactor, Stepper {
                 }
             ])
         case .addArchive:
-            return Observable.concat([
-                Observable.just(.setIsLoading(true)),
-                Observable.just(.setIsLoading(false))
-            ])
+            self.steps.accept(ArchiveStep.recordIsRequired)
+            return .empty()
         case .showMyPage(let archiveCnt):
             self.steps.accept(ArchiveStep.myPageIsRequired(archiveCnt))
             return .empty()

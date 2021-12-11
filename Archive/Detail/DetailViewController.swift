@@ -13,7 +13,7 @@ import RxDataSources
 import SnapKit
 
 protocol DetailViewControllerDelegate: CommonViewControllerProtocol {
-    
+    func deletedArchive()
 }
 
 class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
@@ -166,6 +166,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] isDeleted in
                 if isDeleted {
+                    self?.delegate?.deletedArchive()
                     self?.dismiss(animated: true, completion: nil)
                 }
             })

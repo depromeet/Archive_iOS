@@ -14,4 +14,10 @@ class Util {
             UIApplication.shared.open(settingsUrl, completionHandler: nil)
         }
     }
+    
+    static func openUseSafari(_ url: String) {
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
 }

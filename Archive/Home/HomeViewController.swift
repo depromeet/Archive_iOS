@@ -52,8 +52,12 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        makeNavigationItems()
         self.reactor?.action.onNext(.getMyArchives)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        makeNavigationItems() // TODO: 위치바꾸기
     }
     
     func bind(reactor: HomeReactor) {

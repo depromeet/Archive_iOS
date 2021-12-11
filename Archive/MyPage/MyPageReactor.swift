@@ -67,10 +67,10 @@ class MyPageReactor: Reactor, Stepper {
                 }
             ])
         case .openTerms:
-            openUseSafari("https://wise-icicle-d10.notion.site/8ad4c5884b814ff6a6330f1a6143c1e6")
+            Util.openUseSafari("https://wise-icicle-d10.notion.site/8ad4c5884b814ff6a6330f1a6143c1e6")
             return .empty()
         case .openPrivacy:
-            openUseSafari("https://wise-icicle-d10.notion.site/13ff403ad4e2402ca657fb20be31e4ae")
+            Util.openUseSafari("https://wise-icicle-d10.notion.site/13ff403ad4e2402ca657fb20be31e4ae")
             return .empty()
         }
     }
@@ -87,12 +87,6 @@ class MyPageReactor: Reactor, Stepper {
     }
     
     // MARK: private function
-    
-    private func openUseSafari(_ url: String) {
-        if let url = URL(string: url) {
-            UIApplication.shared.open(url, options: [:])
-        }
-    }
     
     private func getMyUserInfo() -> Observable<Result<Data, Error>> {
         let provider = ArchiveProvider.shared.provider

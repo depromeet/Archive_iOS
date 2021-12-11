@@ -79,7 +79,7 @@ class DetailReactor: Reactor, Stepper {
         case .deleteArchive:
             return Observable.concat([
                 Observable.just(Mutation.setLoading(true)),
-                self.deleteArchive().map { result in
+                self.deleteArchive(archiveId: "\(self.currentState.detailData?.archiveId ?? 0)").map { result in
                     switch result {
                     case .success(_):
                         return .setIsDeletedArchive(true)
@@ -87,6 +87,7 @@ class DetailReactor: Reactor, Stepper {
                         return .setIsDeletedArchive(false)
                     }
                 },
+                Observable.just(.setIsDeletedArchive(true)),
                 Observable.just(Mutation.setLoading(false))
             ])
         }
@@ -125,8 +126,8 @@ class DetailReactor: Reactor, Stepper {
         }
     }
     
-    private func deleteArchive() -> Observable<Result<Data, Error>> {
-        let archiveId: String = "" // TODO: 임시, 모델 바꿔야함
+    private func deleteArchive(archiveId: String) -> Observable<Result<Data, Error>> {
+        let archiveId: String = archiveId
         let provider = ArchiveProvider.shared.provider
         
         return provider.rx.request(.deleteArchive(archiveId: archiveId), callbackQueue: DispatchQueue.global())
