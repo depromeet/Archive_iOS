@@ -9,6 +9,7 @@ import ReactorKit
 import RxSwift
 import RxRelay
 import RxFlow
+import Alamofire
 
 final class SignInReactor: Reactor, Stepper {
     
@@ -80,18 +81,6 @@ final class SignInReactor: Reactor, Stepper {
             return .empty()
         }
     }
-    
-    
-    
-//        provider.request(.loginEmail(param), completion: { [weak self] response in
-//            switch response {
-//            case .success(let response):
-
-//            case .failure(let err):
-//                print("err: \(err.localizedDescription)")
-//                self?.error.onNext("로그인 정보가 정확하지 않습니다.")
-//            }
-//        })
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state

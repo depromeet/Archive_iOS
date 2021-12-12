@@ -611,8 +611,8 @@
 		787C2857275C99C100C1FB17 /* DetailPhotoContents */ = {
 			isa = PBXGroup;
 			children = (
-				787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */,
 				787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */,
+				787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */,
 			);
 			path = DetailPhotoContents;
 			sourceTree = "<group>";
@@ -752,8 +752,8 @@
 		78A32170275B968B0078650D /* DetailContents */ = {
 			isa = PBXGroup;
 			children = (
-				78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */,
 				78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */,
+				78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */,
 			);
 			path = DetailContents;
 			sourceTree = "<group>";
@@ -761,8 +761,8 @@
 		78A32171275B968B0078650D /* DetailMain */ = {
 			isa = PBXGroup;
 			children = (
-				78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */,
 				78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */,
+				78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */,
 			);
 			path = DetailMain;
 			sourceTree = "<group>";
