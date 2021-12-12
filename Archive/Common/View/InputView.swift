@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-@IBDesignable
 final class InputView: UIView {
     
     private enum Constants {
@@ -26,7 +25,7 @@ final class InputView: UIView {
         static let focusedBorderColor = UIColor.black
     }
     
-    @IBInspectable var placeholder: String? {
+    var placeholder: String? {
         get { textField.placeholder }
         set {
             guard let newValue = newValue else {
@@ -37,11 +36,11 @@ final class InputView: UIView {
             textField.attributedPlaceholder = NSAttributedString(string: newValue, attributes: attributes)
         }
     }
-    @IBInspectable var isSecureTextEntry: Bool {
+    var isSecureTextEntry: Bool {
         get { textField.isSecureTextEntry }
         set { textField.isSecureTextEntry = newValue }
     }
-    @IBInspectable var rightButtonTitle: String {
+    var rightButtonTitle: String {
         get { rightButton.attributedTitle(for: .normal)?.string ?? "" }
         set {
             setupRightButton(with: newValue)

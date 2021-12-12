@@ -38,6 +38,14 @@ final class PasswordInputViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.passwordInputView.placeholder = "비밀번호를 입력해주세요."
+        self.passwordInputView.isSecureTextEntry = true
+        self.passwordConfirmInputView.placeholder = "비밀번호를 다시 입력해주세요."
+        self.passwordConfirmInputView.isSecureTextEntry = true
+        self.englishCombinationCheckView.title = "영문조합"
+        self.numberCombinationCheckView.title = "숫자조합"
+        self.countCheckView.title = "8-20자 이내"
+        self.passwordCofirmCheckView.title = "비밀번호 일치"
     }
     
     override func viewWillAppear(_ animated: Bool) {
