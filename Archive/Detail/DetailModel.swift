@@ -9,6 +9,7 @@ import UIKit
 
 protocol DetailModelProtocol: AnyObject {
     var recordData: ArchiveDetailInfo { get }
+    var index: Int { get }
 }
 
 class DetailModel: DetailModelProtocol {
@@ -19,11 +20,13 @@ class DetailModel: DetailModelProtocol {
     // MARK: internal property
     
     let recordData: ArchiveDetailInfo
+    var index: Int
     
     // MARK: lifeCycle
     
-    init(recordData: ArchiveDetailInfo) {
+    init(recordData: ArchiveDetailInfo, index: Int) {
         self.recordData = recordData
+        self.index = index
     }
     
     // MARK: private function

@@ -63,7 +63,7 @@ final class HomeReactor: Reactor, Stepper {
                 self.getDetailArchiveInfo(id: "\(currentState.archives[index].archiveId)").map { [weak self] result in
                     switch result {
                     case .success(let data):
-                        self?.moveToDetail(data: data)
+                        self?.moveToDetail(data: data, index: index)
                     case .failure(let err):
                         print("err: \(err.localizedDescription)")
                     }
@@ -141,10 +141,10 @@ final class HomeReactor: Reactor, Stepper {
         return (items, itemsCount)
     }
     
-    private func moveToDetail(data: Data) {
+    private func moveToDetail(data: Data, index: Int) {
         if let info = ArchiveDetailInfo.fromJson(jsonData: data) {
             DispatchQueue.main.async { [weak self] in
-                self?.steps.accept(ArchiveStep.detailIsRequired(info))
+                self?.steps.accept(ArchiveStep.detailIsRequired(info, index))
             }
         }
     }

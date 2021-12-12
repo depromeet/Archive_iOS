@@ -184,6 +184,17 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     
     // MARK: internal function
     
+    func willDeletedIndex(_ index: Int) {
+        DispatchQueue.main.async { [weak self] in
+            guard let reactor = self?.reactor else {
+                return
+            }
+            if index+1 >= reactor.currentState.archives.count {
+                self?.ticketCollectionView.scrollToItem(at: IndexPath(item: index-1, section: 0), at: .top, animated: false)
+            }
+        }
+    }
+    
     // MARK: action
     
     

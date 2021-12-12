@@ -14,6 +14,7 @@ import SnapKit
 
 protocol DetailViewControllerDelegate: CommonViewControllerProtocol {
     func deletedArchive()
+    func willDeletedArchive(index: Int)
 }
 
 class DetailViewController: UIViewController, StoryboardView, ActivityIndicatorable {
@@ -249,6 +250,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         let deleteAction: UIAlertAction = UIAlertAction(title: "삭제", style: .default) { (delete) in
             CommonAlertView.shared.show(message: "기록을 삭제하겠습니까?", subMessage: "삭제된 이미지와 글은 복구가 불가능합니다.", confirmBtnTxt: "삭제", cancelBtnTxt: "취소", confirmHandler: { [weak self] in
                 CommonAlertView.shared.hide(nil)
+                self?.delegate?.willDeletedArchive(index: self?.reactor?.getIndex() ?? -1)
                 self?.reactor?.action.onNext(.deleteArchive)
             }, cancelHandler: {
                 CommonAlertView.shared.hide(nil)

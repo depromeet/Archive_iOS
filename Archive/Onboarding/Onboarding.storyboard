@@ -712,6 +712,9 @@
             <point key="canvasLocation" x="2938" y="64"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Ovh-2g-bzh"/>
+    </designables>
     <resources>
         <image name="Check box_all_deselected" width="26" height="26"/>
         <image name="Check box_all_selected" width="26" height="26"/>
