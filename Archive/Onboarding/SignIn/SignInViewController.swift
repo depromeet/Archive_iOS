@@ -88,5 +88,18 @@ final class SignInViewController: UIViewController, StoryboardView, ActivityIndi
                 })
             })
             .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }
