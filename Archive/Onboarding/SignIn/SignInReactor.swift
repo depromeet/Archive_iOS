@@ -59,7 +59,7 @@ final class SignInReactor: Reactor, Stepper {
         case .signIn:
             return Observable.concat([
                 Observable.just(.setIsLoading(true)),
-                self.loginEmail(eMail: self.currentState.id, password: self.currentState.password).map { [weak self] result in
+                LoginModule.loginEmail(eMail: self.currentState.id, password: self.currentState.password).map { [weak self] result in
                     switch result {
                     case .success(let response):
                         guard let token: String = response["Authorization"] else {
@@ -97,23 +97,6 @@ final class SignInReactor: Reactor, Stepper {
             newState.isLoading = isLoading
         }
         return newState
-    }
-    
-    private func loginEmail(eMail: String, password: String) -> Observable<Result<HTTPHeaders, Error>> {
-        let provider = ArchiveProvider.shared.provider
-        let param = LoginEmailParam(email: eMail, password: password)
-        return provider.rx.request(.loginEmail(param), callbackQueue: DispatchQueue.global())
-            .asObservable()
-            .map { result in
-                if let headers = result.response?.headers {
-                    return .success(headers)
-                } else {
-                    return .failure(NSError())
-                }
-            }
-            .catch { err in
-                .just(.failure(err))
-            }
     }
 }
 

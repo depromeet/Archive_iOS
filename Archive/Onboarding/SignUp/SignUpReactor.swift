@@ -47,6 +47,7 @@ final class SignUpReactor: Reactor, Stepper {
         case setNumberCombination(Bool)
         case setRangeValidation(Bool)
         case setPasswordCofirmationInput(String)
+        case setIsLoading(Bool)
     }
     
     struct State {
@@ -75,6 +76,7 @@ final class SignUpReactor: Reactor, Stepper {
         var isValidPassword: Bool {
             return isContainsEnglish && isContainsNumber && isWithinRange && isSamePasswordInput
         }
+        var isLoading: Bool = false
     }
     
     let initialState = State()
@@ -153,8 +155,25 @@ final class SignUpReactor: Reactor, Stepper {
             return .empty()
             
         case .startArchive:
-            steps.accept(ArchiveStep.signUpComplete)
-            return .empty()
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                LoginModule.loginEmail(eMail: self.currentState.email, password: self.currentState.password).map { [weak self] result in
+                    switch result {
+                    case .success(let response):
+                        guard let token: String = response["Authorization"] else {
+                            self?.error.onNext("[오류] 토큰이 존재하지 않습니다.")
+                            return .setIsLoading(false)
+                        }
+                        UserDefaultManager.shared.setLoginToken(token)
+//                        self?.steps.accept(ArchiveStep.signUpComplete)
+                        self?.steps.accept(ArchiveStep.userIsSignedIn)
+                    case .failure(let err):
+                        print("err: \(err)")
+                        self?.error.onNext("로그인 정보가 정확하지 않습니다.")
+                    }
+                    return .setIsLoading(false)
+                }
+            ])
         }
     }
     
@@ -196,6 +215,8 @@ final class SignUpReactor: Reactor, Stepper {
             
         case let .setPasswordCofirmationInput(password):
             newState.passwordConfirmationInput = password
+        case .setIsLoading(let isLoading):
+            newState.isLoading = isLoading
         }
         
         return newState

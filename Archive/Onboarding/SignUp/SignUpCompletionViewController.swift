@@ -28,10 +28,6 @@ final class SignUpCompletionViewController: UIViewController, StoryboardView, St
         super.init(coder: coder)
     }
     
-    deinit {
-        print("qwjoid")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.animationView.backgroundColor = .clear

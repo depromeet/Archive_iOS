@@ -10,7 +10,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-final class TermsAgreementViewController: UIViewController, StoryboardView {
+final class TermsAgreementViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     private enum Constant {
         static let progress: Float = 0.33
@@ -102,5 +102,18 @@ final class TermsAgreementViewController: UIViewController, StoryboardView {
             .distinctUntilChanged()
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }
