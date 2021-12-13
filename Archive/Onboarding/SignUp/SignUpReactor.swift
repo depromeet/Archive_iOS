@@ -71,7 +71,15 @@ final class SignUpReactor: Reactor, Stepper {
         var isWithinRange: Bool = false
         var passwordConfirmationInput: String = ""
         var isSamePasswordInput: Bool {
-            return password == passwordConfirmationInput
+            if password == passwordConfirmationInput {
+                if password == "" {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return false
+            }
         }
         var isValidPassword: Bool {
             return isContainsEnglish && isContainsNumber && isWithinRange && isSamePasswordInput
