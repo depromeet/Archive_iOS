@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-final class PasswordInputViewController: UIViewController, StoryboardView {
+final class PasswordInputViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     private enum Constant {
         static let progress: Float = 1
@@ -105,5 +105,25 @@ final class PasswordInputViewController: UIViewController, StoryboardView {
             .distinctUntilChanged()
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        reactor.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { errMsg in
+                CommonAlertView.shared.show(message: errMsg, subMessage: nil, btnText: "확인", hapticType: .error, confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.isLoading
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
 }

@@ -234,6 +234,7 @@ final class SignUpReactor: Reactor, Stepper {
                     self?.steps.accept(ArchiveStep.userIsSignedUp)
                 }
             case .failure(let err):
+                self?.error.onNext("오류\n\(err.localizedDescription)")
                 print("err: \(err.localizedDescription)")
             }
         })
