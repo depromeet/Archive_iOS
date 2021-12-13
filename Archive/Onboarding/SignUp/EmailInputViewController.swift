@@ -50,6 +50,8 @@ final class EmailInputViewController: UIViewController, StoryboardView {
     private func setupAttributes() {
         let tapOutside = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapOutside)
+        self.emailInputView.placeholder = "아이디(이메일)"
+        self.emailInputView.rightButtonTitle = "중복확인"
     }
     
     func bind(reactor: SignUpReactor) {

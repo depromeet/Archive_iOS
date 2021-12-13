@@ -48,8 +48,8 @@ class HomeFlow: Flow {
         switch step {
         case .homeIsRequired:
             return navigationToHomeScreen()
-        case .detailIsRequired(let info):
-            return navigationToDetailScreen(infoData: info)
+        case .detailIsRequired(let info, let index):
+            return navigationToDetailScreen(infoData: info, index: index)
         case .myPageIsRequired(let cnt):
             return navigationToMyPageScreen(cardCount: cnt)
         case .loginInfomationIsRequired(let type, let email, let cardCnt):
@@ -101,8 +101,8 @@ class HomeFlow: Flow {
         return .one(flowContributor: .contribute(withNextPresentable: homeViewController, withNextStepper: reactor, allowStepWhenNotPresented: false, allowStepWhenDismissed: false))
     }
     
-    private func navigationToDetailScreen(infoData: ArchiveDetailInfo) -> FlowContributors {
-        let model: DetailModel = DetailModel(recordData: infoData)
+    private func navigationToDetailScreen(infoData: ArchiveDetailInfo, index: Int) -> FlowContributors {
+        let model: DetailModel = DetailModel(recordData: infoData, index: index)
         let reactor = DetailReactor(model: model)
         let detailViewController: DetailViewController = detailStoryBoard.instantiateViewController(identifier: DetailViewController.identifier) { corder in
             return DetailViewController(coder: corder, reactor: reactor)
@@ -236,6 +236,10 @@ class HomeFlow: Flow {
 }
 
 extension HomeFlow: CommonViewControllerProtocol, DetailViewControllerDelegate {
+    func willDeletedArchive(index: Int) {
+        self.homeViewControllerPtr?.willDeletedIndex(index)
+    }
+    
     func deletedArchive() {
         self.homeViewControllerPtr?.reactor?.action.onNext(.getMyArchives)
     }

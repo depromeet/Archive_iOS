@@ -108,6 +108,10 @@ class DetailReactor: Reactor, Stepper {
         return newState
     }
     
+    func getIndex() -> Int {
+        return self.model.index
+    }
+    
     // MARK: private function
     
     private func makeCardView(completion: @escaping (ShareCardView) -> Void) {

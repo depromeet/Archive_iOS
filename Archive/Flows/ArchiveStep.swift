@@ -41,7 +41,7 @@ enum ArchiveStep: Step {
     case recordComplete
     
     // Detail
-    case detailIsRequired(ArchiveDetailInfo)
+    case detailIsRequired(ArchiveDetailInfo, Int)
     
     // Home
     case homeIsRequired

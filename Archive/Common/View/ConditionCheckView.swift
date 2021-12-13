@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-@IBDesignable
+
 final class ConditionCheckmarkView: UIView {
     
-    @IBInspectable var title: String? {
+    var title: String? {
         get { titleLabel.text }
         set { titleLabel.text = newValue }
     }

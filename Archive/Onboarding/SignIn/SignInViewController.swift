@@ -46,6 +46,9 @@ final class SignInViewController: UIViewController, StoryboardView, ActivityIndi
                 self?.passwordInputView.focusTextField()
             })
             .disposed(by: disposeBag)
+        self.idInputView.placeholder = "아이디(이메일)"
+        self.passwordInputView.placeholder = "영문/숫자포함 8~20자"
+        self.passwordInputView.isSecureTextEntry = true
     }
     
     func bind(reactor: SignInReactor) {
@@ -83,6 +86,19 @@ final class SignInViewController: UIViewController, StoryboardView, ActivityIndi
                 CommonAlertView.shared.show(message: errorMsg, btnText: "확인", hapticType: .error, confirmHandler: {
                     CommonAlertView.shared.hide(nil)
                 })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
             })
             .disposed(by: self.disposeBag)
     }

@@ -127,16 +127,28 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         })
         .disposed(by: self.disposeBag)
         
-        reactor.state.map { $0.isShimmering }
+//        reactor.state.map { $0.isShimmering } // 추후 업데이트 예정
+//        .distinctUntilChanged()
+//        .asDriver(onErrorJustReturn: false)
+//        .drive(onNext: { [weak self] in
+//            if $0 {
+//                self?.shimmerView?.isHidden = false
+//                self?.shimmerView?.startShimmering()
+//            } else {
+//                self?.shimmerView?.stopShimmering()
+//                self?.shimmerView?.isHidden = true
+//            }
+//        })
+//        .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isShimmering } // 추후 업데이트 예정
         .distinctUntilChanged()
         .asDriver(onErrorJustReturn: false)
         .drive(onNext: { [weak self] in
             if $0 {
-                self?.shimmerView?.isHidden = false
-                self?.shimmerView?.startShimmering()
+                self?.startIndicatorAnimating()
             } else {
-                self?.shimmerView?.stopShimmering()
-                self?.shimmerView?.isHidden = true
+                self?.stopIndicatorAnimating()
             }
         })
         .disposed(by: self.disposeBag)
@@ -183,6 +195,17 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     }
     
     // MARK: internal function
+    
+    func willDeletedIndex(_ index: Int) {
+        DispatchQueue.main.async { [weak self] in
+            guard let reactor = self?.reactor else {
+                return
+            }
+            if index+1 >= reactor.currentState.archives.count {
+                self?.ticketCollectionView.scrollToItem(at: IndexPath(item: index-1, section: 0), at: .top, animated: false)
+            }
+        }
+    }
     
     // MARK: action
     

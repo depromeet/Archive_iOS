@@ -9,6 +9,7 @@ import ReactorKit
 import RxSwift
 import RxRelay
 import RxFlow
+import Alamofire
 
 final class SignInReactor: Reactor, Stepper {
     
@@ -23,24 +24,24 @@ final class SignInReactor: Reactor, Stepper {
         case setID(String)
         case setPassword(String)
         case setValidation(Bool)
+        case setIsLoading(Bool)
     }
     
     struct State {
         var id: String = ""
         var password: String = ""
         var isEnableSignIn: Bool = false
+        var isLoading: Bool = false
     }
     
     let initialState = State()
     let steps = PublishRelay<Step>()
     private let validator: SignInValidator
     var error: PublishSubject<String>
-    var isLoading: PublishSubject<Bool>
     
     init(validator: SignInValidator) {
         self.validator = validator
         self.error = .init()
-        self.isLoading = .init()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -56,8 +57,24 @@ final class SignInReactor: Reactor, Stepper {
                           .setValidation(isValid)])
             
         case .signIn:
-            loginEmail(eMail: self.currentState.id, password: self.currentState.password)
-            return .empty()
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                LoginModule.loginEmail(eMail: self.currentState.id, password: self.currentState.password).map { [weak self] result in
+                    switch result {
+                    case .success(let response):
+                        guard let token: String = response["Authorization"] else {
+                            self?.error.onNext("[오류] 토큰이 존재하지 않습니다.")
+                            return .setIsLoading(false)
+                        }
+                        UserDefaultManager.shared.setLoginToken(token)
+                        self?.steps.accept(ArchiveStep.userIsSignedIn)
+                    case .failure(let err):
+                        print("err: \(err)")
+                        self?.error.onNext("로그인 정보가 정확하지 않습니다.")
+                    }
+                    return .setIsLoading(false)
+                }
+            ])
             
         case .signUp:
             steps.accept(ArchiveStep.termsAgreementIsRequired)
@@ -76,29 +93,10 @@ final class SignInReactor: Reactor, Stepper {
             
         case let.setValidation(isEnableSignIn):
             newState.isEnableSignIn = isEnableSignIn
+        case let .setIsLoading(isLoading):
+            newState.isLoading = isLoading
         }
         return newState
-    }
-    
-    private func loginEmail(eMail: String, password: String) {
-        self.isLoading.onNext(true)
-        let provider = ArchiveProvider.shared.provider
-        let param = LoginEmailParam(email: eMail, password: password)
-        provider.request(.loginEmail(param), completion: { [weak self] response in
-            self?.isLoading.onNext(false)
-            switch response {
-            case .success(let response):
-                guard let token: String = response.response?.headers["Authorization"] else {
-                    self?.error.onNext("[오류] 토큰이 존재하지 않습니다.")
-                    return
-                }
-                UserDefaultManager.shared.setLoginToken(token)
-                self?.steps.accept(ArchiveStep.userIsSignedIn)
-            case .failure(let err):
-                print("err: \(err.localizedDescription)")
-                self?.error.onNext("로그인 정보가 정확하지 않습니다.")
-            }
-        })
     }
 }
 
