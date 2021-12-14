@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxFlow
 
-final class EmailInputViewController: UIViewController, StoryboardView {
+final class EmailInputViewController: UIViewController, StoryboardView, ActivityIndicatorable {
     
     private enum Constant {
         static let progress: Float = 0.66
@@ -96,6 +96,18 @@ final class EmailInputViewController: UIViewController, StoryboardView {
                 CommonAlertView.shared.show(message: msg, btnText: "확인", hapticType: .warning, confirmHandler: {
                     CommonAlertView.shared.hide(nil)
                 })
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.startIndicatorAnimating()
+                } else {
+                    self?.stopIndicatorAnimating()
+                }
             })
             .disposed(by: self.disposeBag)
     }

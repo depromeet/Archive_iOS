@@ -20,19 +20,11 @@ def pods
   pod 'CropViewController'
   pod 'UIImageColors'
   pod 'lottie-ios'
-end
-
-def pods_debug
   pod 'SwiftLint'
 end
 
 target 'Archive' do
   pods
-end
-
-target 'Archive_debug' do
-  pods
-  pods_debug
 end
 
 post_install do |installer|

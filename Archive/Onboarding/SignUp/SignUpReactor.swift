@@ -23,7 +23,6 @@ final class SignUpReactor: Reactor, Stepper {
         
         case emailInput(text: String)
         case checkEmailDuplicate
-        case setIsEmailDuplicated(Bool)
         case goToPasswordInput
         
         case passwordInput(text: String)
@@ -71,6 +70,7 @@ final class SignUpReactor: Reactor, Stepper {
         var isWithinRange: Bool = false
         var passwordConfirmationInput: String = ""
         var isSamePasswordInput: Bool {
+            if password == "" { return false }
             return password == passwordConfirmationInput
         }
         var isValidPassword: Bool {
@@ -82,12 +82,10 @@ final class SignUpReactor: Reactor, Stepper {
     let initialState = State()
     let steps = PublishRelay<Step>()
     private let validator: SignUpValidator
-    var isLoading: PublishSubject<Bool>
     var error: PublishSubject<String>
     
     init(validator: SignUpValidator) {
         self.validator = validator
-        self.isLoading = .init()
         self.error = .init()
     }
     
@@ -125,15 +123,20 @@ final class SignUpReactor: Reactor, Stepper {
                           .setEmailValidation(isValid)])
             
         case .checkEmailDuplicate:
-            checkIsDuplicatedEmail(eMail: self.currentState.email, completion: { [weak self] isDup in
-                if isDup {
-                    self?.error.onNext("이미 가입된 아이디입니다.")
-                }
-                self?.action.onNext(.setIsEmailDuplicated(isDup))
-            })
-            return .empty()
-        case .setIsEmailDuplicated(let isDup):
-            return .just(.setEmailDuplicate(isDup))
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                checkIsDuplicatedEmail(eMail: self.currentState.email)
+                    .map { [weak self] result in
+                        switch result {
+                        case .success(let isDup):
+                            return .setEmailDuplicate(isDup)
+                        case .failure(let err):
+                            self?.error.onNext("error\(err.localizedDescription)")
+                        }
+                        return .setIsLoading(false)
+                    },
+                Observable.just(.setIsLoading(false))
+            ])
         case .goToPasswordInput:
             steps.accept(ArchiveStep.passwordInputRequired)
             return .empty()
@@ -151,9 +154,19 @@ final class SignUpReactor: Reactor, Stepper {
             return .just(.setPasswordCofirmationInput(text))
             
         case .completeSignUp:
-            registEmail(eMail: self.currentState.email, password: self.currentState.password)
-            return .empty()
-            
+            return Observable.concat([
+                Observable.just(.setIsLoading(true)),
+                registEmail(eMail: self.currentState.email, password: self.currentState.password)
+                    .map { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.steps.accept(ArchiveStep.userIsSignedUp)
+                        case .failure(let err):
+                            self?.error.onNext("error\(err.localizedDescription)")
+                        }
+                        return .setIsLoading(false)
+                    }
+            ])
         case .startArchive:
             return Observable.concat([
                 Observable.just(.setIsLoading(true)),
@@ -165,7 +178,6 @@ final class SignUpReactor: Reactor, Stepper {
                             return .setIsLoading(false)
                         }
                         UserDefaultManager.shared.setLoginToken(token)
-//                        self?.steps.accept(ArchiveStep.signUpComplete)
                         self?.steps.accept(ArchiveStep.userIsSignedIn)
                     case .failure(let err):
                         print("err: \(err)")
@@ -222,46 +234,38 @@ final class SignUpReactor: Reactor, Stepper {
         return newState
     }
     
-    private func registEmail(eMail: String, password: String) {
-        self.isLoading.onNext(true)
+    private func registEmail(eMail: String, password: String) -> Observable<Result<Void, Error>> {
         let provider = ArchiveProvider.shared.provider
         let param = RequestEmailParam(email: eMail, password: password)
-        provider.request(.registEmail(param), completion: { [weak self] response in
-            self?.isLoading.onNext(false)
-            switch response {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self?.steps.accept(ArchiveStep.userIsSignedUp)
-                }
-            case .failure(let err):
-                self?.error.onNext("오류\n\(err.localizedDescription)")
-                print("err: \(err.localizedDescription)")
+        return provider.rx.request(.registEmail(param), callbackQueue: DispatchQueue.global())
+            .asObservable()
+            .map { result in
+                return .success(Void())
             }
-        })
+            .catch { err in
+                .just(.failure(err))
+            }
     }
     
-    private func checkIsDuplicatedEmail(eMail: String, completion: @escaping (Bool) -> Void) {
-        self.isLoading.onNext(true)
+    private func checkIsDuplicatedEmail(eMail: String) -> Observable<Result<Bool, Error>> {
         let provider = ArchiveProvider.shared.provider
-        provider.request(.isDuplicatedEmail(eMail), completion: { [weak self] response in
-            self?.isLoading.onNext(false)
-            switch response {
-            case .success(let response):
+        return provider.rx.request(.isDuplicatedEmail(eMail), callbackQueue: DispatchQueue.global())
+            .asObservable()
+            .map { response in
                 if let result: JSON = try? JSON.init(data: response.data) {
                     let isDup: Bool = result["duplicatedEmail"].boolValue
                     if isDup {
-                        completion(true)
+                        return .success(true)
                     } else {
-                        completion(false)
+                        return .success(false)
                     }
                 } else {
-                    completion(true)
+                    return .success(true)
                 }
-            case .failure(let err):
-                print("err: \(err.localizedDescription)")
-                completion(true)
             }
-        })
+            .catch { err in
+                .just(.failure(err))
+            }
     }
 }
 
