@@ -115,7 +115,8 @@ final class PasswordInputViewController: UIViewController, StoryboardView, Activ
             })
             .disposed(by: self.disposeBag)
         
-        reactor.isLoading
+        reactor.state
+            .map { $0.isLoading }
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] in
                 if $0 {
@@ -125,5 +126,6 @@ final class PasswordInputViewController: UIViewController, StoryboardView, Activ
                 }
             })
             .disposed(by: self.disposeBag)
+
     }
 }
