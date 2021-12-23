@@ -36,8 +36,6 @@ final class AppFlow: Flow {
         switch step {
         case .onboardingIsRequired:
             return navigationToOnboardingScreen()
-        case .recordIsRequired:
-            return navigationToRecordScreen()
         case .homeIsRequired:
             return navigationToHomeScreen()
         case .onboardingIsComplete:
@@ -60,20 +58,6 @@ final class AppFlow: Flow {
                                                  withNextStepper: OneStepper(withSingleStep: ArchiveStep.signInIsRequired),
                                                  allowStepWhenNotPresented: false,
                                                  allowStepWhenDismissed: false))
-    }
-    
-    private func navigationToRecordScreen() -> FlowContributors {
-        let recordFlow = RecordFlow()
-        
-        Flows.use(recordFlow, when: .created) { [weak self] root in
-            DispatchQueue.main.async {
-                root.modalPresentationStyle = .fullScreen
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
-        
-        return .one(flowContributor: .contribute(withNextPresentable: recordFlow,
-                                                 withNextStepper: OneStepper(withSingleStep: ArchiveStep.recordIsRequired)))
     }
     
     private func navigationToHomeScreen() -> FlowContributors {

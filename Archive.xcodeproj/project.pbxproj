@@ -99,7 +99,6 @@
 		789E61992725550A00D6E18F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61982725550A00D6E18F /* RecordViewController.swift */; };
 		789E619B2725551400D6E18F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E619A2725551400D6E18F /* RecordReactor.swift */; };
 		789E619D2725551C00D6E18F /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E619C2725551C00D6E18F /* RecordModel.swift */; };
-		789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61A627255F8500D6E18F /* RecordFlow.swift */; };
 		789E61B027257BCB00D6E18F /* ImageRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61AF27257BCB00D6E18F /* ImageRecordReactor.swift */; };
 		789E61B227257BD400D6E18F /* ImageRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61B127257BD400D6E18F /* ImageRecordModel.swift */; };
 		789E61B92725817900D6E18F /* NibIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E61B82725817900D6E18F /* NibIdentifiable.swift */; };
@@ -241,7 +240,6 @@
 		789E61982725550A00D6E18F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		789E619A2725551400D6E18F /* RecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReactor.swift; sourceTree = "<group>"; };
 		789E619C2725551C00D6E18F /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
-		789E61A627255F8500D6E18F /* RecordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFlow.swift; sourceTree = "<group>"; };
 		789E61AF27257BCB00D6E18F /* ImageRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecordReactor.swift; sourceTree = "<group>"; };
 		789E61B127257BD400D6E18F /* ImageRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecordModel.swift; sourceTree = "<group>"; };
 		789E61B82725817900D6E18F /* NibIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibIdentifiable.swift; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				44FB09FE271832AD006E1048 /* AppFlow.swift */,
 				44FB0A2827186E33006E1048 /* AppStepper.swift */,
 				44FB0A08271832E9006E1048 /* OnboardingFlow.swift */,
-				789E61A627255F8500D6E18F /* RecordFlow.swift */,
 				78599DE4276379AE003FD959 /* HomeFlow.swift */,
 			);
 			path = Flows;
@@ -1108,7 +1105,6 @@
 				44FB0A1727183C22006E1048 /* PasswordInputViewController.swift in Sources */,
 				783A61DF273BEB02004D848F /* InstagramStoryShareManager.swift in Sources */,
 				78A3217F275BBEB20078650D /* UIColorExtension.swift in Sources */,
-				789E61A727255F8500D6E18F /* RecordFlow.swift in Sources */,
 				78BA1549272197250078B88E /* MyPageModel.swift in Sources */,
 				78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */,
 				780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */,

@@ -95,18 +95,10 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigationToSignUpCompletionScreen() -> FlowContributors {
-//        guard let  = onboardingStoryBoard
-//                .instantiateViewController(identifier: .identifier) as? SignUpCompletionViewController else {
-//            return .none
-//        }
-//        rootViewController.pushViewController(signUpCompletionViewController, animated: true)
-//        return .one(flowContributor: .contribute(withNext: signUpCompletionViewController))
-        
         let signUpCompletionViewController = onboardingStoryBoard
             .instantiateViewController(identifier: SignUpCompletionViewController.identifier) { coder in
                 return SignUpCompletionViewController(coder: coder, reactor: self.signUpReactor)
             }
-//        signUpCompletionViewController.title = Constants.signUpNavigationTitle
         rootViewController.pushViewController(signUpCompletionViewController, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: signUpCompletionViewController,
                                                  withNextStepper: signUpReactor))
