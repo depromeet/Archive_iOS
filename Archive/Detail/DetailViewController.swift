@@ -44,6 +44,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     
     private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
     private let modalShareViewController: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
+    private var willDisplayIndex: Int = 0
     
     weak var delegate: DetailViewControllerDelegate?
     
@@ -111,13 +112,25 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
             })
             .disposed(by: self.disposeBag)
         
-        self.collectionView.rx.willDisplayCell
+        self.collectionView.rx.didEndDisplayingCell
             .asDriver()
             .drive(onNext: { [weak self] info in
+                var index: Int = 0
+                if info.at.section != 0 {
+                    index = info.at.item + 1
+                }
+                if index != (self?.willDisplayIndex ?? 0) {
+                    self?.pageControl.currentPage = self?.willDisplayIndex ?? 0
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.collectionView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] info in
                 if info.at.section == 0 {
-                    self?.pageControl.currentPage = 0
+                    self?.willDisplayIndex = 0
                 } else {
-                    self?.pageControl.currentPage = info.at.item + 1
+                    self?.willDisplayIndex = info.at.item + 1
                 }
             })
             .disposed(by: self.disposeBag)

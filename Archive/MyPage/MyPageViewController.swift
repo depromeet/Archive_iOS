@@ -99,7 +99,7 @@ class MyPageViewController: UIViewController, StoryboardView, ActivityIndicatora
         self.pushAgreeTitleLabel.textColor = Gen.Colors.gray02.color
         self.pushAgreeTitleLabel.text = "푸시 알림 허용"
         
-        self.pushAgreeSwitch.tintColor = Gen.Colors.black.color
+        self.pushAgreeSwitch.onTintColor = Gen.Colors.black.color
         
         self.pushAgreeContentsLabel.font = .fonts(.caption)
         self.pushAgreeContentsLabel.textColor = Gen.Colors.gray03.color

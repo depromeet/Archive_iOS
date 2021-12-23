@@ -67,6 +67,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     // MARK: private property
     
     private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
+    private var willDisplayIndex: Int = 0
+    private var willDisplaySectionIndex: Int = 0
     
     // MARK: internal property
     
@@ -154,7 +156,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 self?.imagesCollectionView.dataSource = nil
                 guard let cardImage = zippedImages.0 else { return }
                 guard let images = zippedImages.1 else { return }
-                self?.pageControl.numberOfPages = images.count + 1
+                self?.pageControl.numberOfPages = images.count + 2
                 self?.defaultImageContainerView.isHidden = true
                 self?.imagesCollectionView.isHidden = false
                 self?.topContentsContainerView.backgroundColor = .clear
@@ -230,17 +232,30 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-        self.imagesCollectionView.rx.willDisplayCell
+        self.imagesCollectionView.rx.didEndDisplayingCell
             .asDriver()
             .drive(onNext: { [weak self] info in
-                if info.at.section == 0 {
-                    self?.pageControl.isHidden = false
-                    self?.pageControl.currentPage = 0
-                } else if info.at.section == 2 {
-                    self?.pageControl.isHidden = true
+                var index: Int = 0
+                if info.at.section != 2 && (self?.willDisplaySectionIndex ?? 0) == 2 {
+                    self?.pageControl.currentPage = (self?.pageControl.numberOfPages ?? 1) - 1
                 } else {
-                    self?.pageControl.isHidden = false
-                    self?.pageControl.currentPage = info.at.item + 1
+                    if info.at.section != 0 {
+                        index = info.at.item + 1
+                    }
+                    if index != (self?.willDisplayIndex ?? 0) {
+                        self?.pageControl.currentPage = self?.willDisplayIndex ?? 0
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] info in
+                self?.willDisplaySectionIndex = info.at.section
+                if info.at.section == 0 {
+                    self?.willDisplayIndex = 0
+                } else {
+                    self?.willDisplayIndex = info.at.item + 1
                 }
             })
             .disposed(by: self.disposeBag)

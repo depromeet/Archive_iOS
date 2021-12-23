@@ -34,6 +34,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     // MARK: private property
     
     private let shimmerView: HomeShimmerView? = HomeShimmerView.instance()
+    private var willDisplayIndex: Int = 0
     
     // MARK: internal property
     
