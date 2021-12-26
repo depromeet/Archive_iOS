@@ -34,7 +34,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     // MARK: private property
     
     private let shimmerView: HomeShimmerView? = HomeShimmerView.instance()
-    private var willDisplayIndex: Int = 0
+    private var didScrollecDirection: Direction = .left
     
     // MARK: internal property
     
@@ -97,10 +97,40 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         .bind(to: self.pageControl.rx.numberOfPages)
         .disposed(by: self.disposeBag)
         
+        self.ticketCollectionView.rx.willBeginDragging
+            .subscribe(onNext: { [weak self] in
+                guard let translation = self?.ticketCollectionView.panGestureRecognizer.translation(in: self?.ticketCollectionView.superview) else { return }
+                if translation.x > 0 {
+                    self?.didScrollecDirection = .left
+                } else {
+                    self?.didScrollecDirection = .right
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.ticketCollectionView.rx.didEndDisplayingCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                guard let direction = self?.didScrollecDirection else { return }
+                switch direction {
+                case .right:
+                    self?.pageControl.currentPage = info.at.item + 1
+                case .left, .top, .bottom:
+                    return
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
         self.ticketCollectionView.rx.willDisplayCell
             .asDriver()
             .drive(onNext: { [weak self] info in
-                self?.pageControl.currentPage = info.at.item
+                guard let direction = self?.didScrollecDirection else { return }
+                switch direction {
+                case .left:
+                    self?.pageControl.currentPage = info.at.item
+                case .right, .top, .bottom:
+                    return
+                }
             })
             .disposed(by: self.disposeBag)
         
