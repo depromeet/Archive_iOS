@@ -27,6 +27,8 @@ class DetailCardCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventDateLabel: UILabel!
     
+    @IBOutlet weak var friendsCollectionView: UICollectionView!
+    
     // MARK: private property
     
     // MARK: internal property
@@ -63,7 +65,7 @@ class DetailCardCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
         self.scrollView.backgroundColor = .clear
         self.mainContetnsView.backgroundColor = .clear
         
-        self.topContainerView.backgroundColor = .clear // 대기
+        self.topContainerView.backgroundColor = .clear
         
         self.centerContainerView.backgroundColor = .clear
         
@@ -77,6 +79,18 @@ class DetailCardCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
         
         self.eventDateLabel.font = .fonts(.header3)
         self.eventDateLabel.textColor = Gen.Colors.black.color
+        
+        self.friendsCollectionView.register(UINib(nibName: DetailFriendsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailFriendsCollectionViewCell.identifier)
+        self.friendsCollectionView.showsHorizontalScrollIndicator = false
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 12
+//        layout.itemSize = CGSize(width: 264, height: 365)
+        self.friendsCollectionView.collectionViewLayout = layout
+        self.friendsCollectionView.dataSource = self
+        self.friendsCollectionView.delegate = self
+        self.friendsCollectionView.backgroundColor = .clear
         
     }
     
@@ -110,10 +124,42 @@ class DetailCardCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
         }
     }
     
+    private func getFriendsCellWidth(_ text: String) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.fonts(.subTitle)]
+        return (text as NSString).size(withAttributes: fontAttributes).width + 25
+    }
+    
     // MARK: internal function
     
     // MARK: action
-    
-    
 
+}
+
+extension DetailCardCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.infoData?.companions?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell: DetailFriendsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailFriendsCollectionViewCell.identifier, for: indexPath) as? DetailFriendsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        if let title = self.infoData?.companions?[indexPath.item] {
+            cell.mainTitleLabel.text = title
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var cellSize: CGSize = CGSize(width: 10, height: 10)
+        if let companions = self.infoData?.companions {
+            let text = companions[indexPath.item]
+            cellSize = CGSize(width: self.getFriendsCellWidth(text), height: 36)
+        }
+        
+        return cellSize
+    }
 }

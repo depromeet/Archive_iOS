@@ -124,6 +124,8 @@
 		78BB7E1E27788D8300DF78AF /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E1D27788D8300DF78AF /* UIViewControllerExtension.swift */; };
 		78BB7E222778938500DF78AF /* DetailContentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB7E202778938500DF78AF /* DetailContentsCollectionViewCell.xib */; };
 		78BB7E232778938500DF78AF /* DetailContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */; };
+		78BB7E272778970900DF78AF /* DetailFriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E252778970900DF78AF /* DetailFriendsCollectionViewCell.swift */; };
+		78BB7E282778970900DF78AF /* DetailFriendsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB7E262778970900DF78AF /* DetailFriendsCollectionViewCell.xib */; };
 		78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
 		78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */; };
 		78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */; };
@@ -265,6 +267,8 @@
 		78BB7E1D27788D8300DF78AF /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		78BB7E202778938500DF78AF /* DetailContentsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailContentsCollectionViewCell.xib; sourceTree = "<group>"; };
 		78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailContentsCollectionViewCell.swift; sourceTree = "<group>"; };
+		78BB7E252778970900DF78AF /* DetailFriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		78BB7E262778970900DF78AF /* DetailFriendsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailFriendsCollectionViewCell.xib; sourceTree = "<group>"; };
 		78C4B327272428AB0006EBAD /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReactor.swift; sourceTree = "<group>"; };
@@ -766,6 +770,7 @@
 		78BB7E102778562700DF78AF /* DetailCard */ = {
 			isa = PBXGroup;
 			children = (
+				78BB7E24277896DD00DF78AF /* Sub */,
 				78BB7E112778563700DF78AF /* DetailCardCollectionViewCell.swift */,
 				78BB7E122778563700DF78AF /* DetailCardCollectionViewCell.xib */,
 			);
@@ -779,6 +784,15 @@
 				78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */,
 			);
 			path = DetailContents;
+			sourceTree = "<group>";
+		};
+		78BB7E24277896DD00DF78AF /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				78BB7E252778970900DF78AF /* DetailFriendsCollectionViewCell.swift */,
+				78BB7E262778970900DF78AF /* DetailFriendsCollectionViewCell.xib */,
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 		78C4B329272428B40006EBAD /* Withdrawal */ = {
@@ -914,6 +928,7 @@
 				787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */,
 				78599DED27638241003FD959 /* HomeShimmerView.xib in Resources */,
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
+				78BB7E282778970900DF78AF /* DetailFriendsCollectionViewCell.xib in Resources */,
 				78599DD7276375C2003FD959 /* Home.storyboard in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				78BB7E142778563700DF78AF /* DetailCardCollectionViewCell.xib in Resources */,
@@ -1025,6 +1040,7 @@
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
+				78BB7E272778970900DF78AF /* DetailFriendsCollectionViewCell.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				78BB7E232778938500DF78AF /* DetailContentsCollectionViewCell.swift in Sources */,
 				784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
