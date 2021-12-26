@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
@@ -16,7 +17,9 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
     
     @IBOutlet weak var mainContentsView: UIView!
     
+    @IBOutlet weak var centerContainerView: UIView!
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var mainImageCoverView: UIView!
     
     @IBOutlet weak var bottomContainerView: UIView!
     @IBOutlet weak var contentsLabel: UILabel!
@@ -41,6 +44,24 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
         }
     }
     
+    var emotion: Emotion = .fun
+    var name: String = "" {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                if let rotatedView = self?.makeRotatedTitleView(emotion: self?.emotion ?? .fun, title: self?.name ?? "") {
+                    self?.mainImageCoverView.addSubview(rotatedView)
+                    guard let self = self else { return }
+                    let offset: CGFloat = self.getRotatedViewOffset()
+                    rotatedView.snp.makeConstraints {
+                        $0.leading.equalTo(self.mainImageCoverView.snp.leading).offset(offset + 28)
+                        $0.height.equalTo(56)
+                        $0.centerY.equalTo(self.mainImageCoverView.snp.centerY).offset(0)
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: lifeCycle
     
     override func awakeFromNib() {
@@ -60,6 +81,52 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
         self.contentsLabel.font = .fonts(.body)
         self.contentsLabel.textColor = Gen.Colors.black.color
         
+    }
+    
+    private func makeRotatedTitleView(emotion: Emotion, title: String) -> UIView {
+        let view: UIView = UIView()
+        view.backgroundColor = Gen.Colors.white.color
+        
+        let emotionView: UIImageView = UIImageView()
+        switch emotion {
+        case .fun:
+            emotionView.image = Gen.Images.typeFun.image
+        case .impressive:
+            emotionView.image = Gen.Images.typeImpressive.image
+        case .pleasant:
+            emotionView.image = Gen.Images.typePleasant.image
+        case .splendid:
+            emotionView.image = Gen.Images.typeSplendid.image
+        case .wonderful:
+            emotionView.image = Gen.Images.typeWonderful.image
+        }
+        view.addSubview(emotionView)
+        emotionView.snp.makeConstraints {
+            $0.leading.equalTo(view.snp.leading).offset(40)
+            $0.centerY.equalTo(view.snp.centerY).offset(0)
+            $0.width.equalTo(20)
+            $0.height.equalTo(20)
+        }
+        
+        let titleLabel: UILabel = UILabel()
+        titleLabel.font = .fonts(.subTitle)
+        titleLabel.textColor = Gen.Colors.black.color
+        titleLabel.text = title
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(emotionView.snp.trailing).offset(10)
+            $0.centerY.equalTo(view.snp.centerY).offset(0)
+            $0.trailing.equalTo(view.snp.trailing).offset(-40)
+        }
+        
+        view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        return view
+    }
+    
+    private func getRotatedViewOffset() -> CGFloat {
+        
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.fonts(.subTitle)]
+        return -(((self.name as NSString).size(withAttributes: fontAttributes).width + 110)/2)
     }
     
     // MARK: internal function

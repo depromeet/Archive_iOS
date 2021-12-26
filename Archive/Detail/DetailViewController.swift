@@ -21,7 +21,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     
     enum CellModel {
         case cover(ArchiveDetailInfo)
-        case commonImage(ArchiveDetailImageInfo)
+        case commonImage(ArchiveDetailImageInfo, Emotion, String)
     }
     
     // MARK: IBOutlet
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                 self?.pageControl.numberOfPages = images.count + 1
                 var imageCellArr: [CellModel] = []
                 for imageItem in images {
-                    imageCellArr.append(CellModel.commonImage(imageItem))
+                    imageCellArr.append(CellModel.commonImage(imageItem, Emotion.fromString(info.emotion) ?? .fun, info.name))
                 }
                 let sections = Observable.just([
                     SectionModel(model: "card", items: [
@@ -84,8 +84,8 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                     switch item {
                     case .cover(let infoData):
                         return self.makeCardCell(with: infoData, from: collectionView, indexPath: indexPath)
-                    case .commonImage(let imageInfo):
-                        return self.makeImageCell(with: imageInfo, from: collectionView, indexPath: indexPath)
+                    case .commonImage(let imageInfo, let emotion, let name):
+                        return self.makeImageCell(with: imageInfo, emotion: emotion, name: name, from: collectionView, indexPath: indexPath)
                     }
                 })
                 let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -192,10 +192,12 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         return cell
     }
     
-    private func makeImageCell(with element: ArchiveDetailImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeImageCell(with element: ArchiveDetailImageInfo, emotion: Emotion, name: String, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailContentsCollectionViewCell.identifier, for: indexPath) as? DetailContentsCollectionViewCell else { return UICollectionViewCell() }
         cell.infoData = element
         cell.topContainerViewHeightConstraint.constant = self.topbarHeight
+        cell.emotion = emotion
+        cell.name = name
         return cell
     }
     

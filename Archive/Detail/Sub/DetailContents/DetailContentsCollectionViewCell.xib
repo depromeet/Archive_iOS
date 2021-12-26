@@ -53,6 +53,10 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GZf-gD-SQu">
                                                 <rect key="frame" x="0.0" y="0.0" width="341" height="533"/>
                                             </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVI-E8-eFw">
+                                                <rect key="frame" x="0.0" y="0.0" width="341" height="533"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byx-F8-5eT">
                                                 <rect key="frame" x="0.0" y="533" width="341" height="170"/>
                                                 <subviews>
@@ -96,15 +100,19 @@
                                             <constraint firstItem="cH5-gG-CUB" firstAttribute="bottom" secondItem="fjx-oU-FH9" secondAttribute="bottom" constant="24" id="JeD-pD-g5w"/>
                                             <constraint firstAttribute="trailing" secondItem="GZf-gD-SQu" secondAttribute="trailing" id="LKo-tS-aEA"/>
                                             <constraint firstItem="CWJ-rr-lg6" firstAttribute="leading" secondItem="fjx-oU-FH9" secondAttribute="leading" id="N1G-gm-Dce"/>
+                                            <constraint firstItem="pVI-E8-eFw" firstAttribute="width" secondItem="GZf-gD-SQu" secondAttribute="width" id="NTw-VR-F7L"/>
                                             <constraint firstItem="Byx-F8-5eT" firstAttribute="top" secondItem="fjx-oU-FH9" secondAttribute="bottom" id="Omc-vY-Ebc"/>
                                             <constraint firstAttribute="trailing" secondItem="3OO-7X-SF5" secondAttribute="trailing" id="PMr-xr-oV5"/>
                                             <constraint firstItem="GZf-gD-SQu" firstAttribute="top" secondItem="3OO-7X-SF5" secondAttribute="top" id="Rn6-Iu-L0P"/>
+                                            <constraint firstItem="pVI-E8-eFw" firstAttribute="height" secondItem="GZf-gD-SQu" secondAttribute="height" id="Vls-0J-B3E"/>
                                             <constraint firstItem="Byx-F8-5eT" firstAttribute="leading" secondItem="2Y0-2x-CXF" secondAttribute="leading" id="ZaP-yc-cfx"/>
                                             <constraint firstAttribute="trailing" secondItem="Byx-F8-5eT" secondAttribute="trailing" id="aqD-Xn-995"/>
+                                            <constraint firstItem="pVI-E8-eFw" firstAttribute="centerX" secondItem="GZf-gD-SQu" secondAttribute="centerX" id="c0l-0K-hn3"/>
                                             <constraint firstItem="3OO-7X-SF5" firstAttribute="top" secondItem="2Y0-2x-CXF" secondAttribute="top" id="c7X-au-4hv"/>
                                             <constraint firstItem="cH5-gG-CUB" firstAttribute="trailing" secondItem="fjx-oU-FH9" secondAttribute="trailing" id="dwl-o3-tbf"/>
                                             <constraint firstAttribute="bottom" secondItem="Byx-F8-5eT" secondAttribute="bottom" id="fda-Tl-ukj"/>
                                             <constraint firstItem="3OO-7X-SF5" firstAttribute="leading" secondItem="2Y0-2x-CXF" secondAttribute="leading" id="smX-dT-2nJ"/>
+                                            <constraint firstItem="pVI-E8-eFw" firstAttribute="centerY" secondItem="GZf-gD-SQu" secondAttribute="centerY" id="tEY-Rh-QY5"/>
                                             <constraint firstItem="GZf-gD-SQu" firstAttribute="bottom" secondItem="fjx-oU-FH9" secondAttribute="bottom" id="wmb-3d-OgP"/>
                                         </constraints>
                                     </view>
@@ -138,9 +146,11 @@
             <size key="customSize" width="341" height="734"/>
             <connections>
                 <outlet property="bottomContainerView" destination="Byx-F8-5eT" id="0I0-zP-zZr"/>
+                <outlet property="centerContainerView" destination="fjx-oU-FH9" id="WQs-oq-VGt"/>
                 <outlet property="contentsLabel" destination="FpZ-0e-DV1" id="8MG-xh-p96"/>
                 <outlet property="mainBackgroundView" destination="iqb-Ny-pim" id="wxE-Wm-ZBc"/>
                 <outlet property="mainContentsView" destination="2Y0-2x-CXF" id="1XC-um-GFB"/>
+                <outlet property="mainImageCoverView" destination="pVI-E8-eFw" id="tQw-oH-LQ8"/>
                 <outlet property="mainImageView" destination="GZf-gD-SQu" id="wv4-Qk-anU"/>
                 <outlet property="scrollView" destination="Ma4-y0-THM" id="MQz-8V-xe6"/>
                 <outlet property="topContainerViewHeightConstraint" destination="Guy-Ne-xae" id="s2i-7h-rsc"/>
