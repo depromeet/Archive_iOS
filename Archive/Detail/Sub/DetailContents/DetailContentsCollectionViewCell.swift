@@ -2,33 +2,41 @@
 //  DetailContentsCollectionViewCell.swift
 //  Archive
 //
-//  Created by hanwe on 2021/12/04.
+//  Created by hanwe on 2021/12/26.
 //
 
 import UIKit
-import Kingfisher
 
 class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
-    // MARK: outlet
-    @IBOutlet weak var mainContainerView: UIView!
+    // MARK: IBOutlet
+    @IBOutlet weak var mainBackgroundView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var topContainerViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var mainContentsView: UIView!
+    
     @IBOutlet weak var mainImageView: UIImageView!
+    
+    @IBOutlet weak var bottomContainerView: UIView!
+    @IBOutlet weak var contentsLabel: UILabel!
     
     // MARK: private property
     
-    // MARK: property
+    // MARK: internal property
     
-    var imageInfo: ArchiveDetailImageInfo? {
+    var infoData: ArchiveDetailImageInfo? {
         didSet {
-            guard let info = self.imageInfo else { return }
+            guard let info = self.infoData else { return }
             DispatchQueue.main.async { [weak self] in
-                self?.mainContainerView.backgroundColor = info.backgroundColor.colorWithHexString()
+                self?.mainContentsView.backgroundColor = info.backgroundColor.colorWithHexString()
                 self?.mainImageView.kf.setImage(with: URL(string: info.image),
                                                placeholder: nil,
                                                options: [.cacheMemoryOnly],
                                                completionHandler: { [weak self] _ in
                     self?.mainImageView.fadeIn(duration: 0.1, completeHandler: nil)
                 })
+                self?.contentsLabel.text = info.review
             }
         }
     }
@@ -40,14 +48,23 @@ class DetailContentsCollectionViewCell: UICollectionViewCell, ClassIdentifiable 
         initUI()
     }
     
-    // MARK: private func
+    // MARK: private function
     
     private func initUI() {
-        self.mainContainerView.backgroundColor = .clear
+        self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
+        self.scrollView.backgroundColor = .clear
+        self.mainContentsView.backgroundColor = .clear
+        
+        self.bottomContainerView.backgroundColor = Gen.Colors.white.color
+        
+        self.contentsLabel.font = .fonts(.body)
+        self.contentsLabel.textColor = Gen.Colors.black.color
+        
     }
     
-    // MARK: func
+    // MARK: internal function
     
     // MARK: action
     
+
 }

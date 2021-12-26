@@ -16,7 +16,7 @@ class ImageSelectReactor: Reactor, Stepper {
     // MARK: private property
     
     private var model: ImageSelectModelProtocol
-    private var recordImageSize: CGSize = CGSize(width: 1000, height: 1000)
+    private var recordImageSize: CGSize = CGSize(width: 700, height: 700)
     
     // MARK: internal property
     

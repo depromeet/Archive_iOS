@@ -86,8 +86,6 @@
 		785F5E43273018BC00ACC7BA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */; };
 		787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7877699E273AA98100519B58 /* PhotoContentsView.swift */; };
 		787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7877699F273AA98100519B58 /* PhotoContentsView.xib */; };
-		787C285A275C99E900C1FB17 /* DetailPhotoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */; };
-		787C285B275C99E900C1FB17 /* DetailPhotoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */; };
 		787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */; };
 		787C2862275CC04B00C1FB17 /* ModalShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */; };
 		78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */; };
@@ -109,10 +107,6 @@
 		78A32167275B92530078650D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32166275B92530078650D /* DetailViewController.swift */; };
 		78A32169275B92600078650D /* DetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32168275B92600078650D /* DetailReactor.swift */; };
 		78A3216B275B92700078650D /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3216A275B92700078650D /* DetailModel.swift */; };
-		78A32174275B96A10078650D /* DetailMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */; };
-		78A32175275B96A10078650D /* DetailMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */; };
-		78A32178275B96AD0078650D /* DetailContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */; };
-		78A32179275B96AD0078650D /* DetailContentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */; };
 		78A3217F275BBEB20078650D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A3217E275BBEB20078650D /* UIColorExtension.swift */; };
 		78B345F02766242A0053FB7B /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B345EF2766242A0053FB7B /* LoginModule.swift */; };
 		78B872DA2726C54C009EFB54 /* EmotionSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */; };
@@ -125,6 +119,11 @@
 		78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA154227218F4E0078B88E /* MyPageReactor.swift */; };
 		78BA1549272197250078B88E /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BA1548272197250078B88E /* MyPageModel.swift */; };
 		78BB7E0E277843ED00DF78AF /* CommonDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E0D277843ED00DF78AF /* CommonDefine.swift */; };
+		78BB7E132778563700DF78AF /* DetailCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E112778563700DF78AF /* DetailCardCollectionViewCell.swift */; };
+		78BB7E142778563700DF78AF /* DetailCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB7E122778563700DF78AF /* DetailCardCollectionViewCell.xib */; };
+		78BB7E1E27788D8300DF78AF /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E1D27788D8300DF78AF /* UIViewControllerExtension.swift */; };
+		78BB7E222778938500DF78AF /* DetailContentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB7E202778938500DF78AF /* DetailContentsCollectionViewCell.xib */; };
+		78BB7E232778938500DF78AF /* DetailContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */; };
 		78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C4B327272428AB0006EBAD /* MyPage.storyboard */; };
 		78C4B32B272428D40006EBAD /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */; };
 		78C4B32D2724292D0006EBAD /* WithdrawalReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */; };
@@ -228,8 +227,6 @@
 		785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		7877699E273AA98100519B58 /* PhotoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentsView.swift; sourceTree = "<group>"; };
 		7877699F273AA98100519B58 /* PhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoContentsView.xib; sourceTree = "<group>"; };
-		787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPhotoContentsView.xib; sourceTree = "<group>"; };
-		787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPhotoContentsView.swift; sourceTree = "<group>"; };
 		787C285F275CC04B00C1FB17 /* ModalShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalShareViewController.swift; sourceTree = "<group>"; };
 		787C2860275CC04B00C1FB17 /* ModalShareViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalShareViewController.xib; sourceTree = "<group>"; };
 		78958E0927129FBB003FF724 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
@@ -251,10 +248,6 @@
 		78A32166275B92530078650D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78A32168275B92600078650D /* DetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReactor.swift; sourceTree = "<group>"; };
 		78A3216A275B92700078650D /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
-		78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMainCollectionViewCell.swift; sourceTree = "<group>"; };
-		78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMainCollectionViewCell.xib; sourceTree = "<group>"; };
-		78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentsCollectionViewCell.swift; sourceTree = "<group>"; };
-		78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentsCollectionViewCell.xib; sourceTree = "<group>"; };
 		78A3217E275BBEB20078650D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		78B345EF2766242A0053FB7B /* LoginModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModule.swift; sourceTree = "<group>"; };
 		78B872D72726C54C009EFB54 /* EmotionSelectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionSelectModel.swift; sourceTree = "<group>"; };
@@ -267,6 +260,11 @@
 		78BA154227218F4E0078B88E /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
 		78BA1548272197250078B88E /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		78BB7E0D277843ED00DF78AF /* CommonDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDefine.swift; sourceTree = "<group>"; };
+		78BB7E112778563700DF78AF /* DetailCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		78BB7E122778563700DF78AF /* DetailCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		78BB7E1D27788D8300DF78AF /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		78BB7E202778938500DF78AF /* DetailContentsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailContentsCollectionViewCell.xib; sourceTree = "<group>"; };
+		78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		78C4B327272428AB0006EBAD /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		78C4B32A272428D40006EBAD /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		78C4B32C2724292D0006EBAD /* WithdrawalReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReactor.swift; sourceTree = "<group>"; };
@@ -610,15 +608,6 @@
 			path = Sub;
 			sourceTree = "<group>";
 		};
-		787C2857275C99C100C1FB17 /* DetailPhotoContents */ = {
-			isa = PBXGroup;
-			children = (
-				787C2859275C99E900C1FB17 /* DetailPhotoContentsView.swift */,
-				787C2858275C99E900C1FB17 /* DetailPhotoContentsView.xib */,
-			);
-			path = DetailPhotoContents;
-			sourceTree = "<group>";
-		};
 		787C285E275CC03700C1FB17 /* ModalShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +659,7 @@
 				785F5E42273018BC00ACC7BA /* UIImageViewExtension.swift */,
 				7821233B273F9F58007DEC28 /* StringExtension.swift */,
 				78A3217E275BBEB20078650D /* UIColorExtension.swift */,
+				78BB7E1D27788D8300DF78AF /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -744,30 +734,11 @@
 		78A3216F275B96690078650D /* Sub */ = {
 			isa = PBXGroup;
 			children = (
+				78BB7E102778562700DF78AF /* DetailCard */,
+				78BB7E1F2778938500DF78AF /* DetailContents */,
 				787C285E275CC03700C1FB17 /* ModalShare */,
-				787C2857275C99C100C1FB17 /* DetailPhotoContents */,
-				78A32171275B968B0078650D /* DetailMain */,
-				78A32170275B968B0078650D /* DetailContents */,
 			);
 			path = Sub;
-			sourceTree = "<group>";
-		};
-		78A32170275B968B0078650D /* DetailContents */ = {
-			isa = PBXGroup;
-			children = (
-				78A32176275B96AD0078650D /* DetailContentsCollectionViewCell.swift */,
-				78A32177275B96AD0078650D /* DetailContentsCollectionViewCell.xib */,
-			);
-			path = DetailContents;
-			sourceTree = "<group>";
-		};
-		78A32171275B968B0078650D /* DetailMain */ = {
-			isa = PBXGroup;
-			children = (
-				78A32172275B96A10078650D /* DetailMainCollectionViewCell.swift */,
-				78A32173275B96A10078650D /* DetailMainCollectionViewCell.xib */,
-			);
-			path = DetailMain;
 			sourceTree = "<group>";
 		};
 		78B872D62726C54C009EFB54 /* EmotionSelect */ = {
@@ -790,6 +761,24 @@
 				78BA1548272197250078B88E /* MyPageModel.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		78BB7E102778562700DF78AF /* DetailCard */ = {
+			isa = PBXGroup;
+			children = (
+				78BB7E112778563700DF78AF /* DetailCardCollectionViewCell.swift */,
+				78BB7E122778563700DF78AF /* DetailCardCollectionViewCell.xib */,
+			);
+			path = DetailCard;
+			sourceTree = "<group>";
+		};
+		78BB7E1F2778938500DF78AF /* DetailContents */ = {
+			isa = PBXGroup;
+			children = (
+				78BB7E202778938500DF78AF /* DetailContentsCollectionViewCell.xib */,
+				78BB7E212778938500DF78AF /* DetailContentsCollectionViewCell.swift */,
+			);
+			path = DetailContents;
 			sourceTree = "<group>";
 		};
 		78C4B329272428B40006EBAD /* Withdrawal */ = {
@@ -910,25 +899,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78A32175275B96A10078650D /* DetailMainCollectionViewCell.xib in Resources */,
 				78315E742764F2E6001B3342 /* SignUp.json in Resources */,
 				784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */,
 				784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */,
+				78BB7E222778938500DF78AF /* DetailContentsCollectionViewCell.xib in Resources */,
 				784D1DD827084869004B1A23 /* swiftgen.yml in Resources */,
 				78EDAD63274525E80028F56D /* ShareCardView.xib in Resources */,
-				787C285A275C99E900C1FB17 /* DetailPhotoContentsView.xib in Resources */,
 				78958E0C27129FBB003FF724 /* Pretendard-Medium.ttf in Resources */,
 				78C4B328272428AB0006EBAD /* MyPage.storyboard in Resources */,
 				44F9B0ED270606EE005418F0 /* LaunchScreen.storyboard in Resources */,
 				782FDF4D272CFB6E004D1B6E /* HWPhotoListFromAlbumView.xib in Resources */,
-				78A32179275B96AD0078650D /* DetailContentsCollectionViewCell.xib in Resources */,
 				4FD4F1DB272F86B800BDB4BB /* RecordImageCollectionViewCell.xib in Resources */,
 				787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */,
 				78599DED27638241003FD959 /* HomeShimmerView.xib in Resources */,
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				78599DD7276375C2003FD959 /* Home.storyboard in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
+				78BB7E142778563700DF78AF /* DetailCardCollectionViewCell.xib in Resources */,
 				78315E722764EC38001B3342 /* Upload.json in Resources */,
 				782FDF4B272CFB6E004D1B6E /* PhotoFromAlbumCell.xib in Resources */,
 				78A32164275B91580078650D /* Detail.storyboard in Resources */,
@@ -1028,7 +1016,6 @@
 				44FB0A2227184376006E1048 /* ReuseIdentifiable.swift in Sources */,
 				78EDAD61274525D40028F56D /* ShareCardView.swift in Sources */,
 				789E61C7272584FC00D6E18F /* ContentsRecordModel.swift in Sources */,
-				78A32178275B96AD0078650D /* DetailContentsCollectionViewCell.swift in Sources */,
 				78B872EC2726F32E009EFB54 /* ContentsRecordViewController.swift in Sources */,
 				78599DD5276375C2003FD959 /* TicketCollectionViewLayout.swift in Sources */,
 				782FDF3B272CF9B6004D1B6E /* ImageSelectViewController.swift in Sources */,
@@ -1039,6 +1026,7 @@
 				787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
+				78BB7E232778938500DF78AF /* DetailContentsCollectionViewCell.swift in Sources */,
 				784377AE273172820005CB51 /* RecordAddImageCollectionViewCell.swift in Sources */,
 				44922DC52719DF3F00A5EA2B /* UIButtonExtension.swift in Sources */,
 				782FDF56272D1D70004D1B6E /* ActivityIndicatorable.swift in Sources */,
@@ -1061,9 +1049,9 @@
 				787769A0273AA98100519B58 /* PhotoContentsView.swift in Sources */,
 				44FB0A2927186E33006E1048 /* AppStepper.swift in Sources */,
 				44FB0A1027183BDA006E1048 /* EmailInputViewController.swift in Sources */,
+				78BB7E1E27788D8300DF78AF /* UIViewControllerExtension.swift in Sources */,
 				78212328273F8397007DEC28 /* RecordUploadReactor.swift in Sources */,
 				44BE6F07271144BF00E74A7D /* SignUpReactor.swift in Sources */,
-				787C285B275C99E900C1FB17 /* DetailPhotoContentsView.swift in Sources */,
 				782FDF4F272CFB6E004D1B6E /* HWPhotoListFromAlbumView.swift in Sources */,
 				780161D42751FD5200F77193 /* CardShareManager.swift in Sources */,
 				78BA154327218F4F0078B88E /* MyPageReactor.swift in Sources */,
@@ -1084,7 +1072,6 @@
 				78212326273F838A007DEC28 /* RecordUploadViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				78557A2A272ECFC800C5BD62 /* UIDeviceExtension.swift in Sources */,
-				78A32174275B96A10078650D /* DetailMainCollectionViewCell.swift in Sources */,
 				78B872DB2726C54C009EFB54 /* EmotionSelectReactor.swift in Sources */,
 				789E61B92725817900D6E18F /* NibIdentifiable.swift in Sources */,
 				789E619B2725551400D6E18F /* RecordReactor.swift in Sources */,
@@ -1125,6 +1112,7 @@
 				78958E112712A04B003FF724 /* FontDefine.swift in Sources */,
 				782FDF4C272CFB6E004D1B6E /* PhotoFromAlbumCell.swift in Sources */,
 				78BB7E0E277843ED00DF78AF /* CommonDefine.swift in Sources */,
+				78BB7E132778563700DF78AF /* DetailCardCollectionViewCell.swift in Sources */,
 				783A61E2273BEE9F004D848F /* TopConerRadiusView.swift in Sources */,
 				782FDF3F272CF9CC004D1B6E /* ImageSelectModel.swift in Sources */,
 			);
