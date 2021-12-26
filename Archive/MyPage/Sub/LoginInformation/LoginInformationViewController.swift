@@ -103,8 +103,15 @@ class LoginInformationViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         self.logoutBtn.rx.tap
-            .map { Reactor.Action.logout }
-            .bind(to: reactor.action )
+            .asDriver()
+            .drive(onNext: {
+                CommonAlertView.shared.show(message: "로그아웃 하시겠어요?", subMessage: "로그인을 한 상태에서만\n나의 티켓들을 볼 수 있어요.", confirmBtnTxt: "로그아웃", cancelBtnTxt: "취소", confirmHandler: {
+                    CommonAlertView.shared.hide(nil)
+                    reactor.action.onNext(.logout)
+                }, cancelHandler: {
+                    CommonAlertView.shared.hide(nil)
+                })
+            })
             .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.eMail }

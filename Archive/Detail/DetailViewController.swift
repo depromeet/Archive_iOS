@@ -21,29 +21,22 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     
     enum CellModel {
         case cover(ArchiveDetailInfo)
-        case commonImage(ArchiveDetailImageInfo)
+        case commonImage(ArchiveDetailImageInfo, Emotion, String)
     }
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
-    @IBOutlet weak var scrollContainerView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var mainContainerView: UIView!
     
-    @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var bottomContainerView: UIView!
-    @IBOutlet weak var archiveTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var pageControl: UIPageControl!
     
     // MARK: private property
     
-    private let photoContentsView: DetailPhotoContentsView? = DetailPhotoContentsView.instance()
     private let modalShareViewController: ModalShareViewController = ModalShareViewController.init(nibName: "ModalShareViewController", bundle: nil)
+    private var willDisplayIndex: Int = 0
     
     weak var delegate: DetailViewControllerDelegate?
     
@@ -72,14 +65,13 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
             .asDriver(onErrorJustReturn: nil)
             .compactMap { $0 }
             .drive(onNext: { [weak self] info in
-                self?.setCardInfo(info)
                 self?.collectionView.delegate = nil
                 self?.collectionView.dataSource = nil
                 guard let images = info.images else { return }
                 self?.pageControl.numberOfPages = images.count + 1
                 var imageCellArr: [CellModel] = []
                 for imageItem in images {
-                    imageCellArr.append(CellModel.commonImage(imageItem))
+                    imageCellArr.append(CellModel.commonImage(imageItem, Emotion.fromString(info.emotion) ?? .fun, info.name))
                 }
                 let sections = Observable.just([
                     SectionModel(model: "card", items: [
@@ -92,8 +84,8 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                     switch item {
                     case .cover(let infoData):
                         return self.makeCardCell(with: infoData, from: collectionView, indexPath: indexPath)
-                    case .commonImage(let imageInfo):
-                        return self.makeImageCell(with: imageInfo, from: collectionView, indexPath: indexPath)
+                    case .commonImage(let imageInfo, let emotion, let name):
+                        return self.makeImageCell(with: imageInfo, emotion: emotion, name: name, from: collectionView, indexPath: indexPath)
                     }
                 })
                 let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -101,7 +93,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                 layout.minimumInteritemSpacing = 0
                 layout.scrollDirection = .horizontal
                 let width = UIScreen.main.bounds.width
-                let height = width * 520 / 375
+                let height = UIScreen.main.bounds.height
                 layout.itemSize = CGSize(width: width, height: height)
                 layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 self.collectionView.collectionViewLayout = layout
@@ -111,28 +103,26 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
             })
             .disposed(by: self.disposeBag)
         
-        self.collectionView.rx.willDisplayCell
+        self.collectionView.rx.didEndDisplayingCell
             .asDriver()
             .drive(onNext: { [weak self] info in
-                if info.at.section == 0 {
-                    self?.pageControl.currentPage = 0
-                } else {
-                    self?.pageControl.currentPage = info.at.item + 1
+                var index: Int = 0
+                if info.at.section != 0 {
+                    index = info.at.item + 1
+                }
+                
+                if index != (self?.willDisplayIndex ?? 0) {
+                    self?.pageControl.currentPage = self?.willDisplayIndex ?? 0
                 }
             })
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx.willDisplayCell
-            .asDriver()
-            .drive(onNext: { [weak self] info in
+            .subscribe(onNext: { [weak self] info in
                 if info.at.section == 0 {
-                    self?.photoContentsView?.isHidden = true
+                    self?.willDisplayIndex = 0
                 } else {
-                    self?.photoContentsView?.isHidden = false
-                    if let imageInfo = reactor.currentState.detailData?.images?[info.at.item] {
-                        self?.photoContentsView?.imageInfo = imageInfo
-                        self?.photoContentsView?.index = info.at.item
-                    }
+                    self?.willDisplayIndex = info.at.item + 1
                 }
             })
             .disposed(by: self.disposeBag)
@@ -181,64 +171,49 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
     // MARK: private function
     
     private func initUI() {
-        self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
+        self.mainBackgroundView.backgroundColor = Gen.Colors.gray04.color
         self.mainContainerView.backgroundColor = .clear
-        self.scrollContainerView.backgroundColor = .clear
-        self.scrollView.backgroundColor = .clear
-        self.topContainerView.backgroundColor = Gen.Colors.white.color
         self.collectionView.backgroundColor = .clear
         
-        self.bottomContainerView.backgroundColor = Gen.Colors.white.color
-        self.archiveTitleLabel.font = .fonts(.header2)
-        self.archiveTitleLabel.textColor = Gen.Colors.black.color
-        self.dateLabel.font = .fonts(.header3)
-        self.dateLabel.textColor = Gen.Colors.black.color
-        
         self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.register(UINib(nibName: DetailMainCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailMainCollectionViewCell.identifier)
+        self.collectionView.register(UINib(nibName: DetailCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailCardCollectionViewCell.identifier)
         self.collectionView.register(UINib(nibName: DetailContentsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: DetailContentsCollectionViewCell.identifier)
         
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
         
-        if let photoContentsView = self.photoContentsView {
-            self.bottomContainerView.addSubview(photoContentsView)
-            photoContentsView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-            photoContentsView.isHidden = true
-        }
-        
         makeNaviBtn()
     }
     
     private func makeCardCell(with element: ArchiveDetailInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMainCollectionViewCell.identifier, for: indexPath) as? DetailMainCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCardCollectionViewCell.identifier, for: indexPath) as? DetailCardCollectionViewCell else { return UICollectionViewCell() }
         cell.infoData = element
+        cell.topContainerViewHeightConstraint.constant = self.topbarHeight
         return cell
     }
     
-    private func makeImageCell(with element: ArchiveDetailImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    private func makeImageCell(with element: ArchiveDetailImageInfo, emotion: Emotion, name: String, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailContentsCollectionViewCell.identifier, for: indexPath) as? DetailContentsCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageInfo = element
+        cell.infoData = element
+        cell.topContainerViewHeightConstraint.constant = self.topbarHeight
+        cell.emotion = emotion
+        cell.name = name
         return cell
-    }
-    
-    private func setCardInfo(_ info: ArchiveDetailInfo) {
-        self.archiveTitleLabel.text = info.name
-        self.dateLabel.text = info.watchedOn
     }
     
     private func makeNaviBtn() {
         let moreImage = Gen.Images.moreVertBlack24dp.image
         moreImage.withRenderingMode(.alwaysTemplate)
         let moreBarButtonItem = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(moreButtonClicked(_:)))
+        moreBarButtonItem.tintColor = Gen.Colors.white.color
         self.navigationItem.rightBarButtonItem = moreBarButtonItem
         
         let closeImage = Gen.Images.xIcon.image
         closeImage.withRenderingMode(.alwaysTemplate)
         let backBarButtonItem = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
+        backBarButtonItem.tintColor = Gen.Colors.white.color
         self.navigationItem.leftBarButtonItem = backBarButtonItem
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Gen.Colors.white.color]
     }
     
     // MARK: internal function
@@ -263,6 +238,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                 self?.modalShareViewController.fadeIn()
             })
         }
+        alert.view.tintColor = .black
         alert.addAction(deleteAction)
         alert.addAction(shareAction)
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))

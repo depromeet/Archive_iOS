@@ -16,6 +16,7 @@ class ImageSelectReactor: Reactor, Stepper {
     // MARK: private property
     
     private var model: ImageSelectModelProtocol
+    private var recordImageSize: CGSize = CGSize(width: 700, height: 700)
     
     // MARK: internal property
     
@@ -112,7 +113,7 @@ class ImageSelectReactor: Reactor, Stepper {
             guard let asset = item.asset else { continue }
             assets.append(asset)
         }
-        phAssetToImages(assets, ImageSize: CGSize(width: 300, height: 300), completion: comletion)
+        phAssetToImages(assets, ImageSize: self.recordImageSize, completion: comletion)
     }
     
     private func phAssetToImages(_ assets: [PHAsset], ImageSize: CGSize, completion: @escaping ([UIImage]) -> Void) {

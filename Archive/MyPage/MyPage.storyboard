@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -78,16 +78,16 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cee-Bh-N1I">
-                                                                <rect key="frame" x="32" y="19.5" width="322" height="21"/>
+                                                                <rect key="frame" x="32" y="19.5" width="316" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tz4-fR-Liv">
-                                                                <rect key="frame" x="358" y="18" width="24" height="24"/>
+                                                                <rect key="frame" x="352" y="12.5" width="36" height="35"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="24" id="jMY-X4-d35"/>
-                                                                    <constraint firstAttribute="width" constant="24" id="kF8-fd-u73"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="jMY-X4-d35"/>
+                                                                    <constraint firstAttribute="width" constant="36" id="kF8-fd-u73"/>
                                                                 </constraints>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-2"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -98,7 +98,7 @@
                                                         <constraints>
                                                             <constraint firstItem="Tz4-fR-Liv" firstAttribute="centerY" secondItem="Wkr-yY-PUZ" secondAttribute="centerY" id="FsQ-00-IIE"/>
                                                             <constraint firstAttribute="height" constant="60" id="cma-Nx-eGm"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Tz4-fR-Liv" secondAttribute="trailing" constant="32" id="exV-Aa-ZEm"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Tz4-fR-Liv" secondAttribute="trailing" constant="26" id="exV-Aa-ZEm"/>
                                                             <constraint firstItem="Cee-Bh-N1I" firstAttribute="centerY" secondItem="Wkr-yY-PUZ" secondAttribute="centerY" id="fgn-1z-2va"/>
                                                             <constraint firstItem="Cee-Bh-N1I" firstAttribute="leading" secondItem="Wkr-yY-PUZ" secondAttribute="leading" constant="32" id="kk9-CA-O5H"/>
                                                             <constraint firstItem="Tz4-fR-Liv" firstAttribute="leading" secondItem="Cee-Bh-N1I" secondAttribute="trailing" constant="4" id="npx-gk-w3t"/>
