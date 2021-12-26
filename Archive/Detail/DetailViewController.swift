@@ -276,6 +276,7 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
                 self?.modalShareViewController.fadeIn()
             })
         }
+        alert.view.tintColor = .black
         alert.addAction(deleteAction)
         alert.addAction(shareAction)
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
