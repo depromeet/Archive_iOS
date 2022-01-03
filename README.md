@@ -54,7 +54,8 @@
 
 ## 릴리즈
 
-[v 1.0.1](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.1 )
+[v 1.0.1](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.1)
+[v 1.0.2](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.2)
 
 ## 라이센스
 

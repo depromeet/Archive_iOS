@@ -25,7 +25,7 @@ final class TicketCollectionViewLayout: UICollectionViewLayout {
     var contentOffset: CGPoint {
         return collectionView?.contentOffset ?? .zero
     }
-    var currentPage: Int {
+    private var currentPage: Int {
         return max(Int(contentOffset.x) / Int(bounds.width), .zero)
     }
     private var didInitialSetup = false
