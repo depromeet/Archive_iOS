@@ -395,13 +395,15 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             added = 34
         }
         self.scrollContainerViewBottomConstraint.constant = keyboardHeight - added
-        
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom + keyboardHeight - added)
+        self.scrollView.setContentOffset(bottomOffset, animated: true)
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
         self.scrollContainerViewBottomConstraint.constant = self.originMainContainerViewBottomConstraint
-        UIView.animate(withDuration: 1.0, animations: {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 1.0, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         })
     }
     
