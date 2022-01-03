@@ -221,6 +221,14 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         }
     }
     
+    func moveCollectionViewFirstIndex() {
+        DispatchQueue.main.async { [weak self] in
+            self?.ticketCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                    at: .left,
+                                                    animated: false)
+        }
+    }
+    
     // MARK: action
     
     
