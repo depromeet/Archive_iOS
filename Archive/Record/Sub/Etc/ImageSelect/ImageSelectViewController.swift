@@ -67,7 +67,7 @@ class ImageSelectViewController: UIViewController, StoryboardView, ActivityIndic
             .drive(onNext: { [weak self] asset in
                 self?.imageThumbnailContainerView.backgroundColor = Gen.Colors.white.color
                 guard let asset = asset else { return }
-                self?.phAssetToImage(asset, ImageSize: CGSize(width: 300, height: 300), completion: { [weak self] image in
+                self?.phAssetToImage(asset, ImageSize: CGSize(width: 700, height: 700), completion: { [weak self] image in
                     self?.thumbnailImageView.image = image
                 })
             })
