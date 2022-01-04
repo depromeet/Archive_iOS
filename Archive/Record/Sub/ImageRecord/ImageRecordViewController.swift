@@ -41,6 +41,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
     @IBOutlet weak var scrollContainerView: UIView!
+    @IBOutlet weak var scrollContainerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var topContainerBackgroundView: UIView!
@@ -69,6 +70,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
     private var willDisplayIndex: Int = 0
     private var willDisplaySectionIndex: Int = 0
+    private var originMainContainerViewBottomConstraint: CGFloat = 0
     
     // MARK: internal property
     
@@ -331,6 +333,10 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        
     }
     
     private func makeCardCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -380,6 +386,25 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     func showTopView() {
         self.topContainerView.isHidden = false
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        var added: CGFloat = 0
+        if UIDevice.current.hasNotch {
+            added = 34
+        }
+        self.scrollContainerViewBottomConstraint.constant = keyboardHeight - added
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom + keyboardHeight - added)
+        self.scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.scrollContainerViewBottomConstraint.constant = self.originMainContainerViewBottomConstraint
+        UIView.animate(withDuration: 1.0, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        })
     }
     
     // MARK: action

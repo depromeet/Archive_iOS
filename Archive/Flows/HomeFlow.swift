@@ -81,6 +81,7 @@ class HomeFlow: Flow {
             rootViewController.dismiss(animated: true, completion: { [weak self] in
                 self?.rootViewController.popToRootViewController(animated: false)
                 self?.homeViewControllerPtr?.reactor?.action.onNext(.getMyArchives)
+                self?.homeViewControllerPtr?.moveCollectionViewFirstIndex()
             })
             return .none
         default:

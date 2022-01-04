@@ -91,7 +91,7 @@ final class HomeReactor: Reactor, Stepper {
                 let infosTuple = convertDataToArchivesInfos(data: data)
                 let infos = infosTuple.0
                 let infosTotalCount = infosTuple.1
-                newState.archives = infos
+                newState.archives = infos.reversed()
                 newState.arvhivesCount = infosTotalCount
             }
         }

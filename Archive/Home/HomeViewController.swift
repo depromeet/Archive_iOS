@@ -108,29 +108,12 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
             })
             .disposed(by: self.disposeBag)
         
-        self.ticketCollectionView.rx.didEndDisplayingCell
-            .asDriver()
-            .drive(onNext: { [weak self] info in
-                guard let direction = self?.didScrollecDirection else { return }
-                switch direction {
-                case .right:
-                    self?.pageControl.currentPage = info.at.item + 1
-                case .left, .top, .bottom:
-                    return
-                }
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.ticketCollectionView.rx.willDisplayCell
-            .asDriver()
-            .drive(onNext: { [weak self] info in
-                guard let direction = self?.didScrollecDirection else { return }
-                switch direction {
-                case .left:
-                    self?.pageControl.currentPage = info.at.item
-                case .right, .top, .bottom:
-                    return
-                }
+        self.ticketCollectionView.rx.contentOffset
+            .map { $0.x }
+            .subscribe(onNext: { [weak self] xOffset in
+                let screenWidth: CGFloat = UIScreen.main.bounds.width
+                let currentIndex: Int = Int(xOffset/screenWidth)
+                self?.pageControl?.currentPage = currentIndex
             })
             .disposed(by: self.disposeBag)
         
@@ -235,6 +218,14 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
             if index+1 >= reactor.currentState.archives.count {
                 self?.ticketCollectionView.scrollToItem(at: IndexPath(item: index-1, section: 0), at: .top, animated: false)
             }
+        }
+    }
+    
+    func moveCollectionViewFirstIndex() {
+        DispatchQueue.main.async { [weak self] in
+            self?.ticketCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                    at: .left,
+                                                    animated: false)
         }
     }
     
