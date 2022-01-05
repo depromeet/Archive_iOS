@@ -223,9 +223,11 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     
     func moveCollectionViewFirstIndex() {
         DispatchQueue.main.async { [weak self] in
-            self?.ticketCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
-                                                    at: .left,
-                                                    animated: false)
+            if self?.reactor?.currentState.archives.count ?? 0 > 1 {
+                self?.ticketCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                        at: .left,
+                                                        animated: false)
+            }
         }
     }
     
