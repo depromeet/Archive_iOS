@@ -43,7 +43,10 @@ class SplashView: UIView, NibIdentifiable {
     func play() {
         self.isFinishAnimationFlag.onNext(false)
         self.animationView.play(completion: { [weak self] _ in
-            self?.isFinishAnimationFlag.onNext(true)
+            DispatchQueue.global().async { [weak self] in
+                usleep(4 * 100 * 1000)
+                self?.isFinishAnimationFlag.onNext(true)
+            }
         })
     }
     
