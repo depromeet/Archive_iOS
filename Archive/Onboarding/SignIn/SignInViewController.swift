@@ -10,13 +10,16 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-final class SignInViewController: UIViewController, StoryboardView, ActivityIndicatorable {
+final class SignInViewController: UIViewController, StoryboardView, ActivityIndicatorable, SplashViewProtocol {
     
+    @IBOutlet var mainContainerView: UIView!
     @IBOutlet private weak var idInputView: InputView!
     @IBOutlet private weak var passwordInputView: InputView!
     @IBOutlet private weak var signInButton: DefaultButton!
     @IBOutlet private weak var signUpButton: UIButton!
     var disposeBag = DisposeBag()
+    weak var targetView: UIView?
+    var attachedView: UIView? = SplashView.instance()
     
     init?(coder: NSCoder, reactor: SignInReactor) {
         super.init(coder: coder)
@@ -30,6 +33,7 @@ final class SignInViewController: UIViewController, StoryboardView, ActivityIndi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAttributes()
+        runSplashView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,5 +105,25 @@ final class SignInViewController: UIViewController, StoryboardView, ActivityIndi
                 }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    private func runSplashView() {
+        if !AppConfigManager.shared.isPlayedIntroSplashView {
+            AppConfigManager.shared.isPlayedIntroSplashView = true
+            self.targetView = self.mainContainerView
+            showSplashView(completion: {
+                (self.attachedView as? SplashView)?.play()
+            })
+            (self.attachedView as? SplashView)?.isFinishAnimationFlag
+                .asDriver(onErrorJustReturn: true)
+                .drive(onNext: { [weak self] in
+                    if $0 {
+                        self?.hideSplashView(completion: { [weak self] in
+                            self?.attachedView = nil
+                        })
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
 }

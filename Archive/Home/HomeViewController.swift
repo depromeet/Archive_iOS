@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class HomeViewController: UIViewController, StoryboardView, ActivityIndicatorable {
+final class HomeViewController: UIViewController, StoryboardView, ActivityIndicatorable, SplashViewProtocol {
     
     // MARK: IBOutlet
     @IBOutlet weak var mainContainerView: UIView!
@@ -39,6 +39,8 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     // MARK: internal property
     
     var disposeBag = DisposeBag()
+    weak var targetView: UIView?
+    var attachedView: UIView? = SplashView.instance()
     
     // MARK: lifeCycle
     
@@ -55,6 +57,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         super.viewDidLoad()
         initUI()
         self.reactor?.action.onNext(.getMyArchives)
+        runSplashView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -206,6 +209,26 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     
     @objc private func myPageAction(_ sender: UIButton) {
         self.reactor?.action.onNext(.showMyPage(self.reactor?.currentState.arvhivesCount ?? 0))
+    }
+    
+    private func runSplashView() {
+        if !AppConfigManager.shared.isPlayedIntroSplashView {
+            AppConfigManager.shared.isPlayedIntroSplashView = true
+            self.targetView = self.mainContainerView
+            showSplashView(completion: {
+                (self.attachedView as? SplashView)?.play()
+            })
+            (self.attachedView as? SplashView)?.isFinishAnimationFlag
+                .asDriver(onErrorJustReturn: true)
+                .drive(onNext: { [weak self] in
+                    if $0 {
+                        self?.hideSplashView(completion: { [weak self] in
+                            self?.attachedView = nil
+                        })
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
     
     // MARK: internal function

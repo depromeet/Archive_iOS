@@ -134,6 +134,7 @@
                     </view>
                     <connections>
                         <outlet property="idInputView" destination="SDs-c9-36d" id="pYR-zo-fUK"/>
+                        <outlet property="mainContainerView" destination="xpv-YU-iCx" id="A2n-UM-vLR"/>
                         <outlet property="passwordInputView" destination="6PH-uN-haw" id="xuM-5V-cW0"/>
                         <outlet property="signInButton" destination="5iO-9J-Z65" id="JIj-gp-3wN"/>
                         <outlet property="signUpButton" destination="uAy-wf-Bb4" id="Vhe-UI-lsk"/>

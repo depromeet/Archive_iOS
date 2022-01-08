@@ -33,6 +33,11 @@
 		4FD4F1DA272F86B800BDB4BB /* RecordImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4F1D8272F86B800BDB4BB /* RecordImageCollectionViewCell.swift */; };
 		4FD4F1DB272F86B800BDB4BB /* RecordImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FD4F1D9272F86B800BDB4BB /* RecordImageCollectionViewCell.xib */; };
 		780161D42751FD5200F77193 /* CardShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780161D32751FD5200F77193 /* CardShareManager.swift */; };
+		780389D3278956AF00DB1730 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 780389D2278956AF00DB1730 /* Splash.json */; };
+		780389D7278957A800DB1730 /* SplashProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389D6278957A800DB1730 /* SplashProtocol.swift */; };
+		780389DB27895AC200DB1730 /* AppConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389DA27895AC200DB1730 /* AppConfigManager.swift */; };
+		780389DD27895C7600DB1730 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389DC27895C7600DB1730 /* SplashView.swift */; };
+		780389DF27895C9C00DB1730 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780389DE27895C9C00DB1730 /* SplashView.xib */; };
 		780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */; };
 		780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478212723E83F00FAA1CF /* LoginInformationReactor.swift */; };
 		780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478232723E84900FAA1CF /* LoginInformationModel.swift */; };
@@ -175,6 +180,11 @@
 		53EB9EAFE492E4886567AE92 /* Pods_Archive_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Archive_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C4423C0F1934D8C0AFE14D /* Pods-Archive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archive.release.xcconfig"; path = "Target Support Files/Pods-Archive/Pods-Archive.release.xcconfig"; sourceTree = "<group>"; };
 		780161D32751FD5200F77193 /* CardShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardShareManager.swift; sourceTree = "<group>"; };
+		780389D2278956AF00DB1730 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
+		780389D6278957A800DB1730 /* SplashProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashProtocol.swift; sourceTree = "<group>"; };
+		780389DA27895AC200DB1730 /* AppConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigManager.swift; sourceTree = "<group>"; };
+		780389DC27895C7600DB1730 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		780389DE27895C9C00DB1730 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationViewController.swift; sourceTree = "<group>"; };
 		780478212723E83F00FAA1CF /* LoginInformationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationReactor.swift; sourceTree = "<group>"; };
 		780478232723E84900FAA1CF /* LoginInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationModel.swift; sourceTree = "<group>"; };
@@ -320,6 +330,8 @@
 				44922DC92719E64200A5EA2B /* DefaultButton.swift */,
 				44922DD12719FB9300A5EA2B /* InputView.swift */,
 				44AA7D882724494B006EEA98 /* ConditionCheckView.swift */,
+				780389DC27895C7600DB1730 /* SplashView.swift */,
+				780389DE27895C9C00DB1730 /* SplashView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +339,7 @@
 		44922DEA271A011000A5EA2B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				780389D6278957A800DB1730 /* SplashProtocol.swift */,
 				44FB0A2127184376006E1048 /* ReuseIdentifiable.swift */,
 				78212339273F9623007DEC28 /* CodableWrapper.swift */,
 				78315E6C2764AA12001B3342 /* CommonViewControllerProtocol.swift */,
@@ -528,6 +541,7 @@
 				783A61DE273BEB02004D848F /* InstagramStoryShareManager.swift */,
 				780161D32751FD5200F77193 /* CardShareManager.swift */,
 				78ED6765275B4DAB004E8AEC /* UserDefaultManager.swift */,
+				780389DA27895AC200DB1730 /* AppConfigManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -624,6 +638,7 @@
 		787C316D2743CF16002B04D7 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				780389D2278956AF00DB1730 /* Splash.json */,
 				78315E732764F2E6001B3342 /* SignUp.json */,
 				78315E712764EC38001B3342 /* Upload.json */,
 			);
@@ -914,6 +929,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78315E742764F2E6001B3342 /* SignUp.json in Resources */,
+				780389DF27895C9C00DB1730 /* SplashView.xib in Resources */,
 				784D1DC927083D88004B1A23 /* Colors.xcassets in Resources */,
 				784377AF273172820005CB51 /* RecordAddImageCollectionViewCell.xib in Resources */,
 				78958E0D27129FBB003FF724 /* Pretendard-Regular.ttf in Resources */,
@@ -930,6 +946,7 @@
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				78BB7E282778970900DF78AF /* DetailFriendsCollectionViewCell.xib in Resources */,
 				78599DD7276375C2003FD959 /* Home.storyboard in Resources */,
+				780389D3278956AF00DB1730 /* Splash.json in Resources */,
 				784D1DCA27083D88004B1A23 /* Images.xcassets in Resources */,
 				78BB7E142778563700DF78AF /* DetailCardCollectionViewCell.xib in Resources */,
 				78315E722764EC38001B3342 /* Upload.json in Resources */,
@@ -1040,6 +1057,7 @@
 				789E61C5272584ED00D6E18F /* ContentsRecordReactor.swift in Sources */,
 				787C2861275CC04B00C1FB17 /* ModalShareViewController.swift in Sources */,
 				780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */,
+				780389D7278957A800DB1730 /* SplashProtocol.swift in Sources */,
 				78BB7E272778970900DF78AF /* DetailFriendsCollectionViewCell.swift in Sources */,
 				78C4B33527243C660006EBAD /* NSMutableAttributedStringExtension.swift in Sources */,
 				78BB7E232778938500DF78AF /* DetailContentsCollectionViewCell.swift in Sources */,
@@ -1049,6 +1067,7 @@
 				44FB0A09271832E9006E1048 /* OnboardingFlow.swift in Sources */,
 				7821232F273F8954007DEC28 /* RecordUploadCompleteReactor.swift in Sources */,
 				789E619D2725551C00D6E18F /* RecordModel.swift in Sources */,
+				780389DD27895C7600DB1730 /* SplashView.swift in Sources */,
 				78599DD4276375C2003FD959 /* TicketImageContentView.swift in Sources */,
 				44FB09FB27183269006E1048 /* ArchiveStep.swift in Sources */,
 				7821232A273F83A1007DEC28 /* RecordUploadModel.swift in Sources */,
@@ -1131,6 +1150,7 @@
 				78BB7E132778563700DF78AF /* DetailCardCollectionViewCell.swift in Sources */,
 				783A61E2273BEE9F004D848F /* TopConerRadiusView.swift in Sources */,
 				782FDF3F272CF9CC004D1B6E /* ImageSelectModel.swift in Sources */,
+				780389DB27895AC200DB1730 /* AppConfigManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,7 +1292,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4ZJYAK634;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Archive/Info.plist;
@@ -1281,7 +1301,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.Archive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ArchiveDev;
@@ -1298,7 +1318,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4ZJYAK634;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Archive/Info.plist;
@@ -1307,7 +1327,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.depromeet.Archive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ArchiveDev;
