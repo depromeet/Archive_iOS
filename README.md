@@ -6,8 +6,8 @@
  - [Archive AppStore](https://apps.apple.com/kr/app/archive/id1599941822)
 
 ## 컨트리뷰터 (가나다 순)
-- 👨🏻‍💻[이한위](https://github.com/HanweeeeLee) ✉️: mobiledev@kakao.com
-- 🧑‍💻[홍동현](https://github.com/TTOzzi)
+- [이한위](https://github.com/HanweeeeLee) ✉️: mobiledev@kakao.com
+- [홍동현](https://github.com/TTOzzi)
 
 ## 다른 플랫폼
  - [서버](https://github.com/depromeet/Archive_Backend)
@@ -54,8 +54,9 @@
 
 ## 릴리즈
 
-[v 1.0.1](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.1)
-[v 1.0.2](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.2)
+ - [v 1.0.1](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.1)
+ - [v 1.0.2](https://github.com/depromeet/Archive_iOS/releases/tag/1.0.2)
+ - [v 1.0.3]()
 
 ## 라이센스
 

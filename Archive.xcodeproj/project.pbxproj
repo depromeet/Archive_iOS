@@ -38,6 +38,10 @@
 		780389DB27895AC200DB1730 /* AppConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389DA27895AC200DB1730 /* AppConfigManager.swift */; };
 		780389DD27895C7600DB1730 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389DC27895C7600DB1730 /* SplashView.swift */; };
 		780389DF27895C9C00DB1730 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780389DE27895C9C00DB1730 /* SplashView.xib */; };
+		780389E2278988BF00DB1730 /* CardRecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389E0278988BF00DB1730 /* CardRecordCollectionViewCell.swift */; };
+		780389E3278988BF00DB1730 /* CardRecordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780389E1278988BF00DB1730 /* CardRecordCollectionViewCell.xib */; };
+		780389E627898A0D00DB1730 /* PhotoRecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780389E427898A0D00DB1730 /* PhotoRecordCollectionViewCell.swift */; };
+		780389E727898A0D00DB1730 /* PhotoRecordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780389E527898A0D00DB1730 /* PhotoRecordCollectionViewCell.xib */; };
 		780478202723E83100FAA1CF /* LoginInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */; };
 		780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478212723E83F00FAA1CF /* LoginInformationReactor.swift */; };
 		780478242723E84900FAA1CF /* LoginInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780478232723E84900FAA1CF /* LoginInformationModel.swift */; };
@@ -185,6 +189,10 @@
 		780389DA27895AC200DB1730 /* AppConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigManager.swift; sourceTree = "<group>"; };
 		780389DC27895C7600DB1730 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		780389DE27895C9C00DB1730 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
+		780389E0278988BF00DB1730 /* CardRecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRecordCollectionViewCell.swift; sourceTree = "<group>"; };
+		780389E1278988BF00DB1730 /* CardRecordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardRecordCollectionViewCell.xib; sourceTree = "<group>"; };
+		780389E427898A0D00DB1730 /* PhotoRecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRecordCollectionViewCell.swift; sourceTree = "<group>"; };
+		780389E527898A0D00DB1730 /* PhotoRecordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoRecordCollectionViewCell.xib; sourceTree = "<group>"; };
 		7804781F2723E83100FAA1CF /* LoginInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationViewController.swift; sourceTree = "<group>"; };
 		780478212723E83F00FAA1CF /* LoginInformationReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationReactor.swift; sourceTree = "<group>"; };
 		780478232723E84900FAA1CF /* LoginInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInformationModel.swift; sourceTree = "<group>"; };
@@ -622,6 +630,10 @@
 			children = (
 				7877699E273AA98100519B58 /* PhotoContentsView.swift */,
 				7877699F273AA98100519B58 /* PhotoContentsView.xib */,
+				780389E0278988BF00DB1730 /* CardRecordCollectionViewCell.swift */,
+				780389E1278988BF00DB1730 /* CardRecordCollectionViewCell.xib */,
+				780389E427898A0D00DB1730 /* PhotoRecordCollectionViewCell.swift */,
+				780389E527898A0D00DB1730 /* PhotoRecordCollectionViewCell.xib */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -942,6 +954,7 @@
 				782FDF4D272CFB6E004D1B6E /* HWPhotoListFromAlbumView.xib in Resources */,
 				4FD4F1DB272F86B800BDB4BB /* RecordImageCollectionViewCell.xib in Resources */,
 				787769A1273AA98100519B58 /* PhotoContentsView.xib in Resources */,
+				780389E3278988BF00DB1730 /* CardRecordCollectionViewCell.xib in Resources */,
 				78599DED27638241003FD959 /* HomeShimmerView.xib in Resources */,
 				4FD4F1D5272F869A00BDB4BB /* RecordCardCollectionViewCell.xib in Resources */,
 				78BB7E282778970900DF78AF /* DetailFriendsCollectionViewCell.xib in Resources */,
@@ -951,6 +964,7 @@
 				78BB7E142778563700DF78AF /* DetailCardCollectionViewCell.xib in Resources */,
 				78315E722764EC38001B3342 /* Upload.json in Resources */,
 				782FDF4B272CFB6E004D1B6E /* PhotoFromAlbumCell.xib in Resources */,
+				780389E727898A0D00DB1730 /* PhotoRecordCollectionViewCell.xib in Resources */,
 				78A32164275B91580078650D /* Detail.storyboard in Resources */,
 				78958E0E27129FBB003FF724 /* Pretendard-Bold.ttf in Resources */,
 				4489368A2708380100EA423A /* Onboarding.storyboard in Resources */,
@@ -1097,6 +1111,7 @@
 				789E61992725550A00D6E18F /* RecordViewController.swift in Sources */,
 				784D1E2127088BC0004B1A23 /* HWFlipView.swift in Sources */,
 				78C4B32F272429370006EBAD /* WithdrawalModel.swift in Sources */,
+				780389E2278988BF00DB1730 /* CardRecordCollectionViewCell.swift in Sources */,
 				789E61B027257BCB00D6E18F /* ImageRecordReactor.swift in Sources */,
 				78599DDA276375C2003FD959 /* HomeReactor.swift in Sources */,
 				780478222723E83F00FAA1CF /* LoginInformationReactor.swift in Sources */,
@@ -1104,6 +1119,7 @@
 				78958E142712A0C5003FF724 /* UIFontExtension.swift in Sources */,
 				78BA154127218F430078B88E /* MyPageViewController.swift in Sources */,
 				782FDF4E272CFB6E004D1B6E /* PhotoFromAlbumModel.swift in Sources */,
+				780389E627898A0D00DB1730 /* PhotoRecordCollectionViewCell.swift in Sources */,
 				78212326273F838A007DEC28 /* RecordUploadViewController.swift in Sources */,
 				44922DCA2719E64200A5EA2B /* DefaultButton.swift in Sources */,
 				78557A2A272ECFC800C5BD62 /* UIDeviceExtension.swift in Sources */,

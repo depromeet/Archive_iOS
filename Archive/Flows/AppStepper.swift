@@ -10,7 +10,6 @@ import RxFlow
 
 final class AppStepper: Stepper {
 
-
     let steps = PublishRelay<Step>()
 
     var initialStep: Step {
