@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardRecordCollectionViewCell: UICollectionViewCell {
+class CardRecordCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     // MARK: IBOutlet
     @IBOutlet weak var scrollContainerView: UIView!

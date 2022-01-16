@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CardRecordCollectionViewCell" customModule="Archive" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardRecordCollectionViewCell" id="gTV-IL-0wX" customClass="CardRecordCollectionViewCell" customModule="Archive" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="319" height="669"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -79,7 +79,7 @@
                                                                 <buttonConfiguration key="configuration" style="plain" image="addPhoto" title=" "/>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                         <constraints>
                                                             <constraint firstItem="iY7-Hp-It2" firstAttribute="leading" secondItem="7D5-q6-0v6" secondAttribute="leading" constant="32" id="2wL-U8-Krj"/>
                                                             <constraint firstAttribute="trailing" secondItem="iY7-Hp-It2" secondAttribute="trailing" constant="32" id="5SC-7S-MdU"/>
@@ -305,9 +305,6 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

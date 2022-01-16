@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoRecordCollectionViewCell: UICollectionViewCell {
+class PhotoRecordCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     // MARK: IBOutlet
     
