@@ -33,19 +33,41 @@ protocol ImageRecordViewControllerDelegate: AnyObject {
 class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordViewControllerProtocol, ActivityIndicatorable {
     
     enum CellModel {
-        case cover(UIImage?)
+        case cover(UIImage)
         case commonImage(ImageInfo)
         case addImage(Void)
     }
     
     // MARK: IBOutlet
     @IBOutlet weak var mainBackgroundView: UIView!
+    @IBOutlet weak var scrollContainerView: UIView!
+    @IBOutlet weak var scrollContainerViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var topContainerBackgroundView: UIView!
+    @IBOutlet weak var topContainerView: UIView!
+    @IBOutlet weak var emotionMainImageView: UIImageView!
+    @IBOutlet weak var topContentsContainerView: UIView!
+    @IBOutlet weak var defaultImageContainerView: UIView!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var emotionSelectView: UIView!
+    @IBOutlet weak var emotionSelectBtn: UIButton!
+    @IBOutlet weak var miniEmotionImageView: UIImageView!
+    @IBOutlet weak var emotionLabel: UILabel!
+    @IBOutlet weak var addPhotoImgView: UIImageView!
+    @IBOutlet weak var addPhotoBtn: UIButton!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var bottomContainerView: UIView!
+    @IBOutlet weak var helpLabel: UILabel!
+    @IBOutlet weak var doWriteLabel: UILabel!
+    @IBOutlet weak var bottomBtn: UIButton!
+    
+    @IBOutlet weak var imagesCollectionView: UICollectionView!
+    
     @IBOutlet weak var pageControl: UIPageControl!
     // MARK: private property
     
-//    private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
+    private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
     private var willDisplayIndex: Int = 0
     private var willDisplaySectionIndex: Int = 0
     private var originMainContainerViewBottomConstraint: CGFloat = 0
@@ -70,73 +92,87 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        self.reactor?.action.onNext(.setThumbnailImage(nil))
     }
     
     func bind(reactor: ImageRecordReactor) {
-//        self.addPhotoBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                self?.delegate?.clickedPhotoSeleteArea()
-//            })
-//            .disposed(by: self.disposeBag)
-//
-//        self.emotionSelectBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                self?.delegate?.clickedEmotionSelectArea(currentEmotion: reactor.currentState.emotion)
-//            })
-//            .disposed(by: self.disposeBag)
-//
-//        self.bottomBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                self?.delegate?.clickedContentsArea()
-//            })
-//            .disposed(by: self.disposeBag)
-//
-//        reactor.state
-//            .map { $0.emotion }
-//            .asDriver(onErrorJustReturn: nil)
-//            .compactMap { $0 }
-//            .drive(onNext: { [weak self] emotion in
-//                self?.addPhotoImgView.isHidden = false
-//                self?.addPhotoBtn.isHidden = false
-//                switch emotion {
-//                case .fun:
-//                    self?.coverImageView.image = Gen.Images.coverFun.image
-//                    self?.topContainerView.backgroundColor = Gen.Colors.funYellow.color
-//                    self?.miniEmotionImageView.image = Gen.Images.typeFunMini.image
-//                    self?.emotionLabel.text = "재미있는"
-//                case .impressive:
-//                    self?.coverImageView.image = Gen.Images.coverImpressive.image
-//                    self?.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
-//                    self?.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
-//                    self?.emotionLabel.text = "인상적인"
-//                case .pleasant:
-//                    self?.coverImageView.image = Gen.Images.coverPleasant.image
-//                    self?.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
-//                    self?.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
-//                    self?.emotionLabel.text = "기분좋은"
-//                case .splendid:
-//                    self?.coverImageView.image = Gen.Images.coverSplendid.image
-//                    self?.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
-//                    self?.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
-//                    self?.emotionLabel.text = "아름다운"
-//                case .wonderful:
-//                    self?.coverImageView.image = Gen.Images.coverWonderful.image
-//                    self?.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
-//                    self?.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
-//                    self?.emotionLabel.text = "경이로운"
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
+        self.addPhotoBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.delegate?.clickedPhotoSeleteArea()
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.emotionSelectBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.delegate?.clickedEmotionSelectArea(currentEmotion: reactor.currentState.emotion)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.bottomBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.delegate?.clickedContentsArea()
+            })
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.emotion }
+            .asDriver(onErrorJustReturn: nil)
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] emotion in
+                self?.addPhotoImgView.isHidden = false
+                self?.addPhotoBtn.isHidden = false
+                switch emotion {
+                case .fun:
+                    self?.coverImageView.image = Gen.Images.coverFun.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.funYellow.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeFunMini.image
+                    self?.emotionLabel.text = "재미있는"
+                case .impressive:
+                    self?.coverImageView.image = Gen.Images.coverImpressive.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.impressiveGreen.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeImpressiveMini.image
+                    self?.emotionLabel.text = "인상적인"
+                case .pleasant:
+                    self?.coverImageView.image = Gen.Images.coverPleasant.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.pleasantRed.color
+                    self?.miniEmotionImageView.image = Gen.Images.typePleasantMini.image
+                    self?.emotionLabel.text = "기분좋은"
+                case .splendid:
+                    self?.coverImageView.image = Gen.Images.coverSplendid.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.splendidBlue.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeSplendidMini.image
+                    self?.emotionLabel.text = "아름다운"
+                case .wonderful:
+                    self?.coverImageView.image = Gen.Images.coverWonderful.image
+                    self?.topContainerView.backgroundColor = Gen.Colors.wonderfulPurple.color
+                    self?.miniEmotionImageView.image = Gen.Images.typeWonderfulMini.image
+                    self?.emotionLabel.text = "경이로운"
+                }
+            })
+            .disposed(by: self.disposeBag)
             
         
         Observable.zip(reactor.state.map { $0.thumbnailImage }, reactor.state.map { $0.imageInfos }.map { $0 })
             .asDriver(onErrorJustReturn: (nil, nil))
             .drive(onNext: {[weak self] zippedImages in
-                self?.collectionView.delegate = nil
-                self?.collectionView.dataSource = nil
-                self?.collectionView.isHidden = false
-                
+                self?.imagesCollectionView.delegate = nil
+                self?.imagesCollectionView.dataSource = nil
+                guard let cardImage = zippedImages.0 else { return }
+                guard let images = zippedImages.1 else { return }
+                self?.pageControl.numberOfPages = images.count + 2
+                self?.defaultImageContainerView.isHidden = true
+                self?.imagesCollectionView.isHidden = false
+                self?.topContentsContainerView.backgroundColor = .clear
+                var imageCellArr: [CellModel] = []
+                for imageItem in images {
+                    imageCellArr.append(CellModel.commonImage(imageItem))
+                }
+                let sections = Observable.just([
+                    SectionModel(model: "card", items: [
+                        CellModel.cover(cardImage)
+                    ]),
+                    SectionModel(model: "image", items: imageCellArr),
+                    SectionModel(model: "addImage", items: [CellModel.addImage(())])
+                ])
                 guard let self = self else { return }
                 let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
                     switch item {
@@ -152,71 +188,28 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
                 layout.minimumLineSpacing = 0
                 layout.minimumInteritemSpacing = 0
                 layout.scrollDirection = .horizontal
-                layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.bounds.height)
+                layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.imagesCollectionView.bounds.height)
                 layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                self.collectionView.collectionViewLayout = layout
-                
-                if zippedImages.0 == nil {
-                    let sections = Observable.just([
-                        SectionModel(model: "card", items: [
-                            CellModel.cover(nil)
-                        ])
-                    ])
-                    let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellModel>>(configureCell: { dataSource, collectionView, indexPath, item in
-                        switch item {
-                        case .cover(let image):
-                            return self.makeCardCell(emotion: reactor.currentState.emotion, with: image, from: collectionView, indexPath: indexPath)
-                        case .commonImage(let imageInfo):
-                            return self.makeImageCell(emotion: reactor.currentState.emotion, with: imageInfo, from: collectionView, indexPath: indexPath)
-                        case .addImage:
-                            return self.makeAddImageCell(from: collectionView, indexPath: indexPath)
-                        }
-                    })
-                    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.scrollDirection = .horizontal
-                    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.bounds.height)
-                    layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                    self.collectionView.collectionViewLayout = layout
-                    sections
-                        .bind(to: self.collectionView.rx.items(dataSource: dataSource))
-                        .disposed(by: self.disposeBag)
+                self.imagesCollectionView.collectionViewLayout = layout
+                sections
+                    .bind(to: self.imagesCollectionView.rx.items(dataSource: dataSource))
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .compactMap { $0 }
+            .drive(onNext: { [weak self] item in
+                if item.at.section == 0 {
+                    self?.emotionSelectView.isHidden = false
                 } else {
-                    guard let cardImage = zippedImages.0 else { return }
-                    guard let images = zippedImages.1 else { return }
-                    self.pageControl.numberOfPages = images.count + 2
-                    var imageCellArr: [CellModel] = []
-                    for imageItem in images {
-                        imageCellArr.append(CellModel.commonImage(imageItem))
-                    }
-                    let sections = Observable.just([
-                        SectionModel(model: "card", items: [
-                            CellModel.cover(cardImage)
-                        ]),
-                        SectionModel(model: "image", items: imageCellArr),
-                        SectionModel(model: "addImage", items: [CellModel.addImage(())])
-                    ])
-                    sections
-                        .bind(to: self.collectionView.rx.items(dataSource: dataSource))
-                        .disposed(by: self.disposeBag)
+                    self?.emotionSelectView.isHidden = true
                 }
             })
             .disposed(by: self.disposeBag)
         
-//        self.imagesCollectionView.rx.willDisplayCell
-//            .asDriver()
-//            .compactMap { $0 }
-//            .drive(onNext: { [weak self] item in
-//                if item.at.section == 0 {
-//                    self?.emotionSelectView.isHidden = false
-//                } else {
-//                    self?.emotionSelectView.isHidden = true
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
-        
-        self.collectionView.rx.itemSelected
+        self.imagesCollectionView.rx.itemSelected
             .asDriver()
             .compactMap { $0 }
             .drive(onNext: { [weak self] selectedItem in
@@ -226,22 +219,22 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-//        self.collectionView.rx.willDisplayCell
-//            .asDriver()
-//            .drive(onNext: { [weak self] info in
-//                if info.at.section == 0 || info.at.section == 2 {
-//                    self?.photoContentsView?.isHidden = true
-//                } else {
-//                    self?.photoContentsView?.isHidden = false
-//                    if let imageInfo = reactor.currentState.imageInfos?[info.at.item] {
-//                        self?.photoContentsView?.imageInfo = imageInfo
-//                        self?.photoContentsView?.index = info.at.item
-//                    }
-//                }
-//            })
-//            .disposed(by: self.disposeBag)
+        self.imagesCollectionView.rx.willDisplayCell
+            .asDriver()
+            .drive(onNext: { [weak self] info in
+                if info.at.section == 0 || info.at.section == 2 {
+                    self?.photoContentsView?.isHidden = true
+                } else {
+                    self?.photoContentsView?.isHidden = false
+                    if let imageInfo = reactor.currentState.imageInfos?[info.at.item] {
+                        self?.photoContentsView?.imageInfo = imageInfo
+                        self?.photoContentsView?.index = info.at.item
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
         
-        self.collectionView.rx.didEndDisplayingCell
+        self.imagesCollectionView.rx.didEndDisplayingCell
             .asDriver()
             .drive(onNext: { [weak self] info in
                 var index: Int = 0
@@ -258,7 +251,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             })
             .disposed(by: self.disposeBag)
         
-        self.collectionView.rx.willDisplayCell
+        self.imagesCollectionView.rx.willDisplayCell
             .subscribe(onNext: { [weak self] info in
                 self?.willDisplaySectionIndex = info.at.section
                 if info.at.section == 0 {
@@ -295,47 +288,47 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     private func initUI() {
         self.mainBackgroundView.backgroundColor = Gen.Colors.white.color
-//        self.scrollContainerView.backgroundColor = .clear
-//        self.scrollView.backgroundColor = .clear
-//        self.mainContainerView.backgroundColor = .clear
-//        self.topContainerBackgroundView.backgroundColor = Gen.Colors.gray05.color
-//        self.topContainerView.backgroundColor = .clear
-//        self.topContentsContainerView.backgroundColor = .clear
-//        self.emotionSelectView.backgroundColor = .clear
-//        self.emotionSelectView.layer.cornerRadius = 8
-//        self.emotionSelectView.layer.borderWidth = 1
-//        self.emotionSelectView.layer.borderColor = Gen.Colors.black.color.cgColor
-//
-//        self.emotionLabel.font = .fonts(.subTitle)
-//        self.emotionLabel.textColor = Gen.Colors.black.color
-//        self.emotionLabel.text = "전시가 어땠나요?"
-//
-//        self.bottomContainerView.backgroundColor = Gen.Colors.white.color
-//
-//        self.helpLabel.font = .fonts(.subTitle)
-//        self.helpLabel.textColor = Gen.Colors.black.color
-//        self.helpLabel.text = "무슨 전시를 감상했나요?"
-//
-//        self.doWriteLabel.font = .fonts(.header2)
-//        self.doWriteLabel.textColor = Gen.Colors.gray03.color
-//        self.doWriteLabel.text = "전시명을 입력해주세요."
-//
-//        self.addPhotoImgView.isHidden = true
-//        self.addPhotoBtn.isHidden = true
-        self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.isHidden = true
-        self.collectionView.register(UINib(nibName: CardRecordCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CardRecordCollectionViewCell.identifier)
-        self.collectionView.register(UINib(nibName: PhotoRecordCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: PhotoRecordCollectionViewCell.identifier)
-//        self.collectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
-//
-//        if let photoContentsView = self.photoContentsView {
-//            self.bottomContainerView.addSubview(photoContentsView)
-//            photoContentsView.snp.makeConstraints {
-//                $0.edges.equalToSuperview()
-//            }
-//            photoContentsView.isHidden = true
-//            photoContentsView.delegate = self
-//        }
+        self.scrollContainerView.backgroundColor = .clear
+        self.scrollView.backgroundColor = .clear
+        self.mainContainerView.backgroundColor = .clear
+        self.topContainerBackgroundView.backgroundColor = Gen.Colors.gray05.color
+        self.topContainerView.backgroundColor = .clear
+        self.topContentsContainerView.backgroundColor = .clear
+        self.emotionSelectView.backgroundColor = .clear
+        self.emotionSelectView.layer.cornerRadius = 8
+        self.emotionSelectView.layer.borderWidth = 1
+        self.emotionSelectView.layer.borderColor = Gen.Colors.black.color.cgColor
+        
+        self.emotionLabel.font = .fonts(.subTitle)
+        self.emotionLabel.textColor = Gen.Colors.black.color
+        self.emotionLabel.text = "전시가 어땠나요?"
+        
+        self.bottomContainerView.backgroundColor = Gen.Colors.white.color
+        
+        self.helpLabel.font = .fonts(.subTitle)
+        self.helpLabel.textColor = Gen.Colors.black.color
+        self.helpLabel.text = "무슨 전시를 감상했나요?"
+        
+        self.doWriteLabel.font = .fonts(.header2)
+        self.doWriteLabel.textColor = Gen.Colors.gray03.color
+        self.doWriteLabel.text = "전시명을 입력해주세요."
+        
+        self.addPhotoImgView.isHidden = true
+        self.addPhotoBtn.isHidden = true
+        self.imagesCollectionView.showsHorizontalScrollIndicator = false
+        self.imagesCollectionView.isHidden = true
+        self.imagesCollectionView.register(UINib(nibName: RecordCardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordCardCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordImageCollectionViewCell.identifier)
+        self.imagesCollectionView.register(UINib(nibName: RecordAddImageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: RecordAddImageCollectionViewCell.identifier)
+        
+        if let photoContentsView = self.photoContentsView {
+            self.bottomContainerView.addSubview(photoContentsView)
+            photoContentsView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            photoContentsView.isHidden = true
+            photoContentsView.delegate = self
+        }
         self.pageControl.numberOfPages = 0
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
@@ -346,25 +339,24 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
     }
     
-    private func makeCardCell(emotion: Emotion?, with element: UIImage?, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardRecordCollectionViewCell.identifier, for: indexPath) as? CardRecordCollectionViewCell else { return UICollectionViewCell() }
-        cell.delegate = self
+    private func makeCardCell(emotion: Emotion?, with element: UIImage, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordCardCollectionViewCell.identifier, for: indexPath) as? RecordCardCollectionViewCell else { return UICollectionViewCell() }
         cell.mainImageView.image = element
-//        cell.emotion = emotion
+        cell.emotion = emotion
         return cell
     }
     
     private func makeImageCell(emotion: Emotion?, with element: ImageInfo, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoRecordCollectionViewCell.identifier, for: indexPath) as? PhotoRecordCollectionViewCell else { return UICollectionViewCell() }
-//        cell.index = indexPath.item
-//        cell.imageInfo = element
-//        cell.emotion = emotion
-//        cell.delegate = self
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCollectionViewCell.identifier, for: indexPath) as? RecordImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.index = indexPath.item
+        cell.imageInfo = element
+        cell.emotion = emotion
+        cell.delegate = self
         return cell
     }
     
     private func makeAddImageCell(from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoRecordCollectionViewCell.identifier, for: indexPath) as? PhotoRecordCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: RecordAddImageCollectionViewCell.identifier, for: indexPath) as? RecordAddImageCollectionViewCell else { return UICollectionViewCell() }
         return cell
     }
     
@@ -382,18 +374,18 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     // MARK: internal function
     
     func setRecordTitle(_ title: String) {
-//        DispatchQueue.main.async { [weak self] in
-//            self?.doWriteLabel.text = title
-//            self?.doWriteLabel.textColor = Gen.Colors.black.color
-//        }
+        DispatchQueue.main.async { [weak self] in
+            self?.doWriteLabel.text = title
+            self?.doWriteLabel.textColor = Gen.Colors.black.color
+        }
     }
     
     func hideTopView() {
-//        self.topContainerView.isHidden = true
+        self.topContainerView.isHidden = true
     }
     
     func showTopView() {
-//        self.topContainerView.isHidden = false
+        self.topContainerView.isHidden = false
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -402,17 +394,17 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         if UIDevice.current.hasNotch {
             added = 34
         }
-//        self.scrollContainerViewBottomConstraint.constant = keyboardHeight - added
-//        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom + keyboardHeight - added)
-//        self.scrollView.setContentOffset(bottomOffset, animated: true)
+        self.scrollContainerViewBottomConstraint.constant = keyboardHeight - added
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom + keyboardHeight - added)
+        self.scrollView.setContentOffset(bottomOffset, animated: true)
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-//        self.scrollContainerViewBottomConstraint.constant = self.originMainContainerViewBottomConstraint
-//        UIView.animate(withDuration: 1.0, animations: { [weak self] in
-//            self?.view.layoutIfNeeded()
-//            self?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-//        })
+        self.scrollContainerViewBottomConstraint.constant = self.originMainContainerViewBottomConstraint
+        UIView.animate(withDuration: 1.0, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        })
     }
     
     // MARK: action
@@ -425,7 +417,7 @@ extension ImageRecordViewController: PhotoContentsViewDelegate {
         if var infos = self.reactor?.currentState.imageInfos {
             infos[index].contents = text
             self.reactor?.action.onNext(.setImageInfos(infos))
-//            self.imagesCollectionView.scrollToItem(at: IndexPath(item: index, section: 1), at: .left, animated: false)
+            self.imagesCollectionView.scrollToItem(at: IndexPath(item: index, section: 1), at: .left, animated: false)
         }
     }
 }
@@ -443,25 +435,9 @@ extension ImageRecordViewController: CropViewControllerDelegate {
                 if var infos = self?.reactor?.currentState.imageInfos {
                     infos[cropViewController.cropView.tag].image = image
                     self?.reactor?.action.onNext(.setImageInfos(infos))
-//                    self?.imagesCollectionView.scrollToItem(at: IndexPath(item: cropViewController.cropView.tag, section: 1), at: .left, animated: false)
+                    self?.imagesCollectionView.scrollToItem(at: IndexPath(item: cropViewController.cropView.tag, section: 1), at: .left, animated: false)
                 }
             })
         }
     }
-}
-
-extension ImageRecordViewController: CardRecordCollectionViewCellDelegate {
-    
-    func selectImageClicked() {
-        
-    }
-    
-    func selectEmotionClicked() {
-        self.delegate?.clickedEmotionSelectArea(currentEmotion: self.reactor?.currentState.emotion ?? .fun)
-    }
-    
-    func selectContentsClicked() {
-        
-    }
-    
 }

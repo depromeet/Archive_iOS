@@ -11,8 +11,6 @@ import ReactorKit
 import UIImageColors
 
 class ImageRecordReactor: Reactor {
-    
-//    enumw
     // MARK: private property
     
     private let model: ImageRecordModelProtocol
@@ -30,14 +28,14 @@ class ImageRecordReactor: Reactor {
     }
     
     enum Action {
-        case setThumbnailImage(_ image: UIImage?)
+        case setThumbnailImage(_ image: UIImage)
         case setImages(_ images: [UIImage])
         case setEmotion(_ emotion: Emotion)
         case setImageInfos(_ infos: [ImageInfo])
     }
     
     enum Mutation {
-        case setThumbnailImage(_ image: UIImage?)
+        case setThumbnailImage(_ image: UIImage)
         case setImageInfos(_ images: [ImageInfo])
         case setEmotion(_ emotion: Emotion)
     }
