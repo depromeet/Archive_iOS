@@ -44,6 +44,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     @IBOutlet weak var scrollContainerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var naviShadowViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var topContainerBackgroundView: UIView!
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var emotionMainImageView: UIImageView!
@@ -335,6 +336,8 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.naviShadowViewHeightConstraint.constant = self.topbarHeight
         
         
     }
