@@ -408,11 +408,11 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fac-BC-RNF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dIX-nw-8pR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O4U-i7-Y7Y">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -431,13 +431,13 @@
                                         </cells>
                                     </collectionView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-Ke-H2L">
-                                        <rect key="frame" x="122" y="782" width="170" height="26"/>
+                                        <rect key="frame" x="122" y="860" width="170" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="FLy-yQ-OLM"/>
                                         </constraints>
                                     </pageControl>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <color key="backgroundColor" name="Gray04"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="UHO-Ke-H2L" secondAttribute="bottom" constant="10" id="2gr-tP-nK0"/>
                                     <constraint firstItem="UHO-Ke-H2L" firstAttribute="centerX" secondItem="Fac-BC-RNF" secondAttribute="centerX" id="6nI-EY-g41"/>
@@ -453,11 +453,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Uiv-95-LTo" secondAttribute="bottom" id="6j5-Fp-0cm"/>
                             <constraint firstItem="Uiv-95-LTo" firstAttribute="top" secondItem="onV-KK-J8e" secondAttribute="top" id="Hlq-ZU-GUn"/>
-                            <constraint firstItem="1sk-Yg-TAP" firstAttribute="bottom" secondItem="Fac-BC-RNF" secondAttribute="bottom" id="QWp-g8-ufP"/>
+                            <constraint firstAttribute="bottom" secondItem="Fac-BC-RNF" secondAttribute="bottom" id="QWp-g8-ufP"/>
                             <constraint firstItem="1sk-Yg-TAP" firstAttribute="trailing" secondItem="Fac-BC-RNF" secondAttribute="trailing" id="RvU-4J-K6b"/>
                             <constraint firstItem="1sk-Yg-TAP" firstAttribute="trailing" secondItem="Uiv-95-LTo" secondAttribute="trailing" id="VxA-ZO-oP8"/>
                             <constraint firstItem="Uiv-95-LTo" firstAttribute="leading" secondItem="1sk-Yg-TAP" secondAttribute="leading" id="ewr-4N-rho"/>
-                            <constraint firstItem="Fac-BC-RNF" firstAttribute="top" secondItem="1sk-Yg-TAP" secondAttribute="top" id="hGO-I7-nfG"/>
+                            <constraint firstItem="Fac-BC-RNF" firstAttribute="top" secondItem="onV-KK-J8e" secondAttribute="top" id="hGO-I7-nfG"/>
                             <constraint firstItem="Fac-BC-RNF" firstAttribute="leading" secondItem="1sk-Yg-TAP" secondAttribute="leading" id="v1Q-wx-Vni"/>
                         </constraints>
                     </view>
@@ -1122,6 +1122,9 @@
         <image name="x_icon" width="36" height="36"/>
         <namedColor name="Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray04">
+            <color red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -348,6 +348,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     
     private func makeCardCell(emotion: Emotion?, with element: UIImage?, from collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardRecordCollectionViewCell.identifier, for: indexPath) as? CardRecordCollectionViewCell else { return UICollectionViewCell() }
+        cell.delegate = self
         cell.mainImageView.image = element
 //        cell.emotion = emotion
         return cell
@@ -447,4 +448,20 @@ extension ImageRecordViewController: CropViewControllerDelegate {
             })
         }
     }
+}
+
+extension ImageRecordViewController: CardRecordCollectionViewCellDelegate {
+    
+    func selectImageClicked() {
+        
+    }
+    
+    func selectEmotionClicked() {
+        self.delegate?.clickedEmotionSelectArea(currentEmotion: self.reactor?.currentState.emotion ?? .fun)
+    }
+    
+    func selectContentsClicked() {
+        
+    }
+    
 }
