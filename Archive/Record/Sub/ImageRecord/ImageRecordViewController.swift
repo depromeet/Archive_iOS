@@ -347,6 +347,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.pageControl.numberOfPages = 0
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+        self.pageControl.isEnabled = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -189,6 +189,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         self.contentsCountLabel.textColor = Gen.Colors.black.color
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+        self.pageControl.isEnabled = false
     }
     
     private func makeNavigationItems() {
