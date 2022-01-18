@@ -96,6 +96,12 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         initUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
     func bind(reactor: ImageRecordReactor) {
         self.addPhotoBtn.rx.tap
             .subscribe(onNext: { [weak self] in

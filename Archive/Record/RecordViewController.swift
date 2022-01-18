@@ -63,8 +63,7 @@ class RecordViewController: UIViewController, StoryboardView {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         removePageViewControllerSwipeGesture()
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         makeNaviBtn()
     }
     
