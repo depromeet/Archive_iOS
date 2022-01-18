@@ -69,6 +69,7 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
     // MARK: private property
     
     private let photoContentsView: PhotoContentsView? = PhotoContentsView.instance()
+    private let dummyContentsView: UIView = UIView()
     private var willDisplayIndex: Int = 0
     private var willDisplaySectionIndex: Int = 0
     private var originMainContainerViewBottomConstraint: CGFloat = 0
@@ -223,14 +224,19 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
         self.imagesCollectionView.rx.willDisplayCell
             .asDriver()
             .drive(onNext: { [weak self] info in
-                if info.at.section == 0 || info.at.section == 2 {
+                if info.at.section == 0 {
                     self?.photoContentsView?.isHidden = true
-                } else {
+                    self?.dummyContentsView.isHidden = true
+                } else if info.at.section == 1 {
                     self?.photoContentsView?.isHidden = false
+                    self?.dummyContentsView.isHidden = true
                     if let imageInfo = reactor.currentState.imageInfos?[info.at.item] {
                         self?.photoContentsView?.imageInfo = imageInfo
                         self?.photoContentsView?.index = info.at.item
                     }
+                } else {
+                    self?.photoContentsView?.isHidden = true
+                    self?.dummyContentsView.isHidden = false
                 }
             })
             .disposed(by: self.disposeBag)
@@ -330,6 +336,14 @@ class ImageRecordViewController: UIViewController, StoryboardView, ImageRecordVi
             photoContentsView.isHidden = true
             photoContentsView.delegate = self
         }
+        
+        self.bottomContainerView.addSubview(self.dummyContentsView)
+        self.dummyContentsView.backgroundColor = Gen.Colors.white.color
+        dummyContentsView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        dummyContentsView.isHidden = true
+        
         self.pageControl.numberOfPages = 0
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
