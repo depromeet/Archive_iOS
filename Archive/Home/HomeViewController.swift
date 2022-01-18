@@ -205,6 +205,11 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         backImage.withRenderingMode(.alwaysTemplate)
         let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(myPageAction(_:)))
         self.navigationItem.rightBarButtonItem = backBarButtonItem
+        
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.tintColor = .black
+        UINavigationBar.appearance().backIndicatorImage = Gen.Images.back.image
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = Gen.Images.back.image
     }
     
     @objc private func myPageAction(_ sender: UIButton) {

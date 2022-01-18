@@ -63,6 +63,22 @@ class RecordViewController: UIViewController, StoryboardView {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         removePageViewControllerSwipeGesture()
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .white
+        makeNaviBtn()
+    }
+    
+    private func makeNaviBtn() {
+        let closeImage = Gen.Images.backWhite.image
+        closeImage.withRenderingMode(.alwaysTemplate)
+        let backBarButtonItem = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: #selector(backButtonClicked(_:)))
+        backBarButtonItem.tintColor = Gen.Colors.white.color
+        self.navigationItem.leftBarButtonItem = backBarButtonItem
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Gen.Colors.white.color]
+    }
+    
+    @objc private func backButtonClicked(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     init?(coder: NSCoder, reactor: RecordReactor) {
