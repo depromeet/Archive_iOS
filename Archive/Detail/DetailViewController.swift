@@ -181,6 +181,8 @@ class DetailViewController: UIViewController, StoryboardView, ActivityIndicatora
         
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .white
         
         makeNaviBtn()
     }
