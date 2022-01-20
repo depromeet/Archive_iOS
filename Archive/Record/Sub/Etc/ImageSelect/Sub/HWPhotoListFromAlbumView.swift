@@ -57,7 +57,7 @@ class HWPhotoListFromAlbumView: UIView {
     }
     
     var selectedIndexDic: Dictionary = [PHAsset: PhotoFromAlbumModel]()
-    var focusImgIndex: Int = -1
+    var focusImgIndex: Int = 0
     
     // MARK: life cycle
     
