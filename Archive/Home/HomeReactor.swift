@@ -9,6 +9,7 @@ import ReactorKit
 import RxRelay
 import RxFlow
 import SwiftyJSON
+import Moya
 
 final class HomeReactor: Reactor, Stepper {
     
@@ -46,13 +47,20 @@ final class HomeReactor: Reactor, Stepper {
         case .getMyArchives:
             return Observable.concat([
                 Observable.just(.setIsShimmering(true)),
-                self.getArchives().map { result in
+                self.getArchives().map { [weak self] result in
                     switch result {
                     case .success(let data):
                         return .setMyArchivesData(data)
                     case .failure(let err):
                         print("err: \(err.localizedDescription)")
-                        return .setMyArchivesData(nil)
+                        guard let code = (err as? MoyaError)?.response?.statusCode else { return .setMyArchivesData(nil) }
+                        if code == 403 {
+                            UserDefaultManager.shared.setLoginToken("")
+                            self?.steps.accept(ArchiveStep.logout)
+                            return .setMyArchivesData(nil)
+                        } else {
+                            return .setMyArchivesData(nil)
+                        }
                     }
                 },
                 Observable.just(.setIsShimmering(false))
