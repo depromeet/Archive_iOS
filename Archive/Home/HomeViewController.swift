@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class HomeViewController: UIViewController, StoryboardView, ActivityIndicatorable {
+final class HomeViewController: UIViewController, StoryboardView, ActivityIndicatorable, SplashViewProtocol {
     
     // MARK: IBOutlet
     @IBOutlet weak var mainContainerView: UIView!
@@ -39,6 +39,8 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     // MARK: internal property
     
     var disposeBag = DisposeBag()
+    weak var targetView: UIView?
+    var attachedView: UIView? = SplashView.instance()
     
     // MARK: lifeCycle
     
@@ -55,6 +57,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         super.viewDidLoad()
         initUI()
         self.reactor?.action.onNext(.getMyArchives)
+        runSplashView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,6 +189,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         self.contentsCountLabel.textColor = Gen.Colors.black.color
         self.pageControl.pageIndicatorTintColor = Gen.Colors.gray03.color
         self.pageControl.currentPageIndicatorTintColor = Gen.Colors.gray01.color
+        self.pageControl.isEnabled = false
     }
     
     private func makeNavigationItems() {
@@ -202,10 +206,35 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         backImage.withRenderingMode(.alwaysTemplate)
         let backBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(myPageAction(_:)))
         self.navigationItem.rightBarButtonItem = backBarButtonItem
+        
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.tintColor = .black
+        UINavigationBar.appearance().backIndicatorImage = Gen.Images.back.image
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = Gen.Images.back.image
     }
     
     @objc private func myPageAction(_ sender: UIButton) {
         self.reactor?.action.onNext(.showMyPage(self.reactor?.currentState.arvhivesCount ?? 0))
+    }
+    
+    private func runSplashView() {
+        if !AppConfigManager.shared.isPlayedIntroSplashView {
+            AppConfigManager.shared.isPlayedIntroSplashView = true
+            self.targetView = self.mainContainerView
+            showSplashView(completion: {
+                (self.attachedView as? SplashView)?.play()
+            })
+            (self.attachedView as? SplashView)?.isFinishAnimationFlag
+                .asDriver(onErrorJustReturn: true)
+                .drive(onNext: { [weak self] in
+                    if $0 {
+                        self?.hideSplashView(completion: { [weak self] in
+                            self?.attachedView = nil
+                        })
+                    }
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
     
     // MARK: internal function

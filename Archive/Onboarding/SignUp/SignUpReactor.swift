@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 import RxFlow
 import SwiftyJSON
+import Moya
 
 final class SignUpReactor: Reactor, Stepper {
     
@@ -162,7 +163,7 @@ final class SignUpReactor: Reactor, Stepper {
                         case .success(_):
                             self?.steps.accept(ArchiveStep.userIsSignedUp)
                         case .failure(let err):
-                            self?.error.onNext("error\(err.localizedDescription)")
+                            self?.error.onNext(ServerErrorUtil.getErrMsg(err))
                         }
                         return .setIsLoading(false)
                     }

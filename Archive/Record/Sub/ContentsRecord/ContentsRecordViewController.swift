@@ -74,6 +74,12 @@ class ContentsRecordViewController: UIViewController, StoryboardView, ContentsRe
         super.init(coder: coder)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
