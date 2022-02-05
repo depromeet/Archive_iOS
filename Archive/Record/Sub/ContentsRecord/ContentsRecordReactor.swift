@@ -108,8 +108,7 @@ class ContentsRecordReactor: Reactor {
     
     private func checkIsAllContentsSetted() -> Bool {
         var returnValue: Bool = false
-        if self.currentState.friends.count > 0 &&
-            self.currentState.contentsTitle != "" &&
+        if self.currentState.contentsTitle != "" &&
             self.currentState.contentsDate != "" {
             returnValue = true
         }
