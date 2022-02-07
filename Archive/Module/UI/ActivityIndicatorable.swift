@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 protocol ActivityIndicatorable where Self: UIViewController {
     func startIndicatorAnimating()
@@ -15,16 +16,16 @@ protocol ActivityIndicatorable where Self: UIViewController {
 private var activityIndicatorableAssociatedObjectKey: Void?
 
 extension ActivityIndicatorable {
-    private var indicatorView: UIActivityIndicatorView {
+    
+    private var indicatorView: AnimationView {
         get {
-            var indicator = objc_getAssociatedObject(self, &activityIndicatorableAssociatedObjectKey) as? UIActivityIndicatorView
+            var indicator = objc_getAssociatedObject(self, &activityIndicatorableAssociatedObjectKey) as? AnimationView
             if indicator == nil {
-                indicator = UIActivityIndicatorView()
-                if #available(iOS 13.0, *) {
-                    indicator?.style = .large
-                } else {
-                    indicator?.style = .whiteLarge
-                }
+                indicator = AnimationView()
+                indicator?.backgroundColor = .clear
+                indicator?.animation = Animation.named("SignUp")
+                indicator?.contentMode = .scaleAspectFit
+                indicator?.loopMode = .loop
                 objc_setAssociatedObject(self, &activityIndicatorableAssociatedObjectKey, indicator, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
             return indicator!
@@ -36,12 +37,13 @@ extension ActivityIndicatorable {
     
     func startIndicatorAnimating() {
         view.addSubview(indicatorView)
-        indicatorView.centerInSuperview()
+        indicatorView.centerInSuperview(size: CGSize(width: 30, height: 30))
         view.bringSubviewToFront(indicatorView)
-        indicatorView.startAnimating()
+        indicatorView.play()
     }
     
     func stopIndicatorAnimating() {
+        indicatorView.stop()
         indicatorView.removeFromSuperview()
     }
 }

@@ -449,10 +449,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sJ-3I-4l5">
-                                                                <rect key="frame" x="0.0" y="60" width="414" height="100.5"/>
+                                                                <rect key="frame" x="0.0" y="60" width="414" height="160.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2l-D5-4r6">
-                                                                        <rect key="frame" x="138" y="24.5" width="138" height="52"/>
+                                                                        <rect key="frame" x="138" y="54.5" width="138" height="52"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="type=pleasant_mini" translatesAutoresizingMaskIntoConstraints="NO" id="Abh-wA-jqJ">
                                                                                 <rect key="frame" x="16" y="14" width="24" height="24"/>
@@ -504,7 +504,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeB-3c-qve">
-                                                                <rect key="frame" x="32" y="160.5" width="350" height="350"/>
+                                                                <rect key="frame" x="32" y="220.5" width="350" height="350"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultEmotionMain" translatesAutoresizingMaskIntoConstraints="NO" id="69d-hi-7QW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
@@ -565,7 +565,7 @@
                                                             <constraint firstItem="NEe-Ad-o7U" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="Pxz-U9-LSt"/>
                                                             <constraint firstItem="Ofn-Vv-fd9" firstAttribute="centerX" secondItem="64d-oj-4FK" secondAttribute="centerX" id="SwW-Zw-9aF"/>
                                                             <constraint firstAttribute="trailing" secondItem="2sJ-3I-4l5" secondAttribute="trailing" id="T2Z-zQ-blv"/>
-                                                            <constraint firstItem="AeB-3c-qve" firstAttribute="centerY" secondItem="64d-oj-4FK" secondAttribute="centerY" id="cO0-T7-ex6"/>
+                                                            <constraint firstItem="AeB-3c-qve" firstAttribute="centerY" secondItem="64d-oj-4FK" secondAttribute="centerY" constant="60" id="cO0-T7-ex6"/>
                                                             <constraint firstItem="8ff-hN-IAJ" firstAttribute="leading" secondItem="64d-oj-4FK" secondAttribute="leading" id="f9s-2L-esx"/>
                                                             <constraint firstAttribute="bottom" secondItem="Ofn-Vv-fd9" secondAttribute="bottom" id="gkG-CL-kVa"/>
                                                             <constraint firstAttribute="width" secondItem="64d-oj-4FK" secondAttribute="height" multiplier="375:608" id="jYG-Mq-9NP"/>
