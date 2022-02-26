@@ -66,7 +66,7 @@ class RecordImageCollectionViewCell: UICollectionViewCell, ClassIdentifiable {
     
     // MARK: action
     @IBAction func imageCropAction(_ sender: Any) {
-        guard let image = self.mainImageView.image else { return }
+        guard let image = self.imageInfo?.originalImage else { return }
         self.delegate?.imageCrop(image: image, index: self.index)
     }
     
