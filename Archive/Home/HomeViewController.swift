@@ -106,7 +106,9 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         .distinctUntilChanged()
         .subscribe(onNext: {
             if $0 > 0 {
-                reactor.action.onNext(.showMyArchives)
+                DispatchQueue.global().async {
+                    reactor.action.onNext(.showMyArchives)
+                }
             }
         })
         .disposed(by: self.disposeBag)
