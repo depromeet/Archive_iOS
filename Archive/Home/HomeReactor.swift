@@ -10,10 +10,21 @@ import RxRelay
 import RxFlow
 import SwiftyJSON
 import Moya
+import Foundation
 
 final class HomeReactor: Reactor, Stepper {
     
+    enum ArchivesOrderBy {
+        case dateToUpload
+        case dateToUploadReverse
+        case dateToVisit
+        case dateToVisitReverse
+    }
+    
     // MARK: private property
+    
+    private var archives: [ArchiveInfo] = [ArchiveInfo]()
+    private var archivesOrderBy: ArchivesOrderBy = .dateToUpload
     
     // MARK: internal property
     
@@ -27,12 +38,15 @@ final class HomeReactor: Reactor, Stepper {
         case showDetail(Int)
         case addArchive
         case showMyPage(Int)
+        case showMyArchives
+        case setMyArchivesOrderBy(ArchivesOrderBy)
     }
     
     enum Mutation {
         case setIsLoading(Bool)
         case setIsShimmering(Bool)
         case setMyArchivesData(Data?)
+        case setArchives([ArchiveInfo])
     }
     
     struct State {
@@ -65,6 +79,19 @@ final class HomeReactor: Reactor, Stepper {
                 },
                 Observable.just(.setIsShimmering(false))
             ])
+        case .showMyArchives:
+            var orderedArchives: [ArchiveInfo] = self.archives
+            switch self.archivesOrderBy {
+            case .dateToUpload:
+                orderedArchives = orderByUploadDateArchives(self.archives)
+            case .dateToUploadReverse:
+                orderedArchives = orderByUploadDateArchives(self.archives).reversed()
+            case .dateToVisit:
+                orderedArchives = orderByVisitDateArhives(self.archives)
+            case .dateToVisitReverse:
+                orderedArchives = orderByVisitDateArhives(self.archives).reversed()
+            }
+            return .just(.setArchives(orderedArchives))
         case .showDetail(let index):
             return Observable.concat([
                 Observable.just(.setIsLoading(true)),
@@ -84,6 +111,9 @@ final class HomeReactor: Reactor, Stepper {
         case .showMyPage(let archiveCnt):
             self.steps.accept(ArchiveStep.myPageIsRequired(archiveCnt))
             return .empty()
+        case .setMyArchivesOrderBy(let orderBy):
+            self.archivesOrderBy = orderBy
+            return .empty()
         }
     }
     
@@ -99,9 +129,11 @@ final class HomeReactor: Reactor, Stepper {
                 let infosTuple = convertDataToArchivesInfos(data: data)
                 let infos = infosTuple.0
                 let infosTotalCount = infosTuple.1
-                newState.archives = infos.reversed()
+                self.archives = infos
                 newState.arvhivesCount = infosTotalCount
             }
+        case .setArchives(let archives):
+            newState.archives = archives
         }
         return newState
     }
@@ -155,6 +187,21 @@ final class HomeReactor: Reactor, Stepper {
                 self?.steps.accept(ArchiveStep.detailIsRequired(info, index))
             }
         }
+    }
+    
+    private func orderByUploadDateArchives(_ archives: [ArchiveInfo]) -> [ArchiveInfo] {
+        return archives.reversed()
+    }
+    
+    private func orderByVisitDateArhives(_ archives: [ArchiveInfo]) -> [ArchiveInfo] {
+        return archives.sorted(by: { stringDateToDate($0.watchedOn) > stringDateToDate($1.watchedOn) })
+    }
+    
+    private func stringDateToDate(_ str: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "yy/MM/dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.date(from: str) ?? Date()
     }
     
     // MARK: internal function
