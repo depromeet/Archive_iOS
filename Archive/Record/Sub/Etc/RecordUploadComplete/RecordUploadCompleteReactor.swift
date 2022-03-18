@@ -49,6 +49,7 @@ class RecordUploadCompleteReactor: Reactor, Stepper {
             steps.accept(ArchiveStep.recordComplete)
             return .empty()
         case .shareToInstagram:
+            GAModule.sendEventLogToGA(.shareInstagramFromRegist)
             DispatchQueue.main.async { [weak self] in
                 guard let cardView: ShareCardView = self?.makeCardView() else { return }
                 InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: cardView.topBackgroundColor, backgroundBottomColor: cardView.bottomBackgroundColor, completion: { _ in

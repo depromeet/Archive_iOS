@@ -93,6 +93,7 @@ internal enum Gen {
     internal static let logo = ImageAsset(name: "Logo")
     internal static let logoImage = ImageAsset(name: "LogoImage")
     internal static let logoWhite = ImageAsset(name: "Logo_white")
+    internal static let signWithApple = ImageAsset(name: "SignWithApple")
     internal static let addPhoto = ImageAsset(name: "addPhoto")
     internal static let btnApple = ImageAsset(name: "btn_apple")
     internal static let btnCancel = ImageAsset(name: "btn_cancel")

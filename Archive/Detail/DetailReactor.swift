@@ -56,6 +56,7 @@ class DetailReactor: Reactor, Stepper {
         case .setDetailData(let data):
             return .just(.setDetailData(data))
         case .shareToInstagram:
+            GAModule.sendEventLogToGA(.shareInstagramFromDetail)
             DispatchQueue.main.async { [weak self] in
                 self?.makeCardView(completion: { cardView in
                     InstagramStoryShareManager.shared.share(view: cardView, backgroundTopColor: cardView.topBackgroundColor, backgroundBottomColor: cardView.bottomBackgroundColor, completion: { _ in

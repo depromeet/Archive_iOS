@@ -56,6 +56,7 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        self.reactor?.action.onNext(.setMyArchivesOrderBy(.dateToVisit))
         self.reactor?.action.onNext(.getMyArchives)
         runSplashView()
     }
@@ -93,6 +94,23 @@ final class HomeViewController: UIViewController, StoryboardView, ActivityIndica
         .distinctUntilChanged()
         .map { String("\($0)") }
         .bind(to: self.contentsCountLabel.rx.text)
+        .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.arvhivesCount }
+        .distinctUntilChanged()
+        .map { String("\($0)") }
+        .bind(to: self.contentsCountLabel.rx.text)
+        .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.arvhivesCount }
+        .distinctUntilChanged()
+        .subscribe(onNext: {
+            if $0 > 0 {
+                DispatchQueue.global().async {
+                    reactor.action.onNext(.showMyArchives)
+                }
+            }
+        })
         .disposed(by: self.disposeBag)
         
         reactor.state.map { $0.arvhivesCount }

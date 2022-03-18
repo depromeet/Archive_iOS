@@ -49,6 +49,7 @@ class HomeFlow: Flow {
         case .homeIsRequired:
             return navigationToHomeScreen()
         case .detailIsRequired(let info, let index):
+            GAModule.sendEventLogToGA(.showDetail)
             return navigationToDetailScreen(infoData: info, index: index)
         case .myPageIsRequired(let cnt):
             return navigationToMyPageScreen(cardCount: cnt)
@@ -59,15 +60,20 @@ class HomeFlow: Flow {
         case .logout:
             return .end(forwardToParentFlowWithStep: ArchiveStep.logout)
         case .recordIsRequired:
+            GAModule.sendEventLogToGA(.startRegistArchive)
             return navigationToRecordScreen()
         case .recordEmotionEditIsRequired(let emotion):
+            GAModule.sendEventLogToGA(.startEmotionSelect)
             return navigationToEditEmotion(currentEmotion: emotion)
         case .recordEmotionEditIsComplete(let emotion):
+            GAModule.sendEventLogToGA(.completeEmotionSelect(selected: emotion.rawValue))
             dismissEditEmotion(emotion: emotion)
             return .none
         case .recordImageSelectIsRequired(let emotion):
+            GAModule.sendEventLogToGA(.startPhotoSelect)
             return navigationToImageSelect(emotion: emotion)
         case .recordImageSelectIsComplete(let thumbnailImage, let images):
+            GAModule.sendEventLogToGA(.completePhotoSelect)
             self.recordViewController?.reactor?.action.onNext(.setImages(images))
             self.recordViewController?.reactor?.action.onNext(.setThumbnailImage(thumbnailImage))
             dismissImageSelect()
@@ -75,6 +81,7 @@ class HomeFlow: Flow {
         case .recordUploadIsRequired(let contents, let thumbnail, let emotion, let imageInfos):
             return navigationToRecordUpload(contents: contents, thumbnail: thumbnail, emotion: emotion, imageInfos: imageInfos)
         case .recordUploadIsComplete(let thumbnail, let emotion, let contentsInfo):
+            GAModule.sendEventLogToGA(.completeRegistArchive)
             rootViewController.dismiss(animated: false, completion: nil)
             return navigationToRecordUploadComplete(thumbnail: thumbnail, emotion: emotion, conetentsInfo: contentsInfo)
         case .recordComplete:

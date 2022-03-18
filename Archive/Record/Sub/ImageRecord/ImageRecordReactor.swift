@@ -83,7 +83,7 @@ class ImageRecordReactor: Reactor {
         var returnValue: [ImageInfo] = [ImageInfo]()
         resize(images: images, scale: 0.2, completion: { [weak self] resizedImages in
             for i in 0..<images.count {
-                let item: ImageInfo = ImageInfo(image: images[i], backgroundColor: resizedImages[i].getColors()?.background ?? .clear, contents: nil)
+                let item: ImageInfo = ImageInfo(originalImage: images[i], image: images[i], backgroundColor: resizedImages[i].getColors()?.background ?? .clear, contents: nil)
                 returnValue.append(item)
             }
             completion(returnValue)

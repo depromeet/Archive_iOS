@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -76,38 +76,6 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-B4-iUJ">
-                                <rect key="frame" x="207" y="796" width="0.0" height="0.0"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다른 방법으로 로그인하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlY-gY-c5n">
-                                        <rect key="frame" x="0.0" y="0.0" width="140.5" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                        <color key="textColor" name="Gray03"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tdN-hX-rwT">
-                                        <rect key="frame" x="4.5" y="0.0" width="132" height="56"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4P-0e-mkR">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
-                                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="FQN-qc-wEX"/>
-                                                    <constraint firstAttribute="width" constant="56" id="TQm-Z8-dG9"/>
-                                                </constraints>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIh-WI-w9l">
-                                                <rect key="frame" x="76" y="0.0" width="56" height="56"/>
-                                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="90e-ri-5Vi"/>
-                                                    <constraint firstAttribute="width" constant="56" id="xou-4t-p4I"/>
-                                                </constraints>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-wP-tWK">
                                 <rect key="frame" x="124" y="162" width="166" height="44"/>
                                 <constraints>
@@ -115,20 +83,45 @@
                                     <constraint firstAttribute="height" constant="44" id="Xfh-Nn-B7d"/>
                                 </constraints>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-r3-7G4">
+                                <rect key="frame" x="192" y="537" width="30" height="30"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignWithApple" translatesAutoresizingMaskIntoConstraints="NO" id="zAN-LT-RVy">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-To-XFw">
+                                        <rect key="frame" x="-19" y="-1" width="67" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="testAction:" destination="6J2-Db-tY1" eventType="touchUpInside" id="juY-sT-ybo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Hxk-lh-z2R"/>
+                                    <constraint firstItem="zAN-LT-RVy" firstAttribute="top" secondItem="ke8-r3-7G4" secondAttribute="top" id="IVW-6D-v63"/>
+                                    <constraint firstAttribute="height" constant="30" id="Lur-wW-JeZ"/>
+                                    <constraint firstItem="zAN-LT-RVy" firstAttribute="leading" secondItem="ke8-r3-7G4" secondAttribute="leading" id="UgG-XS-4hU"/>
+                                    <constraint firstAttribute="bottom" secondItem="zAN-LT-RVy" secondAttribute="bottom" id="XvE-h6-uad"/>
+                                    <constraint firstAttribute="trailing" secondItem="zAN-LT-RVy" secondAttribute="trailing" id="bL3-eH-Kpy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JYI-9K-a3j" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ExH-wP-tWK" secondAttribute="bottom" priority="750" constant="44" id="1ay-wy-QR1"/>
                             <constraint firstItem="JYI-9K-a3j" firstAttribute="leading" secondItem="xpv-YU-iCx" secondAttribute="leading" constant="32" id="8u2-ik-Qeu"/>
                             <constraint firstItem="ExH-wP-tWK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ucm-J6-NYI" secondAttribute="bottom" priority="750" constant="44" id="9T7-UF-b8a"/>
-                            <constraint firstItem="dO2-B4-iUJ" firstAttribute="centerX" secondItem="xpv-YU-iCx" secondAttribute="centerX" id="BUq-K1-6Q4"/>
+                            <constraint firstItem="ke8-r3-7G4" firstAttribute="centerX" secondItem="xpv-YU-iCx" secondAttribute="centerX" id="Bj8-0A-Xah"/>
+                            <constraint firstItem="ke8-r3-7G4" firstAttribute="top" secondItem="uAy-wf-Bb4" secondAttribute="bottom" constant="30" id="GGl-9t-09Y"/>
                             <constraint firstItem="uAy-wf-Bb4" firstAttribute="top" secondItem="JYI-9K-a3j" secondAttribute="bottom" constant="20" id="MaW-Nv-XDt"/>
-                            <constraint firstAttribute="bottom" secondItem="dO2-B4-iUJ" secondAttribute="bottom" priority="500" constant="100" id="Tjb-QF-sYu"/>
                             <constraint firstItem="JYI-9K-a3j" firstAttribute="top" secondItem="ExH-wP-tWK" secondAttribute="bottom" priority="500" constant="64" id="VB6-Xh-l8a"/>
                             <constraint firstItem="ExH-wP-tWK" firstAttribute="centerX" secondItem="xpv-YU-iCx" secondAttribute="centerX" id="cyJ-IB-9iF"/>
                             <constraint firstItem="uAy-wf-Bb4" firstAttribute="centerX" secondItem="xpv-YU-iCx" secondAttribute="centerX" id="gbV-iP-Tzi"/>
                             <constraint firstItem="ExH-wP-tWK" firstAttribute="top" secondItem="Ucm-J6-NYI" secondAttribute="bottom" priority="500" constant="118" id="iPt-ET-44f"/>
-                            <constraint firstItem="dO2-B4-iUJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAy-wf-Bb4" secondAttribute="bottom" constant="40" id="iua-TU-vB2"/>
                             <constraint firstAttribute="trailing" secondItem="JYI-9K-a3j" secondAttribute="trailing" constant="32" id="rQW-Ej-Mc6"/>
                         </constraints>
                     </view>
@@ -138,6 +131,7 @@
                         <outlet property="passwordInputView" destination="6PH-uN-haw" id="xuM-5V-cW0"/>
                         <outlet property="signInButton" destination="5iO-9J-Z65" id="JIj-gp-3wN"/>
                         <outlet property="signUpButton" destination="uAy-wf-Bb4" id="Vhe-UI-lsk"/>
+                        <outlet property="testView" destination="ke8-r3-7G4" id="XF5-bV-onB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egf-zc-dBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -722,23 +716,18 @@
         <image name="CheckSquare_deselected" width="26" height="26"/>
         <image name="CheckSquare_selected" width="26" height="26"/>
         <image name="Logo" width="166" height="44"/>
+        <image name="SignWithApple" width="44" height="44"/>
         <namedColor name="Gray01">
             <color red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gray02">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Gray03">
-            <color red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Gray05">
             <color red="0.94099998474121094" green="0.94099998474121094" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
