@@ -63,4 +63,7 @@
 
 Archive is released under the MIT license. [See LICENSE](https://github.com/depromeet/Archive_iOS/blob/development/LICENSE) for details.
 
+## Repository 이관
+[링크](https://github.com/Team-Archive/Archive-iOS)
+
 
